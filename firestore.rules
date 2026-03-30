@@ -1,0 +1,50 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return request.auth.uid == userId;
+    }
+
+    // You can set your specific UID here to grant yourself full admin access
+    function isAdmin() {
+      return isAuthenticated() && (request.auth.token.admin == true || request.auth.uid == "YOUR_ADMIN_UID_HERE");
+    }
+
+    // User Profiles
+    match /users/{userId} {
+      allow read, write: if isOwner(userId) || isAdmin();
+    }
+
+    // Appointments (High-Ticket Readings)
+    match /appointments/{appointmentId} {
+      allow read: if (isAuthenticated() && resource.data.userId == request.auth.uid) || isAdmin();
+      allow create: if isAuthenticated();
+      allow update, delete: if isAdmin();
+    }
+
+    // Digital Products (Course Info, Metadata)
+    match /products/{productId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Product Access (Sleep Money logic)
+    match /access/{accessId} {
+      allow read: if (isAuthenticated() && resource.data.userId == request.auth.uid) || isAdmin();
+      allow create: if isAdmin(); // Only created via backend/stripe webhook
+      allow update, delete: if isAdmin();
+    }
+
+    // Content Engine (Blog Posts/SEO)
+    match /blog_posts/{postId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+  }
+}
