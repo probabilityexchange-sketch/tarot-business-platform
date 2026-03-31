@@ -1,20 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { initializeApp, getApps, cert, getApp } from "firebase-admin/app";
-import { getAuth } from "firebase-admin/auth";
 import { getStorage } from "firebase-admin/storage";
-
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-if (!ADMIN_EMAIL) throw new Error("ADMIN_EMAIL env var not set");
-
-if (!getApps().length) {
-  initializeApp({
-    credential: cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY || "{}")),
-    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
-  });
-}
+import { getAuth } from "firebase-admin/auth";
 
 async function verifyAdmin(request: NextRequest): Promise<boolean> {
+  const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+  if (!ADMIN_EMAIL) return false;
   const authHeader = request.headers.get("Authorization");
   if (!authHeader?.startsWith("Bearer ")) return false;
   const token = authHeader.slice(7);

@@ -2,12 +2,9 @@ import { GoogleGenerativeAI } from "@google/generative-ai";
 import { NextRequest } from "next/server";
 import { getAuth } from "firebase-admin/auth";
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-if (!ADMIN_EMAIL) throw new Error("ADMIN_EMAIL env var not set");
-
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY!);
-
 async function verifyAdmin(request: NextRequest): Promise<boolean> {
+  const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+  if (!ADMIN_EMAIL) return false;
   const authHeader = request.headers.get("Authorization");
   if (!authHeader?.startsWith("Bearer ")) return false;
   const token = authHeader.slice(7);
@@ -18,6 +15,8 @@ async function verifyAdmin(request: NextRequest): Promise<boolean> {
     return false;
   }
 }
+
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY || "");
 
 const SYSTEM_PROMPT = `You are an expert content writer specializing in psychological tarot, narrative therapy, and Jungian psychology. 
 

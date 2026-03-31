@@ -46,14 +46,19 @@ export async function getPostBySlug(slug: string) {
 }
 
 export async function getAllPublishedSlugs() {
-  const q = query(
-    collection(db, "blog_posts"),
-    where("status", "==", "published"),
-    orderBy("publishedAt", "desc"),
-    limit(1000)
-  );
-  const snap = await getDocs(q);
-  return snap.docs.map((d) => ({ slug: d.data().slug, lastmod: d.data().publishedAt }));
+  try {
+    const q = query(
+      collection(db, "blog_posts"),
+      where("status", "==", "published"),
+      orderBy("publishedAt", "desc"),
+      limit(1000)
+    );
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => ({ slug: d.data().slug, lastmod: d.data().publishedAt }));
+  } catch (error) {
+    console.error("Error fetching published slugs:", error);
+    return [];
+  }
 }
 
 export async function getAdminPosts() {

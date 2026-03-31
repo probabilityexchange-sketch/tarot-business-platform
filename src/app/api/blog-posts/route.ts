@@ -4,10 +4,9 @@ import { getAuth } from "firebase-admin/auth";
 import { getAdminPosts, createPost, updatePost, deletePost } from "@/lib/blog";
 import type { BlogPost } from "@/types/blog";
 
-const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-if (!ADMIN_EMAIL) throw new Error("ADMIN_EMAIL env var not set");
-
 async function verifyAdmin(request: NextRequest): Promise<boolean> {
+  const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
+  if (!ADMIN_EMAIL) return false;
   const authHeader = request.headers.get("Authorization");
   if (!authHeader?.startsWith("Bearer ")) return false;
   const token = authHeader.slice(7);
