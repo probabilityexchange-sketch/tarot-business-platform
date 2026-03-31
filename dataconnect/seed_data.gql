@@ -1,0 +1,75 @@
+mutation SeedTarotData @transaction @auth(level: USER, insecureReason: "Seed data can be inserted by any authenticated user for demonstration purposes.") {
+  user_upsertMany(data: [
+    {
+      id: "6e2889e4-c52c-47a3-936d-97813a3641ce",
+      displayName: "Demo User",
+      createdAt: "2024-01-01T00:00:00Z",
+      email: "demo@example.com"
+    }
+  ])
+  tarotSpread_upsertMany(data: [
+    {
+      id: "71e54911-37f2-498c-84ce-69c730e7161b",
+      name: "Three Card Spread",
+      description: "A simple spread for past, present, and future.",
+      numCards: 3,
+      createdAt: "2024-01-01T00:00:00Z",
+      purpose: "Quick insight"
+    }
+  ])
+  spreadPosition_upsertMany(data: [
+    {
+      id: "1a3b5c7d-e9f0-11a2-3b4c-5d6e7f8a9b0c",
+      tarotSpreadId: "71e54911-37f2-498c-84ce-69c730e7161b",
+      positionNumber: 1,
+      name: "Past",
+      description: "Represents past influences or events."
+    },
+    {
+      id: "2b4d6e8f-0a1b-22c3-4d5e-6f7a8b9c0d1e",
+      tarotSpreadId: "71e54911-37f2-498c-84ce-69c730e7161b",
+      positionNumber: 2,
+      name: "Present",
+      description: "Represents current situation or challenges."
+    },
+    {
+      id: "3c5e7f9a-1b2c-33d4-5e6f-7a8b9c0d1e2f",
+      tarotSpreadId: "71e54911-37f2-498c-84ce-69c730e7161b",
+      positionNumber: 3,
+      name: "Future",
+      description: "Represents potential outcomes or guidance."
+    }
+  ])
+  tarotCard_upsertMany(data: [
+    {
+      id: "4d6f8a0b-2c3d-44e5-6f7a-8b9c0d1e2f3a",
+      name: "The Fool",
+      suit: "Major Arcana",
+      rank: "0",
+      uprightMeaning: "Beginnings, innocence, spontaneity, a free spirit",
+      reversedMeaning: "Recklessness, taking chances, risk-taking",
+      imageUrl: "https://example.com/the_fool.png",
+      keywords: ["beginnings", "journey", "innocence"]
+    },
+    {
+      id: "5e7a9b1c-3d4e-55f6-7a8b-9c0d1e2f3a4b",
+      name: "The Magician",
+      suit: "Major Arcana",
+      rank: "I",
+      uprightMeaning: "Power, skill, concentration, action, resourcefulness",
+      reversedMeaning: "Manipulation, poor planning, untapped talents",
+      imageUrl: "https://example.com/the_magician.png",
+      keywords: ["power", "creation", "manifestation"]
+    },
+    {
+      id: "6f8b0c2d-4e5f-66a7-8b9c-0d1e2f3a4b5c",
+      name: "The High Priestess",
+      suit: "Major Arcana",
+      rank: "II",
+      uprightMeaning: "Intuition, sacred knowledge, subconscious mind",
+      reversedMeaning: "Secrets, intuition, withdrawal and silence",
+      imageUrl: "https://example.com/the_high_priestess.png",
+      keywords: ["intuition", "mystery", "subconscious"]
+    }
+  ])
+}

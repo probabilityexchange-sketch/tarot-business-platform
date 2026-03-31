@@ -1,20 +1,64 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
-:root {
-  --background: #0f172a;
-  --foreground: #f8fafc;
-}
+@theme {
+  /* Colors - Electric Midnight Palette */
+  --color-surface: #131314;
+  --color-surface-container-lowest: #0d0d0e;
+  --color-surface-container-low: #1c1b1c;
+  --color-surface-container: #212122;
+  --color-surface-container-high: #2a2a2b;
+  --color-surface-container-highest: #2e2e2f;
+  
+  --color-primary: #d0bcff;
+  --color-primary-container: #a078ff;
+  --color-secondary: #4cd7f6;
+  --color-tertiary: #98da27;
+  --color-on-surface: #e5e2e3;
+  --color-on-primary-fixed: #21005d;
+  --color-error: #ffb4ab;
+  --color-outline-variant: #49454f;
 
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: system-ui, -apple-system, sans-serif;
+  /* Typography */
+  --font-display: var(--font-newsreader), serif;
+  --font-body: var(--font-inter), sans-serif;
+  --font-label: var(--font-space-grotesk), sans-serif;
+
+  /* Transitions */
+  --ease-snappy: cubic-bezier(0.2, 0, 0, 1);
+  
+  /* Spacing */
+  --spacing-spacing-8: 2rem;
+  --spacing-spacing-10: 2.5rem;
 }
 
 @layer base {
-  * {
-    @apply border-slate-800;
+  body {
+    @apply bg-surface text-on-surface font-body antialiased;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display italic leading-tight;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-surface-container/60 backdrop-blur-[24px];
+  }
+
+  .neon-halo-primary {
+    box-shadow: 0 0 32px 0 rgba(208, 188, 255, 0.04);
+  }
+
+  .neon-halo-secondary {
+    box-shadow: 0 0 32px 0 rgba(76, 215, 246, 0.04);
+  }
+
+  .ritual-progress {
+    @apply h-[1px] bg-tertiary shadow-[0_0_10px_#98da27];
+  }
+  
+  .ease-snappy {
+    transition-timing-function: var(--ease-snappy);
   }
 }

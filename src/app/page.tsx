@@ -1,45 +1,88 @@
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+
 export default function Home() {
   return (
-    <div className="relative isolate px-6 pt-14 lg:px-8">
-      <div className="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56 text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-white sm:text-6xl mb-6">
-          Tarot for the <span className="text-pink-500">Psychological Mind</span>
-        </h1>
-        <p className="text-lg leading-8 text-slate-300 mb-10">
-          Transform your story through narrative therapy and tarot. 
-          Gifted insight meets professional psychology to help you 
-          uncover the hidden narratives of your life.
-        </p>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <a
-            href="/readings"
-            className="rounded-full bg-pink-600 px-8 py-4 text-sm font-semibold text-white shadow-sm hover:bg-pink-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-pink-600 transition-all transform hover:scale-105"
-          >
-            Book a Session
-          </a>
-          <a href="/courses" className="text-sm font-semibold leading-6 text-white hover:text-pink-400">
-            Learn the Method <span aria-hidden="true">→</span>
-          </a>
-        </div>
+    <div className="relative isolate">
+      {/* Background visual element for professional feel */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <svg
+          className="absolute left-[max(50%,25rem)] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-primary/10 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
+          aria-hidden="true"
+        >
+          <defs>
+            <pattern
+              id="pattern-grid"
+              width={200}
+              height={200}
+              x="50%"
+              y={-1}
+              patternUnits="userSpaceOnUse"
+            >
+              <path d="M.5 200V.5H200" fill="none" />
+            </pattern>
+          </defs>
+          <rect width="100%" height="100%" strokeWidth={0} fill="url(#pattern-grid)" />
+        </svg>
       </div>
+
+      {/* Hero Section */}
+      <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-12 lg:py-40">
+        <div className="max-w-4xl">
+          <h1 className="text-5xl font-display tracking-tight text-on-surface sm:text-7xl lg:text-8xl mb-10 leading-[1.1]">
+            Psychological Tarot for <br />
+            <span className="text-primary italic">Shadow Work & Narrative Therapy</span>
+          </h1>
+          <p className="max-w-2xl text-xl leading-relaxed text-on-surface/70 mb-12 font-body lg:text-2xl">
+            Transform your internal dialogue through the intersection of narrative therapy and tarot archetypes. 
+            Gifted insight meets professional psychological frameworks to help you 
+            uncover the hidden narratives of your life and master the art of self-reflection.
+          </p>
+          <div className="flex flex-wrap items-center gap-6">
+            <Button variant="primary" size="lg" className="px-10 py-6 text-lg transition-all hover:scale-105" aria-label="Book a reading session">
+              Book a Reading
+            </Button>
+            <Button variant="tertiary" size="lg" className="text-lg transition-all hover:translate-x-1" aria-label="Learn about the method">
+              Discover the Method →
+            </Button>
+          </div>
+        </div>
+      </section>
       
       {/* Featured Services Section */}
-      <div className="mx-auto max-w-7xl px-6 lg:px-8 pb-32">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl">
-            <h3 className="text-xl font-semibold mb-4 text-pink-400">Narrative Readings</h3>
-            <p className="text-slate-400">50-minute deep-dive sessions combining psychological insight with tarot archetypes.</p>
+      <section className="bg-surface-container-low px-6 py-24 sm:py-32 lg:px-12" aria-labelledby="services-heading">
+        <div className="mx-auto max-w-7xl">
+          <div className="mb-16">
+            <h2 id="services-heading" className="text-sm font-label uppercase tracking-widest text-primary mb-4">Core Offerings</h2>
+            <p className="text-3xl font-display text-on-surface sm:text-4xl">Deepen your self-reflection journey.</p>
           </div>
-          <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl">
-            <h3 className="text-xl font-semibold mb-4 text-pink-400">Signature Course</h3>
-            <p className="text-slate-400">Master the art of psychological tarot at your own pace. Recorded modules and workbooks.</p>
-          </div>
-          <div className="bg-slate-900/50 border border-slate-800 p-8 rounded-2xl">
-            <h3 className="text-xl font-semibold mb-4 text-pink-400">Writing Workshops</h3>
-            <p className="text-slate-400">Use tarot as a catalyst for creative writing and deep shadow work.</p>
+          <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+            <Card elevation="high" className="transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <span className="font-label text-xs uppercase tracking-[0.1em] text-secondary mb-6 block">01 / Readings</span>
+              <h3 className="text-3xl font-display mb-4 text-on-surface">Psychological Tarot</h3>
+              <p className="text-on-surface/60 leading-relaxed mb-6">50-minute deep-dive sessions combining narrative therapy with tarot archetypes for deep shadow work.</p>
+              <a href="/readings" className="text-primary font-label text-sm uppercase tracking-wider hover:underline">Explore Readings</a>
+            </Card>
+            
+            <Card elevation="high" className="transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <span className="font-label text-xs uppercase tracking-[0.1em] text-secondary mb-6 block">02 / Education</span>
+              <h3 className="text-3xl font-display mb-4 text-on-surface">Signature Course</h3>
+              <p className="text-on-surface/60 leading-relaxed mb-6">Master the psychology of tarot at your own pace. Learn to use archetypes as a tool for personal transformation.</p>
+              <a href="/courses" className="text-primary font-label text-sm uppercase tracking-wider hover:underline">View Course Details</a>
+            </Card>
+            
+            <Card elevation="high" className="transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl">
+              <span className="font-label text-xs uppercase tracking-[0.1em] text-secondary mb-6 block canvas">03 / Creation</span>
+              <h3 className="text-3xl font-display mb-4 text-on-surface">Creative Writing</h3>
+              <p className="text-on-surface/60 leading-relaxed mb-6">Workshops that use tarot as a catalyst for creative writing and unblocking your inner storyteller.</p>
+              <a href="/blog" className="text-primary font-label text-sm uppercase tracking-wider hover:underline">Join a Workshop</a>
+            </Card>
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Decorative Progress Bar */}
+      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
     </div>
   );
 }

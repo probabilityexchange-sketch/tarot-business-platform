@@ -1,0 +1,47 @@
+type User @table {
+  displayName: String!
+  createdAt: Timestamp!
+  email: String
+  photoUrl: String
+}
+
+type TarotCard @table {
+  name: String!
+  suit: String!
+  rank: String!
+  uprightMeaning: String!
+  reversedMeaning: String!
+  imageUrl: String!
+  keywords: [String]
+}
+
+type TarotSpread @table {
+  name: String!
+  description: String!
+  numCards: Int!
+  createdAt: Timestamp!
+  purpose: String
+}
+
+type SpreadPosition @table {
+  tarotSpread: TarotSpread!
+  positionNumber: Int!
+  name: String!
+  description: String!
+}
+
+type Reading @table {
+  user: User!
+  tarotSpread: TarotSpread!
+  readingDate: Timestamp!
+  createdAt: Timestamp!
+  notes: String
+}
+
+type ReadingCard @table {
+  reading: Reading!
+  tarotCard: TarotCard!
+  spreadPosition: SpreadPosition!
+  isReversed: Boolean!
+  createdAt: Timestamp!
+}

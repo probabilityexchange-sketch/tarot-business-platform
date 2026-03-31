@@ -1,0 +1,60 @@
+query AllTarotCards @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public as it provides general Tarot card information.") {
+  tarotCards {
+    id
+    name
+    suit
+    rank
+    uprightMeaning
+    reversedMeaning
+    imageUrl
+    keywords
+  }
+}
+
+query MyReadings @auth(level: USER) {
+  readings(where: {userId: {eq_expr: "auth.uid"}}) {
+    id
+    readingDate
+    notes
+    tarotSpread {
+      name
+      description
+    }
+    readingCards {
+      isReversed
+      tarotCard {
+        name
+        suit
+        rank
+      }
+      spreadPosition {
+        name
+        positionNumber
+      }
+    }
+  }
+}
+
+mutation CreateReading(
+  $tarotSpreadId: UUID!,
+  $readingDate: Timestamp!,
+  $notes: String
+) @auth(level: USER) {
+  reading_insert(data: {
+    userId_expr: "auth.uid",
+    tarotSpreadId: $tarotSpreadId,
+    readingDate: $readingDate,
+    notes: $notes
+  })
+}
+
+mutation UpdateUserProfile($displayName: String, $email: String, $photoUrl: String) @auth(level: USER) {
+  user_update(
+    key: {id_expr: "auth.uid"},
+    data: {
+      displayName: $displayName,
+      email: $email,
+      photoUrl: $photoUrl
+    }
+  )
+}
