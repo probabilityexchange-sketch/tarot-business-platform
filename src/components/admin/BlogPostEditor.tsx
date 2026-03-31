@@ -19,6 +19,7 @@ import {
 type Props = {
   initialContent?: string;
   onChange?: (html: string) => void;
+  onEditorReady?: (editor: ReturnType<typeof useEditor>) => void;
 };
 
 type ToolbarButtonProps = {
@@ -46,7 +47,7 @@ function ToolbarButton({ onClick, active, disabled, children }: ToolbarButtonPro
   );
 }
 
-export function BlogPostEditor({ initialContent = "", onChange }: Props) {
+export function BlogPostEditor({ initialContent = "", onChange, onEditorReady }: Props) {
   const editor = useEditor({
     extensions: [
       StarterKit,
@@ -58,6 +59,9 @@ export function BlogPostEditor({ initialContent = "", onChange }: Props) {
     content: initialContent,
     onUpdate: ({ editor }) => {
       onChange?.(editor.getHTML());
+    },
+    onCreate: ({ editor }) => {
+      onEditorReady?.(editor);
     },
   });
 

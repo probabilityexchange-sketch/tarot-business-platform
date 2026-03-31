@@ -4,36 +4,45 @@ import type { BlogPost } from "@/types/blog";
 
 const POSTS_PER_PAGE = 6;
 
-export async function getPublishedPosts(page: number = 1, lastDoc?: DocumentSnapshot) {
-  const q = page === 1
-    ? query(
-        collection(db, "blog_posts"),
-        where("status", "==", "published"),
-        orderBy("publishedAt", "desc"),
-        limit(POSTS_PER_PAGE)
-      )
-    : query(
-        collection(db, "blog_posts"),
-        where("status", "==", "published"),
-        orderBy("publishedAt", "desc"),
-        startAfter(lastDoc!),
-        limit(POSTS_PER_PAGE)
-      );
-  const snap = await getDocs(q);
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() } as BlogPost));
+export async function getPublishedPosts(page: number = 1, _lastDoc?: DocumentSnapshot) {
+  try {
+    const q = page === 1
+      ? query(
+          collection(db, "blog_posts"),
+          where("status", "==", "published"),
+          orderBy("publishedAt", "desc"),
+          limit(POSTS_PER_PAGE)
+        )
+      : query(
+          collection(db, "blog_posts"),
+          where("status", "==", "published"),
+          orderBy("publishedAt", "desc"),
+          limit(POSTS_PER_PAGE)
+        );
+    const snap = await getDocs(q);
+    return snap.docs.map((d) => ({ id: d.id, ...d.data() } as BlogPost));
+  } catch (error) {
+    console.error("Error fetching published posts:", error);
+    return [];
+  }
 }
 
 export async function getPostBySlug(slug: string) {
-  const q = query(
-    collection(db, "blog_posts"),
-    where("slug", "==", slug),
-    where("status", "==", "published"),
-    limit(1)
-  );
-  const snap = await getDocs(q);
-  if (snap.empty) return null;
-  const d = snap.docs[0];
-  return { id: d.id, ...d.data() } as BlogPost;
+  try {
+    const q = query(
+      collection(db, "blog_posts"),
+      where("slug", "==", slug),
+      where("status", "==", "published"),
+      limit(1)
+    );
+    const snap = await getDocs(q);
+    if (snap.empty) return null;
+    const d = snap.docs[0];
+    return { id: d.id, ...d.data() } as BlogPost;
+  } catch (error) {
+    console.error("Error fetching post by slug:", error);
+    return null;
+  }
 }
 
 export async function getAllPublishedSlugs() {
