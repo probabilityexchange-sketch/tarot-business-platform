@@ -1,6 +1,6 @@
 type User @table {
   displayName: String!
-  createdAt: Timestamp!
+  createdAt: Timestamp! @default(expr: "request.time")
   email: String
   photoUrl: String
 }
@@ -19,7 +19,7 @@ type TarotSpread @table {
   name: String!
   description: String!
   numCards: Int!
-  createdAt: Timestamp!
+  createdAt: Timestamp! @default(expr: "request.time")
   purpose: String
 }
 
@@ -34,7 +34,7 @@ type Reading @table {
   user: User!
   tarotSpread: TarotSpread!
   readingDate: Timestamp!
-  createdAt: Timestamp!
+  createdAt: Timestamp! @default(expr: "request.time")
   notes: String
 }
 
@@ -43,5 +43,5 @@ type ReadingCard @table {
   tarotCard: TarotCard!
   spreadPosition: SpreadPosition!
   isReversed: Boolean!
-  createdAt: Timestamp!
+  createdAt: Timestamp! @default(expr: "request.time")
 }
