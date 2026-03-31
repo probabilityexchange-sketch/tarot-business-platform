@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import Link from "next/link";
+import Image from "next/image";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ const posts = [
     excerpt: "Exploring the psychological depths of the Moon archetype and its role in narrative therapy and subconscious unveiling.",
     date: "March 20, 2026",
     category: "Archetypes",
-    image: "/blog/moon.jpg" // Placeholder
+    image: "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&q=80&w=1200"
   },
   {
     slug: "tarot-as-narrative-mirror",
@@ -24,7 +25,7 @@ const posts = [
     excerpt: "How we use external symbols to reflect internal stories, and why the deck is the ultimate tool for personal agency.",
     date: "March 15, 2026",
     category: "Theory",
-    image: "/blog/mirror.jpg" // Placeholder
+    image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=1200"
   },
   {
     slug: "psychology-of-the-fool",
@@ -32,7 +33,7 @@ const posts = [
     excerpt: "The Fool isn't about stupidity; it's about the psychological necessity of the 'zero state' before transformation.",
     date: "March 10, 2026",
     category: "Psychology",
-    image: "/blog/fool.jpg" // Placeholder
+    image: "https://images.unsplash.com/photo-1490374722396-48c024ebd1a8?auto=format&fit=crop&q=80&w=1200"
   }
 ];
 
@@ -60,8 +61,13 @@ export default function BlogPage() {
           <Link href={`/blog/${posts[0].slug}`} className="group block" aria-label={`Read featured post: ${posts[0].title}`}>
             <Card elevation="low" className="p-0 overflow-hidden border-none bg-surface-container-low hover:bg-surface-container transition-all duration-300 ease-in-out hover:shadow-2xl">
               <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div className="aspect-square lg:aspect-auto bg-surface-container-highest flex items-center justify-center text-on-surface/10 font-label italic uppercase tracking-widest" aria-hidden="true">
-                  [ Featured Image Placeholder ]
+                <div className="relative aspect-square lg:aspect-auto grayscale group-hover:grayscale-0 transition-all duration-700">
+                  <Image 
+                    src={posts[0].image} 
+                    alt={posts[0].title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="p-8 lg:p-20 flex flex-col justify-center">
                   <span className="font-label text-xs uppercase tracking-[0.2em] text-tertiary mb-8 block">{posts[0].category} — {posts[0].date}</span>
@@ -86,8 +92,13 @@ export default function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
             {posts.slice(1).map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group block" aria-label={`Read post: ${post.title}`}>
-                <div className="mb-8 aspect-video bg-surface-container-highest flex items-center justify-center text-on-surface/10 font-label italic uppercase tracking-widest overflow-hidden transition-all duration-300 group-hover:shadow-lg" aria-hidden="true">
-                  [ Image Placeholder ]
+                <div className="mb-8 relative aspect-video grayscale group-hover:grayscale-0 transition-all duration-500 overflow-hidden group-hover:shadow-lg">
+                  <Image 
+                    src={post.image} 
+                    alt={post.title}
+                    fill
+                    className="object-cover"
+                  />
                 </div>
                 <div className="flex items-center gap-4 mb-4">
                   <span className="font-label text-[10px] uppercase tracking-[0.2em] text-secondary block">{post.category}</span>
