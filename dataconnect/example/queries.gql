@@ -20,18 +20,6 @@ query MyReadings @auth(level: USER) {
       name
       description
     }
-    readingCards {
-      isReversed
-      tarotCard {
-        name
-        suit
-        rank
-      }
-      spreadPosition {
-        name
-        positionNumber
-      }
-    }
   }
 }
 
