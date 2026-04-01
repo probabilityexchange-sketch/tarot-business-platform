@@ -95,18 +95,20 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased min-h-screen bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary-container">
-        {/* We'll refine the header/footer in a dedicated navigation component update */}
-        <header className="py-8 px-12 flex justify-between items-center sticky top-0 bg-surface/60 backdrop-blur-[24px] z-50">
-          <div className="font-label text-xl tracking-[0.05em] uppercase text-primary">
-            Psychological Tarot
+        <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-outline-variant/15">
+          <div className="max-w-7xl mx-auto px-6 lg:px-12 py-6 flex justify-between items-center">
+            <a href="/" className="font-label text-xl tracking-[0.05em] uppercase text-primary hover:text-secondary transition-colors duration-250 ease-snappy">
+              Tarot as Narrative Therapy
+            </a>
+            <nav className="flex gap-10 text-sm font-label tracking-[0.05em] uppercase">
+              <a href="/readings" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Readings</a>
+              <a href="/courses" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Courses</a>
+              <a href="/blog" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Journal</a>
+              <a href="/admin" className="text-on-surface/40 hover:text-secondary transition-colors duration-250 ease-snappy">Admin</a>
+            </nav>
           </div>
-          <nav className="flex gap-10 text-sm font-label tracking-[0.05em] uppercase">
-            <a href="/readings" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Readings</a>
-            <a href="/courses" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Courses</a>
-            <a href="/blog" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Journal</a>
-          </nav>
         </header>
-        <main>{children}</main>
+        <main className="pt-24">{children}</main>
         <footer className="py-20 px-12 text-center text-on-surface/40 text-sm font-label tracking-[0.05em] uppercase">
           © {new Date().getFullYear()} Tarot as Narrative Therapy. All rights reserved.
         </footer>

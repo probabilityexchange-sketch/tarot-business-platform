@@ -6,7 +6,6 @@ import Image from "next/image";
 export default function Home() {
   return (
     <div className="relative isolate">
-      {/* Background visual element for professional feel */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
           src="https://images.unsplash.com/photo-1572025442646-866d16c84a54?auto=format&fit=crop&q=80&w=2000"
@@ -35,7 +34,6 @@ export default function Home() {
         </svg>
       </div>
 
-      {/* Hero Section */}
       <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-12 lg:py-40">
         <div className="max-w-4xl">
           <h1 className="text-5xl font-display tracking-tight text-on-surface sm:text-7xl lg:text-8xl mb-10 leading-[1.1]">
@@ -49,20 +47,19 @@ export default function Home() {
           </p>
           <div className="flex flex-wrap items-center gap-6">
             <Link href="/readings">
-              <Button variant="primary" size="lg" className="px-10 py-6 text-lg transition-all hover:scale-105" aria-label="Book a reading session">
+              <Button variant="primary" size="lg" className="px-10 py-6 text-lg transition-all duration-250 ease-snappy hover:scale-[1.02]" aria-label="Book a reading session">
                 Book a Reading
               </Button>
             </Link>
             <Link href="/courses">
-              <Button variant="tertiary" size="lg" className="text-lg transition-all hover:translate-x-1" aria-label="Learn about the method">
-                Discover the Method →
+              <Button variant="tertiary" size="lg" className="text-lg" aria-label="Learn about the method">
+                Discover the Method
               </Button>
             </Link>
           </div>
         </div>
       </section>
       
-      {/* Featured Services Section */}
       <section className="bg-surface-container-low px-6 py-24 sm:py-32 lg:px-12" aria-labelledby="services-heading">
         <div className="mx-auto max-w-7xl">
           <div className="mb-16">
@@ -70,62 +67,64 @@ export default function Home() {
             <p className="text-3xl font-display text-on-surface sm:text-4xl">Deepen your self-reflection journey.</p>
           </div>
           <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
-            <Card elevation="high" className="flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden p-0">
-              <div className="relative h-48 w-full grayscale hover:grayscale-0 transition-all duration-500">
-                <Image 
-                  src="https://images.unsplash.com/photo-1601314167099-232775b3d6fd?auto=format&fit=crop&q=80&w=800" 
-                  alt="Tarot cards on a dark surface"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <span className="font-label text-xs uppercase tracking-[0.1em] text-secondary mb-6 block">01 / Readings</span>
-                <h3 className="text-3xl font-display mb-4 text-on-surface">Psychological Tarot</h3>
-                <p className="text-on-surface/60 leading-relaxed mb-6">50-minute deep-dive sessions combining narrative therapy with tarot archetypes for deep shadow work.</p>
-                <Link href="/readings" className="text-primary font-label text-sm uppercase tracking-wider hover:underline">Explore Readings</Link>
-              </div>
-            </Card>
+            <Link href="/readings">
+              <Card surface="high" className="group flex flex-col overflow-hidden p-0 h-full transition-all duration-250 ease-snappy hover:surface-highest">
+                <div className="relative h-52 w-full grayscale group-hover:grayscale-0 transition-all duration-500">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1601314167099-232775b3d6fd?auto=format&fit=crop&q=80&w=800" 
+                    alt="Tarot cards on a dark surface"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-8 flex flex-col flex-1">
+                  <span className="font-label text-xs uppercase tracking-[0.1em] text-secondary mb-4 block">01 / Readings</span>
+                  <h3 className="text-2xl font-display mb-4 text-on-surface">Psychological Tarot</h3>
+                  <p className="text-on-surface/60 leading-relaxed flex-1">50-minute deep-dive sessions combining narrative therapy with tarot archetypes for deep shadow work.</p>
+                </div>
+              </Card>
+            </Link>
             
-            <Card elevation="high" className="flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden p-0">
-              <div className="relative h-48 w-full grayscale hover:grayscale-0 transition-all duration-500">
-                <Image 
-                  src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&q=80&w=800" 
-                  alt="Professional study with books and candles"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <span className="font-label text-xs uppercase tracking-[0.1em] text-secondary mb-6 block">02 / Education</span>
-                <h3 className="text-3xl font-display mb-4 text-on-surface">Signature Course</h3>
-                <p className="text-on-surface/60 leading-relaxed mb-6">Master the psychology of tarot at your own pace. Learn to use archetypes as a tool for personal transformation.</p>
-                <Link href="/courses" className="text-primary font-label text-sm uppercase tracking-wider hover:underline">View Course Details</Link>
-              </div>
-            </Card>
+            <Link href="/courses">
+              <Card surface="high" className="group flex flex-col overflow-hidden p-0 h-full transition-all duration-250 ease-snappy hover:surface-highest">
+                <div className="relative h-52 w-full grayscale group-hover:grayscale-0 transition-all duration-500">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1544022613-e87ca75a784a?auto=format&fit=crop&q=80&w=800" 
+                    alt="Professional study with books and candles"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-8 flex flex-col flex-1">
+                  <span className="font-label text-xs uppercase tracking-[0.1em] text-secondary mb-4 block">02 / Education</span>
+                  <h3 className="text-2xl font-display mb-4 text-on-surface">Signature Course</h3>
+                  <p className="text-on-surface/60 leading-relaxed flex-1">Master the psychology of tarot at your own pace. Learn to use archetypes as a tool for personal transformation.</p>
+                </div>
+              </Card>
+            </Link>
             
-            <Card elevation="high" className="flex flex-col transition-all duration-300 hover:-translate-y-2 hover:shadow-2xl overflow-hidden p-0">
-              <div className="relative h-48 w-full grayscale hover:grayscale-0 transition-all duration-500">
-                <Image 
-                  src="https://images.unsplash.com/photo-1516414447565-b14be0adf13e?auto=format&fit=crop&q=80&w=800" 
-                  alt="Journaling and creative writing tools"
-                  fill
-                  className="object-cover"
-                />
-              </div>
-              <div className="p-8">
-                <span className="font-label text-xs uppercase tracking-[0.1em] text-secondary mb-6 block">03 / Creation</span>
-                <h3 className="text-3xl font-display mb-4 text-on-surface">Creative Writing</h3>
-                <p className="text-on-surface/60 leading-relaxed mb-6">Workshops that use tarot as a catalyst for creative writing and unblocking your inner storyteller.</p>
-                <Link href="/blog" className="text-primary font-label text-sm uppercase tracking-wider hover:underline">Join a Workshop</Link>
-              </div>
-            </Card>
+            <Link href="/blog">
+              <Card surface="high" className="group flex flex-col overflow-hidden p-0 h-full transition-all duration-250 ease-snappy hover:surface-highest">
+                <div className="relative h-52 w-full grayscale group-hover:grayscale-0 transition-all duration-500">
+                  <Image 
+                    src="https://images.unsplash.com/photo-1516414447565-b14be0adf13e?auto=format&fit=crop&q=80&w=800" 
+                    alt="Journaling and creative writing tools"
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div className="p-8 flex flex-col flex-1">
+                  <span className="font-label text-xs uppercase tracking-[0.1em] text-secondary mb-4 block">03 / Creation</span>
+                  <h3 className="text-2xl font-display mb-4 text-on-surface">Creative Writing</h3>
+                  <p className="text-on-surface/60 leading-relaxed flex-1">Workshops that use tarot as a catalyst for creative writing and unblocking your inner storyteller.</p>
+                </div>
+              </Card>
+            </Link>
           </div>
         </div>
       </section>
 
-      {/* Decorative Progress Bar */}
-      <div className="w-full h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+      <div className="ritual-progress w-full" />
     </div>
   );
 }

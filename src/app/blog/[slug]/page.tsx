@@ -143,7 +143,7 @@ export default async function BlogPostPage({ params }: Props) {
 
         {/* Post Footer / CTA */}
         <footer className="mt-40 pt-20 border-t border-on-surface/5">
-          <Card elevation="high" className="p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-12 bg-surface-container-low border-none transition-all hover:shadow-2xl">
+          <Card surface="high" className="p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-12 bg-surface-container-low border-none transition-all hover:shadow-2xl">
             <div className="max-w-md">
               <h2 className="text-3xl font-display italic mb-4">Deepen the Inquiry</h2>
               <p className="text-on-surface/60 font-body leading-relaxed">

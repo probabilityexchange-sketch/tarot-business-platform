@@ -62,7 +62,7 @@ function SuccessContent() {
           </p>
         </header>
 
-        <Card elevation="high" className="p-0 overflow-hidden border-none bg-surface-container-highest/30 backdrop-blur-xl">
+        <Card surface="high" className="p-0 overflow-hidden border-none bg-surface-container-highest/30 backdrop-blur-xl">
           <div className="aspect-[16/10] w-full bg-surface-container-lowest">
             {/* 
               Placeholder for Cal.com Embed. 

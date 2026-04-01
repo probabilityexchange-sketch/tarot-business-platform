@@ -59,7 +59,7 @@ export default function BlogPage() {
         <section className="mb-32" aria-labelledby="featured-post-heading">
           <h2 id="featured-post-heading" className="sr-only">Featured Inquiry</h2>
           <Link href={`/blog/${posts[0].slug}`} className="group block" aria-label={`Read featured post: ${posts[0].title}`}>
-            <Card elevation="low" className="p-0 overflow-hidden border-none bg-surface-container-low hover:bg-surface-container transition-all duration-300 ease-in-out hover:shadow-2xl">
+            <Card surface="low" className="p-0 overflow-hidden border-none bg-surface-container-low hover:surface transition-all duration-300 ease-in-out hover:shadow-2xl">
               <div className="grid grid-cols-1 lg:grid-cols-2">
                 <div className="relative aspect-square lg:aspect-auto grayscale group-hover:grayscale-0 transition-all duration-700">
                   <Image 

@@ -48,7 +48,7 @@ export default function BookingOfferings({ offerings }: Props) {
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
       {offerings.map((offering) => (
-        <Card key={offering.id} elevation="high" className="flex flex-col h-full border-none p-8 lg:p-12 hover:bg-surface-container-highest transition-all duration-300 ease-in-out group hover:shadow-2xl">
+        <Card key={offering.id} surface="high" className="flex flex-col h-full border-none p-8 lg:p-12 hover:surface-highest transition-all duration-300 ease-in-out group hover:shadow-2xl">
           <div className="flex justify-between items-start mb-12">
             <div>
               <h3 className="text-4xl font-display text-on-surface mb-2 italic group-hover:text-primary transition-colors">{offering.title}</h3>
