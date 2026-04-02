@@ -1,7 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { adminDb } from "@/lib/firebase-admin";
-import { getAuth } from "firebase-admin/auth";
-import { getAdminPosts, createPost, updatePost, deletePost } from "@/lib/blog";
+import { getAdminDb, getAdminAuth } from "@/lib/firebase-admin";
 import type { BlogPost } from "@/types/blog";
 
 async function verifyAdmin(request: NextRequest): Promise<boolean> {
@@ -11,7 +9,7 @@ async function verifyAdmin(request: NextRequest): Promise<boolean> {
   if (!authHeader?.startsWith("Bearer ")) return false;
   const token = authHeader.slice(7);
   try {
-    const decoded = await getAuth().verifySessionCookie(token, true);
+    const decoded = await getAdminAuth().verifySessionCookie(token, true);
     return decoded.email === ADMIN_EMAIL;
   } catch {
     return false;
@@ -23,7 +21,9 @@ export async function GET(request: NextRequest) {
   if (!isAdmin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const posts = await getAdminPosts();
+  const q = getAdminDb().collection("blog_posts").orderBy("updatedAt", "desc");
+  const snap = await q.get();
+  const posts = snap.docs.map((d) => ({ id: d.id, ...d.data() } as BlogPost));
   return NextResponse.json(posts);
 }
 
@@ -37,7 +37,19 @@ export async function POST(request: NextRequest) {
   if (!title || !slug || !content || !excerpt || !category || !status) {
     return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
   }
-  const docRef = await createPost({ title, slug, content, excerpt, category, coverImageUrl: coverImageUrl || "", status, publishedAt: status === "published" ? new Date().toISOString() : null });
+  const now = new Date().toISOString();
+  const docRef = await getAdminDb().collection("blog_posts").add({
+    title,
+    slug,
+    content,
+    excerpt,
+    category,
+    coverImageUrl: coverImageUrl || "",
+    status,
+    publishedAt: status === "published" ? now : null,
+    createdAt: now,
+    updatedAt: now,
+  });
   return NextResponse.json({ id: docRef.id });
 }
 
@@ -51,7 +63,8 @@ export async function PUT(request: NextRequest) {
   if (!id) {
     return NextResponse.json({ error: "Missing post id" }, { status: 400 });
   }
-  await updatePost(id, data as Partial<BlogPost>);
+  const docRef = getAdminDb().doc(`blog_posts/${id}`);
+  await docRef.update({ ...data, updatedAt: new Date().toISOString() });
   return NextResponse.json({ success: true });
 }
 
@@ -65,6 +78,7 @@ export async function DELETE(request: NextRequest) {
   if (!id) {
     return NextResponse.json({ error: "Missing post id" }, { status: 400 });
   }
-  await deletePost(id);
+  const docRef = getAdminDb().doc(`blog_posts/${id}`);
+  await docRef.delete();
   return NextResponse.json({ success: true });
 }

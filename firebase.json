@@ -53,7 +53,7 @@
   ],
   "apphosting": {
     "backendId": "kali",
-    "rootDir": "/",
+    "rootDir": ".",
     "ignore": [
       "node_modules",
       ".git",
