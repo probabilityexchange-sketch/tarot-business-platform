@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+  <defs>
+    <linearGradient id="guideBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1c1b1c"/>
+      <stop offset="100%" style="stop-color:#131314"/>
+    </linearGradient>
+    <linearGradient id="cardStack" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#d0bcff;stop-opacity:0.3"/>
+      <stop offset="100%" style="stop-color:#4cd7f6;stop-opacity:0.2"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#guideBg)"/>
+  <g transform="translate(300, 200)">
+    <rect x="-100" y="-130" width="200" height="280" rx="12" fill="none" stroke="url(#cardStack)" stroke-width="1" transform="rotate(-8)"/>
+    <rect x="-95" y="-125" width="200" height="280" rx="12" fill="none" stroke="url(#cardStack)" stroke-width="1" transform="rotate(-3)"/>
+    <rect x="-90" y="-120" width="200" height="280" rx="12" fill="#212122" stroke="#d0bcff" stroke-width="1" opacity="0.8"/>
+    <circle cx="10" cy="-20" r="40" fill="none" stroke="#d0bcff" stroke-width="0.5" opacity="0.4"/>
+    <path d="M10 -80 L25 -10 L85 -10 L35 25 L55 95 L10 55 L-35 95 L-15 25 L-65 -10 L-5 -10 Z" fill="none" stroke="#98da27" stroke-width="0.5" opacity="0.3"/>
+  </g>
+  <text x="300" y="360" font-family="sans-serif" font-size="9" fill="#4cd7f6" opacity="0.4" text-anchor="middle" letter-spacing="4">INTUITION GUIDE</text>
+</svg>

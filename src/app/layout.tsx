@@ -64,7 +64,7 @@ export default function RootLayout({
               <Link href="/#free-guide" className="text-secondary hover:text-primary transition-colors duration-250 ease-snappy">Free Guide</Link>
             </nav>
             <Link href="/readings">
-              <button className="bg-gradient-to-br from-primary to-primary-container px-6 py-2.5 rounded-full text-on-primary-fixed text-xs font-label uppercase tracking-widest hover:opacity-90 transition-opacity">
+              <button className="bg-primary text-[#21005d] px-6 py-2.5 rounded-full text-xs font-label uppercase tracking-widest hover:bg-primary/90 transition-opacity">
                 Book Now
               </button>
             </Link>
