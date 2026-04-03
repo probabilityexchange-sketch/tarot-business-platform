@@ -77,6 +77,44 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TRUST BADGES / CREDENTIALS SECTION */}
+      <section className="bg-surface-container-low px-6 py-16 sm:py-20 lg:px-12" aria-labelledby="credentials-heading">
+        <div className="mx-auto max-w-7xl">
+          <div className="text-center mb-12">
+            <span className="text-sm font-label uppercase tracking-widest text-secondary mb-4 block">Credentials & Experience</span>
+            <h2 id="credentials-heading" className="text-3xl font-display text-on-surface sm:text-4xl">Trusted by Seekers Worldwide</h2>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+            {[
+              { stat: "B.A.", label: "Psychology", sub: "University of Tennessee" },
+              { stat: "M.A.", label: "Creative Writing", sub: "Goddard College" },
+              { stat: "40+", label: "Years Practice", sub: "Since 1984" },
+              { stat: "5,000+", label: "Readings Given", sub: "Satisfied Clients" },
+            ].map((item, i) => (
+              <div key={i} className="text-center">
+                <div className="text-4xl md:text-5xl font-display text-primary mb-2">{item.stat}</div>
+                <div className="text-sm font-label uppercase tracking-wider text-on-surface mb-1">{item.label}</div>
+                <div className="text-xs text-on-surface/40 font-label">{item.sub}</div>
+              </div>
+            ))}
+          </div>
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mt-12 pt-8 border-t border-on-surface/10">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface text-on-surface/50 text-xs font-label">
+              <span className="text-secondary">✦</span> Reiki Master Certified
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface text-on-surface/50 text-xs font-label">
+              <span className="text-secondary">✦</span> Jungian-trained
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface text-on-surface/50 text-xs font-label">
+              <span className="text-secondary">✦</span> 98% Satisfaction Rate
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-surface text-on-surface/50 text-xs font-label">
+              <span className="text-secondary">✦</span> Private & Confidential
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* PROBLEM / AGITATION SECTION */}
       <section className="bg-surface-container-low px-6 py-24 sm:py-32 lg:px-12" aria-labelledby="problems-heading">
         <div className="mx-auto max-w-7xl">
