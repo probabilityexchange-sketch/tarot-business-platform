@@ -8,6 +8,7 @@ import { ImageUpload } from "@/components/admin/ImageUpload";
 import { AIGenerateModal } from "@/components/admin/AIGenerateModal";
 import { Button } from "@/components/ui/button";
 import { generateSlug } from "@/lib/slug";
+import { adminFetch } from "@/lib/admin-client";
 import { ArrowLeft, Save, Send, Trash2 } from "lucide-react";
 import Link from "next/link";
 
@@ -44,7 +45,7 @@ export default function EditPostPage() {
   useEffect(() => {
     async function fetchPost() {
       try {
-        const res = await fetch(`/api/blog-posts/${id}`);
+        const res = await adminFetch(`/api/blog-posts/${id}`);
         if (!res.ok) throw new Error("Failed to fetch post");
         const post: BlogPost = await res.json();
 
@@ -85,9 +86,8 @@ export default function EditPostPage() {
   const handleSubmit = async (publishStatus: "draft" | "published") => {
     setSaving(true);
     try {
-      const res = await fetch("/api/blog-posts", {
+      const res = await adminFetch("/api/blog-posts", {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           id,
           title,
@@ -114,9 +114,8 @@ export default function EditPostPage() {
     if (!confirm("Are you sure you want to delete this post?")) return;
 
     try {
-      const res = await fetch("/api/blog-posts", {
+      const res = await adminFetch("/api/blog-posts", {
         method: "DELETE",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ id }),
       });
 

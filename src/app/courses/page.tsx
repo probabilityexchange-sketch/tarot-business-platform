@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Metadata } from "next";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "The Psychological Tarot Method | Professional Certification Course",
@@ -37,15 +38,28 @@ export default function CoursePage() {
       <div className="max-w-7xl mx-auto">
         {/* Sales Header */}
         <header className="mb-24 lg:mb-40">
-          <span className="font-label text-xs uppercase tracking-[0.2em] text-tertiary mb-6 block">Education / Deep Mastery</span>
-          <h1 className="text-6xl md:text-8xl font-display leading-[0.9] mb-12 -ml-1">
-            The <span className="text-primary italic">Psychological</span> <br />
-            Tarot Method
-          </h1>
-          <p className="text-2xl text-on-surface/70 max-w-3xl font-body leading-relaxed lg:text-3xl">
-            A comprehensive, 8-week certification for therapists, writers, and deep seekers. 
-            Moving beyond fortune-telling into the realm of radical self-agency.
-          </p>
+          <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-12 items-end">
+            <div>
+              <span className="font-label text-xs uppercase tracking-[0.2em] text-tertiary mb-6 block">Education / Deep Mastery</span>
+              <h1 className="text-6xl md:text-8xl font-display leading-[0.9] mb-12 -ml-1">
+                The <span className="text-primary italic">Psychological</span> <br />
+                Tarot Method
+              </h1>
+              <p className="text-2xl text-on-surface/70 max-w-3xl font-body leading-relaxed lg:text-3xl">
+                A comprehensive, 8-week certification for therapists, writers, and deep seekers. 
+                Moving beyond fortune-telling into the realm of radical self-agency.
+              </p>
+            </div>
+            <Card surface="high" className="relative overflow-hidden min-h-[24rem] border-none">
+              <Image
+                src="/images/courses-hero.svg"
+                alt="Abstract course hero illustration"
+                fill
+                className="object-cover"
+                priority
+              />
+            </Card>
+          </div>
         </header>
 
         {/* Curriculum Grid */}

@@ -5,6 +5,7 @@ import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { adminFetch } from "@/lib/admin-client";
 
 type BlogPost = {
   id: string;
@@ -17,15 +18,14 @@ type BlogPost = {
 type FilterTab = "all" | "drafts" | "published";
 
 async function fetchPosts(): Promise<BlogPost[]> {
-  const res = await fetch("/api/blog-posts");
+  const res = await adminFetch("/api/blog-posts");
   if (!res.ok) throw new Error("Failed to fetch posts");
   return res.json();
 }
 
 async function deletePost(id: string): Promise<void> {
-  const res = await fetch("/api/blog-posts", {
+  const res = await adminFetch("/api/blog-posts", {
     method: "DELETE",
-    headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ id }),
   });
   if (!res.ok) throw new Error("Failed to delete post");

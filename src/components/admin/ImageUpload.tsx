@@ -4,6 +4,7 @@ import { useState, useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 import { Upload, X, Image as ImageIcon, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { adminFetch } from "@/lib/admin-client";
 
 type Props = {
   postId: string;
@@ -28,7 +29,7 @@ export function ImageUpload({ postId, value, onChange }: Props) {
       formData.append("postId", postId);
 
       try {
-        const res = await fetch("/api/upload-image", {
+        const res = await adminFetch("/api/upload-image", {
           method: "POST",
           body: formData,
         });

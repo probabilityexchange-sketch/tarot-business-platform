@@ -5,6 +5,7 @@ import { useEditor } from "@tiptap/react";
 import { X, Sparkles, FileText } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { adminFetch } from "@/lib/admin-client";
 
 type Props = {
   editor: ReturnType<typeof useEditor>;
@@ -47,9 +48,8 @@ export function AIGenerateModal({ editor, onGenerated }: Props) {
     abortRef.current = new AbortController();
 
     try {
-      const res = await fetch("/api/generate-post", {
+      const res = await adminFetch("/api/generate-post", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(body),
         signal: abortRef.current.signal,
       });

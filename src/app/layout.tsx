@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Newsreader, Inter, Space_Grotesk } from "next/font/google";
 import Link from "next/link";
+import { Providers } from "@/components/Providers";
 import "../styles/globals.css";
 
 const newsreader = Newsreader({
@@ -70,7 +71,9 @@ export default function RootLayout({
             </Link>
           </div>
         </header>
-        <main className="pt-20">{children}</main>
+        <Providers>
+          <main className="pt-20">{children}</main>
+        </Providers>
         <footer className="py-16 px-12 text-center">
           <div className="max-w-7xl mx-auto">
             <p className="font-label text-lg tracking-[0.05em] uppercase text-primary mb-4">Kali Meister</p>

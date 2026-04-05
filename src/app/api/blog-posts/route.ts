@@ -1,23 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
-import { getAdminDb, getAdminAuth } from "@/lib/firebase-admin";
+import { getAdminDb } from "@/lib/firebase-admin";
+import { verifyAdminRequest } from "@/lib/admin-auth";
 import type { BlogPost } from "@/types/blog";
 
-async function verifyAdmin(request: NextRequest): Promise<boolean> {
-  const ADMIN_EMAIL = process.env.ADMIN_EMAIL;
-  if (!ADMIN_EMAIL) return false;
-  const authHeader = request.headers.get("Authorization");
-  if (!authHeader?.startsWith("Bearer ")) return false;
-  const token = authHeader.slice(7);
-  try {
-    const decoded = await getAdminAuth().verifySessionCookie(token, true);
-    return decoded.email === ADMIN_EMAIL;
-  } catch {
-    return false;
-  }
-}
-
 export async function GET(request: NextRequest) {
-  const isAdmin = await verifyAdmin(request);
+  const isAdmin = await verifyAdminRequest(request);
   if (!isAdmin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -28,7 +15,7 @@ export async function GET(request: NextRequest) {
 }
 
 export async function POST(request: NextRequest) {
-  const isAdmin = await verifyAdmin(request);
+  const isAdmin = await verifyAdminRequest(request);
   if (!isAdmin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -54,7 +41,7 @@ export async function POST(request: NextRequest) {
 }
 
 export async function PUT(request: NextRequest) {
-  const isAdmin = await verifyAdmin(request);
+  const isAdmin = await verifyAdminRequest(request);
   if (!isAdmin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
@@ -69,7 +56,7 @@ export async function PUT(request: NextRequest) {
 }
 
 export async function DELETE(request: NextRequest) {
-  const isAdmin = await verifyAdmin(request);
+  const isAdmin = await verifyAdminRequest(request);
   if (!isAdmin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }

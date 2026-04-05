@@ -8,6 +8,7 @@ import { ImageUpload } from "@/components/admin/ImageUpload";
 import { AIGenerateModal } from "@/components/admin/AIGenerateModal";
 import { Button } from "@/components/ui/button";
 import { generateSlug } from "@/lib/slug";
+import { adminFetch } from "@/lib/admin-client";
 import { ArrowLeft, Save, Send } from "lucide-react";
 import Link from "next/link";
 
@@ -37,9 +38,8 @@ export default function NewPostPage() {
   const handleSubmit = async (publishStatus: "draft" | "published") => {
     setSaving(true);
     try {
-      const res = await fetch("/api/blog-posts", {
+      const res = await adminFetch("/api/blog-posts", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           title,
           slug,

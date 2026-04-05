@@ -1,12 +1,12 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
+import { bookingCheckoutSchema, parseCurrencyToCents } from "@/lib/booking";
 
 export async function POST(request: Request) {
   try {
-    const { offeringId, offeringName, price, duration } = await request.json();
-
-    // Map price string like "$250" to cents for Stripe
-    const amount = parseInt(price.replace(/[^0-9]/g, "")) * 100;
+    const payload = bookingCheckoutSchema.parse(await request.json());
+    const amount = parseCurrencyToCents(payload.price);
+    const baseUrl = new URL(request.url).origin;
 
     const session = await getStripe().checkout.sessions.create({
       payment_method_types: ["card"],
@@ -15,8 +15,8 @@ export async function POST(request: Request) {
           price_data: {
             currency: "usd",
             product_data: {
-              name: offeringName,
-              description: `${duration} Psychological Tarot Consultation`,
+              name: payload.offeringName,
+              description: `${payload.duration} Psychological Tarot Consultation`,
             },
             unit_amount: amount,
           },
@@ -24,10 +24,19 @@ export async function POST(request: Request) {
         },
       ],
       mode: "payment",
-      success_url: `${process.env.NEXT_PUBLIC_BASE_URL}/booking/success?session_id={CHECKOUT_SESSION_ID}`,
-      cancel_url: `${process.env.NEXT_PUBLIC_BASE_URL}/readings`,
+      success_url: `${baseUrl}/booking/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/readings`,
       metadata: {
-        offeringId,
+        offeringId: payload.offeringId,
+        offeringName: payload.offeringName,
+        reservationUid: payload.reservationUid,
+        slotStart: payload.slotStart,
+        slotDuration: String(payload.slotDuration),
+        priceCents: String(amount),
+        customerName: payload.customerName,
+        customerEmail: payload.customerEmail,
+        customerTimezone: payload.customerTimezone,
+        notes: payload.notes,
       },
     });
 
