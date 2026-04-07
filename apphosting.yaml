@@ -54,9 +54,31 @@ env:
   # Use `firebase apphosting:secrets:set <secretName>` to set these values.
   - variable: RESEND_API_KEY
     secret: RESEND_API_KEY
+    availability:
+      - BUILD
+      - RUNTIME
   - variable: CALCOM_API_KEY
     secret: CALCOM_API_KEY
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: CALCOM_USERNAME
+    value: randi-chat-fqhmju
+    availability:
+      - BUILD
+      - RUNTIME
+  - variable: CALCOM_EVENT_TYPE_SLUG
+    value: narrative-deep-dive
+    availability:
+      - BUILD
+      - RUNTIME
   - variable: STRIPE_SECRET_KEY
     secret: STRIPE_SECRET_KEY
+    availability:
+      - BUILD
+      - RUNTIME
   - variable: ADMIN_EMAIL
     secret: ADMIN_EMAIL
+    availability:
+      - BUILD
+      - RUNTIME
