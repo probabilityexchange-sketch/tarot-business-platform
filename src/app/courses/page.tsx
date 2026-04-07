@@ -57,6 +57,7 @@ export default function CoursePage() {
                 fill
                 className="object-cover"
                 priority
+                unoptimized
               />
             </Card>
           </div>

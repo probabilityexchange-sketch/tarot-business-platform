@@ -1,14 +1,55 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
   <defs>
-    <linearGradient id="cardBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#212122"/>
-      <stop offset="100%" style="stop-color:#2a2a2b"/>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#131314"/>
+      <stop offset="100%" style="stop-color:#0d0d0e"/>
     </linearGradient>
+    <radialGradient id="amberGlow" cx="50%" cy="40%" r="60%">
+      <stop offset="0%" style="stop-color:#ffb74d;stop-opacity:0.12"/>
+      <stop offset="100%" style="stop-color:#ffb74d;stop-opacity:0"/>
+    </radialGradient>
+    <filter id="blur">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="15" />
+    </filter>
   </defs>
-  <rect width="800" height="600" fill="url(#cardBg)"/>
-  <rect x="40" y="40" width="720" height="520" fill="none" stroke="#d0bcff" stroke-width="0.5" opacity="0.2" rx="12"/>
-  <rect x="60" y="60" width="680" height="480" fill="none" stroke="#4cd7f6" stroke-width="0.5" opacity="0.15" rx="8"/>
-  <path d="M400 180 L440 280 L560 280 L470 340 L510 440 L400 380 L290 440 L330 340 L240 280 L360 280 Z" fill="none" stroke="#d0bcff" stroke-width="1" opacity="0.4"/>
-  <circle cx="400" cy="300" r="80" fill="none" stroke="#98da27" stroke-width="0.5" opacity="0.3"/>
-  <text x="400" y="500" font-family="serif" font-size="12" fill="#d0bcff" opacity="0.5" text-anchor="middle" font-style="italic">Archetypal Guidance</text>
+  
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#amberGlow)"/>
+  
+  <!-- Table -->
+  <path d="M50 450 L750 450 L700 600 L100 600 Z" fill="#1c1b1c" opacity="0.6"/>
+  <line x1="50" y1="450" x2="750" y2="450" stroke="#ffb74d" stroke-width="0.5" opacity="0.2"/>
+  
+  <!-- Figures (Minimalist Silhouettes) -->
+  <g opacity="0.4">
+    <!-- Left Person (Professional) -->
+    <path d="M150 480 Q180 320 220 320 L280 320 Q320 320 350 480 Z" fill="#2a2a2b"/>
+    <circle cx="250" cy="280" r="35" fill="#2a2a2b"/>
+    
+    <!-- Right Person (Professional) -->
+    <path d="M450 480 Q480 320 520 320 L580 320 Q620 320 650 480 Z" fill="#2a2a2b"/>
+    <circle cx="550" cy="280" r="35" fill="#2a2a2b"/>
+  </g>
+  
+  <!-- Tarot Cards on Table -->
+  <g transform="translate(360, 460) rotate(-10)">
+    <rect width="30" height="50" rx="2" fill="#d0bcff" opacity="0.3"/>
+    <rect x="5" y="5" width="20" height="40" rx="1" fill="none" stroke="#d0bcff" stroke-width="0.5" opacity="0.5"/>
+  </g>
+  <g transform="translate(400, 465)">
+    <rect width="30" height="50" rx="2" fill="#d0bcff" opacity="0.2"/>
+    <rect x="5" y="5" width="20" height="40" rx="1" fill="none" stroke="#d0bcff" stroke-width="0.5" opacity="0.4"/>
+  </g>
+  <g transform="translate(440, 460) rotate(10)">
+    <rect width="30" height="50" rx="2" fill="#d0bcff" opacity="0.3"/>
+    <rect x="5" y="5" width="20" height="40" rx="1" fill="none" stroke="#d0bcff" stroke-width="0.5" opacity="0.5"/>
+  </g>
+  
+  <!-- Subtle Background Elements (Plants) -->
+  <circle cx="700" cy="400" r="100" fill="#98da27" opacity="0.03" filter="url(#blur)"/>
+  <circle cx="100" cy="400" r="80" fill="#98da27" opacity="0.02" filter="url(#blur)"/>
+  
+  <!-- Light Ray -->
+  <path d="M0 0 L300 0 L500 600 L0 600 Z" fill="white" opacity="0.02" filter="url(#blur)"/>
 </svg>

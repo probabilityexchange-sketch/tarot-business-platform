@@ -25,7 +25,7 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   title: "Kali Meister | Tarot Reader & Spiritual Healer",
-  description: "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing with over 40 years of intuitive practice. B.A. Psychology, M.A. Creative Writing.",
+  description: "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing with over 40 years of intuitive practice. B.A. Psychology, M.F.A. Creative Writing.",
   keywords: ["tarot reader", "spiritual healer", "psychic reading", "reiki", "life coaching", "Chattanooga", "East Tennessee"],
   authors: [{ name: "Kali Meister" }],
   openGraph: {

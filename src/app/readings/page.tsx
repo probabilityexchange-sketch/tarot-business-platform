@@ -33,6 +33,7 @@ export default function ReadingsPage() {
                 fill
                 className="object-cover"
                 priority
+                unoptimized
               />
             </Card>
           </div>

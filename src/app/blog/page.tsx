@@ -17,7 +17,7 @@ const posts = [
     excerpt: "Exploring the psychological depths of the Moon archetype and its role in narrative therapy and subconscious unveiling.",
     date: "March 20, 2026",
     category: "Archetypes",
-    image: "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&q=80&w=1200"
+    image: "/images/courses-placeholder.svg"
   },
   {
     slug: "tarot-as-narrative-mirror",
@@ -25,7 +25,7 @@ const posts = [
     excerpt: "How we use external symbols to reflect internal stories, and why the deck is the ultimate tool for personal agency.",
     date: "March 15, 2026",
     category: "Theory",
-    image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=1200"
+    image: "/images/readings-placeholder.svg"
   },
   {
     slug: "psychology-of-the-fool",
@@ -33,7 +33,7 @@ const posts = [
     excerpt: "The Fool isn't about stupidity; it's about the psychological necessity of the 'zero state' before transformation.",
     date: "March 10, 2026",
     category: "Psychology",
-    image: "https://images.unsplash.com/photo-1490374722396-48c024ebd1a8?auto=format&fit=crop&q=80&w=1200"
+    image: "/images/guide-placeholder.svg"
   }
 ];
 
@@ -67,6 +67,7 @@ export default function BlogPage() {
                     alt={posts[0].title}
                     fill
                     className="object-cover"
+                    unoptimized
                   />
                 </div>
                 <div className="p-8 lg:p-20 flex flex-col justify-center">
@@ -98,6 +99,7 @@ export default function BlogPage() {
                     alt={post.title}
                     fill
                     className="object-cover"
+                    unoptimized
                   />
                 </div>
                 <div className="flex items-center gap-4 mb-4">

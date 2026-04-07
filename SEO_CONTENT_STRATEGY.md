@@ -12,7 +12,7 @@
 1. **Video Ingestion:** She records 10-15 minute videos on her phone/laptop.
 2. **Transcription:** Use an AI tool (or manual transcription) to get the raw text.
 3. **SEO Adaptation:** 
-   - Use her MFA skills (or yours) to polish the transcript into a long-form article.
+   - Use her M.F.A. skills (or yours) to polish the transcript into a long-form article.
    - Embed the YouTube video at the top of the blog post.
    - Use semantic HTML (`h1`, `h2`, `alt` tags) to maximize Google Search visibility.
 4. **Interlinking:** Link every blog post to:

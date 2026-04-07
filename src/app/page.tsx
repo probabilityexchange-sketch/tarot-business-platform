@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { FreeGuideForm } from "@/components/FreeGuideForm";
 import Link from "next/link";
 import Image from "next/image";
 
@@ -9,7 +10,7 @@ export default function Home() {
       {/* Background Effects */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image
-          src="https://images.unsplash.com/photo-1572025442646-866d16c84a54?auto=format&fit=crop&q=80&w=2000"
+            src="/images/courses-hero.svg"
           alt=""
           fill
           className="object-cover opacity-[0.03] grayscale"
@@ -46,7 +47,7 @@ export default function Home() {
             <span className="text-primary italic">Direction in 60 Minutes</span>
           </h1>
           <p className="max-w-2xl text-xl leading-relaxed text-on-surface/70 mb-10 font-body lg:text-2xl">
-            Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing. B.A. Psychology, M.A. Creative Writing, 5,000+ readings given.
+            Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing. B.A. Psychology, M.F.A. Creative Writing, 5,000+ readings given.
           </p>
           <div className="flex flex-wrap items-center gap-4">
             <Link href="#free-guide">
@@ -87,7 +88,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
             {[
               { stat: "B.A.", label: "Psychology", sub: "University of Tennessee" },
-              { stat: "M.A.", label: "Creative Writing", sub: "Goddard College" },
+              { stat: "M.F.A.", label: "Creative Writing", sub: "Goddard College" },
               { stat: "40+", label: "Years Practice", sub: "Since 1984" },
               { stat: "5,000+", label: "Readings Given", sub: "Satisfied Clients" },
             ].map((item, i) => (
@@ -145,10 +146,11 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
             <Image
-              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&q=80&w=800"
+              src="/images/readings-placeholder.svg"
               alt="Kali Meister - Tarot Reader & Spiritual Healer"
               fill
               className="object-cover"
+              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent" />
           </div>
@@ -159,7 +161,7 @@ export default function Home() {
             </h2>
             <div className="space-y-4 text-on-surface/70 font-body leading-relaxed text-lg">
               <p>
-                With a B.A. in Psychology from University of Tennessee Knoxville and an M.A. in Creative Writing from Goddard College, I blend academic rigor with intuitive gift to offer something rare: readings that are both deeply spiritual and psychologically grounded.
+                With a B.A. in Psychology from University of Tennessee Knoxville and an M.F.A. in Creative Writing from Goddard College, I blend academic rigor with intuitive gift to offer something rare: readings that are both deeply spiritual and psychologically grounded.
               </p>
               <p>
                 For over 40 years, I&apos;ve helped clients navigate career transitions, relationship challenges, grief, and spiritual awakening. My approach isn&apos;t about fortune-telling — it&apos;s about using tarot archetypes as mirrors for self-discovery.
@@ -189,27 +191,15 @@ export default function Home() {
               <p className="text-xl text-on-surface/70 mb-8 font-body leading-relaxed">
                 Download my exclusive PDF guide with 3 powerful steps to awaken your psychic abilities. Discover practical exercises to unlock your intuitive powers, plus exclusive spiritual wisdom delivered to your inbox.
               </p>
-              <form className="space-y-4">
-                <input
-                  type="email"
-                  placeholder="Enter your email"
-                  className="w-full bg-surface-container-high border-none p-4 rounded-xl font-body text-on-surface placeholder:text-on-surface/40 focus:ring-2 focus:ring-primary/40 transition-all outline-none"
-                  required
-                />
-                <Button variant="primary" size="lg" className="w-full">
-                  Get Your Free Guide
-                </Button>
-              </form>
-              <p className="text-xs text-on-surface/40 mt-4 font-label">
-                No spam. Unsubscribe anytime. Instant delivery.
-              </p>
+              <FreeGuideForm />
             </div>
             <div className="relative aspect-square rounded-2xl overflow-hidden hidden lg:block">
               <Image
-                src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?auto=format&fit=crop&q=80&w=800"
+                src="/images/guide-placeholder.svg"
                 alt="Tarot cards with mystical lighting"
                 fill
                 className="object-cover"
+                unoptimized
               />
             </div>
           </div>

@@ -12,7 +12,7 @@ const posts = {
     description: "Explore the psychological depths of the Moon archetype and its role in narrative therapy and shadow work.",
     date: "March 20, 2026",
     category: "Archetypes",
-    image: "https://images.unsplash.com/photo-1532693322450-2cb5c511067d?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/courses-placeholder.svg",
     content: `
       <p>The Moon archetype is often misunderstood as a sign of confusion or deception. In psychological tarot, however, we view the Moon as the necessary threshold of the subconscious. It represents the "night sea journey" — the descent into the parts of our narrative that we have kept in the dark.</p>
       
@@ -30,7 +30,7 @@ const posts = {
     description: "How we use external symbols to reflect internal stories, and why the deck is the ultimate tool for personal agency.",
     date: "March 15, 2026",
     category: "Theory",
-    image: "https://images.unsplash.com/photo-1508700115892-45ecd05ae2ad?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/readings-placeholder.svg",
     content: "<p>Theory of the narrative mirror...</p>"
   },
   "psychology-of-the-fool": {
@@ -38,7 +38,7 @@ const posts = {
     description: "The Fool isn't about stupidity; it's about the psychological necessity of the 'zero state' before transformation.",
     date: "March 10, 2026",
     category: "Psychology",
-    image: "https://images.unsplash.com/photo-1490374722396-48c024ebd1a8?auto=format&fit=crop&q=80&w=1200",
+    image: "/images/guide-placeholder.svg",
     content: "<p>Psychology of the fool...</p>"
   }
 };
@@ -133,6 +133,7 @@ export default async function BlogPostPage({ params }: Props) {
             fill
             className="object-cover"
             priority
+            unoptimized
           />
         </div>
 

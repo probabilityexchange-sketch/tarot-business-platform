@@ -1,21 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
   <defs>
-    <linearGradient id="guideBg" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#1c1b1c"/>
-      <stop offset="100%" style="stop-color:#131314"/>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#131314"/>
+      <stop offset="100%" style="stop-color:#1c1b1c"/>
     </linearGradient>
-    <linearGradient id="cardStack" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#d0bcff;stop-opacity:0.3"/>
-      <stop offset="100%" style="stop-color:#4cd7f6;stop-opacity:0.2"/>
+    <linearGradient id="morningLight" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#fffde7;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#fffde7;stop-opacity:0"/>
     </linearGradient>
+    <filter id="softGlow">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="8" />
+    </filter>
   </defs>
-  <rect width="600" height="400" fill="url(#guideBg)"/>
-  <g transform="translate(300, 200)">
-    <rect x="-100" y="-130" width="200" height="280" rx="12" fill="none" stroke="url(#cardStack)" stroke-width="1" transform="rotate(-8)"/>
-    <rect x="-95" y="-125" width="200" height="280" rx="12" fill="none" stroke="url(#cardStack)" stroke-width="1" transform="rotate(-3)"/>
-    <rect x="-90" y="-120" width="200" height="280" rx="12" fill="#212122" stroke="#d0bcff" stroke-width="1" opacity="0.8"/>
-    <circle cx="10" cy="-20" r="40" fill="none" stroke="#d0bcff" stroke-width="0.5" opacity="0.4"/>
-    <path d="M10 -80 L25 -10 L85 -10 L35 25 L55 95 L10 55 L-35 95 L-15 25 L-65 -10 L-5 -10 Z" fill="none" stroke="#98da27" stroke-width="0.5" opacity="0.3"/>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#morningLight)"/>
+  
+  <!-- Desk Area -->
+  <rect x="0" y="480" width="800" height="120" fill="#0d0d0e" opacity="0.4"/>
+
+  <!-- Journal/Notebook (Perspective) -->
+  <g transform="translate(200, 300) rotate(-5)">
+    <!-- Left Page -->
+    <rect x="0" y="0" width="180" height="240" rx="4" fill="#2a2a2b" stroke="#49454f" stroke-width="0.5"/>
+    <path d="M20 40 L160 40 M20 60 L140 60 M20 80 L160 80 M20 100 L120 100" stroke="#e5e2e3" stroke-width="1" opacity="0.1"/>
+    
+    <!-- Right Page -->
+    <rect x="180" y="0" width="180" height="240" rx="4" fill="#2a2a2b" stroke="#49454f" stroke-width="0.5"/>
+    <path d="M200 40 L340 40 M200 60 L300 60 M200 80 L340 80 M200 100 L280 100" stroke="#e5e2e3" stroke-width="1" opacity="0.1"/>
+    
+    <!-- Spine -->
+    <line x1="180" y1="0" x2="180" y2="240" stroke="#131314" stroke-width="2" opacity="0.5"/>
   </g>
-  <text x="300" y="360" font-family="sans-serif" font-size="9" fill="#4cd7f6" opacity="0.4" text-anchor="middle" letter-spacing="4">INTUITION GUIDE</text>
+
+  <!-- Tea Cup -->
+  <g transform="translate(600, 420)">
+    <circle cx="0" cy="0" r="35" fill="#212122" stroke="#49454f" stroke-width="0.5"/>
+    <circle cx="0" cy="0" r="28" fill="#131314" opacity="0.8"/>
+    <!-- Steam -->
+    <path d="M-10 -50 Q-5 -70 0 -50 T5 -70" fill="none" stroke="white" stroke-width="1" opacity="0.1">
+      <animate attributeName="stroke-dashoffset" from="40" to="0" dur="3s" repeatCount="indefinite" />
+    </path>
+  </g>
+
+  <!-- Tarot Cards (Scattered) -->
+  <g transform="translate(100, 450) rotate(15)">
+    <rect width="40" height="65" rx="2" fill="#d0bcff" opacity="0.15" stroke="#d0bcff" stroke-width="0.5" opacity="0.3"/>
+  </g>
+  <g transform="translate(140, 460) rotate(-10)">
+    <rect width="40" height="65" rx="2" fill="#4cd7f6" opacity="0.1" stroke="#4cd7f6" stroke-width="0.5" opacity="0.3"/>
+  </g>
+  
+  <!-- Crystal Shapes -->
+  <path d="M550 480 L565 460 L580 480 L565 500 Z" fill="#4cd7f6" opacity="0.2"/>
+  <path d="M520 490 L530 475 L540 490 L530 505 Z" fill="#98da27" opacity="0.15"/>
+
+  <!-- Morning Window Light -->
+  <path d="M800 0 L800 300 L400 600 L0 600 L0 500 Z" fill="white" opacity="0.01" filter="url(#softGlow)"/>
 </svg>
