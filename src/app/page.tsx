@@ -13,8 +13,9 @@ export default function Home() {
             src="/images/courses-hero.svg"
           alt=""
           fill
-          className="object-cover opacity-[0.03] grayscale"
+          className="object-cover opacity-[0.03]"
           priority
+          unoptimized
         />
         <svg
           className="absolute left-[max(50%,25rem)] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-primary/10 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"

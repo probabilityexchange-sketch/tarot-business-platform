@@ -33,7 +33,7 @@ const posts = [
     excerpt: "The Fool isn't about stupidity; it's about the psychological necessity of the 'zero state' before transformation.",
     date: "March 10, 2026",
     category: "Psychology",
-    image: "/images/guide-placeholder.svg"
+    image: "/images/fool-placeholder.svg"
   }
 ];
 
@@ -61,7 +61,7 @@ export default function BlogPage() {
           <Link href={`/blog/${posts[0].slug}`} className="group block" aria-label={`Read featured post: ${posts[0].title}`}>
             <Card surface="low" className="p-0 overflow-hidden border-none bg-surface-container-low hover:surface transition-all duration-300 ease-in-out hover:shadow-2xl">
               <div className="grid grid-cols-1 lg:grid-cols-2">
-                <div className="relative aspect-square lg:aspect-auto grayscale group-hover:grayscale-0 transition-all duration-700">
+                <div className="relative aspect-square lg:aspect-auto group-hover:shadow-2xl transition-all duration-700">
                   <Image 
                     src={posts[0].image} 
                     alt={posts[0].title}
@@ -93,7 +93,7 @@ export default function BlogPage() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-16 lg:gap-24">
             {posts.slice(1).map((post) => (
               <Link key={post.slug} href={`/blog/${post.slug}`} className="group block" aria-label={`Read post: ${post.title}`}>
-                <div className="mb-8 relative aspect-video grayscale group-hover:grayscale-0 transition-all duration-500 overflow-hidden group-hover:shadow-lg">
+                <div className="mb-8 relative aspect-video group-hover:shadow-lg transition-all duration-500 overflow-hidden">
                   <Image 
                     src={post.image} 
                     alt={post.title}

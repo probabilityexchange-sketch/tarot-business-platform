@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d0d0e"/>
+      <stop offset="100%" style="stop-color:#131314"/>
+    </linearGradient>
+    <radialGradient id="portalGlow" cx="50%" cy="40%" r="50%">
+      <stop offset="0%" style="stop-color:#d0bcff;stop-opacity:0.25"/>
+      <stop offset="60%" style="stop-color:#4cd7f6;stop-opacity:0.08"/>
+      <stop offset="100%" style="stop-color:#131314;stop-opacity:0"/>
+    </radialGradient>
+    <filter id="neonHalo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur" />
+      <feMerge>
+        <feMergeNode in="blur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#bg)"/>
+  <rect width="800" height="600" fill="url(#portalGlow)"/>
+
+  <!-- The "Threshold" (Cliff Edge) -->
+  <path d="M0 450 Q200 440 350 480 L350 600 L0 600 Z" fill="#1c1b1c" opacity="0.8"/>
+  <path d="M0 450 Q200 440 350 480" fill="none" stroke="#d0bcff" stroke-width="0.5" opacity="0.2"/>
+
+  <!-- The "Zero State" Portal -->
+  <g transform="translate(500, 300)">
+    <!-- Outer Ring -->
+    <circle r="120" fill="none" stroke="#d0bcff" stroke-width="0.25" opacity="0.1"/>
+    <circle r="90" fill="none" stroke="#4cd7f6" stroke-width="0.5" opacity="0.15" filter="url(#neonHalo)"/>
+    
+    <!-- Central Potential (The Spark) -->
+    <circle r="4" fill="#ffd54f" filter="url(#neonHalo)">
+      <animate attributeName="opacity" values="0.4;1;0.4" dur="4s" repeatCount="indefinite" />
+    </circle>
+    
+    <!-- Geometric Architecture -->
+    <path d="M-60 0 L60 0 M0 -60 L0 60" stroke="#d0bcff" stroke-width="0.25" opacity="0.1"/>
+    <rect x="-40" y="-40" width="80" height="80" fill="none" stroke="#4cd7f6" stroke-width="0.25" opacity="0.1" transform="rotate(45)"/>
+  </g>
+
+  <!-- Ambient Light Particles -->
+  <circle cx="200" cy="200" r="1" fill="#ffd54f" opacity="0.3"/>
+  <circle cx="650" cy="150" r="1.5" fill="#d0bcff" opacity="0.2"/>
+  <circle cx="150" cy="400" r="1" fill="#4cd7f6" opacity="0.3"/>
+
+  <!-- Delicate Horizon Line -->
+  <line x1="350" y1="480" x2="800" y2="480" stroke="#49454f" stroke-width="0.5" opacity="0.1"/>
+</svg>

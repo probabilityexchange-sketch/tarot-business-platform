@@ -38,7 +38,7 @@ const posts = {
     description: "The Fool isn't about stupidity; it's about the psychological necessity of the 'zero state' before transformation.",
     date: "March 10, 2026",
     category: "Psychology",
-    image: "/images/guide-placeholder.svg",
+    image: "/images/fool-placeholder.svg",
     content: "<p>Psychology of the fool...</p>"
   }
 };
@@ -126,7 +126,7 @@ export default async function BlogPostPage({ params }: Props) {
           </h1>
         </header>
 
-        <div className="relative aspect-[16/9] bg-surface-container-highest mb-20 overflow-hidden rounded-xl grayscale hover:grayscale-0 transition-all duration-700 shadow-2xl">
+        <div className="relative aspect-[16/9] bg-surface-container-highest mb-20 overflow-hidden rounded-xl shadow-2xl transition-all duration-700">
           <Image 
             src={post.image} 
             alt={post.title}

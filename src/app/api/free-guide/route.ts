@@ -177,7 +177,7 @@ export async function POST(request: Request) {
     if (response.error) {
       console.error("Resend error:", response.error);
       return Response.json(
-        { error: "Failed to send guide. Please try again." },
+        { error: `Resend Error: ${JSON.stringify(response.error)}` },
         { status: 500 }
       );
     }
@@ -190,7 +190,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error("Free guide API error:", error);
     return Response.json(
-      { error: "Internal server error" },
+      { error: `Internal Error: ${error instanceof Error ? error.message : String(error)}` },
       { status: 500 }
     );
   }
