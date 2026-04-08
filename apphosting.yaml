@@ -49,6 +49,11 @@ env:
     availability:
       - BUILD
       - RUNTIME
+  - variable: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
+    value: pk_live_51TGRq1DMad1jygV7wyy0eW6kQMjwgiHwkNv82z0OmGZon2G2yStIqcOYfGNTZN1Wz2Xb4wSOanWfO1daJkgFl4oH000o1vK4Eb
+    availability:
+      - BUILD
+      - RUNTIME
 
   # Grant access to secrets in Cloud Secret Manager.
   # Use `firebase apphosting:secrets:set <secretName>` to set these values.
