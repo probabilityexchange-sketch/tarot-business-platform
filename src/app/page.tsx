@@ -164,15 +164,13 @@ export default function Home() {
               <span className="px-4 py-2 rounded-full bg-surface-container text-on-surface/60 text-sm font-label">Life Coach</span>
             </div>
           </div>
-          <div className="relative rounded-2xl overflow-hidden order-1 lg:order-2">
+          <div className="relative aspect-[4/5] rounded-2xl overflow-hidden order-1 lg:order-2">
             <Image
               src="/images/kali-meister.jpg"
               alt="Kali Meister - Tarot Reader & Spiritual Healer"
-              width={1054}
-              height={1568}
-              className="w-full h-auto object-cover"
+              fill
+              className="object-cover"
               priority
-              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent" />
           </div>
