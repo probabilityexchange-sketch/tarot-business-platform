@@ -147,11 +147,11 @@ export default function Home() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
             <Image
-              src="/images/readings-placeholder.svg"
+              src="/images/kali-meister.jpg"
               alt="Kali Meister - Tarot Reader & Spiritual Healer"
               fill
               className="object-cover"
-              unoptimized
+              priority
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent" />
           </div>
