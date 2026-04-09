@@ -218,7 +218,7 @@ export default function Home() {
             {
               title: "Personal Tarot Reading",
               price: "From $250",
-              desc: "Gain clarity and insight into your life's path with personalized tarot guidance. 50-minute deep-dive sessions.",
+              desc: "Gain clarity and insight into your life's path with personalized tarot guidance. 60-minute deep-dive sessions.",
               features: ["Video recording included", "Post-session PDF", "Follow-up messaging"],
               cta: "Book Reading",
               href: "/readings"

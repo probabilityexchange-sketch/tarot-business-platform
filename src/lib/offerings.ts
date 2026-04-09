@@ -11,7 +11,7 @@ export const readingsOfferings: Offering[] = [
   {
     id: "narrative-session",
     title: "The Narrative Deep-Dive",
-    duration: "50 Minutes",
+    duration: "60 Minutes",
     price: "$250",
     description:
       "A comprehensive psychological exploration. We use the tarot archetypes to dismantle current life narratives and rebuild them with agency and insight.",
@@ -25,7 +25,7 @@ export const readingsOfferings: Offering[] = [
   {
     id: "shadow-reading",
     title: "Shadow Work Intensive",
-    duration: "90 Minutes",
+    duration: "120 Minutes",
     price: "$450",
     description:
       "Our most intensive offering. Specifically designed for those in transition, using Jungian concepts and tarot to uncover the hidden parts of the self.",
