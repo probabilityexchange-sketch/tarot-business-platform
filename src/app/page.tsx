@@ -145,17 +145,7 @@ export default function Home() {
       {/* AUTHORITY / ABOUT SECTION */}
       <section className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-12 lg:py-40">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-          <div className="relative aspect-[4/5] rounded-2xl overflow-hidden">
-            <Image
-              src="/images/kali-meister.jpg"
-              alt="Kali Meister - Tarot Reader & Spiritual Healer"
-              fill
-              className="object-cover"
-              priority
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent" />
-          </div>
-          <div>
+          <div className="order-2 lg:order-1">
             <span className="font-label text-xs uppercase tracking-[0.2em] text-secondary mb-4 block">About Kali</span>
             <h2 className="text-4xl font-display mb-6 text-on-surface sm:text-5xl leading-tight">
               Hi, I&apos;m Kali. I help people find <span className="text-primary italic"> clarity</span>.
@@ -173,6 +163,16 @@ export default function Home() {
               <span className="px-4 py-2 rounded-full bg-surface-container text-on-surface/60 text-sm font-label">Reiki Master</span>
               <span className="px-4 py-2 rounded-full bg-surface-container text-on-surface/60 text-sm font-label">Life Coach</span>
             </div>
+          </div>
+          <div className="relative aspect-[4/5] rounded-2xl overflow-hidden order-1 lg:order-2">
+            <Image
+              src="/images/kali-meister.jpg"
+              alt="Kali Meister - Tarot Reader & Spiritual Healer"
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent" />
           </div>
         </div>
       </section>
