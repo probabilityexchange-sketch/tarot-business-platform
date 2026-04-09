@@ -171,6 +171,7 @@ export default function Home() {
               fill
               className="object-cover"
               priority
+              unoptimized
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent" />
           </div>
