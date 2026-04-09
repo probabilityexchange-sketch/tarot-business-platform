@@ -40,6 +40,9 @@ export const metadata: Metadata = {
     title: "Kali Meister | Tarot Reader & Spiritual Healer",
     description: "Discover clarity, healing, and empowerment through tarot readings.",
   },
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
@@ -50,7 +53,7 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${newsreader.variable} ${inter.variable} ${spaceGrotesk.variable}`}>
       <head>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className="antialiased min-h-screen bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary-container">
         <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-outline-variant/15">
