@@ -34,11 +34,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     siteName: "Kali Meister",
+    images: [
+      {
+        url: "https://yourdomain.com/images/kali-meister.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kali Meister - Tarot Reader & Spiritual Healer",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Kali Meister | Tarot Reader & Spiritual Healer",
     description: "Discover clarity, healing, and empowerment through tarot readings.",
+    images: ["https://yourdomain.com/images/kali-meister.jpg"],
   },
   icons: {
     icon: "/favicon.svg",
