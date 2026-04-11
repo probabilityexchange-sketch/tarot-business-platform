@@ -1,5 +1,20 @@
 import { Resend } from "resend";
 
+function getFirestore() {
+  const { initializeApp, getApps, cert } = require("firebase-admin/app");
+  const { getFirestore } = require("firebase-admin/firestore");
+
+  const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY || "{}");
+
+  if (!getApps().length) {
+    initializeApp({
+      credential: cert(serviceAccount),
+    });
+  }
+
+  return getFirestore();
+}
+
 export async function POST(request: Request) {
   try {
     const resendApiKey = process.env.RESEND_API_KEY;
@@ -180,6 +195,38 @@ export async function POST(request: Request) {
         { error: `Resend Error: ${JSON.stringify(response.error)}` },
         { status: 500 }
       );
+    }
+
+    // Track subscriber in Firestore
+    try {
+      const db = getFirestore();
+      const subscriberData = {
+        email,
+        source: "free-guide",
+        status: "active",
+        subscribedAt: new Date(),
+        guideSentAt: new Date(),
+        emailSequence: "welcome",
+        resendMessageId: response.data?.id,
+      };
+
+      // Check if already exists
+      const existing = await db.collection("subscribers").where("email", "==", email).limit(1).get();
+      
+      if (!existing.empty) {
+        // Update existing
+        await existing.docs[0].ref.update({
+          ...subscriberData,
+          resubscribedAt: new Date(),
+          status: "active",
+        });
+      } else {
+        // Create new
+        await db.collection("subscribers").add(subscriberData);
+      }
+    } catch (dbError) {
+      // Don't fail the request if DB tracking fails
+      console.error("Failed to track subscriber:", dbError);
     }
 
     return Response.json({
