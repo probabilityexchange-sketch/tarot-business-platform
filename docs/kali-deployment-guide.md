@@ -1,228 +1,148 @@
 # kalimeister.com Deployment Guide
-## Email Funnel Setup — Firebase Functions + Resend
+## Email Funnel Setup — Firebase Functions + Brevo
 
 ---
 
 ## Overview
 
-The automated email funnel is already built. This guide tells you exactly what to do to get it live. Estimated time: **45 minutes**.
+The automated email funnel is already built and deployed to the `kalimeister` Firebase project. This guide covers what to verify and what to do if something breaks.
 
-**What this does:**
+**The flow:**
 ```
 Someone visits kalimeister.com
   → Enters email for free "Intuition Guide"
-  → API route writes to Firestore
-  → Firebase Function fires
-  → 5 emails sent over 10 days
+  → API route writes to kalimeister Firestore (subscribers collection)
+  → onSubscriberCreated function fires (kalimeister project)
+  → Brevo sends welcome email immediately
+  → 4 more emails scheduled for days 2, 4, 7, 10
   → Ends with booking CTA
 ```
 
-**What you need:**
-1. Resend API key (free: 100 emails/day)
-2. Firebase Service Account key (already have this for randi.agency Firebase project)
+**Current status (April 16, 2026):**
+- Brevo API key: `xkeysib-db29a2d3942dd5e2754889d3074509d71f6a7a393a7e698a3956578f7dc140df` ✓
+- BREVO_API_KEY secret set in kalimeister project ✓
+- onSubscriberCreated deployed to kalimeister ✓
+- processScheduledEmails deployed to kalimeister ✓
+- Frontend writes to kalimeister Firestore ✓
 
 ---
 
-## Step 1: Get Resend API Key
+## What Needs to Happen Before Launch
 
-1. Go to [resend.com](https://resend.com) → Sign up
-2. Use `randichatagent@gmail.com` or `billybradshaw@gmail.com`
-3. From the dashboard, go to **API Keys** → Create Key
-4. Name it `kalimeister-prod`
-5. Copy the key — it starts with `re_`
+### 1. Verify kalimeister.com as a Sender Domain in Brevo
 
-**Free tier:** 100 emails/day. Plenty for an email nurture sequence. If Kali hits 100 subscribers, upgrade to $20/mo unlimited.
+Right now Brevo is in test mode — it only sends to email addresses you've explicitly authorized. To send to any subscriber (the whole point), you need to verify ownership of `kalimeister.com`.
+
+**Steps:**
+1. Log into Brevo → Settings → Sender Domains → Add domain
+2. Enter `kalimeister.com`
+3. Brevo gives you 2 DNS records to add (TXT and CNAME)
+4. Go to Cloudflare → DNS for kalimeister.com → add those records
+5. Click "Verify" in Brevo (can take up to 24hrs but usually fast)
+
+**Why this matters:** Without domain verification, emails go to spam or get blocked for most subscribers.
+
+### 2. Add kali@kalimeister.com as a Sender
+
+In Brevo → Settings → Sender Emails → Add:
+- Email: `kali@kalimeister.com`
+- Name: `Kali Meister`
+
+You'll get a verification email — click the link.
 
 ---
 
-## Step 2: Configure Firebase Service Account
+## Where Everything Lives
 
-You should already have this for the randi.agency Firebase project. If not:
-
-1. Go to [console.firebase.google.com](https://console.firebase.google.com) → select `randi-agency` project
-2. → **Project Settings** (gear icon) → **Service Accounts**
-3. Click **Generate new private key**
-4. Save the JSON file
-
-**You'll paste this entire JSON as the env var value.** It must be a single line (we'll handle that).
+| Component | Project | Location |
+|-----------|---------|----------|
+| Website frontend | kalimeister | kali--kalimeister.us-east4.hosted.app |
+| Cloud Functions (email) | kalimeister | us-central1 |
+| Firestore (subscribers) | kalimeister | kalimeister project |
+| App Hosting backend | kalimeister | Firebase Console → App Hosting |
+| Brevo account | brevo.com | API key in Secrets Manager |
 
 ---
 
-## Step 3: Set Environment Variables
+## Monitoring
 
-### For Firebase Functions (email sending)
-
-Run these commands from the `tarot-business-platform` directory:
-
+### Check function logs:
 ```bash
-cd /home/ubuntu/projects/tarot-business-platform
+# Install firebase-tools first if needed
+npm install -g firebase-tools
 
-# Set Resend API key
-firebase functions:config:set resend.key="re_YOUR_KEY_HERE"
+# Set your CI token (from firebase login:ci)
+export FIREBASE_TOKEN="1//01aodeOpPmKzy..."
 
-# Set Firebase service account (paste the JSON as a single line)
-# First get the JSON, then use it:
-firebase functions:config:set firebase.service_account='YOUR_JSON_ON_ONE_LINE'
+# Watch logs
+firebase-tools functions:log --only onSubscriberCreated,processScheduledEmails --project kalimeister
 ```
 
-**Alternative: Use Firebase App Hosting env vars**
+### Check Brevo email logs:
+- Brevo dashboard → Campaign → Transactional → check sent/delivered/bounced
 
-If using App Hosting (already configured for `kali` backend), go to:
-Firebase Console → App Hosting → kali backend → Settings → Environment variables
-
-Add:
-- `RESEND_API_KEY` = `re_xxxxx`
-- `FIREBASE_SERVICE_ACCOUNT_KEY` = the full JSON on one line
-
-### For Next.js (server-side only — never expose to browser)
-
-In the Firebase Console → App Hosting → Environment variables, also add:
-- `FIREBASE_SERVICE_ACCOUNT_KEY` = the same JSON
-
-In `src/app/api/subscribe/route.ts`, this is already wired up:
-```typescript
-const serviceAccount = JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY || "{}");
-```
+### Check Firestore:
+- Firebase Console → Build → Firestore → Database
+- `subscribers` collection — every person who's signed up
+- `scheduledEmails` collection — pending follow-up emails
 
 ---
 
-## Step 4: Verify the Subscribe Route Works
+## If the Funnel Stops Working
 
-Test it locally first:
+** Symptom: New subscriber but no welcome email**
 
+1. Check Brevo logs — did the API call even reach them?
+2. Check Firebase function logs — did the function fire?
+3. Check Firestore — is the subscriber doc there with `emailSequence: "welcome"`?
+4. Check the function's error log for BREVO_API_KEY issues
+
+** Symptom: "Permission denied" on Brevo API**
+→ The BREVO_API_KEY secret might have been rotated. Re-set it:
 ```bash
-cd /home/ubuntu/projects/tarot-business-platform
-
-# Start Firebase emulators
-firebase emulators:start
-
-# In another terminal, test the subscribe endpoint
-curl -X POST http://localhost:5000/api/subscribe \
-  -H "Content-Type: application/json" \
-  -d '{"email":"test@kalimeister.com","source":"test"}'
+export FIREBASE_TOKEN="1//01aodeOpPmKzy..."
+echo "YOUR_BREVO_KEY" | firebase-tools apphosting:secrets:set BREVO_API_KEY --data-file - --project kalimeister --force
 ```
 
-**Expected:** `{"message":"Guide sent! Check your inbox.","success":true}`
-
-Check Firestore at `localhost:8080` (emulator UI) — you should see a new document in `subscribers`.
-
----
-
-## Step 5: Deploy Firebase Functions
-
+** Symptom: Function not firing at all**
+→ The Firestore trigger might have lost its Eventarc connection. Redeploy:
 ```bash
-cd /home/ubuntu/projects/tarot-business-platform
-
-# Install functions deps
-cd functions && npm install && cd ..
-
-# Deploy functions only (not hosting — App Hosting handles that)
-firebase deploy --only functions
-```
-
-**Expected:** `functions[onSubscriberCreated]: Ready` and `functions[processScheduledEmails]: Ready`
-
----
-
-## Step 6: Test the Full Flow End-to-End
-
-1. Use an incognito browser
-2. Go to [kalimeister.com](https://kalimeister.com)
-3. Enter your personal email in the lead capture form
-4. Check your inbox — you should receive email #1 within 2 minutes
-5. Check Firestore → `subscribers` collection → your email document
-6. Check Firestore → `scheduledEmails` collection → 4 pending jobs for days 2, 4, 7, 10
-
-**If email #1 doesn't arrive:**
-- Check spam folder
-- Check Resend dashboard → Logs → any errors?
-- Check Firebase Functions logs: `firebase functions:log`
-
----
-
-## Step 7: Fix Email Deliverability (If Needed)
-
-If emails go to spam:
-
-### In Resend dashboard:
-1. Add SPF record: `v=spf1 include:resend.dev ~all`
-2. Add DKIM record: Resend provides this in Domain Settings
-3. Add DMARC record: `_dmarc.yourdomain.com TXT v=DMARC1; p=quarantine; rua=mailto:you@kalimeister.com`
-
-### In DNS (Cloudflare):
-Add these records to kalimeister.com:
-- **SPF:** TXT record, name `@`, value `v=spf1 include:resend.dev ~all`
-- **DKIM:** CNAME record, Resend provides the name/value pair
-- **DMARC:** TXT record, name `_dmarc`, value `v=DMARC1; p=quarantine; rua=mailto:you@kalimeister.com`
-
----
-
-## Step 8: Verify the Free Guide Delivery
-
-The current welcome email says "Your free guide is attached" but the code doesn't actually attach a PDF.
-
-**Option A (Quick):** Change the email to say "Download your free guide here: [link]" and host the PDF on Google Drive or kalimeister.com.
-
-**Option B (Proper):** Upload the PDF to Firebase Storage or a CDN, add the URL to the email content.
-
-**The PDF needs to exist.** Does Kali have the "Awaken Your Intuition" guide ready? If not, she needs to create it — a simple PDF with 3 exercises works.
-
----
-
-## Monitoring After Launch
-
-### Where to check things:
-
-| Tool | URL | What |
-|------|-----|------|
-| Resend dashboard | [resend.com/emails](https://resend.com/emails) | Email logs, bounces, deliverability |
-| Firebase console | [console.firebase.google.com](https://console.firebase.google.com) → randi-agency → Functions | Function logs, errors |
-| Firestore | Console → Build → Firestore | Subscriber data, scheduled emails |
-| App Hosting | Console → App Hosting | Deploy status, env vars |
-
-### Key logs to watch:
-```bash
-# Watch function logs in real time
-firebase functions:log --only onSubscriberCreated,processScheduledEmails
+export FIREBASE_TOKEN="1//01aodeOpPmKzy..."
+firebase-tools deploy --only functions:onSubscriberCreated,functions:processScheduledEmails --project kalimeister
 ```
 
 ---
 
-## Common Errors
+## The Free Guide ("Awaken Your Intuition" PDF)
 
-### "Cannot read property 'email' of undefined"
-→ The Firestore document doesn't have an `email` field. Check the subscribe route — is it writing the right data?
+The welcome email says the guide is attached, but currently nothing is attached. Subscribers get a text/HTML email directing them to reply if they have questions.
 
-### "FIREBASE_SERVICE_ACCOUNT_KEY is not set"
-→ The env var isn't configured in App Hosting. Double-check the Firebase Console → App Hosting → kali backend → Environment variables.
+**To add an actual PDF attachment:**
+1. Upload the PDF somewhere accessible (Firebase Storage, Google Drive public link, or kalimeister.com/assets)
+2. Update the email content in `functions/src/index.ts` to link to it
+3. Redeploy the functions
 
-### "Resend API key invalid"
-→ The `RESEND_API_KEY` in Firebase Functions config doesn't match the key from resend.com. Re-run `firebase functions:config:set`.
+Does Kali have this guide ready?
 
-### "Email sent but not received"
-→ Check Resend logs. If it says "sent," the problem is spam filtering. Add SPF/DKIM/DMARC records.
+---
+
+## Environment Variables Reference
+
+| Variable | Project | How Set | Value |
+|----------|---------|---------|-------|
+| BREVO_API_KEY | kalimeister | Cloud Secret Manager | `xkeysib-...` |
+| FIREBASE_SERVICE_ACCOUNT_KEY | kalimeister | App Hosting env vars | JSON, one line |
+| NEXT_PUBLIC_BASE_URL | kalimeister | App Hosting env vars | `https://kalimeister.com` |
 
 ---
 
 ## Rollback
 
-If something breaks and you need to undeploy the functions:
-
+To stop the funnel entirely:
 ```bash
-firebase functions:delete onSubscriberCreated
-firebase functions:delete processScheduledEmails
+export FIREBASE_TOKEN="1//01aodeOpPmKzy..."
+firebase-tools functions:delete onSubscriberCreated --region us-central1 --project kalimeister
+firebase-tools functions:delete processScheduledEmails --region us-central1 --project kalimeister
 ```
 
-This stops all automated emails. Subscribers still get the first email before unsubscribing — the function only fires on document creation, so existing scheduled emails already in Firestore will still send.
-
-To stop those: delete all documents in `scheduledEmails` collection where `status == "pending"`.
-
----
-
-## Environment Variables Summary
-
-| Variable | Where Set | Value | Used By |
-|----------|-----------|-------|---------|
-| `RESEND_API_KEY` | Firebase Functions config / App Hosting env | `re_xxxxx` | Firebase Functions |
-| `FIREBASE_SERVICE_ACCOUNT_KEY` | App Hosting env vars | Full JSON, one line | Next.js API routes (server only) |
-| `NEXT_PUBLIC_BASE_URL` | App Hosting env vars | `https://kalimeister.com` | Firebase Functions (`BASE_URL` fallback) |
+This stops new emails. Existing scheduled emails in Firestore will still fire — delete them manually in the Firebase Console if you need to stop those too.
