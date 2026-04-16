@@ -148,13 +148,17 @@ export type CalComEventTypeSummary = {
 };
 
 function getCalComConfig() {
+  // Strip zero-width characters (BOM, etc.) that Firebase sometimes injects into secret values
+  const cleanUsername = (v?: string) =>
+    v ? v.replace(/[\u200B-\u200D\uFEFF]/g, "") : undefined;
+
   const parsed = calComConfigSchema.safeParse({
     apiKey: process.env.CALCOM_API_KEY,
     eventTypeId: process.env.CALCOM_EVENT_TYPE_ID,
     eventTypeSlug: process.env.CALCOM_EVENT_TYPE_SLUG,
-    username: process.env.CALCOM_USERNAME,
-    teamSlug: process.env.CALCOM_TEAM_SLUG,
-    organizationSlug: process.env.CALCOM_ORGANIZATION_SLUG,
+    username: cleanUsername(process.env.CALCOM_USERNAME),
+    teamSlug: cleanUsername(process.env.CALCOM_TEAM_SLUG),
+    organizationSlug: cleanUsername(process.env.CALCOM_ORGANIZATION_SLUG),
   });
 
   if (!parsed.success) {
