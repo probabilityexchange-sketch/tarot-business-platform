@@ -1,0 +1,360 @@
+[debug] [2026-04-16T14:24:06.055Z] ----------------------------------------------------------------------
+[debug] [2026-04-16T14:24:06.058Z] Command:       /home/ubuntu/.hermes/node/bin/node /home/ubuntu/.npm/_npx/7750544ccf494d8b/node_modules/.bin/firebase deploy --only functions:onSubscriberCreated,functions:processScheduledEmails --project randi-agency
+[debug] [2026-04-16T14:24:06.058Z] CLI Version:   15.15.0
+[debug] [2026-04-16T14:24:06.058Z] Platform:      linux
+[debug] [2026-04-16T14:24:06.058Z] Node Version:  v22.22.2
+[debug] [2026-04-16T14:24:06.059Z] Time:          Thu Apr 16 2026 14:24:06 GMT+0000 (Coordinated Universal Time)
+[debug] [2026-04-16T14:24:06.059Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2026-04-16T14:24:07.288Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-16T14:24:07.288Z] > authorizing via FIREBASE_TOKEN environment variable
+[warn] ⚠  Authenticating with `FIREBASE_TOKEN` is deprecated and will be removed in a future major version of `firebase-tools`. Instead, use a service account key with `GOOGLE_APPLICATION_CREDENTIALS`: https://cloud.google.com/docs/authentication/getting-started 
+[debug] [2026-04-16T14:24:07.289Z] [iam] checking project randi-agency for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2026-04-16T14:24:07.290Z] No OAuth tokens found
+[debug] [2026-04-16T14:24:07.290Z] No OAuth tokens found
+[debug] [2026-04-16T14:24:07.290Z] > refreshing access token with scopes: []
+[debug] [2026-04-16T14:24:07.292Z] >>> [apiv2][query] POST https://www.googleapis.com/oauth2/v3/token [none]
+[debug] [2026-04-16T14:24:07.292Z] >>> [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-04-16T14:24:07.413Z] <<< [apiv2][status] POST https://www.googleapis.com/oauth2/v3/token 200
+[debug] [2026-04-16T14:24:07.413Z] <<< [apiv2][body] POST https://www.googleapis.com/oauth2/v3/token [omitted]
+[debug] [2026-04-16T14:24:07.414Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency:testIamPermissions [none]
+[debug] [2026-04-16T14:24:07.414Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency:testIamPermissions  x-goog-user-project=randi-agency
+[debug] [2026-04-16T14:24:07.414Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-04-16T14:24:07.562Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency:testIamPermissions 200
+[debug] [2026-04-16T14:24:07.562Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency:testIamPermissions {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2026-04-16T14:24:07.563Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:07.563Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:07.563Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/randi-agency/serviceAccounts/randi-agency@appspot.gserviceaccount.com:testIamPermissions [none]
+[debug] [2026-04-16T14:24:07.563Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/randi-agency/serviceAccounts/randi-agency@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2026-04-16T14:24:07.679Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/randi-agency/serviceAccounts/randi-agency@appspot.gserviceaccount.com:testIamPermissions 200
+[debug] [2026-04-16T14:24:07.679Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/randi-agency/serviceAccounts/randi-agency@appspot.gserviceaccount.com:testIamPermissions {"permissions":["iam.serviceAccounts.actAs"]}
+[info] 
+[info] === Deploying to 'randi-agency'...
+[info] 
+[info] i  deploying functions 
+[debug] [2026-04-16T14:24:07.682Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:07.682Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:07.682Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency [none]
+[debug] [2026-04-16T14:24:07.885Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency 200
+[debug] [2026-04-16T14:24:07.886Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency {"projectNumber":"496149519216","projectId":"randi-agency","lifecycleState":"ACTIVE","name":"randi agency","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-03-21T20:18:15.100Z"}
+[info] i  functions: preparing codebase default for deployment 
+[info] i  functions: ensuring required API cloudfunctions.googleapis.com is enabled... 
+[info] i  functions: ensuring required API cloudbuild.googleapis.com is enabled... 
+[info] i  artifactregistry: ensuring required API artifactregistry.googleapis.com is enabled... 
+[debug] [2026-04-16T14:24:07.888Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:07.888Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:07.888Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/randi-agency/adminSdkConfig [none]
+[debug] [2026-04-16T14:24:08.099Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/randi-agency/adminSdkConfig 200
+[debug] [2026-04-16T14:24:08.099Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/randi-agency/adminSdkConfig {"projectId":"randi-agency","storageBucket":"randi-agency.firebasestorage.app"}
+[debug] [2026-04-16T14:24:08.101Z] Validating nodejs source
+[warn] ⚠  functions: package.json indicates an outdated version of firebase-functions. Please upgrade using npm install --save firebase-functions@latest in your functions directory. 
+[debug] [2026-04-16T14:24:08.490Z] > [functions] package.json contents: {
+  "name": "functions",
+  "scripts": {
+    "lint": "eslint --ext .js,.ts .",
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "npm run build && firebase emulators:start --only functions",
+    "shell": "npm run build && firebase functions:shell",
+    "start": "npm run shell",
+    "deploy": "firebase deploy --only functions",
+    "logs": "firebase functions:log"
+  },
+  "engines": {
+    "node": "24"
+  },
+  "main": "lib/index.js",
+  "dependencies": {
+    "@getbrevo/brevo": "^3.0.4",
+    "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^5.12.0",
+    "@typescript-eslint/parser": "^5.12.0",
+    "eslint": "^8.9.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-import": "^2.25.4",
+    "firebase-functions-test": "^3.4.1",
+    "typescript": "^5.7.3"
+  },
+  "private": true
+}
+[debug] [2026-04-16T14:24:08.490Z] Building nodejs source
+[info] i  functions: Loading and analyzing source code for codebase default to determine what to deploy 
+[debug] [2026-04-16T14:24:08.491Z] Could not find functions.yaml. Must use http discovery
+[debug] [2026-04-16T14:24:08.495Z] Found firebase-functions binary at '/home/ubuntu/projects/tarot-business-platform/functions/node_modules/.bin/firebase-functions'
+[info] Serving at port 8303
+
+[debug] [2026-04-16T14:24:09.125Z] Got response from /__/functions.yaml {"endpoints":{"onSubscriberCreated":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"subscribers/{subscriberId}"},"retry":false},"entryPoint":"onSubscriberCreated"},"processScheduledEmails":{"availableMemoryMb":null,"timeoutSeconds":null,"minInstances":null,"maxInstances":10,"ingressSettings":null,"concurrency":null,"serviceAccountEmail":null,"vpc":null,"platform":"gcfv2","labels":{},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","eventFilters":{"database":"(default)","namespace":"(default)"},"eventFilterPathPatterns":{"document":"scheduledEmails/{jobId}"},"retry":false},"entryPoint":"processScheduledEmails"}},"specVersion":"v1alpha1","requiredAPIs":[],"extensions":{}}
+[info] i  extensions: ensuring required API firebaseextensions.googleapis.com is enabled... 
+[debug] [2026-04-16T14:24:13.153Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2026-04-16T14:24:13.154Z] > authorizing via FIREBASE_TOKEN environment variable
+[warn] ⚠  Authenticating with `FIREBASE_TOKEN` is deprecated and will be removed in a future major version of `firebase-tools`. Instead, use a service account key with `GOOGLE_APPLICATION_CREDENTIALS`: https://cloud.google.com/docs/authentication/getting-started 
+[debug] [2026-04-16T14:24:13.154Z] [iam] checking project randi-agency for permissions ["firebase.projects.get","firebaseextensions.instances.list"]
+[debug] [2026-04-16T14:24:13.154Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:13.154Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:13.154Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency:testIamPermissions [none]
+[debug] [2026-04-16T14:24:13.154Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency:testIamPermissions  x-goog-user-project=randi-agency
+[debug] [2026-04-16T14:24:13.154Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2026-04-16T14:24:13.295Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency:testIamPermissions 200
+[debug] [2026-04-16T14:24:13.295Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency:testIamPermissions {"permissions":["firebase.projects.get","firebaseextensions.instances.list"]}
+[debug] [2026-04-16T14:24:13.295Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:13.295Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:13.295Z] >>> [apiv2][query] GET https://firebaseextensions.googleapis.com/v1beta/projects/randi-agency/instances pageSize=100&pageToken=
+[debug] [2026-04-16T14:24:13.470Z] <<< [apiv2][status] GET https://firebaseextensions.googleapis.com/v1beta/projects/randi-agency/instances 200
+[debug] [2026-04-16T14:24:13.471Z] <<< [apiv2][body] GET https://firebaseextensions.googleapis.com/v1beta/projects/randi-agency/instances {}
+[info] i  functions: preparing functions directory for uploading... 
+[info] i  functions: packaged /home/ubuntu/projects/tarot-business-platform/functions (109.75 KB) for uploading 
+[debug] [2026-04-16T14:24:13.536Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:13.536Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:13.536Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v1/projects/randi-agency/locations/-/functions [none]
+[debug] [2026-04-16T14:24:14.021Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v1/projects/randi-agency/locations/-/functions 200
+[debug] [2026-04-16T14:24:14.021Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v1/projects/randi-agency/locations/-/functions {"functions":[{"name":"projects/randi-agency/locations/us-central1/functions/onAuditRequest","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.create","resource":"projects/randi-agency/databases/(default)/documents/audit_requests/{docId}","service":"firestore.googleapis.com","failurePolicy":{}},"status":"ACTIVE","entryPoint":"onAuditRequest","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"randi-agency@appspot.gserviceaccount.com","updateTime":"2026-04-02T12:41:44.276Z","versionId":"5","labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"08e4438d5951c675d24689df56e106d67b0be6ce"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-367751991289.us-central1.cloudfunctions.appspot.com/bc28eaca-7bcd-4ebf-a0b8-a8d1f6c1b1a3.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"randi-agency\",\"storageBucket\":\"randi-agency.firebasestorage.app\"}","GCLOUD_PROJECT":"randi-agency","EVENTARC_CLOUD_EVENT_SOURCE":"projects/randi-agency/locations/us-central1/functions/onAuditRequest"},"runtime":"nodejs22","maxInstances":3000,"ingressSettings":"ALLOW_ALL","buildId":"c832185e-89b5-4971-84a5-46e0175bdbd0","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/496149519216/locations/us-central1/builds/c832185e-89b5-4971-84a5-46e0175bdbd0","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{},"buildServiceAccount":"projects/randi-agency/serviceAccounts/496149519216-compute@developer.gserviceaccount.com","satisfiesPzi":true},{"name":"projects/randi-agency/locations/us-central1/functions/onContactSubmission","eventTrigger":{"eventType":"providers/cloud.firestore/eventTypes/document.create","resource":"projects/randi-agency/databases/(default)/documents/contact_submissions/{docId}","service":"firestore.googleapis.com","failurePolicy":{}},"status":"ACTIVE","entryPoint":"onContactSubmission","timeout":"60s","availableMemoryMb":256,"serviceAccountEmail":"randi-agency@appspot.gserviceaccount.com","updateTime":"2026-04-02T12:41:48.296Z","versionId":"5","labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"08e4438d5951c675d24689df56e106d67b0be6ce"},"sourceUploadUrl":"https://storage.googleapis.com/uploads-367751991289.us-central1.cloudfunctions.appspot.com/bc28eaca-7bcd-4ebf-a0b8-a8d1f6c1b1a3.zip","environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"randi-agency\",\"storageBucket\":\"randi-agency.firebasestorage.app\"}","GCLOUD_PROJECT":"randi-agency","EVENTARC_CLOUD_EVENT_SOURCE":"projects/randi-agency/locations/us-central1/functions/onContactSubmission"},"runtime":"nodejs22","maxInstances":3000,"ingressSettings":"ALLOW_ALL","buildId":"c832185e-89b5-4971-84a5-46e0175bdbd0","buildEnvironmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""},"buildName":"projects/496149519216/locations/us-central1/builds/c832185e-89b5-4971-84a5-46e0175bdbd0","dockerRegistry":"ARTIFACT_REGISTRY","automaticUpdatePolicy":{},"buildServiceAccount":"projects/randi-agency/serviceAccounts/496149519216-compute@developer.gserviceaccount.com","satisfiesPzi":true}]}
+[debug] [2026-04-16T14:24:14.022Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:14.022Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:14.022Z] >>> [apiv2][query] GET https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/-/functions filter=environment%3D%22GEN_2%22
+[debug] [2026-04-16T14:24:14.366Z] <<< [apiv2][status] GET https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/-/functions 200
+[debug] [2026-04-16T14:24:14.366Z] <<< [apiv2][body] GET https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/-/functions {}
+[debug] [2026-04-16T14:24:14.367Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:14.367Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:14.368Z] >>> [apiv2][query] GET https://firestore.googleapis.com/v1/projects/randi-agency/databases/(default) [none]
+[debug] [2026-04-16T14:24:14.529Z] <<< [apiv2][status] GET https://firestore.googleapis.com/v1/projects/randi-agency/databases/(default) 200
+[debug] [2026-04-16T14:24:14.529Z] <<< [apiv2][body] GET https://firestore.googleapis.com/v1/projects/randi-agency/databases/(default) {"name":"projects/randi-agency/databases/(default)","uid":"a63e28eb-45b8-4a7c-a910-6fb6289fdc3e","createTime":"2026-03-21T23:54:12.293590Z","updateTime":"2026-03-21T23:54:12.293590Z","locationId":"nam5","type":"FIRESTORE_NATIVE","concurrencyMode":"PESSIMISTIC","versionRetentionPeriod":"3600s","earliestVersionTime":"2026-04-16T13:24:14.518094Z","appEngineIntegrationMode":"DISABLED","keyPrefix":"s","pointInTimeRecoveryEnablement":"POINT_IN_TIME_RECOVERY_DISABLED","deleteProtectionState":"DELETE_PROTECTION_DISABLED","databaseEdition":"STANDARD","freeTier":true,"realtimeUpdatesMode":"REALTIME_UPDATES_MODE_ENABLED","etag":"IJSK77HJ8pMDMNyVipCqtpMD"}
+[info] i  functions: ensuring required API run.googleapis.com is enabled... 
+[info] i  functions: ensuring required API eventarc.googleapis.com is enabled... 
+[info] i  functions: ensuring required API pubsub.googleapis.com is enabled... 
+[info] i  functions: ensuring required API storage.googleapis.com is enabled... 
+[info] i  functions: generating the service identity for pubsub.googleapis.com... 
+[debug] [2026-04-16T14:24:14.532Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:14.532Z] Checked if tokens are valid: true, expires at: 1776353046413
+[info] i  functions: generating the service identity for eventarc.googleapis.com... 
+[debug] [2026-04-16T14:24:14.533Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:14.533Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:14.533Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/496149519216/services/pubsub.googleapis.com:generateServiceIdentity [none]
+[debug] [2026-04-16T14:24:14.533Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1beta1/projects/496149519216/services/pubsub.googleapis.com:generateServiceIdentity  x-goog-user-project=496149519216
+[debug] [2026-04-16T14:24:14.533Z] >>> [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/496149519216/services/pubsub.googleapis.com:generateServiceIdentity {}
+[debug] [2026-04-16T14:24:14.535Z] >>> [apiv2][query] POST https://serviceusage.googleapis.com/v1beta1/projects/496149519216/services/eventarc.googleapis.com:generateServiceIdentity [none]
+[debug] [2026-04-16T14:24:14.535Z] >>> [apiv2][(partial)header] POST https://serviceusage.googleapis.com/v1beta1/projects/496149519216/services/eventarc.googleapis.com:generateServiceIdentity  x-goog-user-project=496149519216
+[debug] [2026-04-16T14:24:14.535Z] >>> [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/496149519216/services/eventarc.googleapis.com:generateServiceIdentity {}
+[debug] [2026-04-16T14:24:14.830Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/496149519216/services/eventarc.googleapis.com:generateServiceIdentity 200
+[debug] [2026-04-16T14:24:14.830Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/496149519216/services/eventarc.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-496149519216@gcp-sa-eventarc.iam.gserviceaccount.com","uniqueId":"102945127508975718497"}}
+[debug] [2026-04-16T14:24:14.856Z] <<< [apiv2][status] POST https://serviceusage.googleapis.com/v1beta1/projects/496149519216/services/pubsub.googleapis.com:generateServiceIdentity 200
+[debug] [2026-04-16T14:24:14.856Z] <<< [apiv2][body] POST https://serviceusage.googleapis.com/v1beta1/projects/496149519216/services/pubsub.googleapis.com:generateServiceIdentity {"name":"operations/finished.DONE_OPERATION","done":true,"response":{"@type":"type.googleapis.com/google.api.serviceusage.v1beta1.ServiceIdentity","email":"service-496149519216@gcp-sa-pubsub.iam.gserviceaccount.com","uniqueId":"113977391188975016731"}}
+[debug] [2026-04-16T14:24:14.858Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:14.858Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:14.858Z] >>> [apiv2][query] GET https://compute.googleapis.com/compute/v1/projects/496149519216 [none]
+[debug] [2026-04-16T14:24:15.072Z] <<< [apiv2][status] GET https://compute.googleapis.com/compute/v1/projects/496149519216 200
+[debug] [2026-04-16T14:24:15.072Z] <<< [apiv2][body] GET https://compute.googleapis.com/compute/v1/projects/496149519216 {"kind":"compute#project","id":"1128428928397313287","creationTimestamp":"2026-03-28T13:36:56.721-07:00","name":"randi-agency","commonInstanceMetadata":{"kind":"compute#metadata","fingerprint":"6RD4K13Du7E="},"quotas":[{"metric":"SNAPSHOTS","limit":1000,"usage":0},{"metric":"NETWORKS","limit":5,"usage":1},{"metric":"FIREWALLS","limit":100,"usage":4},{"metric":"IMAGES","limit":100,"usage":0},{"metric":"STATIC_ADDRESSES","limit":8,"usage":0},{"metric":"ROUTES","limit":200,"usage":0},{"metric":"FORWARDING_RULES","limit":15,"usage":0},{"metric":"TARGET_POOLS","limit":50,"usage":0},{"metric":"HEALTH_CHECKS","limit":75,"usage":0},{"metric":"IN_USE_ADDRESSES","limit":8,"usage":0},{"metric":"TARGET_INSTANCES","limit":50,"usage":0},{"metric":"TARGET_HTTP_PROXIES","limit":10,"usage":0},{"metric":"URL_MAPS","limit":10,"usage":0},{"metric":"BACKEND_SERVICES","limit":50,"usage":0},{"metric":"INSTANCE_TEMPLATES","limit":100,"usage":0},{"metric":"TARGET_VPN_GATEWAYS","limit":5,"usage":0},{"metric":"VPN_TUNNELS","limit":10,"usage":0},{"metric":"BACKEND_BUCKETS","limit":3,"usage":0},{"metric":"ROUTERS","limit":10,"usage":0},{"metric":"TARGET_SSL_PROXIES","limit":10,"usage":0},{"metric":"TARGET_HTTPS_PROXIES","limit":10,"usage":0},{"metric":"SSL_CERTIFICATES","limit":10,"usage":0},{"metric":"SUBNETWORKS","limit":100,"usage":0},{"metric":"TARGET_TCP_PROXIES","limit":10,"usage":0},{"metric":"CPUS_ALL_REGIONS","limit":32,"usage":0},{"metric":"SECURITY_POLICIES","limit":10,"usage":0},{"metric":"SECURITY_POLICY_RULES","limit":100,"usage":0},{"metric":"XPN_SERVICE_PROJECTS","limit":1000,"usage":0},{"metric":"PACKET_MIRRORINGS","limit":20,"usage":0},{"metric":"NETWORK_ENDPOINT_GROUPS","limit":100,"usage":0},{"metric":"INTERCONNECTS","limit":6,"usage":0},{"metric":"SSL_POLICIES","limit":10,"usage":0},{"metric":"GLOBAL_INTERNAL_ADDRESSES","limit":5000,"usage":0},{"metric":"VPN_GATEWAYS","limit":5,"usage":0},{"metric":"MACHINE_IMAGES","limit":100,"usage":0},{"metric":"SECURITY_POLICY_CEVAL_RULES","limit":20,"usage":0},{"metric":"GPUS_ALL_REGIONS","limit":0,"usage":0},{"metric":"EXTERNAL_VPN_GATEWAYS","limit":5,"usage":0},{"metric":"PUBLIC_ADVERTISED_PREFIXES","limit":1,"usage":0},{"metric":"PUBLIC_DELEGATED_PREFIXES","limit":10,"usage":0},{"metric":"STATIC_BYOIP_ADDRESSES","limit":128,"usage":0},{"metric":"NETWORK_FIREWALL_POLICIES","limit":10,"usage":0},{"metric":"INTERNAL_TRAFFIC_DIRECTOR_FORWARDING_RULES","limit":15,"usage":0},{"metric":"GLOBAL_EXTERNAL_MANAGED_FORWARDING_RULES","limit":15,"usage":0},{"metric":"GLOBAL_INTERNAL_MANAGED_BACKEND_SERVICES","limit":50,"usage":0},{"metric":"GLOBAL_EXTERNAL_MANAGED_BACKEND_SERVICES","limit":50,"usage":0},{"metric":"GLOBAL_EXTERNAL_PROXY_LB_BACKEND_SERVICES","limit":50,"usage":0},{"metric":"GLOBAL_INTERNAL_TRAFFIC_DIRECTOR_BACKEND_SERVICES","limit":250,"usage":0}],"selfLink":"https://www.googleapis.com/compute/v1/projects/randi-agency","defaultServiceAccount":"496149519216-compute@developer.gserviceaccount.com","xpnProjectStatus":"UNSPECIFIED_XPN_PROJECT_STATUS","defaultNetworkTier":"PREMIUM","vmDnsSetting":"ZONAL_ONLY","cloudArmorTier":"CA_STANDARD"}
+[debug] [2026-04-16T14:24:15.073Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:15.073Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:15.073Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/496149519216:getIamPolicy [none]
+[debug] [2026-04-16T14:24:15.229Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/496149519216:getIamPolicy 200
+[debug] [2026-04-16T14:24:15.229Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/496149519216:getIamPolicy {"version":1,"etag":"BwZPlJMsE0k=","bindings":[{"role":"roles/artifactregistry.serviceAgent","members":["serviceAccount:service-496149519216@gcp-sa-artifactregistry.iam.gserviceaccount.com"]},{"role":"roles/cloudbuild.builds.builder","members":["serviceAccount:496149519216@cloudbuild.gserviceaccount.com"]},{"role":"roles/cloudbuild.serviceAgent","members":["serviceAccount:service-496149519216@gcp-sa-cloudbuild.iam.gserviceaccount.com"]},{"role":"roles/cloudfunctions.serviceAgent","members":["serviceAccount:service-496149519216@gcf-admin-robot.iam.gserviceaccount.com"]},{"role":"roles/compute.instanceGroupManagerServiceAgent","members":["serviceAccount:496149519216@cloudservices.gserviceaccount.com"]},{"role":"roles/compute.serviceAgent","members":["serviceAccount:service-496149519216@compute-system.iam.gserviceaccount.com"]},{"role":"roles/containerregistry.ServiceAgent","members":["serviceAccount:service-496149519216@containerregistry.iam.gserviceaccount.com"]},{"role":"roles/editor","members":["serviceAccount:496149519216-compute@developer.gserviceaccount.com","serviceAccount:496149519216@cloudservices.gserviceaccount.com","serviceAccount:randi-agency@appspot.gserviceaccount.com"]},{"role":"roles/eventarc.eventReceiver","members":["serviceAccount:496149519216-compute@developer.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:service-496149519216@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-fbsvc@randi-agency.iam.gserviceaccount.com"]},{"role":"roles/firebasemods.serviceAgent","members":["serviceAccount:service-496149519216@gcp-sa-firebasemods.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-496149519216@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-496149519216@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-fbsvc@randi-agency.iam.gserviceaccount.com","serviceAccount:service-496149519216@gcp-sa-pubsub.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:billybradshaw@gmail.com"]},{"role":"roles/run.invoker","members":["serviceAccount:496149519216-compute@developer.gserviceaccount.com"]},{"role":"roles/run.serviceAgent","members":["serviceAccount:service-496149519216@serverless-robot-prod.iam.gserviceaccount.com"]}]}
+[debug] [2026-04-16T14:24:15.230Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:15.230Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:15.230Z] >>> [apiv2][query] GET https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency [none]
+[debug] [2026-04-16T14:24:15.288Z] <<< [apiv2][status] GET https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency 200
+[debug] [2026-04-16T14:24:15.288Z] <<< [apiv2][body] GET https://cloudresourcemanager.googleapis.com/v1/projects/randi-agency {"projectNumber":"496149519216","projectId":"randi-agency","lifecycleState":"ACTIVE","name":"randi agency","labels":{"firebase":"enabled","firebase-core":"disabled"},"createTime":"2026-03-21T20:18:15.100Z"}
+[debug] [2026-04-16T14:24:15.290Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:15.290Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:15.290Z] >>> [apiv2][query] GET https://cloudbilling.googleapis.com/v1/projects/randi-agency/billingInfo [none]
+[debug] [2026-04-16T14:24:15.405Z] <<< [apiv2][status] GET https://cloudbilling.googleapis.com/v1/projects/randi-agency/billingInfo 200
+[debug] [2026-04-16T14:24:15.405Z] <<< [apiv2][body] GET https://cloudbilling.googleapis.com/v1/projects/randi-agency/billingInfo {"name":"projects/randi-agency/billingInfo","projectId":"randi-agency","billingAccountName":"billingAccounts/018615-919796-99D6A7","billingEnabled":true}
+[debug] [2026-04-16T14:24:15.407Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:15.407Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:15.407Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions:generateUploadUrl [none]
+[debug] [2026-04-16T14:24:15.581Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions:generateUploadUrl 200
+[debug] [2026-04-16T14:24:15.582Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions:generateUploadUrl {"uploadUrl":"https://storage.googleapis.com/gcf-v2-uploads-496149519216.us-central1.cloudfunctions.appspot.com/c7823960-e1ac-4203-8144-7ee4f20ea7ff.zip?GoogleAccessId=service-496149519216@gcf-admin-robot.iam.gserviceaccount.com&Expires=1776351255&Signature=ljoonrw7%2B3nKK6D4MqSCJay56i8ZBY3EKjPB3zdKSN6HAs%2Bvy7aBv2sTLuAIeu1jAu4o8pGMKQonGJNz5d4kN6boK0jTo7dLiHhknSVj7YahUUpxetROyQ5UyC11aoZFj%2BFoxobhePnw1mbiGGDrd8n5ciIV%2BzyA9gcebUVEKYS%2FH5HN%2BmNSGjt4CJBzbr91RqQQI%2B4ZrgLQSoAG0Y90vcb6zV5Lv%2BB20RN9JlbkwtKbcLSHzEuBWm1QrDuy7YTIT2jSNq6PJnalzZPzclT50KMk0oTC%2F8Rvnr3MROOlr%2Bky%2F8ji13kIAqd9LANRQROpVdhCasNqFLKQoNRFzESDlw%3D%3D","storageSource":{"bucket":"gcf-v2-uploads-496149519216.us-central1.cloudfunctions.appspot.com","object":"c7823960-e1ac-4203-8144-7ee4f20ea7ff.zip"}}
+[debug] [2026-04-16T14:24:15.582Z] >>> [apiv2][query] PUT https://storage.googleapis.com/gcf-v2-uploads-496149519216.us-central1.cloudfunctions.appspot.com/c7823960-e1ac-4203-8144-7ee4f20ea7ff.zip GoogleAccessId=service-496149519216%40gcf-admin-robot.iam.gserviceaccount.com&Expires=1776351255&Signature=ljoonrw7%2B3nKK6D4MqSCJay56i8ZBY3EKjPB3zdKSN6HAs%2Bvy7aBv2sTLuAIeu1jAu4o8pGMKQonGJNz5d4kN6boK0jTo7dLiHhknSVj7YahUUpxetROyQ5UyC11aoZFj%2BFoxobhePnw1mbiGGDrd8n5ciIV%2BzyA9gcebUVEKYS%2FH5HN%2BmNSGjt4CJBzbr91RqQQI%2B4ZrgLQSoAG0Y90vcb6zV5Lv%2BB20RN9JlbkwtKbcLSHzEuBWm1QrDuy7YTIT2jSNq6PJnalzZPzclT50KMk0oTC%2F8Rvnr3MROOlr%2Bky%2F8ji13kIAqd9LANRQROpVdhCasNqFLKQoNRFzESDlw%3D%3D
+[debug] [2026-04-16T14:24:15.582Z] >>> [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-496149519216.us-central1.cloudfunctions.appspot.com/c7823960-e1ac-4203-8144-7ee4f20ea7ff.zip [stream]
+[debug] [2026-04-16T14:24:15.742Z] <<< [apiv2][status] PUT https://storage.googleapis.com/gcf-v2-uploads-496149519216.us-central1.cloudfunctions.appspot.com/c7823960-e1ac-4203-8144-7ee4f20ea7ff.zip 200
+[debug] [2026-04-16T14:24:15.742Z] <<< [apiv2][body] PUT https://storage.googleapis.com/gcf-v2-uploads-496149519216.us-central1.cloudfunctions.appspot.com/c7823960-e1ac-4203-8144-7ee4f20ea7ff.zip [omitted]
+[info] ✔  functions: functions source uploaded successfully 
+[info] i  functions: creating Node.js 24 (2nd Gen) function onSubscriberCreated(us-central1)... 
+[info] i  functions: creating Node.js 24 (2nd Gen) function processScheduledEmails(us-central1)... 
+[debug] [2026-04-16T14:24:15.747Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:15.747Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:15.747Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions functionId=onSubscriberCreated
+[debug] [2026-04-16T14:24:15.747Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions {"name":"projects/randi-agency/locations/us-central1/functions/onSubscriberCreated","buildConfig":{"runtime":"nodejs24","entryPoint":"onSubscriberCreated","source":{"storageSource":{"bucket":"gcf-v2-uploads-496149519216.us-central1.cloudfunctions.appspot.com","object":"c7823960-e1ac-4203-8144-7ee4f20ea7ff.zip"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"randi-agency\",\"storageBucket\":\"randi-agency.firebasestorage.app\"}","GCLOUD_PROJECT":"randi-agency","EVENTARC_CLOUD_EVENT_SOURCE":"projects/randi-agency/locations/us-central1/services/onSubscriberCreated","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"onSubscriberCreated","LOG_EXECUTION_ID":"true"},"ingressSettings":null,"timeoutSeconds":null,"serviceAccountEmail":null,"availableMemory":"256Mi","minInstanceCount":null,"maxInstanceCount":10,"maxInstanceRequestConcurrency":80,"availableCpu":"1","vpcConnector":null,"vpcConnectorEgressSettings":null,"directVpcNetworkInterface":null,"directVpcEgress":null},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"252ddd373e016e0ba8dfd464e8d11cae0e80fbb8"},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"subscribers/{subscriberId}","operator":"match-path-pattern"}],"triggerRegion":"nam5"}}
+[debug] [2026-04-16T14:24:32.095Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions 400
+[debug] [2026-04-16T14:24:32.096Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions {"error":{"code":400,"message":"Validation failed for trigger projects/randi-agency/locations/nam5/triggers/onsubscribercreated-877581: Invalid resource state for \"\": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role.","status":"FAILED_PRECONDITION"}}
+[warn] ⚠  functions: Request to https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions?functionId=onSubscriberCreated had HTTP Error: 400, Validation failed for trigger projects/randi-agency/locations/nam5/triggers/onsubscribercreated-877581: Invalid resource state for "": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role. 
+[warn] ⚠  functions: Since this is your first time using 2nd gen functions, we need a little bit longer to finish setting everything up. Retry the deployment in a few minutes. 
+[warn] ⚠  functions:  failed to create function projects/randi-agency/locations/us-central1/functions/onSubscriberCreated 
+[error] Failed to create function projects/randi-agency/locations/us-central1/functions/onSubscriberCreated
+[debug] [2026-04-16T14:24:32.097Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:32.097Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:32.098Z] >>> [apiv2][query] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions functionId=processScheduledEmails
+[debug] [2026-04-16T14:24:32.098Z] >>> [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions {"name":"projects/randi-agency/locations/us-central1/functions/processScheduledEmails","buildConfig":{"runtime":"nodejs24","entryPoint":"processScheduledEmails","source":{"storageSource":{"bucket":"gcf-v2-uploads-496149519216.us-central1.cloudfunctions.appspot.com","object":"c7823960-e1ac-4203-8144-7ee4f20ea7ff.zip"}},"environmentVariables":{"GOOGLE_NODE_RUN_SCRIPTS":""}},"serviceConfig":{"environmentVariables":{"FIREBASE_CONFIG":"{\"projectId\":\"randi-agency\",\"storageBucket\":\"randi-agency.firebasestorage.app\"}","GCLOUD_PROJECT":"randi-agency","EVENTARC_CLOUD_EVENT_SOURCE":"projects/randi-agency/locations/us-central1/services/processScheduledEmails","FUNCTION_SIGNATURE_TYPE":"cloudevent","FUNCTION_TARGET":"processScheduledEmails","LOG_EXECUTION_ID":"true"},"ingressSettings":null,"timeoutSeconds":null,"serviceAccountEmail":null,"availableMemory":"256Mi","minInstanceCount":null,"maxInstanceCount":10,"maxInstanceRequestConcurrency":80,"availableCpu":"1","vpcConnector":null,"vpcConnectorEgressSettings":null,"directVpcNetworkInterface":null,"directVpcEgress":null},"labels":{"deployment-tool":"cli-firebase","firebase-functions-hash":"252ddd373e016e0ba8dfd464e8d11cae0e80fbb8"},"eventTrigger":{"eventType":"google.cloud.firestore.document.v1.created","retryPolicy":"RETRY_POLICY_DO_NOT_RETRY","eventFilters":[{"attribute":"database","value":"(default)"},{"attribute":"namespace","value":"(default)"},{"attribute":"document","value":"scheduledEmails/{jobId}","operator":"match-path-pattern"}],"triggerRegion":"nam5"}}
+[debug] [2026-04-16T14:24:47.052Z] <<< [apiv2][status] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions 400
+[debug] [2026-04-16T14:24:47.052Z] <<< [apiv2][body] POST https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions {"error":{"code":400,"message":"Validation failed for trigger projects/randi-agency/locations/nam5/triggers/processscheduledemails-463121: Invalid resource state for \"\": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role.","status":"FAILED_PRECONDITION"}}
+[warn] ⚠  functions: Request to https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions?functionId=processScheduledEmails had HTTP Error: 400, Validation failed for trigger projects/randi-agency/locations/nam5/triggers/processscheduledemails-463121: Invalid resource state for "": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role. 
+[warn] ⚠  functions: Since this is your first time using 2nd gen functions, we need a little bit longer to finish setting everything up. Retry the deployment in a few minutes. 
+[warn] ⚠  functions:  failed to create function projects/randi-agency/locations/us-central1/functions/processScheduledEmails 
+[error] Failed to create function projects/randi-agency/locations/us-central1/functions/processScheduledEmails
+[warn] ⚠  functions: Deploys failed. Skipping deletes. 
+[debug] [2026-04-16T14:24:47.054Z] Total Function Deployment time: 31308
+[debug] [2026-04-16T14:24:47.054Z] 2 Functions Deployed
+[debug] [2026-04-16T14:24:47.054Z] 2 Functions Errored
+[debug] [2026-04-16T14:24:47.054Z] 0 Function Deployments Aborted
+[debug] [2026-04-16T14:24:47.054Z] Average Function Deployment time: 23829.5
+[info] 
+[info] Functions deploy had errors with the following functions:
+	onSubscriberCreated(us-central1)
+	processScheduledEmails(us-central1)
+[debug] [2026-04-16T14:24:47.056Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:47.056Z] Checked if tokens are valid: true, expires at: 1776353046413
+[debug] [2026-04-16T14:24:47.056Z] >>> [apiv2][query] GET https://artifactregistry.googleapis.com/v1/projects/randi-agency/locations/us-central1/repositories/gcf-artifacts [none]
+[debug] [2026-04-16T14:24:47.184Z] <<< [apiv2][status] GET https://artifactregistry.googleapis.com/v1/projects/randi-agency/locations/us-central1/repositories/gcf-artifacts 200
+[debug] [2026-04-16T14:24:47.185Z] <<< [apiv2][body] GET https://artifactregistry.googleapis.com/v1/projects/randi-agency/locations/us-central1/repositories/gcf-artifacts {"name":"projects/randi-agency/locations/us-central1/repositories/gcf-artifacts","format":"DOCKER","description":"This repository is created and used by Cloud Functions for storing function docker images.","labels":{"goog-managed-by":"cloudfunctions"},"createTime":"2026-03-28T20:43:14.944638Z","updateTime":"2026-04-02T12:41:48.421286Z","mode":"STANDARD_REPOSITORY","cleanupPolicies":{"firebase-functions-cleanup":{"id":"firebase-functions-cleanup","action":"DELETE","condition":{"tagState":"ANY","olderThan":"2592000s"}}},"sizeBytes":"701309263","vulnerabilityScanningConfig":{"lastEnableTime":"2026-03-28T20:43:04.091694701Z","enablementState":"SCANNING_DISABLED","enablementStateReason":"API containerscanning.googleapis.com is not enabled."},"satisfiesPzi":true,"registryUri":"us-central1-docker.pkg.dev/randi-agency/gcf-artifacts"}
+[debug] [2026-04-16T14:24:47.185Z] Functions deploy failed.
+[debug] [2026-04-16T14:24:47.185Z] {
+  "endpoint": {
+    "id": "onSubscriberCreated",
+    "project": "randi-agency",
+    "region": "us-central1",
+    "entryPoint": "onSubscriberCreated",
+    "platform": "gcfv2",
+    "runtime": "nodejs24",
+    "eventTrigger": {
+      "eventType": "google.cloud.firestore.document.v1.created",
+      "retry": false,
+      "eventFilters": {
+        "database": "(default)",
+        "namespace": "(default)"
+      },
+      "eventFilterPathPatterns": {
+        "document": "subscribers/{subscriberId}"
+      },
+      "region": "nam5"
+    },
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "serviceAccount": null,
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "timeoutSeconds": null,
+    "maxInstances": 10,
+    "minInstances": null,
+    "concurrency": 80,
+    "vpc": null,
+    "environmentVariables": {
+      "FIREBASE_CONFIG": "{\"projectId\":\"randi-agency\",\"storageBucket\":\"randi-agency.firebasestorage.app\"}",
+      "GCLOUD_PROJECT": "randi-agency",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/randi-agency/locations/us-central1/services/onSubscriberCreated"
+    },
+    "codebase": "default",
+    "cpu": 1,
+    "targetedByOnly": true,
+    "hash": "252ddd373e016e0ba8dfd464e8d11cae0e80fbb8"
+  },
+  "op": "create",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "context": {
+      "function": "projects/randi-agency/locations/us-central1/functions/onSubscriberCreated"
+    },
+    "exit": 1,
+    "message": "Failed to create function projects/randi-agency/locations/us-central1/functions/onSubscriberCreated",
+    "original": {
+      "name": "FirebaseError",
+      "children": [],
+      "context": {
+        "body": {
+          "error": {
+            "code": 400,
+            "message": "Validation failed for trigger projects/randi-agency/locations/nam5/triggers/onsubscribercreated-877581: Invalid resource state for \"\": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role.",
+            "status": "FAILED_PRECONDITION"
+          }
+        },
+        "response": {
+          "statusCode": 400
+        }
+      },
+      "exit": 1,
+      "message": "Request to https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions?functionId=onSubscriberCreated had HTTP Error: 400, Validation failed for trigger projects/randi-agency/locations/nam5/triggers/onsubscribercreated-877581: Invalid resource state for \"\": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role.",
+      "status": 400
+    },
+    "status": 400,
+    "code": 400
+  }
+}
+[debug] [2026-04-16T14:24:47.186Z] {
+  "endpoint": {
+    "id": "processScheduledEmails",
+    "project": "randi-agency",
+    "region": "us-central1",
+    "entryPoint": "processScheduledEmails",
+    "platform": "gcfv2",
+    "runtime": "nodejs24",
+    "eventTrigger": {
+      "eventType": "google.cloud.firestore.document.v1.created",
+      "retry": false,
+      "eventFilters": {
+        "database": "(default)",
+        "namespace": "(default)"
+      },
+      "eventFilterPathPatterns": {
+        "document": "scheduledEmails/{jobId}"
+      },
+      "region": "nam5"
+    },
+    "labels": {
+      "deployment-tool": "cli-firebase"
+    },
+    "serviceAccount": null,
+    "ingressSettings": null,
+    "availableMemoryMb": null,
+    "timeoutSeconds": null,
+    "maxInstances": 10,
+    "minInstances": null,
+    "concurrency": 80,
+    "vpc": null,
+    "environmentVariables": {
+      "FIREBASE_CONFIG": "{\"projectId\":\"randi-agency\",\"storageBucket\":\"randi-agency.firebasestorage.app\"}",
+      "GCLOUD_PROJECT": "randi-agency",
+      "EVENTARC_CLOUD_EVENT_SOURCE": "projects/randi-agency/locations/us-central1/services/processScheduledEmails"
+    },
+    "codebase": "default",
+    "cpu": 1,
+    "targetedByOnly": true,
+    "hash": "252ddd373e016e0ba8dfd464e8d11cae0e80fbb8"
+  },
+  "op": "create",
+  "original": {
+    "name": "FirebaseError",
+    "children": [],
+    "context": {
+      "function": "projects/randi-agency/locations/us-central1/functions/processScheduledEmails"
+    },
+    "exit": 1,
+    "message": "Failed to create function projects/randi-agency/locations/us-central1/functions/processScheduledEmails",
+    "original": {
+      "name": "FirebaseError",
+      "children": [],
+      "context": {
+        "body": {
+          "error": {
+            "code": 400,
+            "message": "Validation failed for trigger projects/randi-agency/locations/nam5/triggers/processscheduledemails-463121: Invalid resource state for \"\": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role.",
+            "status": "FAILED_PRECONDITION"
+          }
+        },
+        "response": {
+          "statusCode": 400
+        }
+      },
+      "exit": 1,
+      "message": "Request to https://cloudfunctions.googleapis.com/v2/projects/randi-agency/locations/us-central1/functions?functionId=processScheduledEmails had HTTP Error: 400, Validation failed for trigger projects/randi-agency/locations/nam5/triggers/processscheduledemails-463121: Invalid resource state for \"\": Permission denied while using the Eventarc Service Agent. If you recently started to use Eventarc, it may take a few minutes before all necessary permissions are propagated to the Service Agent. Otherwise, verify that it has Eventarc Service Agent role.",
+      "status": 400
+    },
+    "status": 400,
+    "code": 400
+  }
+}
+[error] Error: There was an error deploying functions:
+[error] - Error Failed to create function onSubscriberCreated in region us-central1
+[error] - Error Failed to create function processScheduledEmails in region us-central1

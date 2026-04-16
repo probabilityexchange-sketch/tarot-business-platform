@@ -57,8 +57,8 @@ env:
 
   # Grant access to secrets in Cloud Secret Manager.
   # Use `firebase apphosting:secrets:set <secretName>` to set these values.
-  - variable: RESEND_API_KEY
-    secret: RESEND_API_KEY
+  - variable: BREVO_API_KEY
+    secret: BREVO_API_KEY
     availability:
       - BUILD
       - RUNTIME

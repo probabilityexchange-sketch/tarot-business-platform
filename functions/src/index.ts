@@ -1,11 +1,13 @@
 import { setGlobalOptions } from "firebase-functions/v2";
 import { onDocumentCreated } from "firebase-functions/v2/firestore";
-import { Resend } from "resend";
+import * as brevo from "@getbrevo/brevo";
 
 setGlobalOptions({ maxInstances: 10 });
 
-const resend = new Resend(process.env.RESEND_API_KEY);
-const FROM_EMAIL = "Kali Meister <onboarding@resend.dev>";
+const apiInstance = new brevo.TransactionalEmailsApi();
+apiInstance.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY || "");
+
+const FROM_EMAIL = { email: "kali@kalimeister.com", name: "Kali Meister" };
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://kalimeister.com";
 
 // Email sequence templates - 5 emails over 10 days
@@ -151,15 +153,14 @@ export const onSubscriberCreated = onDocumentCreated(
 
 async function sendEmail(to: string, template: { subject: string; content: string }) {
   try {
-    const result = await resend.emails.send({
-      from: FROM_EMAIL,
-      to: [to],
+    const result = await apiInstance.sendTransacEmail({
+      sender: FROM_EMAIL,
+      to: [{ email: to }],
       subject: template.subject,
-      text: template.content,
-      html: template.content.replace(/\n/g, "<br>"),
+      htmlContent: template.content.replace(/\n/g, "<br>"),
     });
 
-    console.log(`Email sent to ${to}:`, result.data?.id);
+    console.log(`Email sent to ${to}:`, result.body?.messageId);
     return result;
   } catch (error) {
     console.error(`Failed to send email to ${to}:`, error);
