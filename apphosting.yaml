@@ -9,6 +9,11 @@ runConfig:
 
 # Environment variables and secrets.
 env:
+  - variable: NEXT_PUBLIC_BASE_URL
+    value: https://kalimeister.com
+    availability:
+      - BUILD
+      - RUNTIME
   - variable: NEXT_PUBLIC_ADMIN_EMAIL
     value: kali@kalimeister.com
     availability:

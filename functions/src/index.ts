@@ -7,7 +7,7 @@ setGlobalOptions({ maxInstances: 10 });
 const apiInstance = new brevo.TransactionalEmailsApi();
 apiInstance.setApiKey(brevo.TransactionalEmailsApiApiKeys.apiKey, process.env.BREVO_API_KEY || "");
 
-const FROM_EMAIL = { email: "kali@kalimeister.com", name: "Kali Meister" };
+const FROM_EMAIL = { email: "noreply@kalimeister.com", name: "Kali Meister" };
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || "https://kalimeister.com";
 
 // Email sequence templates - 5 emails over 10 days
