@@ -67,8 +67,8 @@ env:
     availability:
       - BUILD
       - RUNTIME
-  - variable: RESEND_FROM_EMAIL
-    value: noreply@kaliemeister.com
+  - variable: BREVO_FROM_EMAIL
+    value: noreply@kalimeister.com
     availability:
       - BUILD
       - RUNTIME
