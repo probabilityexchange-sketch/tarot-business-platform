@@ -134,22 +134,31 @@ export async function POST(request: Request) {
 </html>
     `;
 
-    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
-      method: "POST",
-      headers: {
-        "api-key": brevoApiKey,
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        sender: {
-          name: "Kali Meister",
-          email: process.env.BREVO_FROM_EMAIL || "noreply@kalimeister.com",
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), 30000);
+
+    let response;
+    try {
+      response = await fetch("https://api.brevo.com/v3/smtp/email", {
+        method: "POST",
+        headers: {
+          "api-key": brevoApiKey,
+          "Content-Type": "application/json",
         },
-        to: [{ email }],
-        subject: "Welcome to The Psychological Tarot Method Waitlist",
-        htmlContent: waitlistContent,
-      }),
-    });
+        body: JSON.stringify({
+          sender: {
+            name: "Kali Meister",
+            email: process.env.BREVO_FROM_EMAIL || "noreply@kalimeister.com",
+          },
+          to: [{ email }],
+          subject: "Welcome to The Psychological Tarot Method Waitlist",
+          htmlContent: waitlistContent,
+        }),
+        signal: controller.signal,
+      });
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     if (!response.ok) {
       const errorData = await response.json();
