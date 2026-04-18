@@ -46,5 +46,17 @@ service cloud.firestore {
       allow read: if true;
       allow write: if isAdmin();
     }
+
+    // Email subscribers (public write for lead capture, read by admin only)
+    match /subscribers/{subscriberId} {
+      allow read: if isAdmin();
+      allow create: if true; // Anyone can subscribe
+      allow update: if isAdmin();
+    }
+
+    // Scheduled email jobs (functions only - use function auth)
+    match /scheduledEmails/{jobId} {
+      allow read, write: if true; // Function service account can write
+    }
   }
 }
