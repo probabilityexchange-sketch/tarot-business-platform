@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Metadata } from "next";
 import Image from "next/image";
+import { CourseWaitlistForm } from "@/components/CourseWaitlistForm";
 
 export const metadata: Metadata = {
   title: "The Psychological Tarot Method | Professional Certification Course",
@@ -99,16 +100,7 @@ export default function CoursePage() {
               The next cycle begins October 2026.
             </p>
             
-            <form className="flex flex-col sm:flex-row gap-4">
-              <input 
-                type="email" 
-                placeholder="YOUR_EMAIL@VOICE.COM"
-                className="bg-surface-container-highest border-none p-4 rounded-full flex-grow font-label text-sm uppercase tracking-widest focus:ring-1 focus:ring-secondary/40 transition-all outline-none"
-              />
-              <Button variant="primary" className="px-12 whitespace-nowrap py-4">
-                Join Waitlist
-              </Button>
-            </form>
+            <CourseWaitlistForm />
           </div>
         </section>
 

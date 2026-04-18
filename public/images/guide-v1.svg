@@ -20,17 +20,12 @@
   <!-- Desk Area -->
   <rect x="0" y="480" width="800" height="120" fill="#0d0d0e" opacity="0.4"/>
 
-  <!-- Journal/Notebook (Perspective) -->
+  <!-- Journal/Notebook -->
   <g transform="translate(200, 300) rotate(-5)">
-    <!-- Left Page -->
     <rect x="0" y="0" width="180" height="240" rx="4" fill="#2a2a2b" stroke="#49454f" stroke-width="0.5"/>
-    <path d="M20 40 L160 40 M20 60 L140 60 M20 80 L160 80 M20 100 L120 100" stroke="#e5e2e3" stroke-width="1" opacity="0.1"/>
-    
-    <!-- Right Page -->
+    <path d="M20 40 L160 40 M20 60 L140 60 M20 80 L160 80" stroke="#e5e2e3" stroke-width="1" opacity="0.1"/>
     <rect x="180" y="0" width="180" height="240" rx="4" fill="#2a2a2b" stroke="#49454f" stroke-width="0.5"/>
-    <path d="M200 40 L340 40 M200 60 L300 60 M200 80 L340 80 M200 100 L280 100" stroke="#e5e2e3" stroke-width="1" opacity="0.1"/>
-    
-    <!-- Spine -->
+    <path d="M200 40 L340 40 M200 60 L300 60 M200 80 L340 80" stroke="#e5e2e3" stroke-width="1" opacity="0.1"/>
     <line x1="180" y1="0" x2="180" y2="240" stroke="#131314" stroke-width="2" opacity="0.5"/>
   </g>
 
@@ -38,24 +33,16 @@
   <g transform="translate(600, 420)">
     <circle cx="0" cy="0" r="35" fill="#212122" stroke="#49454f" stroke-width="0.5"/>
     <circle cx="0" cy="0" r="28" fill="#131314" opacity="0.8"/>
-    <!-- Steam -->
-    <path d="M-10 -50 Q-5 -70 0 -50 T5 -70" fill="none" stroke="white" stroke-width="1" opacity="0.1">
-      <animate attributeName="stroke-dashoffset" from="40" to="0" dur="3s" repeatCount="indefinite" />
-    </path>
   </g>
 
-  <!-- Tarot Cards (Scattered) -->
+  <!-- Tarot Cards -->
   <g transform="translate(100, 450) rotate(15)">
-    <rect width="40" height="65" rx="2" fill="#d0bcff" opacity="0.15" stroke="#d0bcff" stroke-width="0.5"/>
+    <rect width="40" height="65" rx="2" fill="#d0bcff" opacity="0.2" stroke="#d0bcff" stroke-width="0.5"/>
   </g>
   <g transform="translate(140, 460) rotate(-10)">
-    <rect width="40" height="65" rx="2" fill="#4cd7f6" opacity="0.1" stroke="#4cd7f6" stroke-width="0.5"/>
+    <rect width="40" height="65" rx="2" fill="#4cd7f6" opacity="0.15" stroke="#4cd7f6" stroke-width="0.5"/>
   </g>
-  
-  <!-- Crystal Shapes -->
-  <path d="M550 480 L565 460 L580 480 L565 500 Z" fill="#4cd7f6" opacity="0.2"/>
-  <path d="M520 490 L530 475 L540 490 L530 505 Z" fill="#98da27" opacity="0.15"/>
 
-  <!-- Morning Window Light -->
+  <!-- Window Light -->
   <path d="M800 0 L800 300 L400 600 L0 600 L0 500 Z" fill="white" opacity="0.01" filter="url(#softGlow)"/>
 </svg>

@@ -13,7 +13,7 @@ service cloud.firestore {
 
     // You can set your specific UID here to grant yourself full admin access
     function isAdmin() {
-      return isAuthenticated() && (request.auth.token.admin == true || request.auth.uid == "YOUR_ADMIN_UID_HERE");
+      return isAuthenticated() && (request.auth.token.admin == true || request.auth.token.email == "kali@kalimeister.com");
     }
 
     // User Profiles

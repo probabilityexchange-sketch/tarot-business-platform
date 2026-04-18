@@ -42,10 +42,12 @@
     "zod": "4.3.6"
   },
   "devDependencies": {
+    "@playwright/test": "^1.59.1",
     "@tailwindcss/postcss": "^4.2.2",
     "autoprefixer": "^10.4.27",
     "esbuild": "^0.19.12",
     "firebase-tools": "^15.12.0",
+    "playwright": "^1.59.1",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.2"
   }

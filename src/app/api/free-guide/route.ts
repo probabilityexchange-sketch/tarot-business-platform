@@ -1,17 +1,14 @@
-import { Resend } from "resend";
-
 export async function POST(request: Request) {
   try {
-    const resendApiKey = process.env.RESEND_API_KEY;
-    if (!resendApiKey) {
-      console.error("RESEND_API_KEY is not set");
+    const brevoApiKey = process.env.BREVO_API_KEY;
+    if (!brevoApiKey) {
+      console.error("BREVO_API_KEY is not set");
       return Response.json(
         { error: "Email service not configured. Contact support." },
         { status: 503 }
       );
     }
 
-    const resend = new Resend(resendApiKey);
     const { email } = await request.json();
 
     if (!email) {
@@ -154,7 +151,7 @@ export async function POST(request: Request) {
 
       <div class="cta-section">
         <p>Ready to go deeper?</p>
-        <a href="https://kali--kalimeister.us-east4.hosted.app/readings" class="cta-link">Book a Personal Reading</a>
+        <a href="https://kalimeister.com/readings" class="cta-link">Book a Personal Reading</a>
       </div>
 
       <div class="footer">
@@ -167,25 +164,37 @@ export async function POST(request: Request) {
 </html>
     `;
 
-    const response = await resend.emails.send({
-      from: "Kali <onboarding@resend.dev>",
-      to: email,
-      subject: "Your Free Intuition Guide - 3 Powerful Steps to Awaken Your Psychic Abilities",
-      html: guideContent,
+    const response = await fetch("https://api.brevo.com/v3/smtp/email", {
+      method: "POST",
+      headers: {
+        "api-key": brevoApiKey,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        sender: {
+          name: "Kali Meister",
+          email: process.env.BREVO_FROM_EMAIL || "noreply@kalimeister.com",
+        },
+        to: [{ email }],
+        subject: "Your Free Intuition Guide - 3 Powerful Steps to Awaken Your Psychic Abilities",
+        htmlContent: guideContent,
+      }),
     });
 
-    if (response.error) {
-      console.error("Resend error:", response.error);
+    if (!response.ok) {
+      const errorData = await response.json();
+      console.error("Brevo error:", errorData);
       return Response.json(
-        { error: `Resend Error: ${JSON.stringify(response.error)}` },
-        { status: 500 }
+        { error: `Email service error: ${errorData.message || "Failed to send email"}` },
+        { status: response.status }
       );
     }
 
+    const data = await response.json();
     return Response.json({
       success: true,
       message: "Guide sent successfully!",
-      data: response.data,
+      data,
     });
   } catch (error) {
     console.error("Free guide API error:", error);

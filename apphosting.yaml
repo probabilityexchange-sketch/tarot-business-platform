@@ -62,6 +62,11 @@ env:
     availability:
       - BUILD
       - RUNTIME
+  - variable: RESEND_FROM_EMAIL
+    value: noreply@kaliemeister.com
+    availability:
+      - BUILD
+      - RUNTIME
   - variable: CALCOM_API_KEY
     secret: CALCOM_API_KEY
     availability:
