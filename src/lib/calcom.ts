@@ -95,10 +95,10 @@ const calComReservationResponseSchema = z.object({
 });
 
 const calComEventTypeSchema = z.object({
-  id: z.number().int().positive(),
+  id: z.coerce.number().int().positive(),
   title: z.string().min(1),
   slug: z.string().min(1),
-  lengthInMinutes: z.number().int().positive(),
+  lengthInMinutes: z.coerce.number().int().positive(),
   hidden: z.boolean().optional(),
 });
 
