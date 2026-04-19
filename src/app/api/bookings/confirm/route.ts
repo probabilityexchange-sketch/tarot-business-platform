@@ -82,6 +82,7 @@ export async function POST(request: NextRequest) {
 
     const bookingInput = {
       start: slotStart,
+      lengthInMinutes: slotDuration,
       title: metadata.offeringName,
       attendee: {
         name: customerName,
