@@ -50,15 +50,19 @@ export async function GET(request: NextRequest) {
       (message.includes("No Cal.com event type matched") ||
         message.includes("Multiple Cal.com event types match"))
     ) {
-      const eventTypes = await listCalComEventTypes();
+      try {
+        const eventTypes = await listCalComEventTypes();
 
-      return NextResponse.json(
-        {
-          error: message,
-          calComEventTypes: eventTypes,
-        },
-        { status: 500 }
-      );
+        return NextResponse.json(
+          {
+            error: message,
+            calComEventTypes: eventTypes,
+          },
+          { status: 500 }
+        );
+      } catch {
+        return NextResponse.json({ error: message }, { status: 500 });
+      }
     }
 
     return NextResponse.json({ error: message }, { status: 500 });

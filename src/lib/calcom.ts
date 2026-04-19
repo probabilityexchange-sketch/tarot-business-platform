@@ -277,7 +277,6 @@ async function resolveCalComDescriptor(
   const descriptor = buildDescriptor(config, params);
 
   if ("eventTypeId" in descriptor) {
-    console.log("[resolveCalComDescriptor] returning config eventTypeId:", descriptor.eventTypeId, "type:", typeof descriptor.eventTypeId);
     return descriptor;
   }
 
@@ -286,7 +285,6 @@ async function resolveCalComDescriptor(
   }
 
   const eventTypes = await getCalComEventTypes();
-  console.log("[resolveCalComDescriptor] fetched event types:", eventTypes);
   const normalizedTitle = params.title ? normalizeEventTypeTitle(params.title) : "";
 
   if (normalizedTitle) {
@@ -295,7 +293,6 @@ async function resolveCalComDescriptor(
     );
 
     if (titleMatch) {
-      console.log("[resolveCalComDescriptor] found by title:", titleMatch.id, "type:", typeof titleMatch.id);
       return { eventTypeId: titleMatch.id };
     }
   }
@@ -315,7 +312,6 @@ async function resolveCalComDescriptor(
     );
 
     if (durationMatches.length === 1) {
-      console.log("[resolveCalComDescriptor] found by duration:", durationMatches[0].id, "type:", typeof durationMatches[0].id);
       return { eventTypeId: durationMatches[0].id };
     }
 
@@ -382,6 +378,10 @@ export async function reserveCalComSlot(
     slotStart: params.slotStart,
   };
 
+  if (typeof params.slotDuration === "number") {
+    payload.slotDuration = params.slotDuration;
+  }
+
   if (params.reservationDuration) {
     payload.reservationDuration = params.reservationDuration;
   }
@@ -402,10 +402,6 @@ export async function reserveCalComSlot(
       "Cal.com slot reservation requires eventTypeId. Set CALCOM_EVENT_TYPE_ID or ensure event type matching works."
     );
   }
-
-  console.log("[reserveCalComSlot] descriptor:", descriptor);
-  console.log("[reserveCalComSlot] body before stringify:", body);
-  console.log("[reserveCalComSlot] body JSON:", JSON.stringify(body));
 
   const response = await calComFetch<unknown>(
     "/v2/slots/reservations",
