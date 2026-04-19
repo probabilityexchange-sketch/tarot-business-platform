@@ -382,14 +382,21 @@ export async function reserveCalComSlot(
     payload.reservationDuration = params.reservationDuration;
   }
 
+  // Ensure eventTypeId is always an integer number
+  const body = {
+    ...payload,
+    ...descriptor,
+  };
+  
+  if ("eventTypeId" in body && typeof body.eventTypeId === "string") {
+    body.eventTypeId = parseInt(body.eventTypeId, 10);
+  }
+
   const response = await calComFetch<unknown>(
     "/v2/slots/reservations",
     {
       method: "POST",
-      body: JSON.stringify({
-        ...payload,
-        ...descriptor,
-      }),
+      body: JSON.stringify(body),
     },
     calComSlotsApiVersion
   );
@@ -424,6 +431,11 @@ export async function createCalComBooking(
 
   if (typeof params.lengthInMinutes === "number") {
     payload.lengthInMinutes = params.lengthInMinutes;
+  }
+
+  // Ensure eventTypeId is always an integer number
+  if ("eventTypeId" in payload && typeof payload.eventTypeId === "string") {
+    payload.eventTypeId = parseInt(payload.eventTypeId, 10);
   }
 
   const response = await calComFetch<unknown>(
