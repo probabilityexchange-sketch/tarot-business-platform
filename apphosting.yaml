@@ -77,6 +77,11 @@ env:
     availability:
       - BUILD
       - RUNTIME
+  - variable: CALCOM_EVENT_TYPE_ID
+    value: "5255196"
+    availability:
+      - BUILD
+      - RUNTIME
   - variable: CALCOM_USERNAME
     value: randi-chat-fqhmju
     availability:
