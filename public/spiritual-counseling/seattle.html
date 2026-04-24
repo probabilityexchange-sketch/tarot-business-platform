@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Spiritual Counseling in Seattle | Kali Meister</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet" />
+    
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-functions-compat.js"></script>
+
+    <style>
+      body { background-color: #0c0a09; color: #f5f5f4; font-family: 'Space Grotesk', sans-serif; }
+      .font-serif { font-family: 'Playfair Display', serif; }
+      .card-spread { perspective: 1000px; }
+      .tarot-card { 
+        height: 280px; 
+        background: #1c1917; 
+        border: 1px solid #292524;
+        transition: all 0.5s ease;
+        cursor: pointer;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+      }
+      .tarot-card:hover { transform: translateY(-15px); border-color: #d4af37; box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4); }
+      .gold-btn { background: #d4af37; color: #0c0a09; transition: all 0.3s ease; }
+      .gold-btn:hover { background: #facc15; letter-spacing: 0.1em; }
+      .gold-btn:disabled { background: #444; color: #888; cursor: not-allowed; }
+    </style>
+  </head>
+  <body class="p-6 sm:p-12 flex flex-col items-center">
+    <!-- Clean Header -->
+    <nav class="w-full max-w-5xl flex justify-between items-center mb-24 border-b border-stone-800 pb-6">
+      <span class="font-serif text-2xl tracking-tight text-white">Kali Meister</span>
+      <div class="hidden md:flex gap-8 text-xs uppercase tracking-widest font-medium text-stone-400">
+        <a href="https://kalimeister.com/readings" class="hover:text-yellow-600 transition-colors">Readings</a>
+        <a href="https://kalimeister.com/courses" class="hover:text-yellow-600 transition-colors">Courses</a>
+        <a href="https://kalimeister.com/contact" class="hover:text-yellow-600 transition-colors">Connect</a>
+      </div>
+    </nav>
+
+    <!-- Main Funnel -->
+    <main class="w-full max-w-3xl text-center">
+      <div class="mb-16">
+        <span class="text-xs uppercase tracking-[0.3em] text-yellow-600/60 mb-4 block">Intuitive Guidance</span>
+        <h1 class="font-serif text-4xl sm:text-6xl italic mb-6 text-white">Spiritual Counseling in Seattle.</h1>
+        <p class="text-stone-400 text-lg max-w-xl mx-auto leading-relaxed">In the high-stakes world of tech in Seattle, data only tells half the story. Kali Meister provides elite Spiritual Counseling grounded in 40 years of practice and academic psychology. Discover the intuitive edge that {market} leaders use to navigate complex transitions.</p>
+      </div>
+
+      <!-- Card Spread -->
+      <div id="reading-step" class="mb-20">
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-12">
+           <div class="tarot-card rounded-lg flex items-center justify-center p-4 group" onclick="revealCards()">
+             <div class="border border-stone-800 w-full h-full rounded-md flex items-center justify-center flex-col gap-2 group-hover:border-yellow-900/50">
+                <span class="text-stone-700 group-hover:text-yellow-600 transition-colors">01</span>
+                <div class="w-8 h-px bg-stone-800 group-hover:bg-yellow-900/50"></div>
+             </div>
+           </div>
+           <div class="tarot-card rounded-lg flex items-center justify-center p-4 group" onclick="revealCards()">
+             <div class="border border-stone-800 w-full h-full rounded-md flex items-center justify-center flex-col gap-2 group-hover:border-yellow-900/50">
+                <span class="text-stone-700 group-hover:text-yellow-600 transition-colors">02</span>
+                <div class="w-8 h-px bg-stone-800 group-hover:bg-yellow-900/50"></div>
+             </div>
+           </div>
+           <div class="tarot-card rounded-lg flex items-center justify-center p-4 group" onclick="revealCards()">
+             <div class="border border-stone-800 w-full h-full rounded-md flex items-center justify-center flex-col gap-2 group-hover:border-yellow-900/50">
+                <span class="text-stone-700 group-hover:text-yellow-600 transition-colors">03</span>
+                <div class="w-8 h-px bg-stone-800 group-hover:bg-yellow-900/50"></div>
+             </div>
+           </div>
+        </div>
+        <p class="text-xs text-stone-500 italic mb-8 uppercase tracking-widest">Select your cards to begin</p>
+      </div>
+
+      <!-- Lead Capture -->
+      <div id="lead-step" class="hidden border border-stone-800 shadow-2xl rounded-2xl bg-[#1c1917] p-8 sm:p-12 mb-20 text-left">
+        <h2 class="font-serif text-3xl mb-4 italic text-white">Interpretation Identified.</h2>
+        <p class="text-stone-400 mb-8 leading-relaxed">Your 3-card spread suggests a significant shift in your current professional house. Where should I send your detailed breakdown and my exclusive PDF guide to awakening intuition?</p>
+        
+        <form id="lead-form" onsubmit="return handleLead(event)" class="space-y-6">
+          <div class="space-y-2">
+            <label class="text-[10px] uppercase tracking-widest font-bold text-stone-500">First & Last Name</label>
+            <input id="lead-name" type="text" placeholder="Your Name" required class="w-full bg-transparent border-b border-stone-800 pb-3 focus:border-yellow-600 outline-none transition-colors text-white">
+          </div>
+          <div class="space-y-2">
+            <label class="text-[10px] uppercase tracking-widest font-bold text-stone-500">Executive Email</label>
+            <input id="lead-email" type="email" placeholder="email@company.com" required class="w-full bg-transparent border-b border-stone-800 pb-3 focus:border-yellow-600 outline-none transition-colors text-white">
+          </div>
+          <button id="submit-btn" type="submit" class="w-full gold-btn py-5 text-sm uppercase tracking-[0.2em] font-bold mt-8 shadow-xl">Receive My Reading</button>
+          <p id="feedback" class="hidden text-center text-xs text-stone-500 mt-4 uppercase animate-pulse"></p>
+        </form>
+      </div>
+
+      <!-- Testimonial -->
+      <div class="max-w-xl mx-auto mb-20">
+        <p class="text-stone-500 italic mb-4">"Kali's readings combine real psychological insight with spiritual wisdom. Highly recommend."</p>
+        <span class="text-[10px] uppercase tracking-widest font-bold text-yellow-600/80">— Sarah M., Therapist</span>
+      </div>
+
+      <footer class="text-stone-700 text-[10px] tracking-[0.4em] uppercase font-medium pb-24 border-t border-stone-900 pt-12">
+        Psychologically Grounded. Spiritually Guided. ©2026
+      </footer>
+    </main>
+
+    <script>
+      // Initialize Firebase (Using project ID from your token)
+      const firebaseConfig = { projectId: "kalimeister" };
+      const app = firebase.compat.initializeApp(firebaseConfig);
+      const functions = app.functions('us-central1');
+
+      function revealCards() {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        setTimeout(() => {
+          document.getElementById('reading-step').classList.add('hidden');
+          document.getElementById('lead-step').classList.remove('hidden');
+        }, 500);
+      }
+
+      async function handleLead(e) {
+        e.preventDefault();
+        const btn = document.getElementById('submit-btn');
+        const feedback = document.getElementById('feedback');
+        const name = document.getElementById('lead-name').value;
+        const email = document.getElementById('lead-email').value;
+        const city = window.location.pathname.split('/').pop().replace('.html', '') || 'NYC';
+        const service = document.title.split('|')[0].trim();
+
+        btn.disabled = true;
+        feedback.innerText = "Connecting to the archetypes...";
+        feedback.classList.remove('hidden');
+
+        try {
+          const onLeadCapture = functions.httpsCallable('onLeadCapture');
+          const result = await onLeadCapture({ name, email, city, service });
+          
+          if (result.data.success) {
+            feedback.innerText = "Success. Check your inbox shortly.";
+            document.getElementById('lead-form').innerHTML = `
+              <div class="p-8 text-center bg-stone-900 border border-yellow-900/30 rounded-xl">
+                <h3 class="font-serif text-2xl text-white mb-4 italic">Sent.</h3>
+                <p class="text-stone-400 text-sm italic mb-6">Your detailed interpretation and guide are on their way to ${email}.</p>
+                <a href="https://kalimeister.com/readings" class="gold-btn px-8 py-3 text-[10px] uppercase tracking-widest font-bold inline-block">Explore Deeper Sessions</a>
+              </div>`;
+          }
+        } catch (error) {
+          console.error(error);
+          feedback.innerText = "Something went wrong. Please try again.";
+          btn.disabled = false;
+        }
+        return false;
+      }
+    </script>
+  </body>
+</html>
