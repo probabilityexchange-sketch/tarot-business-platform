@@ -45,7 +45,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const pseoEntries: MetadataRoute.Sitemap = PSEO_SERVICES.flatMap(
     (service) =>
       PSEO_CITIES.map((city) => ({
-        url: `${BASE_URL}/${service}/${city}.html`,
+        url: `${BASE_URL}/${service}/${city}`,
         lastModified: new Date(),
         changeFrequency: "monthly" as const,
         priority: 0.7,

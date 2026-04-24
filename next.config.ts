@@ -1,13 +1,5 @@
 import type { NextConfig } from "next";
 
-const PSEO_SERVICES = [
-  "executive-tarot-advising",
-  "intuitive-business-consulting",
-  "private-tarot-reading",
-  "psychic-life-coaching",
-  "spiritual-counseling",
-];
-
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   images: {
@@ -23,16 +15,9 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // Redirect clean pSEO URLs to .html files in public/
-  async redirects() {
-    return PSEO_SERVICES.flatMap((service) => [
-      {
-        source: `/${service}/:city`,
-        destination: `/${service}/:city.html`,
-        permanent: true,
-      },
-    ]);
-  },
+  // Firebase App Hosting automatically strips .html from public/ files,
+  // so /executive-tarot-advising/atlanta.html is served at /executive-tarot-advising/atlanta
+  // No redirects needed — adding them causes a .html.html redirect loop
 };
 
 export default nextConfig;
