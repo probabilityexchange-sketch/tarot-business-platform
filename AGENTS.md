@@ -126,7 +126,7 @@ import { cn } from "@/lib/utils";
 | `zod` 4.3.6 | Schema validation |
 | `framer-motion` | Animations |
 | `lucide-react` | Icons |
-| `resend` | Transactional email |
+| `@getbrevo/brevo` | Transactional email |
 | `axios` | HTTP client |
 | `clsx` + `tailwind-merge` | Classname utilities |
 | `date-fns` | Date manipulation |

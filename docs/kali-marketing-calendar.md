@@ -17,20 +17,20 @@ $250/hr × 10 sessions/week = **$10,000/month**
 
 | Day | Task | Owner | Done |
 |-----|------|-------|------|
-| Mon | Get RESEND_API_KEY from resend.com (free tier: 100 emails/day) | Billy | ☐ |
+| Mon | Get BREVO_API_KEY from brevo.com (free tier: 300 emails/day) | Billy | ☐ |
 | Mon | Get FIREBASE_SERVICE_ACCOUNT_KEY from Firebase Console > Project Settings > Service Accounts | Billy | ☐ |
-| Tue | Add env vars to Firebase Functions: `RESEND_API_KEY`, `FIREBASE_SERVICE_ACCOUNT_KEY` | Billy | ☐ |
+| Tue | Add env vars to Firebase Functions: `BREVO_API_KEY`, `FIREBASE_SERVICE_ACCOUNT_KEY` | Billy | ☐ |
 | Tue | Add env var to Next.js: `FIREBASE_SERVICE_ACCOUNT_KEY` (server-side only, never NEXT_PUBLIC_) | Billy | ☐ |
 | Wed | Test the full subscribe flow: submit email → check Firestore → verify welcome email received | Billy | ☐ |
-| Thu | If emails land in spam: set up SPF/DKIM/DMARC records in Resend dashboard | Billy | ☐ |
+| Thu | If emails land in spam: set up SPF/DKIM/DMARC records in Brevo dashboard | Billy | ☐ |
 | Fri | Verify the free guide ("Awaken Your Intuition") is actually delivered — is it an attachment or a link? Confirm the welcome email contains it or a download link | Billy | ☐ |
 | Mon-Fri | **Daily:** Post 1x AI avatar video (scripts from `kali-ai-avatar-workflow.md`) | Kali/AI | ☐ |
 
-**RESEND SETUP STEPS:**
-1. Go to [resend.com](https://resend.com) → Sign up (use randichatagent@gmail.com)
-2. Add a domain (kalimeister.com) OR just use `onboarding@resend.dev` to start
-3. Create an API key → copy it
-4. Add to Firebase: `firebase functions:config:set resend.key="re_xxxxx"` or use Firebase App Hosting env vars
+**BREVO SETUP STEPS:**
+1. Go to [brevo.com](https://brevo.com) → Sign up (use randichatagent@gmail.com)
+2. Add a domain (kalimeister.com) OR just use `hello@kalimeister.com` to start
+3. Create an API key → copy it (Brevo → SMTP & API → API Keys)
+4. Add to Firebase: `firebase functions:config:set brevo.key="xxxxx"` or use Firebase App Hosting env vars
 5. Update `functions/src/index.ts` if FROM_EMAIL needs to change to a custom domain
 
 **FIREBASE SERVICE ACCOUNT SETUP:**
@@ -71,7 +71,7 @@ $250/hr × 10 sessions/week = **$10,000/month**
 | Fri | Post Script 6 ("This Reading Changed My Life") |
 | Sat | Answer 5 Reddit questions with a helpful comment that naturally mentions kalimeister.com |
 | Sun | Check Firestore: are there subscribers? Are emails being sent? Any errors in Firebase logs? |
-| Ongoing | Monitor email deliverability — check Resend dashboard for bounce rates |
+| Ongoing | Monitor email deliverability — check Brevo dashboard for bounce rates |
 
 **Week 3 Milestone:** First 10 email subscribers. First inquiry from social.
 
@@ -87,7 +87,7 @@ $250/hr × 10 sessions/week = **$10,000/month**
 | What type of content got the most engagement? | Card draws vs myths vs mini-readings |
 | How many email subscribers? | Target: 25 by end of week 4 |
 | Did anyone book a session from social? | Track UTM codes if using links |
-| Are emails landing in inbox or spam? | Resend dashboard → Deliverability |
+| Are emails landing in inbox or spam? | Brevo dashboard → Deliverability |
 
 **Week 4 Decision:**
 - If TikTok is winning → focus 70% there
@@ -184,7 +184,7 @@ $250/hr × 10 sessions/week = **$10,000/month**
 |----------|-----------|-------------|
 | AI avatar videos | 4x/week | Billy (batch produces) |
 | Reddit engagement | Daily | Billy (30 min/day) |
-| Email sequence monitoring | Weekly | Billy checks Resend + Firestore |
+| Email sequence monitoring | Weekly | Billy checks Brevo + Firestore |
 | New YouTube video | 1x/week | Billy (edits/produces with Kali on camera occasionally) |
 | Past client outreach | Monthly | Kali (text/email) |
 | Funnel review | Monthly | Billy |
@@ -221,6 +221,6 @@ $250/hr × 10 sessions/week = **$10,000/month**
 **kalimeister.com/docs/kali-marketing-calendar.md** — This document
 
 **Calendly/Cal.com link for booking:** https://cal.com/kali-meister
-**Resend dashboard:** https://resend.com/emails
+**Brevo dashboard:** https://app.brevo.com/emails
 **Firebase console:** https://console.firebase.google.com/u/0/project/randi-agency/overview
 **HeyGen:** https://heygen.com
