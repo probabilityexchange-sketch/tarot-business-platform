@@ -12,7 +12,9 @@ const reservationSchema = z.object({
 export async function POST(request: NextRequest) {
   try {
     const body = reservationSchema.parse(await request.json());
-    const reservation = await reserveCalComSlot(body);
+    // Cal.com rejects slotDuration for fixed-duration event types — strip it
+    const { slotDuration: _slotDuration, ...reservationParams } = body;
+    const reservation = await reserveCalComSlot(reservationParams);
 
     return NextResponse.json({
       status: "success",
