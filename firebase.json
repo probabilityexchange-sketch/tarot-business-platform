@@ -58,6 +58,9 @@
       "firebase-debug.log",
       "firebase-debug.*.log",
       "functions"
+    ],
+    "secretEnvironmentVariables": [
+      { "name": "STRIPE_SECRET_KEY", "nameForInternal": "STRIPE_SECRET_KEY" }
     ]
   }
 }
