@@ -100,6 +100,7 @@ const calComEventTypeSchema = z.object({
   slug: z.string().min(1),
   lengthInMinutes: z.coerce.number().int().positive(),
   hidden: z.boolean().optional(),
+  lengthType: z.enum(["fixed", "variable"]).optional(),
 });
 
 const calComEventTypesResponseSchema = z.object({
@@ -374,11 +375,25 @@ export async function reserveCalComSlot(
   params: CalComReservationParams
 ): Promise<{ uid: string | null; raw: unknown }> {
   const descriptor = await resolveCalComDescriptor(params);
+
+  // Verify eventTypeId exists before sending
+  if (!("eventTypeId" in descriptor)) {
+    throw new Error(
+      "Cal.com slot reservation requires eventTypeId. Set CALCOM_EVENT_TYPE_ID or ensure event type matching works."
+    );
+  }
+
+  // Fetch event type to check if it supports variable slotDuration
+  const eventTypes = await getCalComEventTypes();
+  const eventType = eventTypes.find((et) => et.id === descriptor.eventTypeId);
+  const isVariableLength = eventType?.lengthType === "variable";
+
   const payload: Record<string, unknown> = {
     slotStart: params.slotStart,
   };
 
-  if (typeof params.slotDuration === "number") {
+  // Only pass slotDuration for variable-length event types
+  if (isVariableLength && typeof params.slotDuration === "number") {
     payload.slotDuration = params.slotDuration;
   }
 
@@ -387,21 +402,10 @@ export async function reserveCalComSlot(
   }
 
   // Ensure eventTypeId is always an integer number
-  const body = {
+  const body: Record<string, unknown> = {
     ...payload,
-    ...descriptor,
+    eventTypeId: descriptor.eventTypeId,
   };
-  
-  if ("eventTypeId" in body && typeof body.eventTypeId === "string") {
-    body.eventTypeId = parseInt(body.eventTypeId, 10);
-  }
-
-  // Verify eventTypeId exists before sending
-  if (!("eventTypeId" in body)) {
-    throw new Error(
-      "Cal.com slot reservation requires eventTypeId. Set CALCOM_EVENT_TYPE_ID or ensure event type matching works."
-    );
-  }
 
   const response = await calComFetch<unknown>(
     "/v2/slots/reservations",
