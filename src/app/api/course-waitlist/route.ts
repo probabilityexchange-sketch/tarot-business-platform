@@ -148,7 +148,7 @@ export async function POST(request: Request) {
         body: JSON.stringify({
           sender: {
             name: "Kali Meister",
-            email: process.env.BREVO_FROM_EMAIL || "noreply@kalimeister.com",
+            email: process.env.BREVO_FROM_EMAIL || "kali@kalimeister.com",
           },
           to: [{ email }],
           subject: "Welcome to The Psychological Tarot Method Waitlist",
