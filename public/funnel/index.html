@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>High-Level Insight // Kali Meister Tarot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+      body { background-color: #0f172a; color: #f8fafc; font-family: 'Space Grotesk', sans-serif; }
+      .font-headline { font-family: 'Archivo Black', sans-serif; }
+      .brutalist-card { border: 4px solid #f8fafc; box-shadow: 8px 8px 0px #ec4899; }
+      .card-item { background: #1e293b; border: 2px solid #f8fafc; transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+      .card-item:hover { transform: translateY(-10px) rotate(2deg); border-color: #ec4899; }
+      @keyframes float { 0% { transform: translateY(0px); } 50% { transform: translateY(-10px); } 100% { transform: translateY(0px); } }
+      .floating { animation: float 3s ease-in-out infinite; }
+    </style>
+  </head>
+  <body class="p-4 sm:p-8 flex flex-col items-center min-h-screen">
+    <!-- Header -->
+    <nav class="w-full max-w-4xl flex justify-between items-center mb-16 border-b-2 border-slate-700 pb-4">
+      <span class="font-headline text-xl italic tracking-tighter">KALI_MEISTER</span>
+      <a href="https://kalimeister.com" class="font-headline text-xs hover:text-pink-500 transition-colors uppercase">Official Site</a>
+    </nav>
+
+    <!-- Main Funnel -->
+    <main class="w-full max-w-2xl">
+      <div class="text-center mb-12">
+        <div class="inline-block bg-pink-500 text-white font-headline text-xs px-4 py-1 mb-4 rotate-[-2deg] shadow-lg">EXECUTIVE_INSIGHT</div>
+        <h1 class="font-headline text-4xl sm:text-6xl uppercase leading-none mb-4">THE THREE <br><span class="text-pink-500">SECRET</span> CARDS.</h1>
+        <p class="text-slate-400 font-bold uppercase tracking-widest text-sm">Targeted Intuition for the Material World.</p>
+      </div>
+
+      <!-- Card Picker (Interactive Mock) -->
+      <div id="reading-step" class="brutalist-card bg-slate-900 p-8 mb-12">
+        <div id="card-display" class="grid grid-cols-3 gap-4 mb-8">
+           <div class="card-item h-48 rounded flex items-center justify-center cursor-pointer border-dashed opacity-50">
+             <span class="font-headline text-4xl">?</span>
+           </div>
+           <div class="card-item h-48 rounded flex items-center justify-center cursor-pointer border-dashed opacity-50">
+             <span class="font-headline text-4xl">?</span>
+           </div>
+           <div class="card-item h-48 rounded flex items-center justify-center cursor-pointer border-dashed opacity-50">
+             <span class="font-headline text-4xl">?</span>
+           </div>
+        </div>
+        
+        <div class="text-center">
+          <p class="mb-6 font-body font-bold text-slate-300">Focus on your most pressing decision. Let the algorithm pull the energy.</p>
+          <button onclick="revealCards()" class="w-full bg-pink-500 hover:bg-pink-600 text-white font-headline py-4 text-xl brutalist-card transition-all active:translate-y-1">PULL MY CARDS</button>
+        </div>
+      </div>
+
+      <!-- Lead Capture (Hidden initially) -->
+      <div id="lead-step" class="hidden brutalist-card bg-white text-slate-900 p-8 mb-12">
+        <h2 class="font-headline text-2xl mb-4 uppercase">Insight Ready.</h2>
+        <p class="mb-6 font-bold">I've generated your private interpretation. Where should I send your PDF guide and 3-card breakdown?</p>
+        <form action="#" onsubmit="return handleLead(event)" class="flex flex-col gap-4">
+          <input type="text" placeholder="FULL NAME" required class="border-4 border-slate-900 p-4 font-headline uppercase focus:outline-none focus:bg-yellow-50">
+          <input type="email" placeholder="EXECUTIVE EMAIL" required class="border-4 border-slate-900 p-4 font-headline uppercase focus:outline-none focus:bg-yellow-50">
+          <button type="submit" class="bg-slate-900 text-white font-headline py-4 text-xl hover:bg-slate-800 transition-all">GET MY READING →</button>
+        </form>
+      </div>
+
+      <!-- Footer -->
+      <div class="text-center text-slate-500 text-[10px] tracking-widest uppercase font-bold mt-12 pb-12">
+        PRIVATE SESSIONS START AT $250 // ©2025 KALI MEISTER
+      </div>
+    </main>
+
+    <script>
+      function revealCards() {
+        document.getElementById('reading-step').classList.add('opacity-50', 'pointer-events-none');
+        setTimeout(() => {
+          document.getElementById('reading-step').classList.add('hidden');
+          document.getElementById('lead-step').classList.remove('hidden');
+          window.scrollTo({ top: document.getElementById('lead-step').offsetTop - 50, behavior: 'smooth' });
+        }, 800);
+      }
+      function handleLead(e) {
+        e.preventDefault();
+        alert('Leading capture simulation: Data sent to Randi Agency CRM (Sheets/Firestore). Redirecting to Video Short...');
+        return false;
+      }
+    </script>
+  </body>
+</html>
