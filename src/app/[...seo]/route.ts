@@ -72,7 +72,13 @@ export async function GET(
         'Cache-Control': 'public, max-age=3600',
       },
     });
-  } catch {
-    return NextResponse.next();
+  } catch (err) {
+    return new NextResponse('ROUTE HIT but file error: ' + String(err), { status: 500 });
   }
 }
+
+// Debug: log all unmatched routes
+return new NextResponse(
+  'ROUTE DEBUG: seoPath=' + seoPath + ' targetRoute=' + targetRoute + ' routesMatch=' + routes.includes(targetRoute) + ' fileExists=' + existsSync(filePath),
+  { status: 200, headers: { 'Content-Type': 'text/plain' } }
+);
