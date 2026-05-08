@@ -39,6 +39,7 @@ const nextConfig: NextConfig = {
       { source: '/los-angeles-ca', destination: '/los-angeles-ca/index.html' },
       { source: '/louisville-ky', destination: '/louisville-ky/index.html' },
       { source: '/malibu', destination: '/malibu/index.html' },
+      { source: '/chattanooga-tn', destination: '/chattanooga-tn/index.html' },
       { source: '/memphis-tn', destination: '/memphis-tn/index.html' },
       { source: '/mesa-az', destination: '/mesa-az/index.html' },
       { source: '/miami-fl', destination: '/miami-fl/index.html' },
