@@ -1,11 +1,49 @@
 import { Metadata } from "next";
 import { SERVICES, CITIES } from "@/lib/pseo-data";
+import { PSEO_CONTENT } from "@/lib/pseo-generated-content";
 import Link from "next/link";
 import { Card } from "@/components/ui/card";
 
+function generateSchema(service: string, city: string, svc: any, cityData: any) {
+  const schemaKey = `${service}:${city}`;
+  const schemaContent = PSEO_CONTENT[schemaKey];
 
-
-
+  const faqSchema = schemaContent && schemaContent.faq ? {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": schemaContent.faq.map((faq: any) => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  } : null;
+  
+  const serviceSchema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "name": `${svc.label} in ${cityData.city}, ${cityData.state}`,
+    "provider": {
+      "@type": "Person",
+      "name": "Kali Meister"
+    },
+    "areaServed": {
+      "@type": "City",
+      "name": cityData.city,
+      "containedInPlace": {
+        "@type": "State",
+        "name": cityData.state
+      }
+    },
+    "serviceType": svc.label,
+    "priceRange": "$$",
+    "url": `https://kalimeister.com/readings/${service}/${city}`
+  };
+  
+  return { serviceSchema, faqSchema };
+}
 
 export function generateStaticParams() {
   const params: { service: string; city: string }[] = [];
@@ -32,8 +70,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     return { title: "Service Not Found | Kali Meister" };
   }
 
-  const title = `${svc.label} in ${cityData.city}, ${cityData.state} | KaliMeister`;
-  const description = `Professional ${svc.label.toLowerCase()} services in ${cityData.city}, ${cityData.state}. ${cityData.metro} residents trust Kali Meister for intuitive spiritual guidance.`;
+  const metaKey = `${service}:${city}`;
+  const metaContent = PSEO_CONTENT[metaKey];
+
+  const title = `${svc.label} ${cityData.city}, ${cityData.state} | Kali Meister — Book $250/hr`;
+  const description = metaContent
+    ? `Book a ${svc.label.toLowerCase()} in ${cityData.city} with Kali Meister. 10+ years intuitive experience. In-person or virtual sessions. ${metaContent.paragraph.slice(0, 120)}...`
+    : `Professional ${svc.label.toLowerCase()} services in ${cityData.city}, ${cityData.state}. ${cityData.metro} residents trust Kali Meister for intuitive spiritual guidance.`;
 
   return {
     title,
@@ -69,9 +112,29 @@ export default async function CityServicePage({ params }: Props) {
   }
 
   const otherServices = Object.values(SERVICES).filter((s) => s.slug !== service);
+  const pageContentKey = `${service}:${city}`;
+  const pageContent = PSEO_CONTENT[pageContentKey];
 
   return (
     <div className="min-h-screen pt-24 pb-20 px-6 lg:px-12">
+      {/* Schema Markup */}
+      {(() => {
+        const { serviceSchema, faqSchema } = generateSchema(service, city, svc, cityData);
+        return (
+          <>
+            <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+            />
+            {faqSchema && (
+              <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+              />
+            )}
+          </>
+        );
+      })()}
       <div className="max-w-5xl mx-auto">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 text-xs font-label uppercase tracking-[0.15em] text-on-surface/40 mb-12" aria-label="Breadcrumb">
@@ -104,6 +167,16 @@ export default async function CityServicePage({ params }: Props) {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main content */}
           <div className="lg:col-span-2 space-y-8">
+            {/* Unique city content */}
+            {pageContent && (
+              <section>
+                <h2 className="text-2xl font-display mb-4 italic text-primary">{svc.label} in {cityData.city}</h2>
+                <p className="text-on-surface/60 font-body leading-relaxed text-lg">
+                  {pageContent.paragraph}
+                </p>
+              </section>
+            )}
+
             {/* About this service */}
             <section>
               <h2 className="text-2xl font-display mb-4 italic text-primary">About This Service</h2>
@@ -132,14 +205,20 @@ export default async function CityServicePage({ params }: Props) {
               </div>
             </Card>
 
-            {/* Serving notice */}
-            <div className="p-8 rounded-2xl bg-surface-container-low border border-outline/5">
-              <p className="text-on-surface/60 font-body leading-relaxed">
-                <strong className="text-on-surface">Serving {cityData.city}, {cityData.state}</strong> — the {cityData.metro} has access to our full range of spiritual services.
-                {cityData.city === "Nashville" && " Located just 2 hours from Nashville, Kali brings deep familiarity with the Tennessee spiritual community."}
-                {cityData.city === "Memphis" && " Memphis has a rich tradition of spiritual seekers — we honor that lineage."}
-              </p>
-            </div>
+            {/* FAQ Section */}
+            {pageContent && pageContent.faq && pageContent.faq.length > 0 && (
+              <section>
+                <h2 className="text-2xl font-display mb-6 italic text-primary">Frequently Asked Questions</h2>
+                <div className="space-y-4">
+                  {pageContent.faq.map((faq: any, i: number) => (
+                    <div key={i} className="p-6 rounded-xl bg-surface-container-low border border-outline/5">
+                      <h3 className="font-display text-lg mb-2 text-on-surface">{faq.question}</h3>
+                      <p className="text-on-surface/60 font-body leading-relaxed">{faq.answer}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+            )}
 
             {/* CTA */}
             <section className="rounded-2xl bg-gradient-to-br from-[#4a0e4e] to-[#2d0a30] p-10 text-center">
