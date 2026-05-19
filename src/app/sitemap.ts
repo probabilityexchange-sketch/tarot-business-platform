@@ -1,83 +1,6 @@
 import { MetadataRoute } from "next";
 import { getAllPublishedSlugs } from "@/lib/blog";
-
-const PSEO_SERVICES = [
-  "tarot-reading",
-  "astrology-reading",
-  "lenormand-reading",
-  "oracle-reading",
-  "channeling-session",
-  "executive-tarot-advising",
-  "intuitive-business-consulting",
-  "private-tarot-reading",
-  "psychic-life-coaching",
-  "spiritual-counseling",
-] as const;
-
-const PSEO_CITIES = [
-  "albuquerque-nm",
-  "arlington-tx",
-  "aspen",
-  "atlanta-ga",
-  "austin-tx",
-  "baltimore-md",
-  "beverly-hills",
-  "boston-ma",
-  "charlotte-nc",
-  "chattanooga-tn",
-  "chicago-il",
-  "cleveland-oh",
-  "colorado-springs-co",
-  "columbus-oh",
-  "dallas-tx",
-  "denver-co",
-  "el-paso-tx",
-  "fort-worth-tx",
-  "fresno-ca",
-  "greenwich",
-  "houston-tx",
-  "indianapolis-in",
-  "jackson-hole",
-  "jacksonville-fl",
-  "kansas-city-mo",
-  "la",
-  "las-vegas-nv",
-  "long-beach-ca",
-  "los-angeles-ca",
-  "louisville-ky",
-  "malibu",
-  "memphis-tn",
-  "mesa-az",
-  "miami-fl",
-  "milwaukee-wi",
-  "minneapolis-mn",
-  "nashville-tn",
-  "new-orleans-la",
-  "new-york-ny",
-  "nyc",
-  "oakland-ca",
-  "oklahoma-city-ok",
-  "omaha-ne",
-  "palm-beach",
-  "philadelphia-pa",
-  "phoenix-az",
-  "portland-or",
-  "raleigh-nc",
-  "sacramento-ca",
-  "san-antonio-tx",
-  "san-diego-ca",
-  "san-francisco-ca",
-  "santa-monica",
-  "scarsdale",
-  "seattle-wa",
-  "sf",
-  "tampa-fl",
-  "tucson-az",
-  "tulsa-ok",
-  "virginia-beach-va",
-  "washington-dc",
-  "wichita-ks",
-] as const;
+import { SERVICES, CITIES } from "@/lib/pseo-data";
 
 const BASE_URL = "https://kalimeister.com";
 
@@ -89,14 +12,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Blog may not be configured yet
   }
 
-  const pseoEntries: MetadataRoute.Sitemap = PSEO_SERVICES.flatMap(
-    (service) =>
-      PSEO_CITIES.map((city) => ({
-        url: `${BASE_URL}/readings/${service}/${city}`,
-        lastModified: new Date(),
-        changeFrequency: "monthly" as const,
-        priority: 0.7,
-      }))
+  const services = Object.keys(SERVICES);
+  const cities = Object.keys(CITIES);
+
+  const pseoEntries: MetadataRoute.Sitemap = services.flatMap((service) =>
+    cities.map((city) => ({
+      url: `${BASE_URL}/readings/${service}/${city}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    }))
   );
 
   return [
