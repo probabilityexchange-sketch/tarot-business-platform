@@ -74,6 +74,7 @@ export default function RootLayout({
               <Link href="/readings" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Readings</Link>
               <Link href="/courses" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Courses</Link>
               <Link href="/blog" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Journal</Link>
+              <Link href="/contact" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Contact</Link>
               <Link href="/#free-guide" className="text-secondary hover:text-primary transition-colors duration-250 ease-snappy">Free Guide</Link>
             </nav>
             <Link href="/readings">
