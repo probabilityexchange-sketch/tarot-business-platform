@@ -5,6 +5,9 @@ import { LeadCaptureForm } from "@/components/LeadCaptureForm";
 export const metadata: Metadata = {
   title: "Free Mini Reading | Kali Meister",
   description: "Receive a personalized 3-card mini reading delivered in Kali's voice. Enter your email and discover what the cards have to say about you today.",
+  alternates: {
+    canonical: "/funnel",
+  },
 };
 
 export default function FunnelPage() {

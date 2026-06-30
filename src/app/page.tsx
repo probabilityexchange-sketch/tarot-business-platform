@@ -1,12 +1,62 @@
+import { Metadata } from "next";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FreeGuideForm } from "@/components/FreeGuideForm";
 import Link from "next/link";
 import Image from "next/image";
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
+
 export default function Home() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Kali Meister - Tarot Reader & Spiritual Healer",
+    "image": "https://kalimeister.com/images/kali-meister.jpg",
+    "@id": "https://kalimeister.com/#organization",
+    "url": "https://kalimeister.com",
+    "telephone": "",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Chattanooga",
+      "addressRegion": "TN",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 35.0456,
+      "longitude": -85.3097
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday"
+      ],
+      "opens": "09:00",
+      "closes": "18:00"
+    },
+    "sameAs": [
+      "https://instagram.com/kalimeister"
+    ],
+    "priceRange": "$$",
+    "description": "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing with over 40 years of intuitive practice."
+  };
+
   return (
     <div className="relative isolate">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+      />
       {/* Background Effects */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <Image

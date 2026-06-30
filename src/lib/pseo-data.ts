@@ -52,7 +52,7 @@ export const SERVICES: Record<string, { label: string; description: string; slug
     description: "Compassionate guidance for spiritual growth and emotional healing.",
     slug: "spiritual-counseling",
   },
-}};
+};
 
 export const CITIES: Record<string, { city: string; state: string; metro: string }> = {
   "albuquerque-nm": { city: "Albuquerque", state: "NM", metro: "915K metro area" },
@@ -117,4 +117,4 @@ export const CITIES: Record<string, { city: string; state: string; metro: string
   "washington-dc": { city: "Washington", state: "DC", metro: "6.3M metro area" },
   "wichita-ks": { city: "Wichita", state: "KS", metro: "645K metro area" },
   "nyc": { city: "New York", state: "NY", metro: "20M metro area" },
-}};
+};

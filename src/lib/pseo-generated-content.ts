@@ -4963,4 +4963,4 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a spiritual counseling with Kali Meister?", answer: "Compassionate guidance for spiritual growth and emotional healing. Kali creates a safe, compassionate space where you can explore your questions about grief support, spiritual awakening, and emotional healing." },
     ],
   },
-}};
+};

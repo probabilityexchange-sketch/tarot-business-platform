@@ -7,6 +7,9 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "The Digital Alchemist | Psychological Tarot Journal & Insights",
   description: "Explore deep inquiries into psychological tarot, archetypes, and narrative therapy. Read our latest insights on shadow work and self-reflection.",
+  alternates: {
+    canonical: "/blog",
+  },
 };
 
 // Mock data for initial structure

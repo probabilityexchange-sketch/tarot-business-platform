@@ -11,6 +11,9 @@ export const metadata: Metadata = {
       "Elite intuitive services: tarot, Lenormand, astrology, channeling, oracle, and spiritual counseling for high-achievers.",
     type: "website",
   },
+  alternates: {
+    canonical: "/services",
+  },
 };
 
 const services = [

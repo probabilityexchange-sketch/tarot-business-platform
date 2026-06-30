@@ -85,6 +85,21 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title,
       description,
       type: "website",
+      url: `https://kalimeister.com/readings/${service}/${city}`,
+      images: [
+        {
+          url: "https://kalimeister.com/images/kali-meister.jpg",
+          width: 1200,
+          height: 630,
+          alt: `${svc.label} in ${cityData.city}, ${cityData.state} - Kali Meister`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["https://kalimeister.com/images/kali-meister.jpg"],
     },
     alternates: {
       canonical: `/readings/${service}/${city}`,

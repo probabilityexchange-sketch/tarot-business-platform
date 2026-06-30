@@ -11,6 +11,9 @@ export const metadata: Metadata = {
       "Get in touch with Kali Meister for tarot readings, courses, and spiritual counseling inquiries.",
     type: "website",
   },
+  alternates: {
+    canonical: "/contact",
+  },
 };
 
 export default function ContactPage() {

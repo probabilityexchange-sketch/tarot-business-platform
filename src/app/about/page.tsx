@@ -11,6 +11,9 @@ export const metadata: Metadata = {
       "Kali Meister is a Tennessee-based intuitive reader with 40+ years of experience in tarot, Lenormand, astrology, and channeling.",
     type: "website",
   },
+  alternates: {
+    canonical: "/about",
+  },
 };
 
 export default function AboutPage() {

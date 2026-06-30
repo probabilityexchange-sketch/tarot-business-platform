@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "Psychological Tarot Readings | Shadow Work & Narrative Deep-Dive",
   description: "Book a private psychological tarot session for shadow work and self-discovery. 1:1 narrative deep-dives for professional seekers.",
   keywords: ["psychological tarot reading", "shadow work intensive", "narrative deep-dive", "tarot consultation", "self-reflection session"],
+  alternates: {
+    canonical: "/readings",
+  },
 };
 
 export default function ReadingsPage() {

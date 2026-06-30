@@ -67,7 +67,17 @@ export async function generateMetadata(
       title: post.title,
       description: post.description,
       type: "article",
+      url: `https://kalimeister.com/blog/${slug}`,
+      images: [
+        {
+          url: `https://kalimeister.com${post.image}`,
+          alt: post.title,
+        },
+      ],
       publishedTime: post.date,
+    },
+    alternates: {
+      canonical: `/blog/${slug}`,
     },
   };
 }
@@ -87,12 +97,12 @@ export default async function BlogPostPage({ params }: Props) {
     "description": post.description,
     "datePublished": post.date,
     "author": {
-      "@type": "Organization",
-      "name": "Tarot as Narrative Therapy"
+      "@type": "Person",
+      "name": "Kali Meister"
     },
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": `https://psychologicaltarot.com/blog/${slug}`
+      "@id": `https://kalimeister.com/blog/${slug}`
     }
   };
 

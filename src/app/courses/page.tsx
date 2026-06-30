@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   title: "The Psychological Tarot Method | Professional Certification Course",
   description: "Join our 8-week certification for therapists, writers, and seekers. Master the art of psychological tarot and narrative therapy.",
   keywords: ["psychological tarot course", "tarot certification", "archetypal psychology course", "narrative therapy training", "shadow work education"],
+  alternates: {
+    canonical: "/courses",
+  },
 };
 
 export default function CoursePage() {
