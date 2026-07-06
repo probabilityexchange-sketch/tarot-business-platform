@@ -14,41 +14,61 @@ export const metadata: Metadata = {
 export default function Home() {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Kali Meister - Tarot Reader & Spiritual Healer",
-    "image": "https://kalimeister.com/images/kali-meister.jpg",
-    "@id": "https://kalimeister.com/#organization",
-    "url": "https://kalimeister.com",
-    "telephone": "",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Chattanooga",
-      "addressRegion": "TN",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 35.0456,
-      "longitude": -85.3097
-    },
-    "openingHoursSpecification": {
-      "@type": "OpeningHoursSpecification",
-      "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday"
-      ],
-      "opens": "09:00",
-      "closes": "18:00"
-    },
-    "sameAs": [
-      "https://instagram.com/kalimeister"
-    ],
-    "priceRange": "$$",
-    "description": "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing with over 40 years of intuitive practice."
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "name": "Kali Meister - Tarot Reader & Spiritual Healer",
+        "image": "https://kalimeister.com/images/kali-meister.jpg",
+        "@id": "https://kalimeister.com/#organization",
+        "url": "https://kalimeister.com",
+        "telephone": "",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Chattanooga",
+          "addressRegion": "TN",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 35.0456,
+          "longitude": -85.3097
+        },
+        "openingHoursSpecification": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "18:00"
+        },
+        "sameAs": [
+          "https://instagram.com/kalimeister"
+        ],
+        "priceRange": "$$",
+        "description": "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing with over 40 years of intuitive practice."
+      },
+      {
+        "@type": "Person",
+        "name": "Kali Meister",
+        "@id": "https://kalimeister.com/#person",
+        "url": "https://kalimeister.com",
+        "image": "https://kalimeister.com/images/kali-meister.jpg",
+        "jobTitle": "Tarot Reader & Spiritual Healer",
+        "description": "B.A. Psychology, M.F.A. Creative Writing. 40+ years of intuitive practice, 5,000+ readings given.",
+        "sameAs": [
+          "https://instagram.com/kalimeister"
+        ],
+        "knowsAbout": ["Tarot Reading", "Spiritual Counseling", "Energy Healing", "Reiki", "Life Coaching"],
+        "worksFor": {
+          "@id": "https://kalimeister.com/#organization"
+        }
+      }
+    ]
   };
 
   return (
@@ -66,6 +86,7 @@ export default function Home() {
           className="object-cover opacity-[0.03]"
           priority
           unoptimized
+          role="presentation"
         />
         <svg
           className="absolute left-[max(50%,25rem)] top-0 h-[64rem] w-[128rem] -translate-x-1/2 stroke-primary/10 [mask-image:radial-gradient(64rem_64rem_at_top,white,transparent)]"
@@ -221,7 +242,7 @@ export default function Home() {
               fill
               className="object-cover"
               priority
-              unoptimized
+              sizes="(max-width: 1024px) 100vw, 50vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-surface/60 to-transparent" />
           </div>
@@ -247,11 +268,10 @@ export default function Home() {
             </div>
             <div className="relative aspect-square rounded-2xl overflow-hidden hidden lg:block">
               <Image
-                src="/images/guide-placeholder.svg"
+                src="/images/guide-v1.svg"
                 alt="Tarot cards with mystical lighting"
                 fill
                 className="object-cover"
-                unoptimized
               />
             </div>
           </div>

@@ -203,14 +203,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a tarot reading with Kali Meister?", answer: "Classic Rider-Waite deck with intuitive guidance for insight and direction. Kali creates a safe, compassionate space where you can explore your questions about career crossroads, relationship clarity, and creative blocks." },
     ],
   },
-  "tarot-reading:la": {
-    paragraph: "Whether you're navigating the fast pace of the entertainment industry or the wellness scene in Venice Beach, a tarot reading in Los Angeles with Kali Meister offers clarity and direction. Los Angeles's distinctive character creates unique spiritual crossroads, and tarot reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining the classic Rider-Waite deck with deep empathic insight. Clients across 13M metro area seek her guidance for career crossroads, relationship clarity, and creative blocks.",
-    faq: [
-      { question: "How much is a tarot reading in Los Angeles?", answer: "Tarot Reading with Kali Meister in Los Angeles are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a tarot reading online from Los Angeles?", answer: "Yes. Kali offers virtual tarot reading via Zoom for Los Angeles clients and those across the country." },
-      { question: "What should I expect from a tarot reading with Kali Meister?", answer: "Classic Rider-Waite deck with intuitive guidance for insight and direction. Kali creates a safe, compassionate space where you can explore your questions about career crossroads, relationship clarity, and creative blocks." },
-    ],
-  },
   "tarot-reading:las-vegas-nv": {
     paragraph: "Whether you're navigating the neon intensity of the Strip or the desert silence beyond the city, a tarot reading in Las Vegas with Kali Meister offers clarity and direction. Las Vegas's distinctive character creates unique spiritual crossroads, and tarot reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining the classic Rider-Waite deck with deep empathic insight. Clients across 2.3M metro area seek her guidance for career crossroads, relationship clarity, and creative blocks.",
     faq: [
@@ -435,14 +427,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a tarot reading with Kali Meister?", answer: "Classic Rider-Waite deck with intuitive guidance for insight and direction. Kali creates a safe, compassionate space where you can explore your questions about career crossroads, relationship clarity, and creative blocks." },
     ],
   },
-  "tarot-reading:sf": {
-    paragraph: "Whether you're navigating the unique energy of San Francisco, a tarot reading in San Francisco with Kali Meister offers clarity and direction. San Francisco's distinctive character creates unique spiritual crossroads, and tarot reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining the classic Rider-Waite deck with deep empathic insight. Clients across 7.8M Bay Area metro seek her guidance for career crossroads, relationship clarity, and creative blocks.",
-    faq: [
-      { question: "How much is a tarot reading in San Francisco?", answer: "Tarot Reading with Kali Meister in San Francisco are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a tarot reading online from San Francisco?", answer: "Yes. Kali offers virtual tarot reading via Zoom for San Francisco clients and those across the country." },
-      { question: "What should I expect from a tarot reading with Kali Meister?", answer: "Classic Rider-Waite deck with intuitive guidance for insight and direction. Kali creates a safe, compassionate space where you can explore your questions about career crossroads, relationship clarity, and creative blocks." },
-    ],
-  },
   "tarot-reading:tampa-fl": {
     paragraph: "Whether you're navigating the unique energy of Tampa, a tarot reading in Tampa with Kali Meister offers clarity and direction. Tampa's distinctive character creates unique spiritual crossroads, and tarot reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining the classic Rider-Waite deck with deep empathic insight. Clients across 3.3M metro area seek her guidance for career crossroads, relationship clarity, and creative blocks.",
     faq: [
@@ -488,14 +472,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a tarot reading in Wichita?", answer: "Tarot Reading with Kali Meister in Wichita are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a tarot reading online from Wichita?", answer: "Yes. Kali offers virtual tarot reading via Zoom for Wichita clients and those across the country." },
-      { question: "What should I expect from a tarot reading with Kali Meister?", answer: "Classic Rider-Waite deck with intuitive guidance for insight and direction. Kali creates a safe, compassionate space where you can explore your questions about career crossroads, relationship clarity, and creative blocks." },
-    ],
-  },
-  "tarot-reading:nyc": {
-    paragraph: "Whether you're navigating the intensity of Wall Street or the artistic crossroads of Brooklyn, a tarot reading in New York with Kali Meister offers clarity and direction. New York's distinctive character creates unique spiritual crossroads, and tarot reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining the classic Rider-Waite deck with deep empathic insight. Clients across 20M metro area seek her guidance for career crossroads, relationship clarity, and creative blocks.",
-    faq: [
-      { question: "How much is a tarot reading in New York?", answer: "Tarot Reading with Kali Meister in New York are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a tarot reading online from New York?", answer: "Yes. Kali offers virtual tarot reading via Zoom for New York clients and those across the country." },
       { question: "What should I expect from a tarot reading with Kali Meister?", answer: "Classic Rider-Waite deck with intuitive guidance for insight and direction. Kali creates a safe, compassionate space where you can explore your questions about career crossroads, relationship clarity, and creative blocks." },
     ],
   },
@@ -696,14 +672,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a astrology reading in Kansas City?", answer: "Astrology Reading with Kali Meister in Kansas City are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a astrology reading online from Kansas City?", answer: "Yes. Kali offers virtual astrology reading via Zoom for Kansas City clients and those across the country." },
-      { question: "What should I expect from a astrology reading with Kali Meister?", answer: "Full natal chart analysis with Solar Fire software for precision. Kali creates a safe, compassionate space where you can explore your questions about understanding natal patterns, relationship compatibility, and timing decisions." },
-    ],
-  },
-  "astrology-reading:la": {
-    paragraph: "Whether you're navigating the fast pace of the entertainment industry or the wellness scene in Venice Beach, a astrology reading in Los Angeles with Kali Meister offers clarity and direction. Los Angeles's distinctive character creates unique spiritual crossroads, and astrology reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining Solar Fire software and natal chart analysis with deep empathic insight. Clients across 13M metro area seek her guidance for understanding natal patterns, relationship compatibility, and timing decisions.",
-    faq: [
-      { question: "How much is a astrology reading in Los Angeles?", answer: "Astrology Reading with Kali Meister in Los Angeles are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a astrology reading online from Los Angeles?", answer: "Yes. Kali offers virtual astrology reading via Zoom for Los Angeles clients and those across the country." },
       { question: "What should I expect from a astrology reading with Kali Meister?", answer: "Full natal chart analysis with Solar Fire software for precision. Kali creates a safe, compassionate space where you can explore your questions about understanding natal patterns, relationship compatibility, and timing decisions." },
     ],
   },
@@ -931,14 +899,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a astrology reading with Kali Meister?", answer: "Full natal chart analysis with Solar Fire software for precision. Kali creates a safe, compassionate space where you can explore your questions about understanding natal patterns, relationship compatibility, and timing decisions." },
     ],
   },
-  "astrology-reading:sf": {
-    paragraph: "Whether you're navigating the unique energy of San Francisco, a astrology reading in San Francisco with Kali Meister offers clarity and direction. San Francisco's distinctive character creates unique spiritual crossroads, and astrology reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining Solar Fire software and natal chart analysis with deep empathic insight. Clients across 7.8M Bay Area metro seek her guidance for understanding natal patterns, relationship compatibility, and timing decisions.",
-    faq: [
-      { question: "How much is a astrology reading in San Francisco?", answer: "Astrology Reading with Kali Meister in San Francisco are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a astrology reading online from San Francisco?", answer: "Yes. Kali offers virtual astrology reading via Zoom for San Francisco clients and those across the country." },
-      { question: "What should I expect from a astrology reading with Kali Meister?", answer: "Full natal chart analysis with Solar Fire software for precision. Kali creates a safe, compassionate space where you can explore your questions about understanding natal patterns, relationship compatibility, and timing decisions." },
-    ],
-  },
   "astrology-reading:tampa-fl": {
     paragraph: "Whether you're navigating the unique energy of Tampa, a astrology reading in Tampa with Kali Meister offers clarity and direction. Tampa's distinctive character creates unique spiritual crossroads, and astrology reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining Solar Fire software and natal chart analysis with deep empathic insight. Clients across 3.3M metro area seek her guidance for understanding natal patterns, relationship compatibility, and timing decisions.",
     faq: [
@@ -984,14 +944,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a astrology reading in Wichita?", answer: "Astrology Reading with Kali Meister in Wichita are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a astrology reading online from Wichita?", answer: "Yes. Kali offers virtual astrology reading via Zoom for Wichita clients and those across the country." },
-      { question: "What should I expect from a astrology reading with Kali Meister?", answer: "Full natal chart analysis with Solar Fire software for precision. Kali creates a safe, compassionate space where you can explore your questions about understanding natal patterns, relationship compatibility, and timing decisions." },
-    ],
-  },
-  "astrology-reading:nyc": {
-    paragraph: "Whether you're navigating the intensity of Wall Street or the artistic crossroads of Brooklyn, a astrology reading in New York with Kali Meister offers clarity and direction. New York's distinctive character creates unique spiritual crossroads, and astrology reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining Solar Fire software and natal chart analysis with deep empathic insight. Clients across 20M metro area seek her guidance for understanding natal patterns, relationship compatibility, and timing decisions.",
-    faq: [
-      { question: "How much is a astrology reading in New York?", answer: "Astrology Reading with Kali Meister in New York are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a astrology reading online from New York?", answer: "Yes. Kali offers virtual astrology reading via Zoom for New York clients and those across the country." },
       { question: "What should I expect from a astrology reading with Kali Meister?", answer: "Full natal chart analysis with Solar Fire software for precision. Kali creates a safe, compassionate space where you can explore your questions about understanding natal patterns, relationship compatibility, and timing decisions." },
     ],
   },
@@ -1192,14 +1144,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a lenormand reading in Kansas City?", answer: "Lenormand Reading with Kali Meister in Kansas City are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a lenormand reading online from Kansas City?", answer: "Yes. Kali offers virtual lenormand reading via Zoom for Kansas City clients and those across the country." },
-      { question: "What should I expect from a lenormand reading with Kali Meister?", answer: "Precise, grounded predictions using the 36-card Lenormand deck. Kali creates a safe, compassionate space where you can explore your questions about practical predictions, daily guidance, and grounded decision-making." },
-    ],
-  },
-  "lenormand-reading:la": {
-    paragraph: "Whether you're navigating the fast pace of the entertainment industry or the wellness scene in Venice Beach, a lenormand reading in Los Angeles with Kali Meister offers clarity and direction. Los Angeles's distinctive character creates unique spiritual crossroads, and lenormand reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining the 36-card Lenormand deck with deep empathic insight. Clients across 13M metro area seek her guidance for practical predictions, daily guidance, and grounded decision-making.",
-    faq: [
-      { question: "How much is a lenormand reading in Los Angeles?", answer: "Lenormand Reading with Kali Meister in Los Angeles are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a lenormand reading online from Los Angeles?", answer: "Yes. Kali offers virtual lenormand reading via Zoom for Los Angeles clients and those across the country." },
       { question: "What should I expect from a lenormand reading with Kali Meister?", answer: "Precise, grounded predictions using the 36-card Lenormand deck. Kali creates a safe, compassionate space where you can explore your questions about practical predictions, daily guidance, and grounded decision-making." },
     ],
   },
@@ -1427,14 +1371,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a lenormand reading with Kali Meister?", answer: "Precise, grounded predictions using the 36-card Lenormand deck. Kali creates a safe, compassionate space where you can explore your questions about practical predictions, daily guidance, and grounded decision-making." },
     ],
   },
-  "lenormand-reading:sf": {
-    paragraph: "Whether you're navigating the unique energy of San Francisco, a lenormand reading in San Francisco with Kali Meister offers clarity and direction. San Francisco's distinctive character creates unique spiritual crossroads, and lenormand reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining the 36-card Lenormand deck with deep empathic insight. Clients across 7.8M Bay Area metro seek her guidance for practical predictions, daily guidance, and grounded decision-making.",
-    faq: [
-      { question: "How much is a lenormand reading in San Francisco?", answer: "Lenormand Reading with Kali Meister in San Francisco are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a lenormand reading online from San Francisco?", answer: "Yes. Kali offers virtual lenormand reading via Zoom for San Francisco clients and those across the country." },
-      { question: "What should I expect from a lenormand reading with Kali Meister?", answer: "Precise, grounded predictions using the 36-card Lenormand deck. Kali creates a safe, compassionate space where you can explore your questions about practical predictions, daily guidance, and grounded decision-making." },
-    ],
-  },
   "lenormand-reading:tampa-fl": {
     paragraph: "Whether you're navigating the unique energy of Tampa, a lenormand reading in Tampa with Kali Meister offers clarity and direction. Tampa's distinctive character creates unique spiritual crossroads, and lenormand reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining the 36-card Lenormand deck with deep empathic insight. Clients across 3.3M metro area seek her guidance for practical predictions, daily guidance, and grounded decision-making.",
     faq: [
@@ -1480,14 +1416,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a lenormand reading in Wichita?", answer: "Lenormand Reading with Kali Meister in Wichita are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a lenormand reading online from Wichita?", answer: "Yes. Kali offers virtual lenormand reading via Zoom for Wichita clients and those across the country." },
-      { question: "What should I expect from a lenormand reading with Kali Meister?", answer: "Precise, grounded predictions using the 36-card Lenormand deck. Kali creates a safe, compassionate space where you can explore your questions about practical predictions, daily guidance, and grounded decision-making." },
-    ],
-  },
-  "lenormand-reading:nyc": {
-    paragraph: "Whether you're navigating the intensity of Wall Street or the artistic crossroads of Brooklyn, a lenormand reading in New York with Kali Meister offers clarity and direction. New York's distinctive character creates unique spiritual crossroads, and lenormand reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining the 36-card Lenormand deck with deep empathic insight. Clients across 20M metro area seek her guidance for practical predictions, daily guidance, and grounded decision-making.",
-    faq: [
-      { question: "How much is a lenormand reading in New York?", answer: "Lenormand Reading with Kali Meister in New York are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a lenormand reading online from New York?", answer: "Yes. Kali offers virtual lenormand reading via Zoom for New York clients and those across the country." },
       { question: "What should I expect from a lenormand reading with Kali Meister?", answer: "Precise, grounded predictions using the 36-card Lenormand deck. Kali creates a safe, compassionate space where you can explore your questions about practical predictions, daily guidance, and grounded decision-making." },
     ],
   },
@@ -1688,14 +1616,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a oracle reading in Kansas City?", answer: "Oracle Reading with Kali Meister in Kansas City are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a oracle reading online from Kansas City?", answer: "Yes. Kali offers virtual oracle reading via Zoom for Kansas City clients and those across the country." },
-      { question: "What should I expect from a oracle reading with Kali Meister?", answer: "Intuitive guidance through beautifully illustrated oracle decks. Kali creates a safe, compassionate space where you can explore your questions about daily inspiration, spiritual nudges, and intuitive confirmation." },
-    ],
-  },
-  "oracle-reading:la": {
-    paragraph: "Whether you're navigating the fast pace of the entertainment industry or the wellness scene in Venice Beach, a oracle reading in Los Angeles with Kali Meister offers clarity and direction. Los Angeles's distinctive character creates unique spiritual crossroads, and oracle reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining beautifully illustrated oracle decks with deep empathic insight. Clients across 13M metro area seek her guidance for daily inspiration, spiritual nudges, and intuitive confirmation.",
-    faq: [
-      { question: "How much is a oracle reading in Los Angeles?", answer: "Oracle Reading with Kali Meister in Los Angeles are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a oracle reading online from Los Angeles?", answer: "Yes. Kali offers virtual oracle reading via Zoom for Los Angeles clients and those across the country." },
       { question: "What should I expect from a oracle reading with Kali Meister?", answer: "Intuitive guidance through beautifully illustrated oracle decks. Kali creates a safe, compassionate space where you can explore your questions about daily inspiration, spiritual nudges, and intuitive confirmation." },
     ],
   },
@@ -1923,14 +1843,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a oracle reading with Kali Meister?", answer: "Intuitive guidance through beautifully illustrated oracle decks. Kali creates a safe, compassionate space where you can explore your questions about daily inspiration, spiritual nudges, and intuitive confirmation." },
     ],
   },
-  "oracle-reading:sf": {
-    paragraph: "Whether you're navigating the unique energy of San Francisco, a oracle reading in San Francisco with Kali Meister offers clarity and direction. San Francisco's distinctive character creates unique spiritual crossroads, and oracle reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining beautifully illustrated oracle decks with deep empathic insight. Clients across 7.8M Bay Area metro seek her guidance for daily inspiration, spiritual nudges, and intuitive confirmation.",
-    faq: [
-      { question: "How much is a oracle reading in San Francisco?", answer: "Oracle Reading with Kali Meister in San Francisco are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a oracle reading online from San Francisco?", answer: "Yes. Kali offers virtual oracle reading via Zoom for San Francisco clients and those across the country." },
-      { question: "What should I expect from a oracle reading with Kali Meister?", answer: "Intuitive guidance through beautifully illustrated oracle decks. Kali creates a safe, compassionate space where you can explore your questions about daily inspiration, spiritual nudges, and intuitive confirmation." },
-    ],
-  },
   "oracle-reading:tampa-fl": {
     paragraph: "Whether you're navigating the unique energy of Tampa, a oracle reading in Tampa with Kali Meister offers clarity and direction. Tampa's distinctive character creates unique spiritual crossroads, and oracle reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining beautifully illustrated oracle decks with deep empathic insight. Clients across 3.3M metro area seek her guidance for daily inspiration, spiritual nudges, and intuitive confirmation.",
     faq: [
@@ -1976,14 +1888,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a oracle reading in Wichita?", answer: "Oracle Reading with Kali Meister in Wichita are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a oracle reading online from Wichita?", answer: "Yes. Kali offers virtual oracle reading via Zoom for Wichita clients and those across the country." },
-      { question: "What should I expect from a oracle reading with Kali Meister?", answer: "Intuitive guidance through beautifully illustrated oracle decks. Kali creates a safe, compassionate space where you can explore your questions about daily inspiration, spiritual nudges, and intuitive confirmation." },
-    ],
-  },
-  "oracle-reading:nyc": {
-    paragraph: "Whether you're navigating the intensity of Wall Street or the artistic crossroads of Brooklyn, a oracle reading in New York with Kali Meister offers clarity and direction. New York's distinctive character creates unique spiritual crossroads, and oracle reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining beautifully illustrated oracle decks with deep empathic insight. Clients across 20M metro area seek her guidance for daily inspiration, spiritual nudges, and intuitive confirmation.",
-    faq: [
-      { question: "How much is a oracle reading in New York?", answer: "Oracle Reading with Kali Meister in New York are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a oracle reading online from New York?", answer: "Yes. Kali offers virtual oracle reading via Zoom for New York clients and those across the country." },
       { question: "What should I expect from a oracle reading with Kali Meister?", answer: "Intuitive guidance through beautifully illustrated oracle decks. Kali creates a safe, compassionate space where you can explore your questions about daily inspiration, spiritual nudges, and intuitive confirmation." },
     ],
   },
@@ -2184,14 +2088,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a channeling session in Kansas City?", answer: "Channeling Session with Kali Meister in Kansas City are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a channeling session online from Kansas City?", answer: "Yes. Kali offers virtual channeling session via Zoom for Kansas City clients and those across the country." },
-      { question: "What should I expect from a channeling session with Kali Meister?", answer: "Connect with spirit guides and loved ones for healing messages. Kali creates a safe, compassionate space where you can explore your questions about connecting with departed loved ones, spirit guides, and ancestral wisdom." },
-    ],
-  },
-  "channeling-session:la": {
-    paragraph: "Whether you're navigating the fast pace of the entertainment industry or the wellness scene in Venice Beach, a channeling session in Los Angeles with Kali Meister offers clarity and direction. Los Angeles's distinctive character creates unique spiritual crossroads, and channeling session can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining spirit guide connection and mediumship with deep empathic insight. Clients across 13M metro area seek her guidance for connecting with departed loved ones, spirit guides, and ancestral wisdom.",
-    faq: [
-      { question: "How much is a channeling session in Los Angeles?", answer: "Channeling Session with Kali Meister in Los Angeles are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a channeling session online from Los Angeles?", answer: "Yes. Kali offers virtual channeling session via Zoom for Los Angeles clients and those across the country." },
       { question: "What should I expect from a channeling session with Kali Meister?", answer: "Connect with spirit guides and loved ones for healing messages. Kali creates a safe, compassionate space where you can explore your questions about connecting with departed loved ones, spirit guides, and ancestral wisdom." },
     ],
   },
@@ -2419,14 +2315,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a channeling session with Kali Meister?", answer: "Connect with spirit guides and loved ones for healing messages. Kali creates a safe, compassionate space where you can explore your questions about connecting with departed loved ones, spirit guides, and ancestral wisdom." },
     ],
   },
-  "channeling-session:sf": {
-    paragraph: "Whether you're navigating the unique energy of San Francisco, a channeling session in San Francisco with Kali Meister offers clarity and direction. San Francisco's distinctive character creates unique spiritual crossroads, and channeling session can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining spirit guide connection and mediumship with deep empathic insight. Clients across 7.8M Bay Area metro seek her guidance for connecting with departed loved ones, spirit guides, and ancestral wisdom.",
-    faq: [
-      { question: "How much is a channeling session in San Francisco?", answer: "Channeling Session with Kali Meister in San Francisco are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a channeling session online from San Francisco?", answer: "Yes. Kali offers virtual channeling session via Zoom for San Francisco clients and those across the country." },
-      { question: "What should I expect from a channeling session with Kali Meister?", answer: "Connect with spirit guides and loved ones for healing messages. Kali creates a safe, compassionate space where you can explore your questions about connecting with departed loved ones, spirit guides, and ancestral wisdom." },
-    ],
-  },
   "channeling-session:tampa-fl": {
     paragraph: "Whether you're navigating the unique energy of Tampa, a channeling session in Tampa with Kali Meister offers clarity and direction. Tampa's distinctive character creates unique spiritual crossroads, and channeling session can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining spirit guide connection and mediumship with deep empathic insight. Clients across 3.3M metro area seek her guidance for connecting with departed loved ones, spirit guides, and ancestral wisdom.",
     faq: [
@@ -2472,14 +2360,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a channeling session in Wichita?", answer: "Channeling Session with Kali Meister in Wichita are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a channeling session online from Wichita?", answer: "Yes. Kali offers virtual channeling session via Zoom for Wichita clients and those across the country." },
-      { question: "What should I expect from a channeling session with Kali Meister?", answer: "Connect with spirit guides and loved ones for healing messages. Kali creates a safe, compassionate space where you can explore your questions about connecting with departed loved ones, spirit guides, and ancestral wisdom." },
-    ],
-  },
-  "channeling-session:nyc": {
-    paragraph: "Whether you're navigating the intensity of Wall Street or the artistic crossroads of Brooklyn, a channeling session in New York with Kali Meister offers clarity and direction. New York's distinctive character creates unique spiritual crossroads, and channeling session can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining spirit guide connection and mediumship with deep empathic insight. Clients across 20M metro area seek her guidance for connecting with departed loved ones, spirit guides, and ancestral wisdom.",
-    faq: [
-      { question: "How much is a channeling session in New York?", answer: "Channeling Session with Kali Meister in New York are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a channeling session online from New York?", answer: "Yes. Kali offers virtual channeling session via Zoom for New York clients and those across the country." },
       { question: "What should I expect from a channeling session with Kali Meister?", answer: "Connect with spirit guides and loved ones for healing messages. Kali creates a safe, compassionate space where you can explore your questions about connecting with departed loved ones, spirit guides, and ancestral wisdom." },
     ],
   },
@@ -2680,14 +2560,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a executive tarot advising in Kansas City?", answer: "Executive Tarot Advising with Kali Meister in Kansas City are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a executive tarot advising online from Kansas City?", answer: "Yes. Kali offers virtual executive tarot advising via Zoom for Kansas City clients and those across the country." },
-      { question: "What should I expect from a executive tarot advising with Kali Meister?", answer: "Strategic decision-making support for executives and business owners. Kali creates a safe, compassionate space where you can explore your questions about strategic pivots, leadership challenges, and high-stakes decisions." },
-    ],
-  },
-  "executive-tarot-advising:la": {
-    paragraph: "Whether you're navigating the fast pace of the entertainment industry or the wellness scene in Venice Beach, a executive tarot advising in Los Angeles with Kali Meister offers clarity and direction. Los Angeles's distinctive character creates unique spiritual crossroads, and executive tarot advising can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining strategic tarot archetypes and business intuition with deep empathic insight. Clients across 13M metro area seek her guidance for strategic pivots, leadership challenges, and high-stakes decisions.",
-    faq: [
-      { question: "How much is a executive tarot advising in Los Angeles?", answer: "Executive Tarot Advising with Kali Meister in Los Angeles are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a executive tarot advising online from Los Angeles?", answer: "Yes. Kali offers virtual executive tarot advising via Zoom for Los Angeles clients and those across the country." },
       { question: "What should I expect from a executive tarot advising with Kali Meister?", answer: "Strategic decision-making support for executives and business owners. Kali creates a safe, compassionate space where you can explore your questions about strategic pivots, leadership challenges, and high-stakes decisions." },
     ],
   },
@@ -2915,14 +2787,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a executive tarot advising with Kali Meister?", answer: "Strategic decision-making support for executives and business owners. Kali creates a safe, compassionate space where you can explore your questions about strategic pivots, leadership challenges, and high-stakes decisions." },
     ],
   },
-  "executive-tarot-advising:sf": {
-    paragraph: "Whether you're navigating the unique energy of San Francisco, a executive tarot advising in San Francisco with Kali Meister offers clarity and direction. San Francisco's distinctive character creates unique spiritual crossroads, and executive tarot advising can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining strategic tarot archetypes and business intuition with deep empathic insight. Clients across 7.8M Bay Area metro seek her guidance for strategic pivots, leadership challenges, and high-stakes decisions.",
-    faq: [
-      { question: "How much is a executive tarot advising in San Francisco?", answer: "Executive Tarot Advising with Kali Meister in San Francisco are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a executive tarot advising online from San Francisco?", answer: "Yes. Kali offers virtual executive tarot advising via Zoom for San Francisco clients and those across the country." },
-      { question: "What should I expect from a executive tarot advising with Kali Meister?", answer: "Strategic decision-making support for executives and business owners. Kali creates a safe, compassionate space where you can explore your questions about strategic pivots, leadership challenges, and high-stakes decisions." },
-    ],
-  },
   "executive-tarot-advising:tampa-fl": {
     paragraph: "Whether you're navigating the unique energy of Tampa, a executive tarot advising in Tampa with Kali Meister offers clarity and direction. Tampa's distinctive character creates unique spiritual crossroads, and executive tarot advising can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining strategic tarot archetypes and business intuition with deep empathic insight. Clients across 3.3M metro area seek her guidance for strategic pivots, leadership challenges, and high-stakes decisions.",
     faq: [
@@ -2968,14 +2832,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a executive tarot advising in Wichita?", answer: "Executive Tarot Advising with Kali Meister in Wichita are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a executive tarot advising online from Wichita?", answer: "Yes. Kali offers virtual executive tarot advising via Zoom for Wichita clients and those across the country." },
-      { question: "What should I expect from a executive tarot advising with Kali Meister?", answer: "Strategic decision-making support for executives and business owners. Kali creates a safe, compassionate space where you can explore your questions about strategic pivots, leadership challenges, and high-stakes decisions." },
-    ],
-  },
-  "executive-tarot-advising:nyc": {
-    paragraph: "Whether you're navigating the intensity of Wall Street or the artistic crossroads of Brooklyn, a executive tarot advising in New York with Kali Meister offers clarity and direction. New York's distinctive character creates unique spiritual crossroads, and executive tarot advising can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining strategic tarot archetypes and business intuition with deep empathic insight. Clients across 20M metro area seek her guidance for strategic pivots, leadership challenges, and high-stakes decisions.",
-    faq: [
-      { question: "How much is a executive tarot advising in New York?", answer: "Executive Tarot Advising with Kali Meister in New York are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a executive tarot advising online from New York?", answer: "Yes. Kali offers virtual executive tarot advising via Zoom for New York clients and those across the country." },
       { question: "What should I expect from a executive tarot advising with Kali Meister?", answer: "Strategic decision-making support for executives and business owners. Kali creates a safe, compassionate space where you can explore your questions about strategic pivots, leadership challenges, and high-stakes decisions." },
     ],
   },
@@ -3176,14 +3032,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a intuitive business consulting in Kansas City?", answer: "Intuitive Business Consulting with Kali Meister in Kansas City are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a intuitive business consulting online from Kansas City?", answer: "Yes. Kali offers virtual intuitive business consulting via Zoom for Kansas City clients and those across the country." },
-      { question: "What should I expect from a intuitive business consulting with Kali Meister?", answer: "Business strategy guided by intuition and archetypal wisdom. Kali creates a safe, compassionate space where you can explore your questions about startup direction, team dynamics, and market intuition." },
-    ],
-  },
-  "intuitive-business-consulting:la": {
-    paragraph: "Whether you're navigating the fast pace of the entertainment industry or the wellness scene in Venice Beach, a intuitive business consulting in Los Angeles with Kali Meister offers clarity and direction. Los Angeles's distinctive character creates unique spiritual crossroads, and intuitive business consulting can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining archetypal wisdom and intuitive strategy with deep empathic insight. Clients across 13M metro area seek her guidance for startup direction, team dynamics, and market intuition.",
-    faq: [
-      { question: "How much is a intuitive business consulting in Los Angeles?", answer: "Intuitive Business Consulting with Kali Meister in Los Angeles are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a intuitive business consulting online from Los Angeles?", answer: "Yes. Kali offers virtual intuitive business consulting via Zoom for Los Angeles clients and those across the country." },
       { question: "What should I expect from a intuitive business consulting with Kali Meister?", answer: "Business strategy guided by intuition and archetypal wisdom. Kali creates a safe, compassionate space where you can explore your questions about startup direction, team dynamics, and market intuition." },
     ],
   },
@@ -3411,14 +3259,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a intuitive business consulting with Kali Meister?", answer: "Business strategy guided by intuition and archetypal wisdom. Kali creates a safe, compassionate space where you can explore your questions about startup direction, team dynamics, and market intuition." },
     ],
   },
-  "intuitive-business-consulting:sf": {
-    paragraph: "Whether you're navigating the unique energy of San Francisco, a intuitive business consulting in San Francisco with Kali Meister offers clarity and direction. San Francisco's distinctive character creates unique spiritual crossroads, and intuitive business consulting can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining archetypal wisdom and intuitive strategy with deep empathic insight. Clients across 7.8M Bay Area metro seek her guidance for startup direction, team dynamics, and market intuition.",
-    faq: [
-      { question: "How much is a intuitive business consulting in San Francisco?", answer: "Intuitive Business Consulting with Kali Meister in San Francisco are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a intuitive business consulting online from San Francisco?", answer: "Yes. Kali offers virtual intuitive business consulting via Zoom for San Francisco clients and those across the country." },
-      { question: "What should I expect from a intuitive business consulting with Kali Meister?", answer: "Business strategy guided by intuition and archetypal wisdom. Kali creates a safe, compassionate space where you can explore your questions about startup direction, team dynamics, and market intuition." },
-    ],
-  },
   "intuitive-business-consulting:tampa-fl": {
     paragraph: "Whether you're navigating the unique energy of Tampa, a intuitive business consulting in Tampa with Kali Meister offers clarity and direction. Tampa's distinctive character creates unique spiritual crossroads, and intuitive business consulting can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining archetypal wisdom and intuitive strategy with deep empathic insight. Clients across 3.3M metro area seek her guidance for startup direction, team dynamics, and market intuition.",
     faq: [
@@ -3464,14 +3304,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a intuitive business consulting in Wichita?", answer: "Intuitive Business Consulting with Kali Meister in Wichita are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a intuitive business consulting online from Wichita?", answer: "Yes. Kali offers virtual intuitive business consulting via Zoom for Wichita clients and those across the country." },
-      { question: "What should I expect from a intuitive business consulting with Kali Meister?", answer: "Business strategy guided by intuition and archetypal wisdom. Kali creates a safe, compassionate space where you can explore your questions about startup direction, team dynamics, and market intuition." },
-    ],
-  },
-  "intuitive-business-consulting:nyc": {
-    paragraph: "Whether you're navigating the intensity of Wall Street or the artistic crossroads of Brooklyn, a intuitive business consulting in New York with Kali Meister offers clarity and direction. New York's distinctive character creates unique spiritual crossroads, and intuitive business consulting can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining archetypal wisdom and intuitive strategy with deep empathic insight. Clients across 20M metro area seek her guidance for startup direction, team dynamics, and market intuition.",
-    faq: [
-      { question: "How much is a intuitive business consulting in New York?", answer: "Intuitive Business Consulting with Kali Meister in New York are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a intuitive business consulting online from New York?", answer: "Yes. Kali offers virtual intuitive business consulting via Zoom for New York clients and those across the country." },
       { question: "What should I expect from a intuitive business consulting with Kali Meister?", answer: "Business strategy guided by intuition and archetypal wisdom. Kali creates a safe, compassionate space where you can explore your questions about startup direction, team dynamics, and market intuition." },
     ],
   },
@@ -3672,14 +3504,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a private tarot reading in Kansas City?", answer: "Private Tarot Reading with Kali Meister in Kansas City are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a private tarot reading online from Kansas City?", answer: "Yes. Kali offers virtual private tarot reading via Zoom for Kansas City clients and those across the country." },
-      { question: "What should I expect from a private tarot reading with Kali Meister?", answer: "Intimate, deep-dive sessions for personal transformation. Kali creates a safe, compassionate space where you can explore your questions about deep personal transformation, shadow work, and intimate questions." },
-    ],
-  },
-  "private-tarot-reading:la": {
-    paragraph: "Whether you're navigating the fast pace of the entertainment industry or the wellness scene in Venice Beach, a private tarot reading in Los Angeles with Kali Meister offers clarity and direction. Los Angeles's distinctive character creates unique spiritual crossroads, and private tarot reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining intimate one-on-one card work with deep empathic insight. Clients across 13M metro area seek her guidance for deep personal transformation, shadow work, and intimate questions.",
-    faq: [
-      { question: "How much is a private tarot reading in Los Angeles?", answer: "Private Tarot Reading with Kali Meister in Los Angeles are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a private tarot reading online from Los Angeles?", answer: "Yes. Kali offers virtual private tarot reading via Zoom for Los Angeles clients and those across the country." },
       { question: "What should I expect from a private tarot reading with Kali Meister?", answer: "Intimate, deep-dive sessions for personal transformation. Kali creates a safe, compassionate space where you can explore your questions about deep personal transformation, shadow work, and intimate questions." },
     ],
   },
@@ -3907,14 +3731,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a private tarot reading with Kali Meister?", answer: "Intimate, deep-dive sessions for personal transformation. Kali creates a safe, compassionate space where you can explore your questions about deep personal transformation, shadow work, and intimate questions." },
     ],
   },
-  "private-tarot-reading:sf": {
-    paragraph: "Whether you're navigating the unique energy of San Francisco, a private tarot reading in San Francisco with Kali Meister offers clarity and direction. San Francisco's distinctive character creates unique spiritual crossroads, and private tarot reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining intimate one-on-one card work with deep empathic insight. Clients across 7.8M Bay Area metro seek her guidance for deep personal transformation, shadow work, and intimate questions.",
-    faq: [
-      { question: "How much is a private tarot reading in San Francisco?", answer: "Private Tarot Reading with Kali Meister in San Francisco are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a private tarot reading online from San Francisco?", answer: "Yes. Kali offers virtual private tarot reading via Zoom for San Francisco clients and those across the country." },
-      { question: "What should I expect from a private tarot reading with Kali Meister?", answer: "Intimate, deep-dive sessions for personal transformation. Kali creates a safe, compassionate space where you can explore your questions about deep personal transformation, shadow work, and intimate questions." },
-    ],
-  },
   "private-tarot-reading:tampa-fl": {
     paragraph: "Whether you're navigating the unique energy of Tampa, a private tarot reading in Tampa with Kali Meister offers clarity and direction. Tampa's distinctive character creates unique spiritual crossroads, and private tarot reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining intimate one-on-one card work with deep empathic insight. Clients across 3.3M metro area seek her guidance for deep personal transformation, shadow work, and intimate questions.",
     faq: [
@@ -3960,14 +3776,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a private tarot reading in Wichita?", answer: "Private Tarot Reading with Kali Meister in Wichita are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a private tarot reading online from Wichita?", answer: "Yes. Kali offers virtual private tarot reading via Zoom for Wichita clients and those across the country." },
-      { question: "What should I expect from a private tarot reading with Kali Meister?", answer: "Intimate, deep-dive sessions for personal transformation. Kali creates a safe, compassionate space where you can explore your questions about deep personal transformation, shadow work, and intimate questions." },
-    ],
-  },
-  "private-tarot-reading:nyc": {
-    paragraph: "Whether you're navigating the intensity of Wall Street or the artistic crossroads of Brooklyn, a private tarot reading in New York with Kali Meister offers clarity and direction. New York's distinctive character creates unique spiritual crossroads, and private tarot reading can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining intimate one-on-one card work with deep empathic insight. Clients across 20M metro area seek her guidance for deep personal transformation, shadow work, and intimate questions.",
-    faq: [
-      { question: "How much is a private tarot reading in New York?", answer: "Private Tarot Reading with Kali Meister in New York are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a private tarot reading online from New York?", answer: "Yes. Kali offers virtual private tarot reading via Zoom for New York clients and those across the country." },
       { question: "What should I expect from a private tarot reading with Kali Meister?", answer: "Intimate, deep-dive sessions for personal transformation. Kali creates a safe, compassionate space where you can explore your questions about deep personal transformation, shadow work, and intimate questions." },
     ],
   },
@@ -4168,14 +3976,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a psychic life coaching in Kansas City?", answer: "Psychic Life Coaching with Kali Meister in Kansas City are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a psychic life coaching online from Kansas City?", answer: "Yes. Kali offers virtual psychic life coaching via Zoom for Kansas City clients and those across the country." },
-      { question: "What should I expect from a psychic life coaching with Kali Meister?", answer: "Combine psychic guidance with practical life coaching for transformation. Kali creates a safe, compassionate space where you can explore your questions about breaking patterns, finding purpose, and aligning action with intuition." },
-    ],
-  },
-  "psychic-life-coaching:la": {
-    paragraph: "Whether you're navigating the fast pace of the entertainment industry or the wellness scene in Venice Beach, a psychic life coaching in Los Angeles with Kali Meister offers clarity and direction. Los Angeles's distinctive character creates unique spiritual crossroads, and psychic life coaching can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining psychic insight combined with practical coaching tools with deep empathic insight. Clients across 13M metro area seek her guidance for breaking patterns, finding purpose, and aligning action with intuition.",
-    faq: [
-      { question: "How much is a psychic life coaching in Los Angeles?", answer: "Psychic Life Coaching with Kali Meister in Los Angeles are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a psychic life coaching online from Los Angeles?", answer: "Yes. Kali offers virtual psychic life coaching via Zoom for Los Angeles clients and those across the country." },
       { question: "What should I expect from a psychic life coaching with Kali Meister?", answer: "Combine psychic guidance with practical life coaching for transformation. Kali creates a safe, compassionate space where you can explore your questions about breaking patterns, finding purpose, and aligning action with intuition." },
     ],
   },
@@ -4403,14 +4203,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a psychic life coaching with Kali Meister?", answer: "Combine psychic guidance with practical life coaching for transformation. Kali creates a safe, compassionate space where you can explore your questions about breaking patterns, finding purpose, and aligning action with intuition." },
     ],
   },
-  "psychic-life-coaching:sf": {
-    paragraph: "Whether you're navigating the unique energy of San Francisco, a psychic life coaching in San Francisco with Kali Meister offers clarity and direction. San Francisco's distinctive character creates unique spiritual crossroads, and psychic life coaching can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining psychic insight combined with practical coaching tools with deep empathic insight. Clients across 7.8M Bay Area metro seek her guidance for breaking patterns, finding purpose, and aligning action with intuition.",
-    faq: [
-      { question: "How much is a psychic life coaching in San Francisco?", answer: "Psychic Life Coaching with Kali Meister in San Francisco are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a psychic life coaching online from San Francisco?", answer: "Yes. Kali offers virtual psychic life coaching via Zoom for San Francisco clients and those across the country." },
-      { question: "What should I expect from a psychic life coaching with Kali Meister?", answer: "Combine psychic guidance with practical life coaching for transformation. Kali creates a safe, compassionate space where you can explore your questions about breaking patterns, finding purpose, and aligning action with intuition." },
-    ],
-  },
   "psychic-life-coaching:tampa-fl": {
     paragraph: "Whether you're navigating the unique energy of Tampa, a psychic life coaching in Tampa with Kali Meister offers clarity and direction. Tampa's distinctive character creates unique spiritual crossroads, and psychic life coaching can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining psychic insight combined with practical coaching tools with deep empathic insight. Clients across 3.3M metro area seek her guidance for breaking patterns, finding purpose, and aligning action with intuition.",
     faq: [
@@ -4456,14 +4248,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a psychic life coaching in Wichita?", answer: "Psychic Life Coaching with Kali Meister in Wichita are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a psychic life coaching online from Wichita?", answer: "Yes. Kali offers virtual psychic life coaching via Zoom for Wichita clients and those across the country." },
-      { question: "What should I expect from a psychic life coaching with Kali Meister?", answer: "Combine psychic guidance with practical life coaching for transformation. Kali creates a safe, compassionate space where you can explore your questions about breaking patterns, finding purpose, and aligning action with intuition." },
-    ],
-  },
-  "psychic-life-coaching:nyc": {
-    paragraph: "Whether you're navigating the intensity of Wall Street or the artistic crossroads of Brooklyn, a psychic life coaching in New York with Kali Meister offers clarity and direction. New York's distinctive character creates unique spiritual crossroads, and psychic life coaching can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining psychic insight combined with practical coaching tools with deep empathic insight. Clients across 20M metro area seek her guidance for breaking patterns, finding purpose, and aligning action with intuition.",
-    faq: [
-      { question: "How much is a psychic life coaching in New York?", answer: "Psychic Life Coaching with Kali Meister in New York are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a psychic life coaching online from New York?", answer: "Yes. Kali offers virtual psychic life coaching via Zoom for New York clients and those across the country." },
       { question: "What should I expect from a psychic life coaching with Kali Meister?", answer: "Combine psychic guidance with practical life coaching for transformation. Kali creates a safe, compassionate space where you can explore your questions about breaking patterns, finding purpose, and aligning action with intuition." },
     ],
   },
@@ -4664,14 +4448,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a spiritual counseling in Kansas City?", answer: "Spiritual Counseling with Kali Meister in Kansas City are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a spiritual counseling online from Kansas City?", answer: "Yes. Kali offers virtual spiritual counseling via Zoom for Kansas City clients and those across the country." },
-      { question: "What should I expect from a spiritual counseling with Kali Meister?", answer: "Compassionate guidance for spiritual growth and emotional healing. Kali creates a safe, compassionate space where you can explore your questions about grief support, spiritual awakening, and emotional healing." },
-    ],
-  },
-  "spiritual-counseling:la": {
-    paragraph: "Whether you're navigating the fast pace of the entertainment industry or the wellness scene in Venice Beach, a spiritual counseling in Los Angeles with Kali Meister offers clarity and direction. Los Angeles's distinctive character creates unique spiritual crossroads, and spiritual counseling can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining compassionate listening and spiritual guidance with deep empathic insight. Clients across 13M metro area seek her guidance for grief support, spiritual awakening, and emotional healing.",
-    faq: [
-      { question: "How much is a spiritual counseling in Los Angeles?", answer: "Spiritual Counseling with Kali Meister in Los Angeles are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a spiritual counseling online from Los Angeles?", answer: "Yes. Kali offers virtual spiritual counseling via Zoom for Los Angeles clients and those across the country." },
       { question: "What should I expect from a spiritual counseling with Kali Meister?", answer: "Compassionate guidance for spiritual growth and emotional healing. Kali creates a safe, compassionate space where you can explore your questions about grief support, spiritual awakening, and emotional healing." },
     ],
   },
@@ -4899,14 +4675,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
       { question: "What should I expect from a spiritual counseling with Kali Meister?", answer: "Compassionate guidance for spiritual growth and emotional healing. Kali creates a safe, compassionate space where you can explore your questions about grief support, spiritual awakening, and emotional healing." },
     ],
   },
-  "spiritual-counseling:sf": {
-    paragraph: "Whether you're navigating the unique energy of San Francisco, a spiritual counseling in San Francisco with Kali Meister offers clarity and direction. San Francisco's distinctive character creates unique spiritual crossroads, and spiritual counseling can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining compassionate listening and spiritual guidance with deep empathic insight. Clients across 7.8M Bay Area metro seek her guidance for grief support, spiritual awakening, and emotional healing.",
-    faq: [
-      { question: "How much is a spiritual counseling in San Francisco?", answer: "Spiritual Counseling with Kali Meister in San Francisco are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a spiritual counseling online from San Francisco?", answer: "Yes. Kali offers virtual spiritual counseling via Zoom for San Francisco clients and those across the country." },
-      { question: "What should I expect from a spiritual counseling with Kali Meister?", answer: "Compassionate guidance for spiritual growth and emotional healing. Kali creates a safe, compassionate space where you can explore your questions about grief support, spiritual awakening, and emotional healing." },
-    ],
-  },
   "spiritual-counseling:tampa-fl": {
     paragraph: "Whether you're navigating the unique energy of Tampa, a spiritual counseling in Tampa with Kali Meister offers clarity and direction. Tampa's distinctive character creates unique spiritual crossroads, and spiritual counseling can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining compassionate listening and spiritual guidance with deep empathic insight. Clients across 3.3M metro area seek her guidance for grief support, spiritual awakening, and emotional healing.",
     faq: [
@@ -4952,14 +4720,6 @@ export const PSEO_CONTENT: Record<string, { paragraph: string; faq: Array<{quest
     faq: [
       { question: "How much is a spiritual counseling in Wichita?", answer: "Spiritual Counseling with Kali Meister in Wichita are $250 per hour. Sessions can be in-person or virtual via Zoom." },
       { question: "Can I get a spiritual counseling online from Wichita?", answer: "Yes. Kali offers virtual spiritual counseling via Zoom for Wichita clients and those across the country." },
-      { question: "What should I expect from a spiritual counseling with Kali Meister?", answer: "Compassionate guidance for spiritual growth and emotional healing. Kali creates a safe, compassionate space where you can explore your questions about grief support, spiritual awakening, and emotional healing." },
-    ],
-  },
-  "spiritual-counseling:nyc": {
-    paragraph: "Whether you're navigating the intensity of Wall Street or the artistic crossroads of Brooklyn, a spiritual counseling in New York with Kali Meister offers clarity and direction. New York's distinctive character creates unique spiritual crossroads, and spiritual counseling can illuminate the path forward. Kali brings 10+ years of intuitive experience to every session, combining compassionate listening and spiritual guidance with deep empathic insight. Clients across 20M metro area seek her guidance for grief support, spiritual awakening, and emotional healing.",
-    faq: [
-      { question: "How much is a spiritual counseling in New York?", answer: "Spiritual Counseling with Kali Meister in New York are $250 per hour. Sessions can be in-person or virtual via Zoom." },
-      { question: "Can I get a spiritual counseling online from New York?", answer: "Yes. Kali offers virtual spiritual counseling via Zoom for New York clients and those across the country." },
       { question: "What should I expect from a spiritual counseling with Kali Meister?", answer: "Compassionate guidance for spiritual growth and emotional healing. Kali creates a safe, compassionate space where you can explore your questions about grief support, spiritual awakening, and emotional healing." },
     ],
   },

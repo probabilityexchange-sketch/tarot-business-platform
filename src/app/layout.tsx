@@ -26,12 +26,13 @@ const spaceGrotesk = Space_Grotesk({
 export const metadata: Metadata = {
   metadataBase: new URL("https://kalimeister.com"),
   title: "Kali Meister | Tarot Reader & Spiritual Healer",
-  description: "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing with over 40 years of intuitive practice. B.A. Psychology, M.F.A. Creative Writing.",
+  description: "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing with over 40 years of intuitive practice.",
   keywords: ["tarot reader", "spiritual healer", "psychic reading", "reiki", "life coaching", "Chattanooga", "East Tennessee"],
   authors: [{ name: "Kali Meister" }],
   openGraph: {
     title: "Kali Meister | Tarot Reader & Spiritual Healer",
-    description: "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing.",
+    description: "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing with over 40 years of intuitive practice.",
+    url: "https://kalimeister.com",
     type: "website",
     locale: "en_US",
     siteName: "Kali Meister",
