@@ -1,0 +1,54 @@
+name: Diagnose App Hosting backend
+on:
+  workflow_dispatch:
+    inputs:
+      repair:
+        description: "Attempt redeploy of backend 'kali' after diagnostics"
+        required: false
+        default: "false"
+        type: choice
+        options: ["false", "true"]
+
+jobs:
+  diagnose:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write service account credentials
+        run: |
+          echo '${{ secrets.FIREBASE_SERVICE_ACCOUNT_KALIMEISTER }}' > "$RUNNER_TEMP/sa.json"
+          echo "GOOGLE_APPLICATION_CREDENTIALS=$RUNNER_TEMP/sa.json" >> "$GITHUB_ENV"
+
+      - name: Install firebase-tools
+        run: npm install -g firebase-tools
+
+      - name: Verify auth + project visibility
+        run: firebase projects:list 2>&1 | head -20
+        continue-on-error: true
+
+      - name: List App Hosting backends
+        run: firebase apphosting:backends:list --project kalimeister 2>&1
+        continue-on-error: true
+
+      - name: Backend details (kali)
+        run: firebase apphosting:backends:get kali --project kalimeister 2>&1
+        continue-on-error: true
+
+      - name: Cloud Run services (us-east4)
+        run: |
+          gcloud auth activate-service-account --key-file="$RUNNER_TEMP/sa.json" 2>&1 | tail -1
+          gcloud run services list --project kalimeister --region us-east4 2>&1 | head -15
+        continue-on-error: true
+
+      - name: Cloud Run revisions (kali)
+        run: gcloud run revisions list --project kalimeister --region us-east4 --service kali 2>&1 | head -15
+        continue-on-error: true
+
+      - name: Recent Cloud Build runs
+        run: gcloud builds list --project kalimeister --limit 5 2>&1 | head -15
+        continue-on-error: true
+
+      - name: Repair — redeploy App Hosting
+        if: inputs.repair == 'true'
+        run: |
+          cd "${{ github.workspace }}"
+          firebase deploy --only apphosting --project kalimeister 2>&1 | tail -30
