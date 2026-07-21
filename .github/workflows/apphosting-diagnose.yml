@@ -47,6 +47,21 @@ jobs:
         run: gcloud builds list --project kalimeister --limit 5 2>&1 | head -15
         continue-on-error: true
 
+      - name: Revision status detail (kali latest)
+        run: gcloud run revisions describe kali-build-2026-07-06-001 --project kalimeister --region us-east4 2>&1 | tail -40
+        continue-on-error: true
+
+      - name: Container logs (kali, last 2h)
+        run: |
+          gcloud logging read "resource.type=cloud_run_revision AND resource.labels.service_name=kali" \
+            --project kalimeister --limit 40 --freshness=72h \
+            --format="table(timestamp,severity,textPayload)" 2>&1 | head -60
+        continue-on-error: true
+
+      - name: Service traffic + conditions (kali)
+        run: gcloud run services describe kali --project kalimeister --region us-east4 2>&1 | grep -A 30 -E "Traffic|Conditions|status" | head -40
+        continue-on-error: true
+
       - name: Repair — redeploy App Hosting
         if: inputs.repair == 'true'
         run: |
