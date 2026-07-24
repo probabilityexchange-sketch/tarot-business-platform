@@ -7,6 +7,14 @@ const legacyCityRedirects = [
   { source: "nyc", target: "new-york-ny" },
 ];
 
+const legacyHtmlRedirects = [
+  { source: "/about.html", target: "/about" },
+  { source: "/contact.html", target: "/contact" },
+  { source: "/services.html", target: "/services" },
+  { source: "/funnel.html", target: "/funnel" },
+  { source: "/index.html", target: "/" },
+];
+
 const redirects = async () => {
   const entries: Array<{ source: string; destination: string; permanent: true }> = [];
 
@@ -18,6 +26,10 @@ const redirects = async () => {
         permanent: true,
       });
     }
+  }
+
+  for (const { source, target } of legacyHtmlRedirects) {
+    entries.push({ source, destination: target, permanent: true });
   }
 
   return entries;
