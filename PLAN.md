@@ -61,13 +61,50 @@
 | Playwright / Vitest testing | | ✓ (primary) |
 | Content generation (pSEO, blog) | | ✓ (primary) |
 
+## Local ↔ EC2 Linkage
+
+| Component | Local (Laptop) | Remote (EC2) |
+|-----------|---------------|--------------|
+| **SSH** | `ssh aws` → `ec2-18-188-157-210.us-east-2.compute.amazonaws.com` | Hermes VPS |
+| **Obsidian Vault** | `~/Documents/ObsidianVault/` | Synced copy (rsync via Oz) |
+| **Task Inbox** | `~/Documents/ObsidianVault/0-Inbox/Hermes/kilo-code-tasks/` | Oz writes to inbox via Hermes |
+| **Projects** | `~/projects/tarot-business-platform/` | `~/projects/tarot-business-platform/` (origin) |
+| **Admin Dashboard** | `http://localhost:3000/admin` (next dev) | `https://kalimeister.com/admin` (production) |
+| **Kilo Startup** | `~/.kilo/command/startup.md` (auto-reads vault) | N/A (Oz manages via Hermes) |
+
 ## Handoff Protocol
 
-1. Oz writes task specs in `~/Documents/ObsidianVault/0-Inbox/Hermes/` with `assigned: kilo-code` frontmatter
+1. Oz writes task specs in `~/Documents/ObsidianVault/0-Inbox/Hermes/kilo-code-tasks/` with `assigned: kilo-code` and `status: pending` frontmatter (see `_TASK_TEMPLATE.md`)
 2. Kilo Code reads the vault on session start and checks for assigned tasks
 3. Kilo Code commits work to a feature branch, updates task status in this PLAN.md
 4. Oz reviews the branch, merges to master, pushes to origin
 5. Both agents update this PLAN.md with completed tasks and new priorities
+
+### Task File Format (for Oz)
+```
+---
+assigned: kilo-code
+source: hermes-gateway
+project: tarot-business-platform
+status: pending
+created: 2026-07-01T10:00:00Z
+priority: medium
+---
+# Task Title
+## Context
+...
+## Acceptance Criteria
+- [ ] Item 1
+## Branch
+feature/branch-name
+```
+
+### Repos Requiring EC2 → GitHub Push
+The following repos are documented but do not yet exist on GitHub (need `git push --set-upstream` from EC2):
+- `randi-industries-promo` → `github-randi-agency:Randi-Agent/randi-industries-promo`
+- `slt-machine-lead-gen` → `github-probabilityexchange:probabilityexchange-sketch/slt-machine-lead-gen`
+- `randi-agency` → `github-randi-agency:Randi-Agent/randi-agency` (repo init'd locally, no commits)
+- `randi-industries` → `github-randi-agency:Randi-Agent/randi-industries` (repo init'd locally, no commits)
 
 ## Key Reference Files
 
@@ -78,7 +115,10 @@
 | `SEO_CONTENT_STRATEGY.md` | Content engine design |
 | `firebase.json` | Firebase Hosting, Firestore, App Hosting config |
 | `apphosting.yaml` | Environment variables, secrets, run config |
-| `~/Documents/ObsidianVault/Hermes Agent/Hermes Config/project-configs.md` | Full project registry on VPS |
+| `~/.kilo/command/startup.md` | Kilo Code startup routine |
+| `~/.kilo/plans/hermes-dashboard.md` | Hermes monitoring dashboard plan |
+| `~/Documents/ObsidianVault/0-Inbox/Hermes/kilo-code-tasks/` | Task inbox from Oz |
+| `~/Documents/ObsidianVault/Hermes Agent/Hermes Config/project-configs.md` | Full project registry |
 | `~/Documents/ObsidianVault/Hermes Agent/Randi-Agency-and-Randi-Industries-Setup-Plan.md` | Agency operating model |
 
 ---
