@@ -18,6 +18,19 @@ const legacyHtmlRedirects = [
 const redirects = async () => {
   const entries: Array<{ source: string; destination: string; permanent: true }> = [];
 
+  for (const citySlug of Object.keys(CITIES)) {
+    entries.push({
+      source: `/${citySlug}`,
+      destination: `/readings/tarot-reading/${citySlug}`,
+      permanent: true,
+    });
+  }
+  entries.push({
+    source: "/index",
+    destination: "/",
+    permanent: true,
+  });
+
   for (const { source, target } of legacyCityRedirects) {
     for (const service of Object.keys(SERVICES)) {
       entries.push({
