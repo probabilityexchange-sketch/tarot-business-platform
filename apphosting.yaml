@@ -97,6 +97,11 @@ env:
     availability:
       - BUILD
       - RUNTIME
+  - variable: FIREBASE_SERVICE_ACCOUNT_KEY
+    secret: FIREBASE_SERVICE_ACCOUNT_KEY
+    availability:
+      - BUILD
+      - RUNTIME
   - variable: ADMIN_EMAIL
     secret: ADMIN_EMAIL
     availability:

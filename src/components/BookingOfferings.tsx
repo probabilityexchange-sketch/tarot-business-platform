@@ -91,6 +91,14 @@ export default function BookingOfferings({ offerings }: Props) {
         }
 
         setCalComEventTypes([]);
+
+        if (typeof data.error === "string" && data.error.length > 0) {
+          setSlots([]);
+          setSelectedSlot("");
+          setSlotsError(data.error);
+          return;
+        }
+
         const nextSlots = (data.slots ?? []).filter((slot: Slot) => slot.available);
         setSlots(nextSlots);
         setSelectedSlot(nextSlots[0]?.start ?? "");
@@ -349,7 +357,7 @@ export default function BookingOfferings({ offerings }: Props) {
                 })}
               </div>
 
-              {!slotsLoading && !slots.length ? (
+              {!slotsLoading && !slotsError && !slots.length ? (
                 <p className="text-sm text-on-surface/50">
                   No slots are available right now. Please check back soon.
                 </p>

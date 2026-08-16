@@ -268,6 +268,19 @@ function normalizeRangeSlots(data: unknown): CalComAvailabilitySlot[] {
     }));
 }
 
+function normalizeDurationMinutes(value: unknown): number | undefined {
+  if (typeof value === "number") {
+    return value;
+  }
+
+  if (typeof value === "string") {
+    const match = value.match(/\d+/);
+    return match ? Number.parseInt(match[0], 10) : undefined;
+  }
+
+  return undefined;
+}
+
 async function resolveCalComDescriptor(
   params:
     | CalComAvailabilityParams
@@ -275,37 +288,51 @@ async function resolveCalComDescriptor(
     | CalComBookingParams
 ): Promise<CalComResolvedDescriptor> {
   const config = getCalComConfig();
-  const descriptor = buildDescriptor(config, params);
 
-  if ("eventTypeId" in descriptor) {
-    return descriptor;
+  if (params.eventTypeId) {
+    return { eventTypeId: params.eventTypeId };
   }
 
-  if (descriptor.eventTypeSlug && descriptor.username) {
-    return descriptor;
+  if (params.eventTypeSlug && params.username) {
+    return {
+      eventTypeSlug: params.eventTypeSlug,
+      username: params.username,
+      teamSlug: params.teamSlug,
+      organizationSlug: params.organizationSlug,
+    };
   }
 
   const eventTypes = await getCalComEventTypes();
   const normalizedTitle = params.title ? normalizeEventTypeTitle(params.title) : "";
-
-  if (normalizedTitle) {
-    const titleMatch = eventTypes.find(
-      (eventType) => normalizeEventTypeTitle(eventType.title) === normalizedTitle
-    );
-
-    if (titleMatch) {
-      return { eventTypeId: titleMatch.id };
-    }
-  }
-
-  const duration =
+  const duration = normalizeDurationMinutes(
     "lengthInMinutes" in params
       ? params.lengthInMinutes
       : "slotDuration" in params
         ? params.slotDuration
         : "duration" in params
           ? params.duration
-          : undefined;
+          : undefined
+  );
+
+  if (normalizedTitle) {
+    const titleMatches = eventTypes.filter(
+      (eventType) => normalizeEventTypeTitle(eventType.title) === normalizedTitle
+    );
+
+    if (titleMatches.length === 1) {
+      if (typeof duration !== "number" || titleMatches[0].lengthInMinutes === duration) {
+        return { eventTypeId: titleMatches[0].id };
+      }
+    } else if (titleMatches.length > 1 && typeof duration === "number") {
+      const exactMatch = titleMatches.find(
+        (eventType) => eventType.lengthInMinutes === duration
+      );
+
+      if (exactMatch) {
+        return { eventTypeId: exactMatch.id };
+      }
+    }
+  }
 
   if (typeof duration === "number") {
     const durationMatches = eventTypes.filter(
@@ -321,6 +348,16 @@ async function resolveCalComDescriptor(
         `Multiple Cal.com event types match ${duration} minutes. Set CALCOM_EVENT_TYPE_ID or pass a unique title.`
       );
     }
+  }
+
+  const fallbackDescriptor = buildDescriptor(config);
+
+  if ("eventTypeId" in fallbackDescriptor) {
+    return fallbackDescriptor;
+  }
+
+  if (fallbackDescriptor.eventTypeSlug && fallbackDescriptor.username) {
+    return fallbackDescriptor;
   }
 
   throw new Error(
@@ -355,7 +392,17 @@ export async function getCalComAvailability(
   }
 
   if (params.duration) {
-    searchParams.set("duration", String(params.duration));
+    const eventTypes = await getCalComEventTypes();
+    const eventType = eventTypes.find((eventType) =>
+      "eventTypeId" in descriptor
+        ? eventType.id === descriptor.eventTypeId
+        : eventType.slug === descriptor.eventTypeSlug
+    );
+    const isVariableLength = eventType?.lengthType === "variable";
+
+    if (isVariableLength) {
+      searchParams.set("duration", String(params.duration));
+    }
   }
 
   if (params.bookingUidToReschedule) {

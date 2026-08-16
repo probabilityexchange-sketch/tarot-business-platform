@@ -242,7 +242,7 @@ export default async function CityServicePage({ params }: Props) {
                 Book your {svc.label.toLowerCase()} session today.
               </p>
               <Link
-                href="/contact"
+                href="/readings"
                 className="inline-block bg-white text-[#4a0e4e] px-8 py-3 rounded-full text-sm font-label uppercase tracking-widest hover:bg-white/90 transition-opacity"
               >
                 Book Now

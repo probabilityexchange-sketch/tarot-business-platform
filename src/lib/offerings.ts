@@ -25,7 +25,7 @@ export const readingsOfferings: Offering[] = [
   {
     id: "shadow-reading",
     title: "Shadow Work Intensive",
-    duration: "120 Minutes",
+    duration: "90 Minutes",
     price: "$450",
     description:
       "Our most intensive offering. Specifically designed for those in transition, using Jungian concepts and tarot to uncover the hidden parts of the self.",

@@ -27,6 +27,15 @@ function isCalComSlotConflict(error: unknown): boolean {
   );
 }
 
+function isBookingFieldsError(error: unknown): boolean {
+  if (!(error instanceof Error)) {
+    return false;
+  }
+
+  const message = error.message.toLowerCase();
+  return message.includes("status 4") && message.includes("field");
+}
+
 function serializeBookingRecord(booking: Record<string, unknown>) {
   const toIso = (value: unknown) => {
     if (value && typeof value === "object" && "toDate" in value && typeof (value as { toDate: () => Date }).toDate === "function") {
@@ -104,12 +113,15 @@ export async function POST(request: NextRequest) {
     try {
       calBooking = await createCalComBooking(bookingInput);
     } catch (error) {
-      if (!reservationUid || !isCalComSlotConflict(error)) {
+      if (isBookingFieldsError(error)) {
+        const { bookingFieldsResponses: _bookingFieldsResponses, ...retryInput } = bookingInput;
+        calBooking = await createCalComBooking(retryInput);
+      } else if (!reservationUid || !isCalComSlotConflict(error)) {
         throw error;
+      } else {
+        await new Promise((resolve) => setTimeout(resolve, 2000));
+        calBooking = await createCalComBooking(bookingInput);
       }
-
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-      calBooking = await createCalComBooking(bookingInput);
     }
 
     const now = Timestamp.now();

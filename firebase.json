@@ -61,7 +61,11 @@
       "functions"
     ],
     "secretEnvironmentVariables": [
-      { "name": "STRIPE_SECRET_KEY", "nameForInternal": "STRIPE_SECRET_KEY" }
+      { "name": "STRIPE_SECRET_KEY", "nameForInternal": "STRIPE_SECRET_KEY" },
+      { "name": "CALCOM_API_KEY", "nameForInternal": "CALCOM_API_KEY" },
+      { "name": "BREVO_API_KEY", "nameForInternal": "BREVO_API_KEY" },
+      { "name": "FIREBASE_SERVICE_ACCOUNT_KEY", "nameForInternal": "FIREBASE_SERVICE_ACCOUNT_KEY" },
+      { "name": "ADMIN_EMAIL", "nameForInternal": "ADMIN_EMAIL" }
     ]
   }
 }
