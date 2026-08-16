@@ -9,7 +9,25 @@ export const metadata: Metadata = {
     title: "About Kali Meister | Intuitive Reader & Spiritual Counselor",
     description:
       "Kali Meister is a Tennessee-based intuitive reader with 40+ years of experience in tarot, Lenormand, astrology, and channeling.",
+    url: "https://kalimeister.com/about",
     type: "website",
+    locale: "en_US",
+    siteName: "Kali Meister",
+    images: [
+      {
+        url: "https://kalimeister.com/images/kali-meister.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kali Meister - Intuitive Reader & Spiritual Counselor",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "About Kali Meister | Intuitive Reader & Spiritual Counselor",
+    description:
+      "Kali Meister is a Tennessee-based intuitive reader with 40+ years of experience in tarot, Lenormand, astrology, and channeling.",
+    images: ["https://kalimeister.com/images/kali-meister.jpg"],
   },
   alternates: {
     canonical: "/about",

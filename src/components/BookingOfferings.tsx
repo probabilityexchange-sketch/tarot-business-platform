@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { pushEvent } from "@/lib/analytics";
 import type { Offering } from "@/lib/offerings";
 
 type Slot = {
@@ -76,6 +77,10 @@ export default function BookingOfferings({ offerings }: Props) {
 
       try {
         const durationMinutes = parseDurationMinutes(selectedOffering.duration);
+        pushEvent("booking_started", {
+          offering: selectedOffering.title,
+          duration: durationMinutes,
+        });
         const response = await fetch(
           `/api/availability?duration=${durationMinutes}&title=${encodeURIComponent(selectedOffering.title)}`
         );
@@ -173,6 +178,11 @@ export default function BookingOfferings({ offerings }: Props) {
       if (!checkoutResponse.ok || !checkoutData.url) {
         throw new Error(checkoutData.error || "Failed to create checkout session");
       }
+
+      pushEvent("checkout_started", {
+        offering: selectedOffering.title,
+        price: Number.parseFloat(selectedOffering.price.replace(/[^0-9.]/g, "")),
+      });
 
       window.location.href = checkoutData.url;
     } catch (error) {

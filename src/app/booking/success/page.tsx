@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { pushEvent } from "@/lib/analytics";
 
 type BookingResponse = {
   status: "success";
@@ -64,6 +65,10 @@ function SuccessContent() {
 
     setBooking(data.booking);
     setStatus("success");
+    pushEvent("purchase", {
+      value: data.booking.priceCents / 100,
+      currency: "usd",
+    });
   }, [sessionId]);
 
   useEffect(() => {

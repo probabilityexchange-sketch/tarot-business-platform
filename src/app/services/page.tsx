@@ -9,7 +9,25 @@ export const metadata: Metadata = {
     title: "Services | Kali Meister — Intuitive Services",
     description:
       "Elite intuitive services: tarot, Lenormand, astrology, channeling, oracle, and spiritual counseling for high-achievers.",
+    url: "https://kalimeister.com/services",
     type: "website",
+    locale: "en_US",
+    siteName: "Kali Meister",
+    images: [
+      {
+        url: "https://kalimeister.com/images/kali-meister.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kali Meister - Intuitive Services",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Services | Kali Meister — Intuitive Services",
+    description:
+      "Elite intuitive services: tarot, Lenormand, astrology, channeling, oracle, and spiritual counseling for high-achievers.",
+    images: ["https://kalimeister.com/images/kali-meister.jpg"],
   },
   alternates: {
     canonical: "/services",

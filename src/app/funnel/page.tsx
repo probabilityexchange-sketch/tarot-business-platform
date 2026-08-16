@@ -5,6 +5,28 @@ import { LeadCaptureForm } from "@/components/LeadCaptureForm";
 export const metadata: Metadata = {
   title: "Free Mini Reading | Kali Meister",
   description: "Receive a personalized 3-card mini reading delivered in Kali's voice. Enter your email and discover what the cards have to say about you today.",
+  openGraph: {
+    title: "Free Mini Reading | Kali Meister",
+    description: "Receive a personalized 3-card mini reading delivered in Kali's voice. Enter your email and discover what the cards have to say about you today.",
+    url: "https://kalimeister.com/funnel",
+    type: "website",
+    locale: "en_US",
+    siteName: "Kali Meister",
+    images: [
+      {
+        url: "https://kalimeister.com/images/kali-meister.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kali Meister - Free 3-Card Mini Reading",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Free Mini Reading | Kali Meister",
+    description: "Receive a personalized 3-card mini reading delivered in Kali's voice.",
+    images: ["https://kalimeister.com/images/kali-meister.jpg"],
+  },
   alternates: {
     canonical: "/funnel",
   },

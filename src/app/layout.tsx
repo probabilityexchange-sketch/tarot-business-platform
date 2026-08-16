@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Newsreader, Inter, Space_Grotesk } from "next/font/google";
 import Link from "next/link";
 import { Providers } from "@/components/Providers";
+import { Analytics } from "@/components/Analytics";
 import "../styles/globals.css";
 
 const newsreader = Newsreader({
@@ -67,6 +68,7 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
       <body className="antialiased min-h-screen bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary-container">
+        <Analytics />
         <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-outline-variant/15">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex justify-between items-center">
             <Link href="/" className="font-label text-lg tracking-[0.05em] uppercase text-primary hover:text-secondary transition-colors duration-250 ease-snappy">

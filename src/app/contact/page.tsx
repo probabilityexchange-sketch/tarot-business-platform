@@ -6,10 +6,28 @@ export const metadata: Metadata = {
   description:
     "Get in touch with Kali Meister to book a tarot reading, ask questions about services, or inquire about spiritual counseling. Response within 48 hours.",
   openGraph: {
-    title: "Contact Kali Meister | Book a Reading",
+    title: "Contact Kali Meister | Book a Reading or Send an Inquiry",
     description:
       "Get in touch with Kali Meister for tarot readings, courses, and spiritual counseling inquiries.",
+    url: "https://kalimeister.com/contact",
     type: "website",
+    locale: "en_US",
+    siteName: "Kali Meister",
+    images: [
+      {
+        url: "https://kalimeister.com/images/kali-meister.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kali Meister - Contact & Book a Reading",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Contact Kali Meister | Book a Reading or Send an Inquiry",
+    description:
+      "Get in touch with Kali Meister for tarot readings, courses, and spiritual counseling inquiries.",
+    images: ["https://kalimeister.com/images/kali-meister.jpg"],
   },
   alternates: {
     canonical: "/contact",

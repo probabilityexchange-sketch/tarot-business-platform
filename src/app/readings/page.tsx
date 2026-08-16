@@ -8,6 +8,28 @@ export const metadata: Metadata = {
   title: "Psychological Tarot Readings | Shadow Work & Narrative Deep-Dive",
   description: "Book a private psychological tarot session for shadow work and self-discovery. 1:1 narrative deep-dives for professional seekers.",
   keywords: ["psychological tarot reading", "shadow work intensive", "narrative deep-dive", "tarot consultation", "self-reflection session"],
+  openGraph: {
+    title: "Psychological Tarot Readings | Shadow Work & Narrative Deep-Dive",
+    description: "Book a private psychological tarot session for shadow work and self-discovery. 1:1 narrative deep-dives for professional seekers.",
+    url: "https://kalimeister.com/readings",
+    type: "website",
+    locale: "en_US",
+    siteName: "Kali Meister",
+    images: [
+      {
+        url: "https://kalimeister.com/images/kali-meister.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kali Meister - Psychological Tarot Readings",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Psychological Tarot Readings | Shadow Work & Narrative Deep-Dive",
+    description: "Book a private psychological tarot session for shadow work and self-discovery.",
+    images: ["https://kalimeister.com/images/kali-meister.jpg"],
+  },
   alternates: {
     canonical: "/readings",
   },

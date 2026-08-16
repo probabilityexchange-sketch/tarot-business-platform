@@ -7,6 +7,28 @@ import { Metadata } from "next";
 export const metadata: Metadata = {
   title: "The Digital Alchemist | Psychological Tarot Journal & Insights",
   description: "Explore deep inquiries into psychological tarot, archetypes, and narrative therapy. Read our latest insights on shadow work and self-reflection.",
+  openGraph: {
+    title: "The Digital Alchemist | Psychological Tarot Journal & Insights",
+    description: "Explore deep inquiries into psychological tarot, archetypes, and narrative therapy. Read our latest insights on shadow work and self-reflection.",
+    url: "https://kalimeister.com/blog",
+    type: "website",
+    locale: "en_US",
+    siteName: "Kali Meister",
+    images: [
+      {
+        url: "https://kalimeister.com/images/kali-meister.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kali Meister - The Digital Alchemist Journal",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Digital Alchemist | Psychological Tarot Journal & Insights",
+    description: "Explore deep inquiries into psychological tarot, archetypes, and narrative therapy.",
+    images: ["https://kalimeister.com/images/kali-meister.jpg"],
+  },
   alternates: {
     canonical: "/blog",
   },

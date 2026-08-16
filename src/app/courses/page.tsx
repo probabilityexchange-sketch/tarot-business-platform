@@ -8,6 +8,28 @@ export const metadata: Metadata = {
   title: "The Psychological Tarot Method | Professional Certification Course",
   description: "Join our 8-week certification for therapists, writers, and seekers. Master the art of psychological tarot and narrative therapy.",
   keywords: ["psychological tarot course", "tarot certification", "archetypal psychology course", "narrative therapy training", "shadow work education"],
+  openGraph: {
+    title: "The Psychological Tarot Method | Professional Certification Course",
+    description: "Join our 8-week certification for therapists, writers, and seekers. Master the art of psychological tarot and narrative therapy.",
+    url: "https://kalimeister.com/courses",
+    type: "website",
+    locale: "en_US",
+    siteName: "Kali Meister",
+    images: [
+      {
+        url: "https://kalimeister.com/images/kali-meister.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Kali Meister - The Psychological Tarot Method Course",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "The Psychological Tarot Method | Professional Certification Course",
+    description: "Join our 8-week certification for therapists, writers, and seekers.",
+    images: ["https://kalimeister.com/images/kali-meister.jpg"],
+  },
   alternates: {
     canonical: "/courses",
   },
