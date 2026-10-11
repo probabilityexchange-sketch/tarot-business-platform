@@ -12,14 +12,6 @@ type Slot = {
   available: boolean;
 };
 
-type CalComEventTypeSummary = {
-  id: number;
-  title: string;
-  slug: string;
-  lengthInMinutes: number;
-  hidden?: boolean;
-};
-
 type Props = {
   offerings: Offering[];
 };
@@ -52,7 +44,6 @@ export default function BookingOfferings({ offerings }: Props) {
   const [slots, setSlots] = useState<Slot[]>([]);
   const [slotsLoading, setSlotsLoading] = useState(false);
   const [slotsError, setSlotsError] = useState<string | null>(null);
-  const [calComEventTypes, setCalComEventTypes] = useState<CalComEventTypeSummary[]>([]);
   const [selectedSlot, setSelectedSlot] = useState("");
   const [customerName, setCustomerName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
@@ -87,15 +78,9 @@ export default function BookingOfferings({ offerings }: Props) {
         const data = await response.json();
 
         if (!response.ok) {
-          if (Array.isArray(data.calComEventTypes)) {
-            setCalComEventTypes(data.calComEventTypes as CalComEventTypeSummary[]);
-          } else {
-            setCalComEventTypes([]);
-          }
           throw new Error(data.error || "Failed to load availability");
         }
 
-        setCalComEventTypes([]);
 
         if (typeof data.error === "string" && data.error.length > 0) {
           setSlots([]);
@@ -128,8 +113,8 @@ export default function BookingOfferings({ offerings }: Props) {
     setBookingError(null);
 
     const durationMinutes = parseDurationMinutes(selectedOffering.duration);
-    const reservationDuration = 10;
     let reservationUid: string | null = null;
+    let reservationToken: string | null = null;
 
     try {
       const reservationResponse = await fetch("/api/availability/reservations", {
@@ -139,9 +124,7 @@ export default function BookingOfferings({ offerings }: Props) {
         },
           body: JSON.stringify({
             slotStart: selectedSlot,
-            slotDuration: durationMinutes,
-            reservationDuration,
-            title: selectedOffering.title,
+            offeringId: selectedOffering.id,
           }),
         });
 
@@ -152,6 +135,7 @@ export default function BookingOfferings({ offerings }: Props) {
       }
 
       reservationUid = reservationData.reservationUid as string;
+      reservationToken = reservationData.reservationToken as string;
 
       const checkoutResponse = await fetch("/api/checkout", {
         method: "POST",
@@ -164,6 +148,7 @@ export default function BookingOfferings({ offerings }: Props) {
             price: selectedOffering.price,
             duration: selectedOffering.duration,
           reservationUid,
+          reservationToken,
           slotStart: selectedSlot,
           slotDuration: durationMinutes,
           customerName,
@@ -189,7 +174,9 @@ export default function BookingOfferings({ offerings }: Props) {
       if (reservationUid) {
         await fetch(`/api/availability/reservations/${reservationUid}`, {
           method: "DELETE",
-        });
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ reservationToken }),
+        }).catch(() => undefined);
       }
 
       setBookingError(error instanceof Error ? error.message : "Booking failed");
@@ -275,23 +262,10 @@ export default function BookingOfferings({ offerings }: Props) {
             <div className="rounded-2xl bg-surface-container-low p-6 space-y-3">
               <p className="text-sm font-label uppercase tracking-widest text-secondary">Reservation Hold</p>
               <p className="text-on-surface/70 font-body leading-relaxed">
-                Your selected time is held for 10 minutes while payment is completed.
+                Complete Stripe checkout within 30 minutes. If checkout expires, choose your time again.
               </p>
             </div>
             {slotsError ? <p className="text-sm text-error">{slotsError}</p> : null}
-            {calComEventTypes.length > 0 ? (
-              <div className="rounded-2xl border border-outline-variant bg-surface-container-low p-4 text-sm text-on-surface/70 space-y-2">
-                <p className="text-xs uppercase tracking-widest text-secondary font-label">Cal.com event types found</p>
-                <ul className="space-y-1">
-                  {calComEventTypes.map((eventType) => (
-                    <li key={eventType.id}>
-                      #{eventType.id} · {eventType.title} · {eventType.lengthInMinutes} min · {eventType.slug}
-                      {eventType.hidden ? " · hidden" : ""}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ) : null}
             {bookingError ? <p className="text-sm text-error">{bookingError}</p> : null}
           </div>
 

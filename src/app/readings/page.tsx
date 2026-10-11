@@ -78,7 +78,7 @@ export default function ReadingsPage() {
                 Your session is a sacred space for exploration. Using tarot archetypes as mirrors, we&apos;ll examine patterns in your life, unpack hidden beliefs, and illuminate paths forward. Sessions are conducted via video call and recorded for your review.
               </p>
               <p className="text-on-surface/60 font-body leading-relaxed">
-                You&apos;ll receive a link to schedule immediately after payment. Choose any available time that works for you. Come with an open heart and a question or area of focus — though sometimes the most profound insights come when we don&apos;t know what we&apos;re looking for.
+                Choose your available time before checkout. After payment, your booking is confirmed and Cal.com sends your calendar invitation. Come with an open heart and a question or area of focus — though sometimes the most profound insights come when we don&apos;t know what we&apos;re looking for.
               </p>
             </div>
             <div className="space-y-6">
@@ -153,7 +153,7 @@ export default function ReadingsPage() {
           <h2 id="philosophy-heading" className="text-4xl font-display mb-8 italic">The Philosophy of Process</h2>
           <div className="text-lg text-on-surface/60 font-body leading-relaxed space-y-6">
             <p>All sessions require pre-payment and are non-refundable. This ensures a commitment to the work and filters for those truly ready for psychological transformation.</p>
-            <p>Once payment is secured via Stripe, you will receive a secure link to schedule your session via Cal.com.</p>
+            <p>Choose your session and available time, then pay securely through Stripe. Your booking confirmation shows your selected time.</p>
           </div>
         </section>
       </div>

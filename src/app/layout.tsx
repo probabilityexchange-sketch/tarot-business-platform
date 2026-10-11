@@ -8,7 +8,7 @@ import "../styles/globals.css";
 const newsreader = Newsreader({
   subsets: ["latin"],
   variable: "--font-newsreader",
-  style: "italic",
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -67,7 +67,7 @@ export default function RootLayout({
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       </head>
-      <body className="antialiased min-h-screen bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary-container">
+      <body className="has-[.brand-preview]:[&>header]:hidden has-[.brand-preview]:[&>footer]:hidden antialiased min-h-screen bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary-container">
         <Analytics />
         <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-outline-variant/15">
           <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex justify-between items-center">
@@ -89,7 +89,7 @@ export default function RootLayout({
           </div>
         </header>
         <Providers>
-          <main className="pt-20">{children}</main>
+          <main className="pt-20 has-[.brand-preview]:pt-0">{children}</main>
         </Providers>
         <footer className="py-16 px-12 text-center">
           <div className="max-w-7xl mx-auto">

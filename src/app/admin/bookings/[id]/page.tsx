@@ -401,7 +401,8 @@ export default function BookingDetailPage() {
             <div>
               <p className="text-xs uppercase tracking-[0.2em] text-tertiary mb-2 font-label">Payment</p>
               <div className="space-y-2 text-on-surface/80">
-                <p>Status: {booking.status === "confirmed" || booking.status === "completed" ? "paid" : "pending"}</p>
+                <p>Payment: {booking.stripeSessionId ? "received — verify in Stripe" : "pending"}</p>
+                {booking.status === "payment_pending" && <p className="text-amber-300">Payment received; calendar confirmation needs review. Check Cal.com for this Stripe reference before creating another booking. Do not ask the customer to pay again.</p>}
                 <p>Stripe session: {booking.stripeSessionId}</p>
                 <p>Payment intent: {booking.stripePaymentIntentId ?? "n/a"}</p>
                 <p>Cal.com booking: {booking.calComEventId ?? "n/a"}</p>

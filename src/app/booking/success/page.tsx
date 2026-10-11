@@ -47,6 +47,7 @@ function SuccessContent() {
     setStatus("loading");
     setErrorMessage(null);
 
+    try {
     const response = await fetch("/api/bookings/confirm", {
       method: "POST",
       headers: {
@@ -58,7 +59,7 @@ function SuccessContent() {
     const data = (await response.json()) as BookingResponse | { error?: string };
 
     if (!response.ok || !("booking" in data)) {
-      setErrorMessage("We couldn't confirm the booking yet.");
+      setErrorMessage("We are still confirming your time. If Stripe shows a payment, please do not pay again. Contact Kali with the reference below.");
       setStatus("error");
       return;
     }
@@ -66,9 +67,14 @@ function SuccessContent() {
     setBooking(data.booking);
     setStatus("success");
     pushEvent("purchase", {
+      transaction_id: sessionId,
       value: data.booking.priceCents / 100,
       currency: "usd",
     });
+    } catch {
+      setErrorMessage("Connection interrupted. Retry confirmation or contact Kali with the reference below.");
+      setStatus("error");
+    }
   }, [sessionId]);
 
   useEffect(() => {
@@ -95,8 +101,8 @@ function SuccessContent() {
           <Button variant="primary" onClick={() => void confirmBooking()}>
             Retry confirmation
           </Button>
-          <Button variant="secondary" onClick={() => (window.location.href = "/readings")}>
-            Return to Readings
+          <Button variant="secondary" onClick={() => (window.location.href = "/contact")}>
+            Contact Kali
           </Button>
         </div>
         {sessionId ? (
@@ -120,7 +126,7 @@ function SuccessContent() {
             <span className="text-primary italic">Confirmed</span>
           </h1>
           <p className="text-xl text-on-surface/60 max-w-2xl mx-auto font-body leading-relaxed">
-            A confirmation has been sent to {booking.customerEmail}. Your reserved time is below.
+            Your reserved time is below. Cal.com handles the calendar invitation for {booking.customerEmail}.
           </p>
         </header>
 

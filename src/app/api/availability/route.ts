@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
-import { getCalComAvailability, listCalComEventTypes } from "@/lib/calcom";
+import { getCalComAvailability } from "@/lib/calcom";
 
 const availabilityQuerySchema = z.object({
   start: z.string().min(1).optional(),
@@ -43,28 +43,7 @@ export async function GET(request: NextRequest) {
       count: slots.length,
     });
   } catch (error) {
-    const message = error instanceof Error ? error.message : "Failed to load availability";
-
-    if (
-      error instanceof Error &&
-      (message.includes("No Cal.com event type matched") ||
-        message.includes("Multiple Cal.com event types match"))
-    ) {
-      try {
-        const eventTypes = await listCalComEventTypes();
-
-        return NextResponse.json(
-          {
-            error: message,
-            calComEventTypes: eventTypes,
-          },
-          { status: 500 }
-        );
-      } catch {
-        return NextResponse.json({ error: message }, { status: 500 });
-      }
-    }
-
-    return NextResponse.json({ error: message }, { status: 500 });
+    console.error("Availability failed", error);
+    return NextResponse.json({ error: "Availability is temporarily unavailable. Please try again or contact Kali." }, { status: 503 });
   }
 }

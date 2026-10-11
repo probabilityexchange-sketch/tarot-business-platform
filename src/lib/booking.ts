@@ -38,11 +38,19 @@ export const bookingCheckoutSchema = z.object({
   price: z.string().min(1),
   duration: z.string().min(1),
   reservationUid: z.string().min(1),
-  slotStart: z.string().min(1),
+  reservationToken: z.string().length(64),
+  slotStart: z.string().datetime(),
   slotDuration: z.coerce.number().int().positive(),
   customerName: z.string().min(1).max(120),
   customerEmail: z.string().email(),
-  customerTimezone: z.string().min(1),
+  customerTimezone: z.string().max(100).refine((value) => {
+    try {
+      new Intl.DateTimeFormat("en", { timeZone: value });
+      return true;
+    } catch {
+      return false;
+    }
+  }),
   notes: z.string().max(4000).optional().default(""),
 });
 
