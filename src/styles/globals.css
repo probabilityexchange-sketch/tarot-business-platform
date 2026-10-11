@@ -1,22 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  /* Colors - Electric Midnight Palette */
-  --color-surface: #131314;
-  --color-surface-container-lowest: #0d0d0e;
-  --color-surface-container-low: #1c1b1c;
-  --color-surface-container: #212122;
-  --color-surface-container-high: #2a2a2b;
-  --color-surface-container-highest: #2e2e2f;
+  --color-surface: #f5f0e8;
+  --color-surface-container-lowest: #fcf9f4;
+  --color-surface-container-low: #efe5d6;
+  --color-surface-container: #e8dedf;
+  --color-surface-container-high: #fcf9f4;
+  --color-surface-container-highest: #e4d6d9;
   
-  --color-primary: #d0bcff;
-  --color-primary-container: #a078ff;
-  --color-secondary: #4cd7f6;
-  --color-tertiary: #98da27;
-  --color-on-surface: #e5e2e3;
-  --color-on-primary-fixed: #21005d;
-  --color-error: #ffb4ab;
-  --color-outline-variant: #49454f;
+  --color-primary: #653c56;
+  --color-primary-container: #dfc5d5;
+  --color-secondary: #744b65;
+  --color-tertiary: #806a44;
+  --color-on-surface: #302731;
+  --color-on-primary-fixed: #ffffff;
+  --color-error: #a32d36;
+  --color-outline-variant: #b5a7ad;
 
   /* Typography */
   --font-display: var(--font-newsreader), serif;
@@ -47,15 +46,15 @@
   }
 
   .neon-halo-primary {
-    box-shadow: 0 0 32px 0 rgba(208, 188, 255, 0.04);
+    box-shadow: 0 0 32px 0 rgba(101, 60, 86, 0.04);
   }
 
   .neon-halo-secondary {
-    box-shadow: 0 0 32px 0 rgba(76, 215, 246, 0.04);
+    box-shadow: 0 0 32px 0 rgba(116, 75, 101, 0.04);
   }
 
   .ritual-progress {
-    @apply h-[1px] bg-tertiary shadow-[0_0_10px_#98da27];
+    @apply h-[1px] bg-tertiary shadow-[0_0_10px_#806a44];
   }
   
   .ease-snappy {

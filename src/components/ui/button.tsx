@@ -13,7 +13,7 @@ export function Button({
   ...props 
 }: ButtonProps) {
   const variants = {
-    primary: "bg-primary text-[#21005d] hover:bg-primary/90",
+    primary: "bg-primary text-on-primary-fixed hover:bg-primary/90",
     secondary: "glass border border-secondary/30 text-secondary hover:bg-secondary/10 hover:border-secondary/50",
     tertiary: "text-tertiary underline-offset-4 hover:underline decoration-2 transition-all duration-250 ease-snappy",
   };
