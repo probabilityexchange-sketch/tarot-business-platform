@@ -1,46 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowUpRight, Sparkles } from "lucide-react";
-import { readingsOfferings } from "@/lib/offerings";
-import { EmailSignupForm } from "@/components/EmailSignupForm";
+import { BrandHomepage } from "@/components/BrandHomepage";
 
 export const metadata: Metadata = { title: "Homepage design preview | Kali Meister", robots: { index: false, follow: false } };
 
 export default function HomepagePreview() {
-  return (
-    <div className="brand-preview bg-[#f5f0e8] text-[#302731] selection:bg-[#dfc5d5]">
-      <div className="bg-[#4f3145] px-5 py-2 text-center text-xs tracking-wide text-[#f5f0e8]">A new direction for Kali Meister · Homepage concept · Copy for Kali to review</div>
-      <header className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5 border-b border-[#302731]/15 px-6 py-6 lg:px-12">
-        <Link href="/preview" className="font-serif text-3xl tracking-tight">Kali Meister<span className="mt-1 block font-sans text-[10px] uppercase tracking-[.22em]">Writing · Tarot · Spiritual Work</span></Link>
-        <nav aria-label="Preview navigation" className="flex flex-wrap items-center gap-5 text-sm"><a href="#readings">Private readings</a><a href="#writing">Writing</a><a href="#gatherings">Gatherings</a><a href="#letters" className="rounded-full border border-[#653c56] px-5 py-2">Letters from Kali</a></nav>
-      </header>
-      <section className="mx-auto grid max-w-7xl gap-12 px-6 py-12 lg:grid-cols-[1.1fr_.9fr] lg:gap-20 lg:px-12 lg:py-12">
-        <div className="flex flex-col justify-center">
-          <p className="mb-7 text-xs uppercase tracking-[.2em] text-[#744b65]">A writer’s eye. An intuitive’s ear.</p>
-          <h1 className="max-w-2xl font-serif text-5xl leading-[1.08] tracking-tight sm:text-6xl lg:text-[68px]">There’s more to<br />your story.<br /><span className="italic text-[#744b65]">Let’s listen.</span></h1>
-          <p className="mt-8 max-w-lg text-lg leading-relaxed text-[#655b61]">Writing, tarot and spiritual work with Kali Meister. A place to explore what you’re carrying, find language for what’s changing, and consider what comes next.</p>
-          <div className="mt-9 flex flex-wrap items-center gap-6"><Link href="/readings" className="flex items-center gap-5 rounded-full bg-[#653c56] px-7 py-4 text-sm text-white">Book a private reading <ArrowUpRight size={18} /></Link><a href="#writing" className="border-b border-[#744b65] pb-1 text-sm">Explore her writing</a></div>
-          <p className="mt-6 text-xs text-[#655b61]">Personal attention. Time to reflect. Space for your own voice.</p>
-        </div>
-        <figure className="relative mx-auto w-full max-w-lg">
-          <div className="absolute -right-3 -top-3 h-24 w-24 rounded-full border border-[#b89a70]/60" aria-hidden="true" />
-          <Image src="/images/kali-meister.jpg" alt="Kali Meister" width={700} height={850} priority className="relative aspect-[4/5] w-full rounded-t-[180px] object-cover object-top" />
-          <figcaption className="mt-5 flex items-center justify-between border-b border-[#302731]/20 pb-4 text-xs uppercase tracking-[.14em]"><span>Kali Meister</span><span>Writer & spiritual practitioner</span></figcaption>
-        </figure>
-      </section>
-      <div className="border-y border-[#302731]/15 px-6 py-5 text-center font-serif text-xl italic text-[#744b65]">Words, symbols and conversation. Room to make meaning.</div>
-      <section id="readings" className="mx-auto max-w-7xl px-6 py-16 lg:px-12 lg:py-24">
-        <div className="mb-10 flex flex-wrap items-end justify-between gap-5"><div><p className="mb-4 text-xs uppercase tracking-[.2em] text-[#744b65]">Work with Kali</p><h2 className="font-serif text-4xl sm:text-5xl">A reading with room for you.</h2></div><Link href="/readings" className="border-b border-[#744b65] pb-1 text-sm">View availability ↗</Link></div>
-        <p className="mb-10 max-w-2xl leading-relaxed text-[#655b61]">Bring a question, a turning point, or something you haven’t found words for yet. Explore it through tarot and thoughtful conversation, with time for reflection.</p>
-        <div className="grid gap-5 md:grid-cols-2">
-          {readingsOfferings.map((offering, index) => ({ ...offering, time: offering.duration.toLowerCase(), description: index === 0 ? "A private session to explore the story you’re living and the possibilities you’re ready to consider." : "More time and space to sit with recurring patterns, difficult questions and the parts of your story that ask for attention." })).map((item, index) => <article key={item.title} className="rounded-2xl border border-[#302731]/15 bg-[#fcf9f4] p-7 lg:p-10"><div className="mb-10 flex justify-between text-xs uppercase tracking-[.15em] text-[#744b65]"><span>0{index + 1} · Private reading</span><span>{item.time}</span></div><h3 className="mb-4 font-serif text-3xl">{item.title}</h3><p className="min-h-20 max-w-md leading-relaxed text-[#655b61]">{item.description}</p><div className="mt-8 flex items-center justify-between border-t border-[#302731]/15 pt-6"><span className="font-serif text-3xl">{item.price}</span><Link href="/readings" className="text-sm">Choose a time ↗</Link></div></article>)}
-        </div>
-      </section>
-      <section id="writing" className="bg-[#e8dedf] px-6 py-16 lg:py-24"><div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-2 md:gap-24"><div><p className="mb-5 text-xs uppercase tracking-[.2em] text-[#744b65]">The writer behind the work</p><h2 className="font-serif text-4xl leading-tight sm:text-5xl">The page is another<br /><span className="italic">way in.</span></h2><p className="mt-7 max-w-lg leading-relaxed text-[#655b61]">Kali’s writing belongs at the heart of this work: close observation, honest questions, and an attention to the stories we tell ourselves.</p><Link href="/blog" className="mt-8 inline-block border-b border-[#744b65] pb-1 text-sm">Read the journal ↗</Link></div><div className="rounded-xl bg-[#fcf9f4] p-8 lg:p-12"><Sparkles size={24} className="mb-7 text-[#744b65]" /><p className="mb-4 text-xs uppercase tracking-[.16em]">A moment on the page</p><p className="font-serif text-3xl leading-snug">What part of your story are you ready to see differently?</p><p className="mt-7 text-sm leading-relaxed text-[#655b61]">Take a blank page. Give yourself a few quiet minutes. Begin with what you notice, rather than what you think you should say.</p><p className="mt-6 text-xs italic text-[#655b61]">Sample prompt for this design. Kali’s own words would live here.</p></div></div></section>
-      <section id="gatherings" className="mx-auto grid max-w-7xl gap-10 px-6 py-16 md:grid-cols-2 lg:px-12 lg:py-24"><div><p className="mb-4 text-xs uppercase tracking-[.2em] text-[#744b65]">Meet in good company</p><h2 className="font-serif text-4xl">Small gatherings.<br /><span className="italic">Meaningful conversations.</span></h2><p className="mt-6 max-w-lg leading-relaxed text-[#655b61]">Local evenings bringing together readings, writing and reflection. Join the email list to hear when the first gathering opens for booking.</p><a href="#letters" className="mt-7 inline-block border-b border-[#744b65] pb-1 text-sm">Hear about local events ↗</a></div><div className="rounded-2xl bg-[#4f3145] p-8 text-[#f5f0e8] lg:p-12"><p className="mb-4 text-xs uppercase tracking-[.18em] text-[#d8bccd]">A weekly place to connect</p><h3 className="font-serif text-3xl">Come for the conversation.</h3><p className="mt-5 leading-relaxed text-[#ede0e6]">Weekly TikTok Live sessions are part of what’s coming next. Get the schedule, along with new writing and invitations, through Kali’s emails.</p><p className="mt-7 text-xs text-[#d8bccd]">Live day and time to be announced.</p></div></section>
-      <section id="letters" className="border-y border-[#302731]/15 bg-[#efe5d6] px-6 py-16 lg:py-20"><div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[1fr_.9fr] md:gap-20"><div><p className="mb-5 text-xs uppercase tracking-[.2em] text-[#744b65]">Letters from Kali</p><h2 className="font-serif text-4xl sm:text-5xl">A little more room<br /><span className="italic">for reflection.</span></h2><p className="mt-6 leading-relaxed text-[#655b61]">Begin with the free intuition guide. Stay for writing, thoughtful questions, and invitations to readings and gatherings.</p><p className="mt-5 text-sm text-[#655b61]">Digital guides and writing resources can grow from this same work. New releases will be announced here.</p></div><EmailSignupForm source="homepage-preview" /></div></section>
-      <footer className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-6 px-6 py-10 text-sm lg:px-12"><span className="font-serif text-2xl">Kali Meister</span><div className="flex gap-6"><Link href="/contact">Get in touch</Link><Link href="/blog">Journal</Link></div><span className="text-xs text-[#655b61]">© {new Date().getFullYear()} Kali Meister</span></footer>
-    </div>
-  );
+  return <BrandHomepage preview />;
 }

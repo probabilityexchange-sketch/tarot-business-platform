@@ -26,13 +26,13 @@ const spaceGrotesk = Space_Grotesk({
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://kalimeister.com"),
-  title: "Kali Meister | Tarot Reader & Spiritual Healer",
-  description: "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing with over 40 years of intuitive practice.",
+  title: "Kali Meister | Writing, Tarot & Spiritual Work",
+  description: "Writing, private tarot readings and spiritual work with Kali Meister. Explore her journal and receive Letters from Kali.",
   keywords: ["tarot reader", "spiritual healer", "psychic reading", "reiki", "life coaching", "Chattanooga", "East Tennessee"],
   authors: [{ name: "Kali Meister" }],
   openGraph: {
-    title: "Kali Meister | Tarot Reader & Spiritual Healer",
-    description: "Discover clarity, healing, and empowerment through tarot readings, spiritual counseling, and energy healing with over 40 years of intuitive practice.",
+    title: "Kali Meister | Writing, Tarot & Spiritual Work",
+    description: "Writing, private tarot readings and spiritual work with Kali Meister. Explore her journal and receive Letters from Kali.",
     url: "https://kalimeister.com",
     type: "website",
     locale: "en_US",
@@ -42,13 +42,13 @@ export const metadata: Metadata = {
         url: "https://kalimeister.com/images/kali-meister.jpg",
         width: 1200,
         height: 630,
-        alt: "Kali Meister - Tarot Reader & Spiritual Healer",
+        alt: "Kali Meister - Writer & Spiritual Practitioner",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Kali Meister | Tarot Reader & Spiritual Healer",
+    title: "Kali Meister | Writing, Tarot & Spiritual Work",
     description: "Discover clarity, healing, and empowerment through tarot readings.",
     images: ["https://kalimeister.com/images/kali-meister.jpg"],
   },
@@ -69,33 +69,27 @@ export default function RootLayout({
       </head>
       <body className="has-[.brand-preview]:[&>header]:hidden has-[.brand-preview]:[&>footer]:hidden antialiased min-h-screen bg-surface text-on-surface font-body selection:bg-primary/30 selection:text-primary-container">
         <Analytics />
-        <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-outline-variant/15">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex justify-between items-center">
-            <Link href="/" className="font-label text-lg tracking-[0.05em] uppercase text-primary hover:text-secondary transition-colors duration-250 ease-snappy">
-              Kali Meister
+        <header className="border-b border-on-surface/15 bg-surface">
+          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5 px-6 py-6 lg:px-12">
+            <Link href="/" className="font-serif text-3xl tracking-tight">
+              Kali Meister<span className="mt-1 block font-body text-[10px] uppercase tracking-[.22em]">Writing · Tarot · Spiritual Work</span>
             </Link>
-            <nav className="flex gap-8 text-sm font-label tracking-[0.05em] uppercase">
-              <Link href="/readings" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Readings</Link>
-              <Link href="/courses" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Courses</Link>
-              <Link href="/blog" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Journal</Link>
-              <Link href="/contact" className="text-on-surface hover:text-secondary transition-colors duration-250 ease-snappy">Contact</Link>
-              <Link href="/#free-guide" className="text-secondary hover:text-primary transition-colors duration-250 ease-snappy">Free Guide</Link>
+            <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-5 text-sm">
+              <Link href="/readings">Private readings</Link>
+              <Link href="/blog">Writing</Link>
+              <Link href="/#gatherings">Gatherings</Link>
+              <Link href="/#letters" className="rounded-full border border-primary px-5 py-2">Letters from Kali</Link>
             </nav>
-            <Link href="/readings">
-              <button className="bg-primary text-[#21005d] px-6 py-2.5 rounded-full text-xs font-label uppercase tracking-widest hover:bg-primary/90 transition-opacity">
-                Book Now
-              </button>
-            </Link>
           </div>
         </header>
         <Providers>
-          <main className="pt-20 has-[.brand-preview]:pt-0">{children}</main>
+          <main className="has-[.brand-preview]:pt-0">{children}</main>
         </Providers>
-        <footer className="py-16 px-12 text-center">
+        <footer className="py-16 px-6 text-center">
           <div className="max-w-7xl mx-auto">
             <p className="font-label text-lg tracking-[0.05em] uppercase text-primary mb-4">Kali Meister</p>
-            <p className="text-on-surface/40 text-sm font-label tracking-[0.05em] uppercase mb-8">Tarot Reader & Spiritual Healer</p>
-            <div className="flex justify-center gap-8 text-sm font-label tracking-[0.05em] uppercase mb-8">
+            <p className="text-on-surface/40 text-sm font-label tracking-[0.05em] uppercase mb-8">Writer & Spiritual Practitioner</p>
+            <div className="flex flex-wrap justify-center gap-8 text-sm font-label tracking-[0.05em] uppercase mb-8">
               <Link href="/readings" className="text-on-surface/40 hover:text-secondary transition-colors">Readings</Link>
               <Link href="/courses" className="text-on-surface/40 hover:text-secondary transition-colors">Courses</Link>
               <Link href="/blog" className="text-on-surface/40 hover:text-secondary transition-colors">Journal</Link>
