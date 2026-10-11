@@ -1,4 +1,4 @@
-import { initializeApp, getApps, cert, type App } from "firebase-admin/app";
+import { initializeApp, getApps, cert, applicationDefault, type App } from "firebase-admin/app";
 import { getFirestore } from "firebase-admin/firestore";
 import { getAuth } from "firebase-admin/auth";
 
@@ -8,12 +8,11 @@ let adminAuth: ReturnType<typeof getAuth> | undefined;
 
 function getAdminApp(): App {
   if (!adminApp) {
-    const serviceAccount = JSON.parse(
-      process.env.FIREBASE_SERVICE_ACCOUNT_KEY || "{}"
-    );
     if (!getApps().length) {
       adminApp = initializeApp({
-        credential: cert(serviceAccount),
+        credential: process.env.FIREBASE_SERVICE_ACCOUNT_KEY
+          ? cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY))
+          : applicationDefault(),
         projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
       });
     } else {
@@ -26,6 +25,7 @@ function getAdminApp(): App {
 function getAdminDb() {
   if (!adminDb) {
     adminDb = getFirestore(getAdminApp());
+    adminDb.settings({ ignoreUndefinedProperties: true });
   }
   return adminDb;
 }

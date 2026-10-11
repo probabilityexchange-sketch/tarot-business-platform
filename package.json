@@ -6,8 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
-    "postinstall": "echo 'Postinstall skipped'"
+    "lint": "tsc --noEmit",
+    "postinstall": "echo 'Postinstall skipped'",
+    "typecheck": "tsc --noEmit",
+    "test:business": "node src/tests/business.cjs"
   },
   "keywords": [],
   "author": "",
@@ -53,5 +55,8 @@
     "playwright": "^1.59.1",
     "postcss": "^8.5.8",
     "tailwindcss": "^4.2.2"
+  },
+  "engines": {
+    "node": "22"
   }
 }

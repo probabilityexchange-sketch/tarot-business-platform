@@ -206,6 +206,7 @@ async function calComFetch<T>(
   const config = getCalComConfig();
   const response = await fetch(`https://api.cal.com${path}`, {
     ...init,
+    signal: AbortSignal.timeout(20000),
     headers: {
       Authorization: `Bearer ${config.apiKey}`,
       "cal-api-version": apiVersion,
@@ -351,6 +352,10 @@ async function resolveCalComDescriptor(
   }
 
   const fallbackDescriptor = buildDescriptor(config);
+
+  if (typeof duration === "number") {
+    throw new Error("No Cal.com event type matched the current booking duration.");
+  }
 
   if ("eventTypeId" in fallbackDescriptor) {
     return fallbackDescriptor;

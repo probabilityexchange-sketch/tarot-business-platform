@@ -54,16 +54,6 @@ env:
     availability:
       - BUILD
       - RUNTIME
-  - variable: NEXT_PUBLIC_GTM_ID
-    value: ""
-    availability:
-      - BUILD
-      - RUNTIME
-  - variable: NEXT_PUBLIC_GA_MEASUREMENT_ID
-    value: ""
-    availability:
-      - BUILD
-      - RUNTIME
   - variable: NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY
     value: pk_live_51TGRq1DMad1jygV7wyy0eW6kQMjwgiHwkNv82z0OmGZon2G2yStIqcOYfGNTZN1Wz2Xb4wSOanWfO1daJkgFl4oH000o1vK4Eb
     availability:
@@ -75,7 +65,6 @@ env:
   - variable: BREVO_API_KEY
     secret: BREVO_API_KEY
     availability:
-      - BUILD
       - RUNTIME
   - variable: BREVO_FROM_EMAIL
     value: noreply@kalimeister.com
@@ -85,7 +74,6 @@ env:
   - variable: CALCOM_API_KEY
     secret: CALCOM_API_KEY
     availability:
-      - BUILD
       - RUNTIME
   - variable: CALCOM_EVENT_TYPE_ID
     value: "5255196"
@@ -105,15 +93,20 @@ env:
   - variable: STRIPE_SECRET_KEY
     secret: STRIPE_SECRET_KEY
     availability:
-      - BUILD
       - RUNTIME
   - variable: FIREBASE_SERVICE_ACCOUNT_KEY
     secret: FIREBASE_SERVICE_ACCOUNT_KEY
     availability:
-      - BUILD
       - RUNTIME
   - variable: ADMIN_EMAIL
     secret: ADMIN_EMAIL
     availability:
-      - BUILD
+      - RUNTIME
+  - variable: STRIPE_WEBHOOK_SECRET
+    secret: STRIPE_WEBHOOK_SECRET
+    availability:
+      - RUNTIME
+  - variable: BREVO_LIST_ID
+    value: "5"
+    availability:
       - RUNTIME
