@@ -75,10 +75,10 @@ export default function AboutPage() {
                 40+ Years Practice
               </span>
               <span className="px-4 py-2 rounded-full bg-surface-container text-secondary text-sm font-label">
-                B.A. Psychology
+                Undergraduate degree in psychology
               </span>
               <span className="px-4 py-2 rounded-full bg-surface-container text-secondary text-sm font-label">
-                M.F.A. Creative Writing
+                Master’s degree in creative writing
               </span>
             </div>
           </div>
@@ -96,9 +96,9 @@ export default function AboutPage() {
               lives with startling clarity.
             </p>
             <p className="text-lg text-on-surface/70 leading-relaxed font-body">
-              My credentials include a B.A. in Psychology from the University of
-              Tennessee Knoxville and an M.F.A. in Creative Writing from Goddard
-              College. I&apos;ve been a hospice counselor, a university instructor in
+              I hold a master’s degree in creative writing from Goddard College
+              and an undergraduate degree in psychology from the University of
+              Tennessee. I&apos;ve been a hospice counselor, a university instructor in
               writing and mythology, and a practicing channel for spirit guides
               and deceased loved ones since 2008.
             </p>
