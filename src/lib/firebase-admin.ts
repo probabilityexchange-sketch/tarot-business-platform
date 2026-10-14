@@ -10,7 +10,7 @@ function getAdminApp(): App {
   if (!adminApp) {
     if (!getApps().length) {
       adminApp = initializeApp({
-        credential: process.env.FIREBASE_SERVICE_ACCOUNT_KEY
+        credential: !process.env.K_SERVICE && process.env.FIREBASE_SERVICE_ACCOUNT_KEY
           ? cert(JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT_KEY))
           : applicationDefault(),
         projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,

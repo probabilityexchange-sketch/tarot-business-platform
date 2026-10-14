@@ -84,6 +84,7 @@ function hold(id, offeringId = "narrative-session", duration = 60) {
 }
 const payload = { offeringId: "narrative-session", offeringName: "Forged offer", price: "$0.01", duration: "1 Minute", reservationUid: "hold-1", reservationToken: token, slotStart: "2026-11-01T15:00:00Z", slotDuration: 60, customerName: "Test", customerEmail: "test@example.com", customerTimezone: "America/New_York", notes: "n".repeat(4000) };
 async function main() {
+  require("./firebase-credentials.cjs")();
   const checkout = await bundle("src/app/api/checkout/route.ts", "checkout");
   hold("hold-1");
   assert.equal((await checkout.POST(request(payload))).status, 200);
