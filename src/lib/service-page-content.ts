@@ -1,7 +1,8 @@
-import { SERVICES, CITIES } from "@/lib/pseo-data";
+import { isRetainedCityPage } from "@/lib/city-pages";
+import { CITIES } from "@/lib/pseo-data";
 
 export function getCityContent(service: string, city: string) {
-  if (!Object.prototype.hasOwnProperty.call(SERVICES, service) || !Object.prototype.hasOwnProperty.call(CITIES, city)) return null;
+  if (!isRetainedCityPage(service, city)) return null;
   return {
     paragraph: `Joining from ${CITIES[city].city}? Kali’s private readings take place online and offer room for your questions, conversation and spiritual reflection. Her background includes creative writing and psychology. View the current readings page for session options, prices and availability. If you’re interested in a particular reading approach, ask before booking.`,
     faq: [

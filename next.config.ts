@@ -1,11 +1,5 @@
-import type { NextConfig } from 'next';
-import { SERVICES, CITIES } from "@/lib/pseo-data";
-
-const legacyCityRedirects = [
-  { source: "la", target: "los-angeles-ca" },
-  { source: "sf", target: "san-francisco-ca" },
-  { source: "nyc", target: "new-york-ny" },
-];
+import type { NextConfig } from "next";
+import { cityRedirects } from "./src/lib/city-pages";
 
 const legacyHtmlRedirects = [
   { source: "/about.html", target: "/about" },
@@ -16,36 +10,11 @@ const legacyHtmlRedirects = [
 ];
 
 const redirects = async () => {
-  const entries: Array<{ source: string; destination: string; permanent: true }> = [];
-
-  for (const citySlug of Object.keys(CITIES)) {
-    entries.push({
-      source: `/${citySlug}`,
-      destination: `/readings/tarot-reading/${citySlug}`,
-      permanent: true,
-    });
-  }
-  entries.push({
-    source: "/index",
-    destination: "/",
-    permanent: true,
-  });
-
-  for (const { source, target } of legacyCityRedirects) {
-    for (const service of Object.keys(SERVICES)) {
-      entries.push({
-        source: `/readings/${service}/${source}`,
-        destination: `/readings/${service}/${target}`,
-        permanent: true,
-      });
-    }
-  }
-
-  for (const { source, target } of legacyHtmlRedirects) {
-    entries.push({ source, destination: target, permanent: true });
-  }
-
-  return entries;
+  return [
+    ...cityRedirects(),
+    { source: "/index", destination: "/", permanent: true as const },
+    ...legacyHtmlRedirects.map(({ source, target }) => ({ source, destination: target, permanent: true as const })),
+  ];
 };
 
 const nextConfig: NextConfig = {
