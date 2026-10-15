@@ -43,7 +43,7 @@ service cloud.firestore {
 
     // Content Engine (Blog Posts/SEO)
     match /blog_posts/{postId} {
-      allow read: if true;
+      allow read: if resource.data.status == "published" || isAdmin();
       allow write: if isAdmin();
     }
 

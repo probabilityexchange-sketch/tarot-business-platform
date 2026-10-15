@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminDb } from "@/lib/firebase-admin";
 import { verifyAdminRequest } from "@/lib/admin-auth";
+import { savePost } from "@/lib/published-blog";
 import type { BlogPost } from "@/types/blog";
 
 type RouteContext = {
@@ -30,16 +31,8 @@ export async function PUT(request: NextRequest, context: RouteContext) {
   }
 
   const { id } = await context.params;
-  const body = await request.json();
-  const docRef = getAdminDb().collection("blog_posts").doc(id);
-  const snap = await docRef.get();
-
-  if (!snap.exists) {
-    return NextResponse.json({ error: "Post not found" }, { status: 404 });
-  }
-
-  await docRef.update({ ...body, updatedAt: new Date().toISOString() });
-  return NextResponse.json({ success: true });
+  const result = await savePost(await request.json().catch(() => null), id);
+  return NextResponse.json(result.error ? { error: result.error } : { success: true }, { status: result.status });
 }
 
 export async function DELETE(request: NextRequest, context: RouteContext) {

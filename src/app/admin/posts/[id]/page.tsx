@@ -39,6 +39,7 @@ export default function EditPostPage() {
   const [content, setContent] = useState("");
   const [status, setStatus] = useState<"draft" | "published">("draft");
   const [saving, setSaving] = useState(false);
+  const [saveError, setSaveError] = useState("");
   const [loading, setLoading] = useState(true);
   const [editor, setEditor] = useState<Editor | null>(null);
 
@@ -85,6 +86,7 @@ export default function EditPostPage() {
 
   const handleSubmit = async (publishStatus: "draft" | "published") => {
     setSaving(true);
+    setSaveError("");
     try {
       const res = await adminFetch("/api/blog-posts", {
         method: "PUT",
@@ -102,8 +104,12 @@ export default function EditPostPage() {
 
       if (res.ok) {
         router.push("/admin");
+      } else {
+        const result = await res.json().catch(() => ({}));
+        setSaveError(result.error || "Unable to save the article. Please try again.");
       }
     } catch (error) {
+      setSaveError("Unable to save the article. Please try again.");
       console.error("Failed to save post:", error);
     } finally {
       setSaving(false);
@@ -137,6 +143,7 @@ export default function EditPostPage() {
 
   return (
     <div className="max-w-4xl mx-auto px-4 py-8">
+      {saveError && <p role="alert" className="mb-6 rounded-lg border border-error p-4 text-error">{saveError}</p>}
       <div className="flex items-center gap-4 mb-8">
         <Link href="/admin">
           <Button variant="tertiary" size="sm">

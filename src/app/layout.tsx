@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://kalimeister.com"),
   title: "Kali Meister | Writing, Tarot & Spiritual Work",
   description: "Writing, private tarot readings and spiritual work with Kali Meister. Explore her journal and receive Letters from Kali.",
-  keywords: ["tarot reader", "spiritual healer", "psychic reading", "reiki", "life coaching", "Chattanooga", "East Tennessee"],
+  keywords: ["tarot reader", "spiritual reflection", "creative writing", "discernment", "Chattanooga", "East Tennessee"],
   authors: [{ name: "Kali Meister" }],
   openGraph: {
     title: "Kali Meister | Writing, Tarot & Spiritual Work",
@@ -49,7 +49,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Kali Meister | Writing, Tarot & Spiritual Work",
-    description: "Discover clarity, healing, and empowerment through tarot readings.",
+    description: "Writing, private tarot readings and spiritual reflection with Kali Meister.",
     images: ["https://kalimeister.com/images/kali-meister.jpg"],
   },
   icons: {
@@ -91,7 +91,7 @@ export default function RootLayout({
             <p className="text-on-surface/40 text-sm font-label tracking-[0.05em] uppercase mb-8">Writer & Spiritual Practitioner</p>
             <div className="flex flex-wrap justify-center gap-8 text-sm font-label tracking-[0.05em] uppercase mb-8">
               <Link href="/readings" className="text-on-surface/40 hover:text-secondary transition-colors">Readings</Link>
-              <Link href="/courses" className="text-on-surface/40 hover:text-secondary transition-colors">Courses</Link>
+              <Link href="/courses" className="text-on-surface/40 hover:text-secondary transition-colors">Resources</Link>
               <Link href="/blog" className="text-on-surface/40 hover:text-secondary transition-colors">Journal</Link>
               <Link href="/contact" className="text-on-surface/40 hover:text-secondary transition-colors">Contact</Link>
             </div>

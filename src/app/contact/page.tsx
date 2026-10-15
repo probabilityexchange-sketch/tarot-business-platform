@@ -4,11 +4,11 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Contact Kali Meister | Book a Reading or Send an Inquiry",
   description:
-    "Get in touch with Kali Meister to book a tarot reading, ask questions about services, or inquire about spiritual counseling. Response within 48 hours.",
+    "Get in touch with Kali Meister to book a tarot reading, ask questions about services, or inquire about spiritual reflection. Send an inquiry about private readings, writing or upcoming gatherings.",
   openGraph: {
     title: "Contact Kali Meister | Book a Reading or Send an Inquiry",
     description:
-      "Get in touch with Kali Meister for tarot readings, courses, and spiritual counseling inquiries.",
+      "Get in touch with Kali Meister for tarot readings, courses, and spiritual reflection inquiries.",
     url: "https://kalimeister.com/contact",
     type: "website",
     locale: "en_US",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Contact Kali Meister | Book a Reading or Send an Inquiry",
     description:
-      "Get in touch with Kali Meister for tarot readings, courses, and spiritual counseling inquiries.",
+      "Get in touch with Kali Meister for tarot readings, courses, and spiritual reflection inquiries.",
     images: ["https://kalimeister.com/images/kali-meister.jpg"],
   },
   alternates: {
@@ -51,8 +51,7 @@ export default function ContactPage() {
             <span className="text-primary italic">Touch</span>
           </h1>
           <p className="text-xl text-on-surface/60 font-body max-w-xl mx-auto">
-            Ready to book or have questions? Fill out the form below and I will
-            respond within 48 hours.
+            Ready to book or have questions? Send a message using the form below.
           </p>
         </div>
       </section>
@@ -215,7 +214,7 @@ export default function ContactPage() {
                 Response Time
               </p>
               <p className="text-on-surface/60 font-body">
-                I personally read every message and respond within 48 hours. For
+                Send a message with your question and preferred way to reach you. For
                 urgent matters, Instagram DMs are checked more frequently.
               </p>
             </div>
