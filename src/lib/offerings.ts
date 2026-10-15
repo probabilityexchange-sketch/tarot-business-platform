@@ -14,12 +14,11 @@ export const readingsOfferings: Offering[] = [
     duration: "60 Minutes",
     price: "$250",
     description:
-      "A comprehensive psychological exploration. We use the tarot archetypes to dismantle current life narratives and rebuild them with agency and insight.",
+      "A private tarot reading to explore a question, a decision or the story you’re living. Make space for conversation and spiritual reflection.",
     features: [
-      "In-depth psychological mapping",
-      "Video recording of the session",
-      "Post-session integration PDF",
-      "Private follow-up messaging",
+      "60-minute private online session",
+      "Tarot and conversation",
+      "Space for your questions",
     ],
   },
   {
@@ -28,12 +27,11 @@ export const readingsOfferings: Offering[] = [
     duration: "90 Minutes",
     price: "$450",
     description:
-      "Our most intensive offering. Specifically designed for those in transition, using Jungian concepts and tarot to uncover the hidden parts of the self.",
+      "An extended private reading with time to explore recurring patterns, transitions and the questions that deserve more attention.",
     features: [
-      "Jungian shadow work focus",
-      "Extended archetypal analysis",
-      "Guided reflective exercises",
-      "Priority scheduling",
+      "90-minute private online session",
+      "Time for deeper reflection",
+      "Tarot and conversation",
     ],
   },
 ];

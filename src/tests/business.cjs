@@ -1,3 +1,4 @@
+require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "publishing.cjs")], { stdio: "inherit" });
 const assert = require("node:assert/strict");
 const path = require("node:path");
 const fs = require("node:fs");

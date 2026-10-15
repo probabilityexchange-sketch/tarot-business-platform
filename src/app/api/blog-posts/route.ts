@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { getAdminDb } from "@/lib/firebase-admin";
 import { verifyAdminRequest } from "@/lib/admin-auth";
+import { savePost } from "@/lib/published-blog";
 import type { BlogPost } from "@/types/blog";
 
 export async function GET(request: NextRequest) {
@@ -19,25 +20,8 @@ export async function POST(request: NextRequest) {
   if (!isAdmin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const body = await request.json();
-  const { title, slug, content, excerpt, category, coverImageUrl, status } = body;
-  if (!title || !slug || !content || !excerpt || !category || !status) {
-    return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
-  }
-  const now = new Date().toISOString();
-  const docRef = await getAdminDb().collection("blog_posts").add({
-    title,
-    slug,
-    content,
-    excerpt,
-    category,
-    coverImageUrl: coverImageUrl || "",
-    status,
-    publishedAt: status === "published" ? now : null,
-    createdAt: now,
-    updatedAt: now,
-  });
-  return NextResponse.json({ id: docRef.id });
+  const result = await savePost(await request.json().catch(() => null));
+  return NextResponse.json(result.error ? { error: result.error } : { id: result.id }, { status: result.status });
 }
 
 export async function PUT(request: NextRequest) {
@@ -45,14 +29,10 @@ export async function PUT(request: NextRequest) {
   if (!isAdmin) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const body = await request.json();
-  const { id, ...data } = body;
-  if (!id) {
-    return NextResponse.json({ error: "Missing post id" }, { status: 400 });
-  }
-  const docRef = getAdminDb().doc(`blog_posts/${id}`);
-  await docRef.update({ ...data, updatedAt: new Date().toISOString() });
-  return NextResponse.json({ success: true });
+  const body = await request.json().catch(() => null);
+  if (!body || typeof body.id !== "string") return NextResponse.json({ error: "Missing post id" }, { status: 400 });
+  const result = await savePost(body, body.id);
+  return NextResponse.json(result.error ? { error: result.error } : { success: true }, { status: result.status });
 }
 
 export async function DELETE(request: NextRequest) {

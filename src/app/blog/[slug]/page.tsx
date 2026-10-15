@@ -1,184 +1,31 @@
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import type { Metadata } from "next";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import { Metadata, ResolvingMetadata } from "next";
+import { getPublicPost, safeArticleHtml } from "@/lib/published-blog";
 
-// Mock data fetching for now
-const posts = {
-  "shadow-work-and-the-moon": {
-    title: "Shadow Work & The Moon: Dismantling the Night",
-    description: "Explore the psychological depths of the Moon archetype and its role in narrative therapy and shadow work.",
-    date: "March 20, 2026",
-    category: "Archetypes",
-    image: "/images/courses-placeholder.svg",
-    content: `
-      <p>The Moon archetype is often misunderstood as a sign of confusion or deception. In psychological tarot, however, we view the Moon as the necessary threshold of the subconscious. It represents the "night sea journey" — the descent into the parts of our narrative that we have kept in the dark.</p>
-      
-      <h2>The Subconscious Architecture</h2>
-      <p>When we pull the Moon in a session, we aren't looking for secrets; we are looking for patterns. The light of the Moon is reflected light, representing our intellectual understanding of our emotional states. It is dim, inconsistent, and requires a different kind of vision.</p>
-      
-      <p>Shadow work begins here. By acknowledging the distorted shapes in the moonlight, we begin to name our fears and the stories they tell us about who we are allowed to be.</p>
-      
-      <h2>Dismantling the Night</h2>
-      <p>The goal of narrative therapy is not to destroy the darkness, but to populate it with agency. We don't fear the night when we know how to navigate it.</p>
-    `
-  },
-  "tarot-as-narrative-mirror": {
-    title: "The Tarot as a Narrative Mirror",
-    description: "How we use external symbols to reflect internal stories, and why the deck is the ultimate tool for personal agency.",
-    date: "March 15, 2026",
-    category: "Theory",
-    image: "/images/readings-placeholder.svg",
-    content: "<p>Theory of the narrative mirror...</p>"
-  },
-  "psychology-of-the-fool": {
-    title: "The Psychology of the Fool: Embracing the Void",
-    description: "The Fool isn't about stupidity; it's about the psychological necessity of the 'zero state' before transformation.",
-    date: "March 10, 2026",
-    category: "Psychology",
-    image: "/images/fool-placeholder.svg",
-    content: "<p>Psychology of the fool...</p>"
-  }
-};
+export const dynamic = "force-dynamic";
+type Props = { params: Promise<{ slug: string }> };
 
-type Props = {
-  params: Promise<{ slug: string }>;
-};
-
-export async function generateMetadata(
-  { params }: Props,
-  parent: ResolvingMetadata
-): Promise<Metadata> {
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
-  const post = posts[slug as keyof typeof posts];
-
-  if (!post) {
-    return {
-      title: "Post Not Found",
-    };
-  }
-
-  return {
-    title: `${post.title} | Psychological Tarot Journal`,
-    description: post.description,
-    openGraph: {
-      title: `${post.title} | Psychological Tarot Journal`,
-      description: post.description,
-      type: "article",
-      url: `https://kalimeister.com/blog/${slug}`,
-      locale: "en_US",
-      siteName: "Kali Meister",
-      images: [
-        {
-          url: "https://kalimeister.com/images/kali-meister.jpg",
-          width: 1200,
-          height: 630,
-          alt: post.title,
-        },
-      ],
-      publishedTime: post.date,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: `${post.title} | Psychological Tarot Journal`,
-      description: post.description,
-      images: ["https://kalimeister.com/images/kali-meister.jpg"],
-    },
-    alternates: {
-      canonical: `/blog/${slug}`,
-    },
-  };
+  const post = await getPublicPost(slug);
+  if (!post) notFound();
+  return { title: `${post.title} | Kali Meister`, description: post.excerpt, alternates: { canonical: `/blog/${slug}` }, authors: [{ name: "Kali Meister", url: "https://kalimeister.com/about" }], openGraph: { title: post.title, description: post.excerpt, url: `/blog/${slug}`, type: "article", publishedTime: post.publishedAt!, modifiedTime: post.updatedAt, ...(post.coverImageUrl ? { images: [{ url: post.coverImageUrl, alt: post.title }] } : {}) } };
 }
 
 export default async function BlogPostPage({ params }: Props) {
   const { slug } = await params;
-  const post = posts[slug as keyof typeof posts];
-
-  if (!post) {
-    notFound();
-  }
-
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.description,
-    "datePublished": post.date,
-    "author": {
-      "@type": "Person",
-      "name": "Kali Meister"
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://kalimeister.com/blog/${slug}`
-    }
-  };
-
-  return (
-    <article className="min-h-screen pt-32 pb-40">
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      {/* Scroll Progress Bar */}
-      <div className="fixed top-0 left-0 w-full z-[60]" aria-hidden="true">
-        <div className="ritual-progress w-1/3 h-1" /> {/* Visual simulation */}
-      </div>
-
-      <div className="max-w-4xl mx-auto px-6 lg:px-12">
-        <header className="mb-20">
-          <Link 
-            href="/blog" 
-            className="font-label text-xs uppercase tracking-[0.2em] text-on-surface/40 hover:text-secondary transition-colors mb-12 inline-block"
-            aria-label="Back to all journal entries"
-          >
-            ← Back to Journal
-          </Link>
-          <div className="flex items-center gap-4 mb-8">
-            <span className="font-label text-xs uppercase tracking-[0.2em] text-tertiary">{post.category}</span>
-            <span className="w-1 h-1 rounded-full bg-on-surface/20" aria-hidden="true" />
-            <time dateTime={post.date} className="font-label text-xs uppercase tracking-[0.2em] text-on-surface/40">{post.date}</time>
-          </div>
-          <h1 className="text-5xl md:text-7xl font-display leading-[1.1] italic mb-12">
-            {post.title}
-          </h1>
-        </header>
-
-        <div className="relative aspect-[16/9] bg-surface-container-highest mb-20 overflow-hidden rounded-xl shadow-2xl transition-all duration-700">
-          <Image 
-            src={post.image} 
-            alt={post.title}
-            fill
-            className="object-cover"
-            priority
-            unoptimized
-          />
-        </div>
-
-        <div 
-          className="prose prose-invert prose-p:text-xl prose-p:leading-relaxed prose-p:text-on-surface/70 prose-h2:text-4xl prose-h2:font-display prose-h2:italic prose-h2:mt-16 prose-h2:mb-8 max-w-none"
-          dangerouslySetInnerHTML={{ __html: post.content }}
-        />
-
-        {/* Post Footer / CTA */}
-        <footer className="mt-40 pt-20 border-t border-on-surface/5">
-          <Card surface="high" className="p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-12 bg-surface-container-low border-none transition-all hover:shadow-2xl">
-            <div className="max-w-md">
-              <h2 className="text-3xl font-display italic mb-4">Deepen the Inquiry</h2>
-              <p className="text-on-surface/60 font-body leading-relaxed">
-                If this exploration resonated, consider a private Narrative Deep-Dive session to map your own archetypes and discover hidden stories.
-              </p>
-            </div>
-            <Link href="/readings" passHref>
-              <Button variant="primary" size="lg" className="px-10 py-6" aria-label="Book a private reading session">
-                Book a Reading
-              </Button>
-            </Link>
-          </Card>
-        </footer>
-      </div>
-    </article>
-  );
+  const post = await getPublicPost(slug);
+  if (!post) notFound();
+  const schema = { "@context": "https://schema.org", "@type": "BlogPosting", headline: post.title, description: post.excerpt, datePublished: post.publishedAt, dateModified: post.updatedAt, author: { "@type": "Person", "@id": "https://kalimeister.com/#person", name: "Kali Meister", url: "https://kalimeister.com/about" }, mainEntityOfPage: `https://kalimeister.com/blog/${post.slug}`, ...(post.coverImageUrl ? { image: new URL(post.coverImageUrl, "https://kalimeister.com").href } : {}) };
+  return <article className="mx-auto max-w-3xl px-6 py-20">
+    <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema).replace(/</g, "\\u003c") }} />
+    <Link href="/blog" className="mb-8 inline-block underline underline-offset-4">← Back to the journal</Link>
+    <p className="mb-5 text-sm text-primary">{post.category} · <time dateTime={post.publishedAt!}>{new Date(post.publishedAt!).toLocaleDateString("en-US", { dateStyle: "long", timeZone: "America/New_York" })}</time></p>
+    <h1 className="mb-6 font-serif text-4xl leading-tight sm:text-6xl">{post.title}</h1>
+    <p className="mb-8">By <Link href="/about" className="underline">Kali Meister</Link></p>
+    {post.coverImageUrl && <img src={post.coverImageUrl} alt={post.title} className="mb-10 h-auto w-full rounded-xl" />}
+    <div className="text-lg leading-relaxed [&_p]:mb-6 [&_h2]:mb-5 [&_h2]:mt-10 [&_h2]:font-serif [&_h2]:text-3xl [&_h3]:mb-4 [&_h3]:mt-8 [&_h3]:font-serif [&_h3]:text-2xl [&_ul]:mb-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ol]:mb-6 [&_ol]:list-decimal [&_ol]:pl-6 [&_a]:underline [&_blockquote]:my-8 [&_blockquote]:border-l-4 [&_blockquote]:border-primary [&_blockquote]:pl-6 [&_blockquote]:italic" dangerouslySetInnerHTML={{ __html: safeArticleHtml(post.content) }} />
+    <footer className="mt-14 border-t border-on-surface/15 pt-8"><h2 className="mb-4 font-serif text-3xl">Keep the conversation going.</h2><p className="mb-5">Receive Letters from Kali for more writing and reflection prompts.</p><Link href="/#letters" className="underline underline-offset-4">Join the letters →</Link></footer>
+  </article>;
 }
