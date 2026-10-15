@@ -1,6 +1,7 @@
 import { setGlobalOptions } from "firebase-functions/v2";
 import { onDocumentCreated } from "firebase-functions/v2/firestore";
 import * as brevo from "@getbrevo/brevo";
+export { deliverDiscernmentSeries } from "./discernment-series.js";
 
 setGlobalOptions({ maxInstances: 10 });
 
