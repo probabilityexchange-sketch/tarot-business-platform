@@ -78,6 +78,7 @@ export default function RootLayout({
               <Link href="/readings">Private readings</Link>
               <Link href="/blog">Writing</Link>
               <Link href="/#gatherings">Gatherings</Link>
+              <Link href="/shop">Shop</Link>
               <Link href="/#letters" className="rounded-full border border-primary px-5 py-2">Letters from Kali</Link>
             </nav>
           </div>
@@ -93,6 +94,7 @@ export default function RootLayout({
               <Link href="/readings" className="text-on-surface/40 hover:text-secondary transition-colors">Readings</Link>
               <Link href="/courses" className="text-on-surface/40 hover:text-secondary transition-colors">Resources</Link>
               <Link href="/blog" className="text-on-surface/40 hover:text-secondary transition-colors">Journal</Link>
+              <Link href="/shop" className="text-on-surface/40 hover:text-secondary transition-colors">Shop</Link>
               <Link href="/contact" className="text-on-surface/40 hover:text-secondary transition-colors">Contact</Link>
             </div>
             <div className="flex justify-center gap-6 mb-8">
