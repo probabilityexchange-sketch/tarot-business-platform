@@ -28,7 +28,7 @@ export async function brevoRequest(path: string, body: Record<string, unknown>) 
 }
 
 function emailBody(email: string, subject: string, htmlContent: string) {
-  return { sender: { name: "Kali Meister", email: process.env.BREVO_FROM_EMAIL || "noreply@kalimeister.com" }, to: [{ email }], subject, htmlContent };
+  return { sender: { name: "Kali Meister", email: process.env.BREVO_FROM_EMAIL || "noreply@kalimeister.com" }, to: [{ email }], replyTo: { email: "billy@randi.agency", name: "Kali Meister" }, subject, htmlContent };
 }
 
 export async function requestSignup(request: Request, source?: string) {
