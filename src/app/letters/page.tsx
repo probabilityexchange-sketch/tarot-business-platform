@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export default function LettersPage() {
   return (
-    <main className="bg-[#f5f0e8] text-[#302731]">
+    <div className="bg-[#f5f0e8] text-[#302731]">
       <section className="mx-auto grid max-w-6xl gap-12 px-6 py-16 lg:grid-cols-[1.1fr_.9fr] lg:gap-20 lg:py-24">
         <div>
           <p className="mb-6 text-xs uppercase tracking-[.22em] text-[#744b65]">Letters from Kali · A free guide to begin</p>
@@ -35,6 +35,6 @@ export default function LettersPage() {
         </aside>
       </section>
       <section className="border-t border-[#302731]/15 px-6 py-12"><div className="mx-auto max-w-3xl"><h2 className="font-serif text-3xl">Writing and spiritual reflection, together.</h2><p className="mt-5 leading-relaxed text-[#655b61]">Kali Meister is a writer and spiritual practitioner with a master’s degree in creative writing from Goddard College and an undergraduate degree in psychology from the University of Tennessee. Her letters bring writing prompts and thoughtful questions to the practice of discernment.</p><Link href="/about" className="mt-5 inline-block text-sm underline underline-offset-4">Meet Kali →</Link></div></section>
-    </main>
+    </div>
   );
 }
