@@ -10,7 +10,7 @@ export function BrandHomepage({ preview = false }: { preview?: boolean }) {
       {preview && <div className="bg-[#4f3145] px-5 py-2 text-center text-xs tracking-wide text-[#f5f0e8]">Homepage concept · Copy for Kali to review</div>}
       <header className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-5 border-b border-[#302731]/15 px-6 py-6 lg:px-12">
         <Link href="/" className="font-serif text-3xl tracking-tight">Kali Meister<span className="mt-1 block font-sans text-[10px] uppercase tracking-[.22em]">Writing · Tarot · Spiritual Work</span></Link>
-        <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-5 text-sm"><a href="#readings">Private readings</a><a href="#writing">Writing</a><a href="#gatherings">Gatherings</a><a href="#letters" className="rounded-full border border-[#653c56] px-5 py-2">Letters from Kali</a></nav>
+        <nav aria-label="Main navigation" className="flex flex-wrap items-center gap-5 text-sm"><a href="#readings">Private readings</a><a href="#writing">Writing</a><a href="#gatherings">Gatherings</a><Link href="/shop">Shop</Link><a href="#letters" className="rounded-full border border-[#653c56] px-5 py-2">Letters from Kali</a></nav>
       </header>
       <section className="mx-auto grid max-w-7xl gap-12 px-6 py-12 lg:grid-cols-[1.1fr_.9fr] lg:gap-20 lg:px-12 lg:py-12">
         <div className="flex flex-col justify-center">
