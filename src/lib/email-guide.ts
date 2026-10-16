@@ -1,146 +1,23 @@
 export function emailGuide(unsubscribeUrl: string): string {
-  return `
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <style>
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
-        line-height: 1.6;
-        color: #1a1a1a;
-        background-color: #fafafa;
-        margin: 0;
-        padding: 20px;
-      }
-      .container {
-        max-width: 600px;
-        margin: 0 auto;
-        background-color: white;
-        border-radius: 12px;
-        padding: 40px;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      }
-      h1 {
-        color: #ec4899;
-        font-size: 32px;
-        margin-bottom: 20px;
-        font-style: italic;
-      }
-      h2 {
-        color: #1a1a1a;
-        font-size: 20px;
-        margin-top: 30px;
-        margin-bottom: 15px;
-        border-bottom: 2px solid #ec4899;
-        padding-bottom: 10px;
-      }
-      p {
-        margin: 12px 0;
-        color: #4a5568;
-        font-size: 16px;
-      }
-      .step {
-        background-color: #faf5ff;
-        border-left: 4px solid #ec4899;
-        padding: 20px;
-        margin: 15px 0;
-        border-radius: 4px;
-      }
-      .step-title {
-        color: #ec4899;
-        font-weight: 600;
-        font-size: 18px;
-        margin-bottom: 10px;
-      }
-      .quote {
-        font-style: italic;
-        color: #718096;
-        margin: 20px 0;
-        padding-left: 20px;
-        border-left: 3px solid #ec4899;
-      }
-      .cta-section {
-        background-color: #f5f0ff;
-        padding: 20px;
-        border-radius: 8px;
-        margin-top: 30px;
-        text-align: center;
-      }
-      .cta-link {
-        display: inline-block;
-        background-color: #ec4899;
-        color: white;
-        padding: 12px 30px;
-        border-radius: 8px;
-        text-decoration: none;
-        margin-top: 15px;
-        font-weight: 600;
-      }
-      .footer {
-        margin-top: 40px;
-        padding-top: 20px;
-        border-top: 1px solid #e2e8f0;
-        text-align: center;
-        color: #a0aec0;
-        font-size: 14px;
-      }
-    </style>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Awaken Your Intuition</h1>
-      <p>Thank you for requesting this guide. Inside, you'll discover 3 powerful steps to unlock your psychic abilities and strengthen your intuitive powers.</p>
-
-      <h2>The 3 Steps to Awakening Your Intuition</h2>
-
-      <div class="step">
-        <div class="step-title">Step 1: Clear Your Energy</div>
-        <p>Before developing your intuitive abilities, you must release blockages. Spend 10 minutes in quiet meditation. Visualize any negative energy as mist leaving your body with each exhale. Follow with a simple grounding practice: place your bare feet on earth, or visualize roots extending from your feet into the ground.</p>
-        <p><strong>Daily practice:</strong> 5-10 minutes of grounding meditation.</p>
-      </div>
-
-      <div class="step">
-        <div class="step-title">Step 2: Activate Your Third Eye</div>
-        <p>Your intuition is housed in your third eye chakra, located between your eyebrows. Gently focus your attention there during meditation. Use affirmations like "I trust my inner wisdom" and "My intuition guides me." You may experience tingling, warmth, or visual impressions—all are normal signs of activation.</p>
-        <p><strong>Daily practice:</strong> 15 minutes of third eye meditation with affirmations.</p>
-      </div>
-
-      <div class="step">
-        <div class="step-title">Step 3: Practice Receptivity</div>
-        <p>Intuition cannot be forced—only invited. Practice receiving intuitive downloads by asking a question before sleep and journaling any impressions you wake with. Start small: predict who will text you, sense the energy of a room before entering, or notice synchronicities in your day.</p>
-        <p><strong>Daily practice:</strong> Journaling and intuitive exercises.</p>
-      </div>
-
-      <div class="quote">
-        "Your intuition is not magical thinking—it is your nervous system processing patterns at a speed your conscious mind cannot yet articulate. Trust it."
-      </div>
-
-      <h2>Exclusive Wisdom: The Shadow Intuition</h2>
-      <p>Many people dismiss their intuitive hits because they contradict logic. This is the "shadow intuition"—the wisdom you fear to name. Your intuition may tell you a relationship isn't working, that you're not aligned with your values, or that a "good opportunity" feels wrong. These signals are often the most important.</p>
-      <p>This week, notice which intuitive hits you resist. That resistance is your teacher.</p>
-
-      <h2>Next Steps</h2>
-      <p>These practices work best when sustained over 40 days. At the end of this period, you'll notice a significant shift in your clarity, confidence, and ability to sense what's true for you.</p>
-      <p>If you're ready to deepen this work with personalized guidance, I offer:</p>
-      <ul>
-        <li><strong>Intuitive Life Coaching:</strong> 1:1 sessions to unlock your specific gifts</li>
-        <li><strong>Psychological Tarot Readings:</strong> 60-minute deep dives into your patterns</li>
-        <li><strong>Energy Healing:</strong> Chakra activation and blockage clearing</li>
-      </ul>
-
-      <div class="cta-section">
-        <p>Ready to go deeper?</p>
-        <a href="https://kalimeister.com/readings" class="cta-link">Book a Personal Reading</a>
-      </div>
-
-      <div class="footer">
-        <p>🔮 This guide is just the beginning. Your intuitive journey awaits.</p>
-        <p>Kali Meister | Psychological Tarot & Spiritual Guidance</p>
-        <p style="margin-top: 10px; font-size: 12px;">You're receiving this because you signed up for our free guide. <a href="${unsubscribeUrl}" style="color: #a0aec0;">Unsubscribe</a></p>
-      </div>
-    </div>
-  </body>
-</html>
-    `;
+  return `<!DOCTYPE html><html><head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" /><title>A little room for discernment</title></head>
+<body style="margin:0;background:#f5f0e8;color:#302731;font-family:Arial,sans-serif;line-height:1.7;">
+<table role="presentation" width="100%" cellspacing="0" cellpadding="0"><tr><td style="padding:24px 16px;"><table role="presentation" width="100%" cellspacing="0" cellpadding="0" style="max-width:600px;margin:auto;"><tr><td style="padding:24px;">
+<p style="font-size:12px;letter-spacing:2px;color:#744b65;">LETTERS FROM KALI</p>
+<h1 style="font-family:Georgia,serif;font-size:36px;line-height:1.2;font-weight:normal;color:#653c56;">A little room<br /><em>for discernment.</em></h1>
+<p>Thank you for joining me here. This guide is an invitation to pause, write, and look again. You don’t have to identify every feeling perfectly before taking a thoughtful next step.</p>
+<h2 style="font-family:Georgia,serif;font-weight:normal;color:#653c56;">1. Notice the feeling.</h2>
+<p>Choose a small decision you’re considering. Write what happened, what you noticed, and what you think it means as three separate sentences. An observation and its interpretation can feel like the same thing until we put them on the page.</p>
+<p><em>Try writing: “What I observed was ___. The story I’m telling about it is ___.”</em></p>
+<h2 style="font-family:Georgia,serif;font-weight:normal;color:#653c56;">2. Make room for another explanation.</h2>
+<p>Fear, self-image, desire and intuition can overlap. Ask what you’re afraid of losing, what you hope will happen, and what information you might be missing. Feeling calm or feeling certain does not, by itself, prove an interpretation true.</p>
+<p><em>Try writing: “Another possible explanation is ___. What would help me check it is ___.”</em></p>
+<h2 style="font-family:Georgia,serif;font-weight:normal;color:#653c56;">3. Choose one small next step.</h2>
+<p>Look for a step you can revisit: ask a question, gather a missing fact, or give yourself time before committing. Then return to your notes. What did you expect? What actually happened? What would you take into the next decision?</p>
+<p><em>Try writing: “One small step I can take is ___. I’ll revisit this when ___.”</em></p>
+<p>You can return to these questions whenever you need them. Discernment can be a practice of paying attention, rather than a demand to be certain.</p>
+<p>Your welcome letter follows, then a weekly series exploring these questions in more depth. If you’d like to share what you noticed, you can reply.</p>
+<p style="font-family:Georgia,serif;font-size:24px;font-style:italic;color:#653c56;">Kali</p>
+<p><a href="https://kalimeister.com/readings" style="color:#653c56;">Explore a private tarot reading</a></p>
+<p style="margin-top:32px;border-top:1px solid #d8c9ce;padding-top:20px;font-size:12px;color:#655b61;">You’re receiving this guide because you confirmed your signup at kalimeister.com. <a href="${unsubscribeUrl}" style="color:#653c56;">Unsubscribe</a><br />Kali Meister · Writing, tarot &amp; spiritual reflection</p>
+</td></tr></table></td></tr></table></body></html>`;
 }
