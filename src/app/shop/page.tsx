@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { EmailSignupForm } from "@/components/EmailSignupForm";
-import { zodiacCollection } from "@/lib/merch";
+import { candleCollection, zodiacCollection } from "@/lib/merch";
 
 export const metadata: Metadata = {
   title: "Shop preview | Kali Meister",
-  description: "A first look at Kali Meister’s literary zodiac shirt collection.",
+  description: "A first look at Kali Meister’s literary zodiac shirts and intention candle collection.",
   robots: { index: false, follow: true },
 };
 
@@ -18,8 +18,9 @@ export default function ShopPage() {
         <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#655b61]">Twelve signs. Twelve knowing smiles. Literary humor and celestial illustrations, made to wear your own way.</p>
         <div className="mt-8 max-w-2xl rounded-xl border border-[#653c56]/20 bg-[#fcf9f4] p-5 text-sm leading-relaxed text-[#655b61]">Collection preview — not yet available to order. We’re checking our first sample before opening the shop. Images show design concepts; final shirt colors, sizing and prices will be confirmed at launch.</div>
         <a href="#shop-updates" className="mt-7 inline-flex rounded-full bg-[#653c56] px-6 py-3 text-sm text-white">Hear when the shop opens ↓</a>
+        <nav aria-label="Shop collections" className="mt-8 flex gap-6 text-sm text-[#653c56]"><a href="#shirts" className="border-b border-[#744b65] pb-1">Zodiac shirts ↓</a><a href="#candles" className="border-b border-[#744b65] pb-1">Candles ↓</a></nav>
       </section>
-      <section aria-label="Zodiac shirt collection" className="mx-auto grid max-w-7xl gap-x-7 gap-y-12 px-6 pb-20 sm:grid-cols-2 lg:grid-cols-3 lg:px-12">
+      <section id="shirts" aria-label="Zodiac shirt collection" className="mx-auto grid max-w-7xl gap-x-7 gap-y-12 px-6 pb-20 sm:grid-cols-2 lg:grid-cols-3 lg:px-12">
         {zodiacCollection.map(({ sign, saying }, index) => (
           <article key={sign}>
             <div className="overflow-hidden rounded-t-[80px] bg-[#fcf9f4]">
@@ -30,10 +31,20 @@ export default function ShopPage() {
           </article>
         ))}
       </section>
-      <section aria-labelledby="candles-title" className="border-t border-[#302731]/15 bg-[#efe5d6] px-6 py-16 lg:py-24">
-        <div className="mx-auto grid max-w-6xl items-center gap-10 md:grid-cols-2 md:gap-20">
-          <Image src="/images/merch/writing-hour-candle.webp" alt="The Writing Hour candle concept with an amber jar and cream botanical label" width={800} height={1000} className="aspect-[4/5] w-full rounded-t-[100px] object-cover" />
-          <div><p className="mb-5 text-xs uppercase tracking-[.2em] text-[#744b65]">Candles · In development</p><h2 id="candles-title" className="font-serif text-4xl sm:text-5xl">The Writing Hour</h2><p className="mt-6 max-w-md text-lg leading-relaxed text-[#655b61]">A little light beside the page. A candle concept for the moments you set aside to write, reflect and begin again.</p><p className="mt-5 max-w-md text-sm leading-relaxed text-[#655b61]">Shown as a design concept. Scents, sizes and prices will be confirmed before release.</p><a href="#shop-updates" className="mt-8 inline-block border-b border-[#744b65] pb-1 text-sm">Get collection updates ↓</a></div>
+      <section id="candles" aria-labelledby="candles-title" className="scroll-mt-6 border-t border-[#302731]/15 bg-[#efe5d6] px-6 py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl lg:px-6">
+          <p className="mb-5 text-xs uppercase tracking-[.2em] text-[#744b65]">The intention candle collection · Coming soon</p>
+          <h2 id="candles-title" className="font-serif text-4xl sm:text-5xl">A little light.<br /><span className="italic text-[#744b65]">A moment for yourself.</span></h2>
+          <p className="mt-6 max-w-2xl leading-relaxed text-[#655b61]">Six candle designs for writing, ritual and reflection. Our first collection is being prepared in amber jars with cream-and-plum botanical labels.</p>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#655b61]">These images are design concepts, not final product photographs. Scents and prices are being reviewed. This first collection will be produced and shipped by our print-on-demand partner; a personal blessing by Kali is not included.</p>
+          <div className="mt-10 grid gap-x-7 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+            {candleCollection.map((candle) => <article key={candle.slug}>
+              <div className="overflow-hidden rounded-t-[70px] bg-[#fcf9f4]"><Image src={`/images/merch/${candle.slug}-candle.webp`} alt={`${candle.name} candle design concept in an amber jar with a cream botanical label`} width={800} height={900} className="aspect-[4/5] w-full object-cover" /></div>
+              <div className="mt-5 flex items-center justify-between gap-3"><h3 className="font-serif text-3xl">{candle.name}</h3><span className="shrink-0 text-[10px] uppercase tracking-[.15em] text-[#744b65]">Coming soon</span></div>
+              <p className="mt-2 text-sm leading-relaxed text-[#655b61]">{candle.description}</p>
+            </article>)}
+          </div>
+          <a href="#shop-updates" className="mt-10 inline-block border-b border-[#744b65] pb-1 text-sm">Get collection updates ↓</a>
         </div>
       </section>
       <section id="shop-updates" className="border-t border-[#302731]/15 bg-[#e8dedf] px-6 py-16">
