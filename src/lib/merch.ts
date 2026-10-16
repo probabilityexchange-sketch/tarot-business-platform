@@ -12,3 +12,12 @@ export const zodiacCollection = [
   { sign: "Aquarius", saying: "The plot was predictable. I changed the genre." },
   { sign: "Pisces", saying: "I was listening. To the ocean in my head." },
 ] as const;
+
+export const candleCollection = [
+  { name: "Peace", slug: "peace", description: "A quiet pause. Olive branches and a little room to breathe." },
+  { name: "Clarity", slug: "clarity", description: "Sunrise over still water. Space to write and consider what comes next." },
+  { name: "Protection", slug: "protection", description: "An enclosing oak wreath. A prompt to reflect on boundaries and the space you keep." },
+  { name: "Prosperity", slug: "prosperity", description: "A flourishing pomegranate branch. An invitation to notice what you want to cultivate." },
+  { name: "Love", slug: "love", description: "Intertwined flowering stems. A moment for care, connection and self-kindness." },
+  { name: "The Writing Hour", slug: "writing-hour", description: "A little light beside the page. Time to write, reflect and begin again." },
+] as const;
