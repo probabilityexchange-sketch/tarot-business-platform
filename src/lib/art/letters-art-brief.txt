@@ -1,0 +1,9 @@
+Letters page art preview
+Subject: an open journal; a single botanical stem rises from the gutter, turning reflection into growth.
+House palette: exact page cream #f5f0e8, plum #653c56, muted sage #87927a.
+Placement: below the left-hand introduction; signup remains in the right column and comes before artwork on mobile.
+Format: responsive SVG, 680 x 310 viewBox. Silent, single 5.2-second draw-on, user replay/pause controls. Reduced-motion: finished still.
+Medium: restrained ink-and-line-wash, following Anidoodle's wren medium and drawing-process workflow. Original authored paths; SVG implementation, no Anidoodle engine bundled, no new dependencies.
+User accepted: Letters-page preview, open journal and botanical branch, cream/plum, no sound, accessible static fallback.
+Decisions by agent: timing, sage accent, composition and placement.
+Workflow source: https://github.com/alexgreensh/anidoodle/tree/main/skills/anidoodle (Apache-2.0), reviewed 2026-10-16. No source code copied into the artwork.
