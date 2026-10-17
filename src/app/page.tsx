@@ -18,5 +18,5 @@ export default function Home() {
     jobTitle: "Writer & Spiritual Practitioner",
     knowsAbout: ["Writing", "Tarot", "Spiritual reflection"],
   };
-  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><BrandHomepage /></>;
+  return <><script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} /><BrandHomepage illustrated /></>;
 }
