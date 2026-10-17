@@ -11,7 +11,6 @@ export const metadata: Metadata = {
   twitter: { card: "summary_large_image", title: "Letters from Kali", description },
 };
 
-
 export default function LettersPage() {
-  return <LettersContent />;
+  return <LettersContent illustrated />;
 }

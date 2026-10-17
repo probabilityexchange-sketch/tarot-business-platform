@@ -29,6 +29,7 @@ const branchLines = [
   "M384 77 C372 57 363 41 354 27",
   "M329 180 C307 165 287 151 267 143",
   "M357 142 C385 131 411 122 430 118",
+  "M398 45 C411 35 424 25 435 18",
 ];
 
 export function LettersIllustration() {
