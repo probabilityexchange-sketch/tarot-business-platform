@@ -61,3 +61,34 @@
     transition-timing-function: var(--ease-snappy);
   }
 }
+
+.letters-art-drawing {
+  animation: letters-drawing-duration 5.2s linear both;
+}
+.letters-art-drawing .letters-ink {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: letters-ink-draw 1s ease-in-out both;
+}
+.letters-art-drawing .letters-wash {
+  clip-path: inset(100% 0 0 0);
+  animation: letters-wash-spread 1.8s ease-out both;
+}
+@keyframes letters-ink-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes letters-wash-spread {
+  to { clip-path: inset(0 0 0 0); }
+}
+@keyframes letters-drawing-duration {
+  from { visibility: visible; }
+  to { visibility: visible; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .letters-art-drawing, .letters-art-drawing .letters-ink, .letters-art-drawing .letters-wash {
+    animation: none;
+    stroke-dashoffset: 0;
+    clip-path: none;
+  }
+  .letters-motion-controls { display: none; }
+}
