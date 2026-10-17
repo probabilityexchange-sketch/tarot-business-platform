@@ -4,17 +4,16 @@ import type { CSSProperties } from "react";
 import { useEffect, useId, useState } from "react";
 
 const journalLines = [
-  "M114 187 C164 163 222 170 301 210 L298 270 C225 234 166 226 105 246 Z",
-  "M301 210 C361 162 423 149 476 164 L492 225 C427 210 366 237 298 270",
-  "M110 198 L98 254 C164 233 224 243 298 279 C371 244 434 222 499 234 L487 171",
-  "M298 270 C294 245 297 224 301 210",
-  "M119 194 C179 176 229 186 285 211",
-  "M119 211 C175 197 221 206 279 230",
-  "M118 225 C165 215 207 222 251 239",
-  "M321 207 C365 177 410 168 451 173",
-  "M324 223 C365 197 402 187 453 187",
-  "M323 239 C357 221 391 207 429 204",
-  "M301 273 C303 281 308 288 316 290 L322 276",
+  "M120 178 C179 161 244 174 300 210 C356 174 421 161 480 178 L489 241 C422 225 358 240 300 272 C242 240 178 225 111 241 Z",
+  "M300 210 L300 272",
+  "M115 187 L104 249 C175 232 240 249 300 281 C360 249 425 232 496 249 L485 187",
+  "M111 241 L104 249 M489 241 L496 249 M300 272 L300 281",
+  "M134 190 C184 179 237 190 283 216",
+  "M132 204 C184 195 235 205 282 231",
+  "M130 218 C181 210 231 221 278 246",
+  "M317 216 C363 190 416 179 466 190",
+  "M318 231 C365 205 416 195 468 204",
+  "M322 246 C369 221 419 210 470 218",
 ];
 
 const branchLines = [
@@ -71,7 +70,7 @@ export function LettersIllustration() {
         <g className="letters-wash" style={{ animationPlayState: playing ? "running" : "paused" }} fill="#87927a" opacity="0.12">
           <path d="M344 149 C321 137 309 113 301 98 C324 103 341 123 344 149 Z M371 110 C397 111 419 94 428 80 C407 82 386 93 371 110 Z M382 71 C366 58 359 43 357 31 C373 42 381 57 382 71 Z M359 140 C388 143 412 130 424 120 C401 119 377 128 359 140 Z" />
         </g>
-        <g className="letters-wash" style={{ animationPlayState: playing ? "running" : "paused" }} fill="#b799a7" opacity="0.12"><path d="M120 194 C173 176 221 181 294 213 L292 259 C232 230 166 217 112 235 Z M307 214 C363 173 424 157 468 169 L480 216 C426 204 365 229 306 259 Z" /></g>
+        <g className="letters-wash" style={{ animationPlayState: playing ? "running" : "paused" }} fill="#b799a7" opacity="0.12"><path d="M125 183 C182 168 242 181 294 213 L294 263 C238 235 179 223 117 234 Z M306 213 C358 181 418 168 475 183 L483 234 C421 223 362 235 306 263 Z" /></g>
         <g fill="none" stroke="#653c56" strokeLinecap="round" strokeLinejoin="round">
           {journalLines.map((path, index) => stroke(path, index, false))}
           {branchLines.map((path, index) => stroke(path, index, true))}
