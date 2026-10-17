@@ -32,7 +32,7 @@ const branchLines = [
   "M398 45 C411 35 424 25 435 18",
 ];
 
-export function LettersIllustration() {
+export function LettersIllustration({ tarot = false }: { tarot?: boolean }) {
   const titleId = useId();
   const [run, setRun] = useState(0);
   const [playing, setPlaying] = useState(false);
@@ -60,25 +60,38 @@ export function LettersIllustration() {
   }
 
   return (
-    <figure className="mt-6" aria-label="An open journal with a botanical branch growing from its pages">
+    <figure className="mt-6" aria-label={tarot ? "An open journal, tarot cards and a growing botanical branch" : "An open journal with a botanical branch growing from its pages"}>
       <svg key={run} viewBox="65 0 480 310" className={`letters-art w-full max-w-xl ${finished ? "" : "letters-art-drawing"}`} role="img" aria-labelledby={titleId} onAnimationEnd={(event) => {
         if (event.animationName === "letters-drawing-duration") {
           setFinished(true);
           setPlaying(false);
         }
       }} style={{ animationPlayState: playing ? "running" : "paused" }}>
-        <title id={titleId}>A journal opens into a botanical branch, drawn in plum ink.</title>
+        <title id={titleId}>{tarot ? "Writing and tarot together: an open journal, moon and star cards, and a botanical branch in plum ink." : "A journal opens into a botanical branch, drawn in plum ink."}</title>
         <g className="letters-wash" style={{ animationPlayState: playing ? "running" : "paused" }} fill="#87927a" opacity="0.12">
           <path d="M344 149 C321 137 309 113 301 98 C324 103 341 123 344 149 Z M371 110 C397 111 419 94 428 80 C407 82 386 93 371 110 Z M382 71 C366 58 359 43 357 31 C373 42 381 57 382 71 Z M359 140 C388 143 412 130 424 120 C401 119 377 128 359 140 Z" />
         </g>
         <g className="letters-wash" style={{ animationPlayState: playing ? "running" : "paused" }} fill="#b799a7" opacity="0.12"><path d="M125 183 C182 168 242 181 294 213 L294 263 C238 235 179 223 117 234 Z M306 213 C358 181 418 168 475 183 L483 234 C421 223 362 235 306 263 Z" /></g>
         <g fill="none" stroke="#653c56" strokeLinecap="round" strokeLinejoin="round">
+          {tarot && <g transform="rotate(-12 165 100)">
+            {stroke("M128 39 Q124 39 124 44 L124 147 Q124 152 129 152 L200 152 Q205 152 205 147 L205 44 Q205 39 200 39 Z", 0, false)}
+            {stroke("M132 47 L197 47 L197 144 L132 144 Z", 1, false)}
+            {stroke("M146 69 L181 69 M146 78 L181 78 M146 87 L181 87 M146 96 L181 96 M146 105 L181 105 M146 114 L181 114 M146 123 L181 123", 2, false)}
+          </g>}
+          {tarot && <g transform="rotate(8 208 114)">
+            <path d="M171 53 Q166 53 166 58 L166 165 Q166 170 171 170 L245 170 Q250 170 250 165 L250 58 Q250 53 245 53 Z" fill="#f5f0e8" stroke="none" />
+            {stroke("M171 53 Q166 53 166 58 L166 165 Q166 170 171 170 L245 170 Q250 170 250 165 L250 58 Q250 53 245 53 Z", 2, false)}
+            {stroke("M174 61 L242 61 L242 162 L174 162 Z", 3, false)}
+            {stroke("M215 80 C190 77 180 108 200 123 C208 130 220 127 227 119 C208 122 196 97 215 80 Z", 4, false)}
+            {stroke("M226 73 L228 79 L234 81 L228 83 L226 89 L224 83 L218 81 L224 79 Z", 5, false)}
+            {stroke("M184 142 C193 136 199 148 208 142 C218 135 224 147 233 141 M184 150 C194 144 199 156 209 150 C218 144 224 155 233 149", 6, false)}
+          </g>}
           {journalLines.map((path, index) => stroke(path, index, false))}
           {branchLines.map((path, index) => stroke(path, index, true))}
         </g>
       </svg>
       <figcaption className="flex flex-wrap items-center justify-between gap-3 border-t border-[#744b65]/15 pt-3 text-[10px] uppercase tracking-[.18em] text-[#744b65]">
-        <span>Pause. Notice. Write.</span>
+        <span>{tarot ? "Words. Symbols. Possibility." : "Pause. Notice. Write."}</span>
         <span className="letters-motion-controls flex gap-4">
           {!finished && <button type="button" onClick={() => setPlaying(!playing)} className="rounded underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">{playing ? "Pause drawing" : "Resume drawing"}</button>}
           <button type="button" onClick={replay} className="rounded underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4">Replay drawing</button>

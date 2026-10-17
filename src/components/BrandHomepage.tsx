@@ -2,9 +2,10 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Sparkles } from "lucide-react";
 import { readingsOfferings } from "@/lib/offerings";
+import { LettersIllustration } from "@/components/LettersIllustration";
 import { EmailSignupForm } from "@/components/EmailSignupForm";
 
-export function BrandHomepage({ preview = false }: { preview?: boolean }) {
+export function BrandHomepage({ preview = false, illustrated = false }: { preview?: boolean; illustrated?: boolean }) {
   return (
     <div className="brand-preview bg-[#f5f0e8] text-[#302731] selection:bg-[#dfc5d5]">
       {preview && <div className="bg-[#4f3145] px-5 py-2 text-center text-xs tracking-wide text-[#f5f0e8]">Homepage concept · Copy for Kali to review</div>}
@@ -26,7 +27,7 @@ export function BrandHomepage({ preview = false }: { preview?: boolean }) {
           <figcaption className="mt-5 flex items-center justify-between border-b border-[#302731]/20 pb-4 text-xs uppercase tracking-[.14em]"><span>Kali Meister</span><span>Writer & spiritual practitioner</span></figcaption>
         </figure>
       </section>
-      <div className="border-y border-[#302731]/15 px-6 py-5 text-center font-serif text-xl italic text-[#744b65]">Words, symbols and conversation. Room to make meaning.</div>
+      {illustrated ? <section aria-labelledby="words-symbols-title" className="border-y border-[#302731]/15 bg-[#efe5d6]/30 px-6 py-10 lg:px-12"><div className="mx-auto grid max-w-5xl items-center gap-10 md:grid-cols-[1.1fr_1fr] md:gap-16"><LettersIllustration tarot /><div><p className="mb-5 text-xs uppercase tracking-[.2em] text-[#744b65]">Writing &amp; tarot</p><h2 id="words-symbols-title" className="font-serif text-4xl leading-tight sm:text-5xl">A page. A card.<br /><span className="italic text-[#744b65]">A place to begin.</span></h2><p className="mt-6 leading-relaxed text-[#655b61]">Writing gives a feeling language. Tarot offers an image to explore. Both invite us to look again at the stories we carry—and make room for what comes next.</p><Link href="/letters" className="mt-7 inline-block border-b border-[#744b65] pb-1 text-sm">Begin with a letter from Kali ↗</Link></div></div></section> : <div className="border-y border-[#302731]/15 px-6 py-5 text-center font-serif text-xl italic text-[#744b65]">Words, symbols and conversation. Room to make meaning.</div>}
       <section id="readings" className="mx-auto max-w-7xl px-6 py-16 lg:px-12 lg:py-24">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-5"><div><p className="mb-4 text-xs uppercase tracking-[.2em] text-[#744b65]">Work with Kali</p><h2 className="font-serif text-4xl sm:text-5xl">A reading with room for you.</h2></div><Link href="/readings" className="border-b border-[#744b65] pb-1 text-sm">View availability ↗</Link></div>
         <p className="mb-10 max-w-2xl leading-relaxed text-[#655b61]">Bring a question, a turning point, or something you haven’t found words for yet. Explore it through tarot and thoughtful conversation, with time for reflection.</p>
