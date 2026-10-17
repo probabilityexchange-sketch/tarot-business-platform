@@ -1,0 +1,7 @@
+Homepage illustration preview
+Placement: between Kali's introduction/portrait and private readings; two columns on desktop, stacked on mobile.
+Subject: the approved open journal and botanical branch, joined by two overlapping symbolic tarot cards. The foreground card carries a crescent, a star and water lines; no existing deck artwork is reproduced.
+Message: A page. A card. A place to begin. Writing and tarot offer complementary ways to reflect on a story.
+Palette and motion: same plum linework, cream, sage wash, silent draw-on, pause/replay, reduced-motion still as the approved Letters art.
+Implementation: original authored SVG paths, following the previously reviewed Anidoodle workflow guidance; no new engine or package dependency.
+Preview only: BrandHomepage illustrated flag is enabled on /preview, not the live root page.
