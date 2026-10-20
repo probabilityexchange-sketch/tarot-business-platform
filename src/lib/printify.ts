@@ -69,6 +69,7 @@ export async function quoteMerchandise(input: unknown) {
   const keys = data.items.map((item) => `${item.productId}:${item.variantId}`);
   if (new Set(keys).size !== keys.length) throw new Error("Combine duplicate items before requesting a quote.");
   let subtotalCents = 0;
+  const lines: { productId: string; variantId: number; quantity: number; name: string; variant: string; priceCents: number }[] = [];
   for (const item of data.items) {
     const definition = merchProducts.find((product) => product.productId === item.productId);
     if (!definition) throw new Error("Unknown merchandise product.");
@@ -77,8 +78,32 @@ export async function quoteMerchandise(input: unknown) {
     if (!variant) throw new Error("This size or scent is not currently available.");
     if (variant.cost >= definition.priceCents) throw new Error("This variant needs a price review before sale.");
     subtotalCents += definition.priceCents * item.quantity;
+    lines.push({ ...item, name: definition.name, variant: variant.title, priceCents: definition.priceCents });
   }
   const lineItems = data.items.map((item) => ({ product_id: item.productId, variant_id: item.variantId, quantity: item.quantity }));
   const shipping = z.object({ standard: z.number().int().nonnegative() }).parse(await printifyRequest("orders/shipping.json", { line_items: lineItems, address_to: data.address }));
-  return { currency: "usd", subtotalCents, shippingCents: shipping.standard, totalBeforeTaxCents: subtotalCents + shipping.standard, checkoutEnabled: false, approval: "manual" };
+  return { lines, currency: "usd", subtotalCents, shippingCents: shipping.standard, totalBeforeTaxCents: subtotalCents + shipping.standard, checkoutEnabled: false, approval: "manual" };
+}
+
+const printifyOrderSchema = z.object({ id: z.string().min(1), status: z.string(), metadata: z.object({ shop_order_id: z.union([z.string(), z.number()]).optional() }).optional() });
+
+export async function findPrintifyOrder(externalId: string) {
+  for (let page = 1; page <= 20; page++) {
+    const result = z.object({ data: z.array(printifyOrderSchema), last_page: z.number().int().positive() }).parse(await printifyRequest(`orders.json?limit=100&page=${page}`));
+    const order = result.data.find((item) => String(item.metadata?.shop_order_id) === externalId);
+    if (order) return { id: order.id, status: order.status };
+    if (page >= result.last_page) return null;
+  }
+  throw new Error("Order reconciliation needs a manual Printify search.");
+}
+
+export async function createHeldPrintifyOrder(externalId: string, input: unknown) {
+  const data = merchQuoteSchema.parse(input);
+  if (!data.items.every((item) => merchProducts.some((product) => product.productId === item.productId))) throw new Error("Unknown merchandise product.");
+  const result = printifyOrderSchema.parse(await printifyRequest("orders.json", {
+    external_id: externalId, label: externalId, shipping_method: 1, send_shipping_notification: false,
+    line_items: data.items.map((item) => ({ product_id: item.productId, variant_id: item.variantId, quantity: item.quantity })),
+    address_to: data.address,
+  }));
+  return { id: result.id, status: result.status };
 }
