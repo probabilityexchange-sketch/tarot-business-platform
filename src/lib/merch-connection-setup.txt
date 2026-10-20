@@ -1,0 +1,12 @@
+Printify connection setup — 2026-10-20
+Approved: shirts USD 34; candles USD 28; shipping additional; manual production approval.
+Implemented: allowlisted 12 shirt / 6 candle draft IDs, provider stock and cost inspection, admin-only connection screen, admin-only US shipping quote using Printify's standard shipping response. Server prices override no buyer-supplied prices.
+Required runtime secrets/config: PRINTIFY_API_TOKEN (created with user confirmation and stored in Firebase Secret Manager), PRINTIFY_SHOP_ID=16753232 (verified through the signed-in store navigation; verified through shops API on 2026-10-20).
+Do not place tokens in source control, NEXT_PUBLIC variables, browser code or chat.
+Manual approval was saved and confirmed in Printify on 2026-10-20 for shop 16753232 (My new store). All 18 draft product IDs were verified through the signed-in product list. Recheck approval before enabling order import. Do not assume creating a Printify order is harmless: provider auto approval can send imported orders to production.
+No checkout or order submission endpoint has been enabled. No creation or send_to_production method exists in this connector. No customer payment or external order has been created.
+Next after credentials: verify actual product IDs and every enabled variant; verify shipping quotes with an authorized test address; record manual approval setting; build authenticated owner order queue and paid Stripe merchandise checkout with tax/shipping binding, webhook signature verification, idempotent fulfillment/reconciliation and customer confirmation; test with Stripe test credentials before enabling public sales. Preserve existing reading checkout.
+The Taurus draft currently contains only the sample 3XL variant; full size availability must be reviewed rather than inferred.
+API source: https://developers.printify.com/ (products, shops, shipping quote, authentication).
+
+Live read/quote verification on 2026-10-20: correct shop accessible, all 18 product IDs matched, 96 enabled variants available. Shirt production USD 12.65–18.34; candle production USD 11.48–11.89. One Taurus shirt plus one Peace candle returned standard shipping USD 13.64 to the API documentation sample US destination. No orders were submitted and no payments collected.

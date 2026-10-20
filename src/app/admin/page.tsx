@@ -39,6 +39,7 @@ export default function AdminPage() {
           <p className="text-on-surface/60 mt-2">Manage the journal and service operations from one place.</p>
         </div>
         <div className="flex gap-3">
+          <Link href="/admin/merch"><Button variant="secondary">Merchandise</Button></Link>
           <Link href="/admin/bookings">
             <Button variant="secondary">
               <BookOpen size={18} className="mr-2" />
@@ -62,6 +63,7 @@ export default function AdminPage() {
               Keep an eye on upcoming sessions, payment status, and internal notes without leaving the admin area.
             </p>
           </div>
+          <Link href="/admin/merch"><Button variant="secondary">Merchandise</Button></Link>
           <Link href="/admin/bookings">
             <Button variant="secondary">Open Booking Dashboard</Button>
           </Link>
