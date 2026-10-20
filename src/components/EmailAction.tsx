@@ -12,7 +12,7 @@ export function EmailAction({ token, action }: { token: string; action: "confirm
       const data = await response.json();
       if (!response.ok) throw new Error(data.error);
       setStatus("success");
-      setMessage(action === "confirm" ? "You’re subscribed. Your guide is on its way. Check your inbox and spam folder." : "You have been unsubscribed from Kali’s emails.");
+      setMessage(action === "confirm" ? "Your email is confirmed. Thank you for subscribing to Letters from Kali." : "You have been unsubscribed from Kali’s emails.");
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Unable to connect. Please try again.");

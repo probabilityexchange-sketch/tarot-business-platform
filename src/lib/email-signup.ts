@@ -3,7 +3,6 @@ import { Timestamp } from "firebase-admin/firestore";
 import { z } from "zod";
 import { getAdminDb } from "@/lib/firebase-admin";
 import { allowPublicRequest } from "@/lib/request-limit";
-import { emailGuide } from "@/lib/email-guide";
 
 export const signupSchema = z.object({
   email: z.string().trim().toLowerCase().email().max(254),
@@ -27,8 +26,11 @@ export async function brevoRequest(path: string, body: Record<string, unknown>) 
   if (!response.ok) throw new Error(`Email provider returned ${response.status}`);
 }
 
-function emailBody(email: string, subject: string, htmlContent: string) {
-  return { sender: { name: "Kali Meister", email: process.env.BREVO_FROM_EMAIL || "noreply@kalimeister.com" }, to: [{ email }], replyTo: { email: "billy@randi.agency", name: "Kali Meister" }, subject, htmlContent };
+function signupList(source: string) {
+  const listId = Number(source === "course-waitlist" ? process.env.BREVO_COURSE_LIST_ID : process.env.BREVO_LIST_ID);
+  if (!Number.isSafeInteger(listId) || listId <= 0) throw new Error("Subscriber list is not configured");
+  if (source === "course-waitlist" && listId === Number(process.env.BREVO_LIST_ID)) throw new Error("Course waitlist requires a separate list");
+  return listId;
 }
 
 export async function requestSignup(request: Request, source?: string) {
@@ -37,31 +39,31 @@ export async function requestSignup(request: Request, source?: string) {
     if (!parsed.success) return Response.json({ error: "Enter a valid email and agree to receive Kali’s emails." }, { status: 400 });
     const data = parsed.data;
     if (data.website) return Response.json({ message: "Check your inbox to confirm your email." });
-    if (!process.env.BREVO_API_KEY) return Response.json({ error: "Email signup is temporarily unavailable. Please try again later." }, { status: 503 });
+    if (!process.env.BREVO_API_KEY) throw new Error("Email service unavailable");
+    const signupSource = source || "website";
+    const listId = signupList(signupSource);
+    const templateId = Number(process.env.BREVO_DOI_TEMPLATE_ID);
+    if (!Number.isSafeInteger(templateId) || templateId <= 0) throw new Error("Email confirmation is not configured");
     if (!(await allowPublicRequest("email"))) return Response.json({ error: "Signup is busy. Please try again later." }, { status: 429 });
-    const id = hash(data.email);
-    const ref = getAdminDb().collection("subscribers").doc(id);
-    const token = randomBytes(32).toString("hex");
+    const ref = getAdminDb().collection("email_signup_requests").doc(hash(`${listId}:${data.email}`));
     const accepted = await getAdminDb().runTransaction(async (transaction) => {
       const existing = (await transaction.get(ref)).data();
       if (existing?.requestedAt instanceof Timestamp && existing.requestedAt.toMillis() > Date.now() - 60000) return false;
       transaction.set(ref, {
-        email: data.email,
-        source: source || data.source,
-        status: existing?.status === "active" ? "active" : "pending",
-        consentVersion: "2026-10-10",
-        confirmationHash: hash(token),
-        confirmationExpiresAt: Timestamp.fromMillis(Date.now() + 24 * 60 * 60 * 1000),
-        requestedAt: Timestamp.now(),
-        emailSequence: "disabled",
-        createdAt: existing?.createdAt || Timestamp.now(),
-      }, { merge: true });
+        listId, source: source || data.source,
+        consentVersion: "2026-10-20", requestedAt: Timestamp.now(),
+        status: "confirmation_requested", emailOwner: "brevo",
+        deleteAfter: Timestamp.fromMillis(Date.now() + 30 * 24 * 60 * 60 * 1000),
+      });
       return true;
     });
     if (!accepted) return Response.json({ error: "Please wait a minute before requesting another email." }, { status: 429 });
     const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://kalimeister.com";
-    await brevoRequest("smtp/email", emailBody(data.email, "Confirm your email for Kali Meister", `<p>You requested Kali’s guide or updates.</p><p><a href="${baseUrl}/email/confirm?token=${token}">Confirm my email</a></p><p>After you confirm, you’ll receive the guide and occasional writing, reading and event updates. You can unsubscribe anytime. If you didn’t request this, ignore this email.</p>`));
-    return Response.json({ message: "Check your inbox to confirm your email. Your guide follows after confirmation." });
+    await brevoRequest("contacts/doubleOptinConfirmation", {
+      email: data.email, includeListIds: [listId], templateId,
+      redirectionUrl: `${baseUrl}/email/confirmed`,
+    });
+    return Response.json({ message: "Check your inbox to confirm your email." });
   } catch (error) {
     console.error("Email signup failed", error);
     return Response.json({ error: "We couldn't send your confirmation email. Please try again in a minute." }, { status: 503 });
@@ -77,22 +79,20 @@ export async function confirmSignup(token: string) {
   const data = await getAdminDb().runTransaction(async (transaction) => {
     const record = (await transaction.get(ref)).data();
     if (!record || record.confirmationHash !== hash(token) || !(record.confirmationExpiresAt instanceof Timestamp) || record.confirmationExpiresAt.toMillis() < Date.now()) throw new Error("This confirmation link has expired. Please sign up again.");
-    if (record.guideSentFor === hash(token)) return null;
+    if (record.confirmedFor === hash(token) || record.guideSentFor === hash(token)) return null;
     if (record.deliveryLeaseUntil instanceof Timestamp && record.deliveryLeaseUntil.toMillis() > Date.now()) throw new Error("Confirmation is already in progress. Please try again in a minute.");
     const activeUnsubscribeToken = record.unsubscribeToken || unsubscribeToken;
     transaction.update(ref, { deliveryLeaseUntil: Timestamp.fromMillis(Date.now() + 60000), unsubscribeHash: hash(activeUnsubscribeToken), unsubscribeToken: activeUnsubscribeToken });
-    return { email: z.string().email().parse(record.email), unsubscribeToken: String(activeUnsubscribeToken) };
+    return { email: z.string().email().parse(record.email), source: String(record.source || "website") };
   });
   if (!data) return;
   try {
-    const listId = Number(process.env.BREVO_LIST_ID);
-    await brevoRequest("contacts", { email: data.email, updateEnabled: true, emailBlacklisted: false, ...(Number.isInteger(listId) && listId > 0 ? { listIds: [listId] } : {}) });
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://kalimeister.com";
-    await brevoRequest("smtp/email", emailBody(data.email, "Your intuition guide from Kali Meister", emailGuide(`${baseUrl}/email/unsubscribe?token=${data.unsubscribeToken}`)));
+    const listId = signupList(data.source);
+    await brevoRequest("contacts", { email: data.email, updateEnabled: true, listIds: [listId] });
     const activated = await getAdminDb().runTransaction(async (transaction) => {
       const current = (await transaction.get(ref)).data();
       if (current?.confirmationHash !== hash(token) || !(current.confirmationExpiresAt instanceof Timestamp) || current.confirmationExpiresAt.toMillis() < Date.now()) return false;
-      transaction.update(ref, { status: "active", consentConfirmedAt: Timestamp.now(), guideSentFor: hash(token), guideSentAt: Timestamp.now(), deliveryLeaseUntil: Timestamp.fromMillis(0) });
+      transaction.update(ref, { status: "active", consentConfirmedAt: Timestamp.now(), confirmedFor: hash(token), emailOwner: "brevo", emailSequence: "disabled", deliveryLeaseUntil: Timestamp.fromMillis(0) });
       return true;
     });
     if (!activated) {
