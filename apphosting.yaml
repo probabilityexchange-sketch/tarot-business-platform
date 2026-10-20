@@ -122,3 +122,11 @@ env:
     value: "false"
     availability:
       - RUNTIME
+  - variable: BREVO_DOI_TEMPLATE_ID
+    value: "20"
+    availability:
+      - RUNTIME
+  - variable: BREVO_COURSE_LIST_ID
+    value: "8"
+    availability:
+      - RUNTIME

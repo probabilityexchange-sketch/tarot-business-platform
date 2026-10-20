@@ -1,0 +1,13 @@
+Email ownership handoff — 2026-10-20
+
+Confirmation template: 20 (active), course waitlist: 8, newsletter: 5.
+
+Brevo owns all subscriber email content, delivery, timing and automation. Website signup uses contacts/doubleOptinConfirmation with the configured BREVO_DOI_TEMPLATE_ID; confirmed newsletter contacts enter BREVO_LIST_ID=5. Never issue smtp/email calls for signup, guides or letters. New signup requests use a private hash-keyed email_signup_requests throttle record without storing the email. They never create subscribers documents or scheduled jobs. Configure Firestore TTL on deleteAfter for this collection.
+
+Course waitlist requires BREVO_COURSE_LIST_ID distinct from the newsletter list. Without it the endpoint returns a service error rather than enrolling course prospects in the newsletter. The same Brevo DOI template can confirm course requests with neutral confirmation wording. Browser-supplied source does not select a list.
+
+Old website confirmation tokens remain supported until their original expiry, add confirmed contacts to the matching list, and never send a guide or letter. Existing unsubscribe links still blacklist the Brevo contact and disable the legacy subscriber record. The website does not unset emailBlacklisted on legacy confirmation. Brevo is authoritative for new consent and unsubscribe state; the redirect page is informational and does not activate a contact.
+
+Legacy Cloud Functions remain exported as inert handlers to replace deployed triggers without leaving old senders running. The discernment-v1 enabled switch must be false during migration. Historical subscriber and scheduledEmails records are retained, not replayed or bulk-enrolled. Remove retired functions/scheduler in a later cleanup after deployment verification.
+
+Marketing owner: Keep Brevo welcome automation inactive until a fresh DOI test confirms exactly one confirmation email, list-5 membership only after click, and no website-origin guide/letter sends. The confirmation redirect hosts the free guide at https://kalimeister.com/email/confirmed. Confirm the Brevo welcome step includes a link to this guide and uses billy@randi.agency for replies. Existing subscribers require a separate migration decision; do not restart their series automatically. Booking/Stripe email is unchanged.
