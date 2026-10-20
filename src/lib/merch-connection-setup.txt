@@ -1,0 +1,10 @@
+Printify connection setup — 2026-10-20
+Approved: shirts USD 34; candles USD 28; shipping additional; manual production approval.
+Implemented: allowlisted 12 shirt / 6 candle draft IDs, provider stock and cost inspection, admin-only connection screen, admin-only US shipping quote using Printify's standard shipping response. Server prices override no buyer-supplied prices.
+Required runtime secrets/config: PRINTIFY_API_TOKEN (private server secret), PRINTIFY_SHOP_ID (verify through shops API against the store containing these draft products).
+Do not place tokens in source control, NEXT_PUBLIC variables, browser code or chat.
+Manual approval is the intended policy, not a verified provider setting yet. Printify session was signed out during setup. Read back the store's Order approval setting after saving Manual. Do not assume creating a Printify order is harmless: provider auto approval can send imported orders to production.
+No checkout or order submission endpoint has been enabled. No creation or send_to_production method exists in this connector. No customer payment or external order has been created.
+Next after credentials: verify actual product IDs and every enabled variant; verify shipping quotes with an authorized test address; record manual approval setting; build authenticated owner order queue and paid Stripe merchandise checkout with tax/shipping binding, webhook signature verification, idempotent fulfillment/reconciliation and customer confirmation; test with Stripe test credentials before enabling public sales. Preserve existing reading checkout.
+The Taurus draft currently contains only the sample 3XL variant; full size availability must be reviewed rather than inferred.
+API source: https://developers.printify.com/ (products, shops, shipping quote, authentication).
