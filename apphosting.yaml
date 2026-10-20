@@ -114,3 +114,11 @@ env:
     value: "16753232"
     availability:
       - RUNTIME
+  - variable: MERCH_CHECKOUT_ENABLED
+    value: "false"
+    availability:
+      - RUNTIME
+  - variable: MERCH_TAX_REVIEWED
+    value: "false"
+    availability:
+      - RUNTIME

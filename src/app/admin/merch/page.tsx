@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useAuth } from "@/hooks/useAuth";
+import { MerchOrderQueue } from "@/components/MerchOrderQueue";
 import { adminFetch } from "@/lib/admin-client";
 
 type Connection = {
@@ -38,10 +39,11 @@ export default function MerchAdminPage() {
     <Link href="/admin" className="underline">← Admin</Link>
     <h1 className="font-serif text-4xl">Merchandise connection</h1>
     <p>Approved prices: $34 shirts and $28 candles, plus shipping. Production requires manual approval.</p>
-    <div className="rounded-xl border border-current/20 p-5"><h2 className="font-serif text-2xl">Setup in progress</h2><p className="mt-3">Customer checkout is closed. This connection checks products and shipping costs; it cannot create orders or send anything to production. Confirm manual approval in Printify before enabling order import.</p></div>
+    <div className="rounded-xl border border-current/20 p-5"><h2 className="font-serif text-2xl">Setup in progress</h2><p className="mt-3">Customer checkout is closed. Paid orders enter your review queue first. A separate, explicit action transfers reviewed orders to Printify. No website action sends orders to production. Public payments stay disabled until launch and tax setup are reviewed.</p></div>
     <button type="button" disabled={busy} onClick={() => void check()} className="rounded-full bg-[#653c56] px-6 py-3 text-white disabled:opacity-50">{busy ? "Checking products…" : "Check Printify connection"}</button>
     {error && <p role="alert">{error}</p>}
     {connection && <p role="status">{connection.configured ? `${connection.products.filter((product) => product.connected).length} of ${connection.products.length} products connected.` : "The private Printify API token and shop ID still need to be configured on the server."}</p>}
     {connection?.products.map((product) => <section key={product.slug} className="rounded-xl border border-current/20 p-5"><h2 className="font-serif text-2xl">{product.name} · {dollars(product.priceCents)}</h2>{!product.connected ? <p className="mt-3">Product could not be verified. Check the Printify draft before launch.</p> : <div className="mt-4 overflow-x-auto"><table className="w-full text-left text-sm"><thead><tr><th className="p-2">Variant</th><th className="p-2">Stock</th><th className="p-2">Production</th><th className="p-2">Before shipping &amp; fees</th></tr></thead><tbody>{product.variants.map((variant) => <tr key={variant.id} className="border-t border-current/10"><td className="p-2">{variant.title}</td><td className="p-2">{variant.available ? "Available" : "Unavailable / unverified"}</td><td className="p-2">{dollars(variant.productionCostCents)}</td><td className="p-2">{dollars(variant.contributionBeforeShippingAndFeesCents)}</td></tr>)}</tbody></table></div>}</section>)}
+    <MerchOrderQueue />
   </div>;
 }

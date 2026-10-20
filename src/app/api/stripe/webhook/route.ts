@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getStripe } from "@/lib/stripe";
+import { recordMerchPayment } from "@/lib/merch-orders";
 import { fulfillBooking } from "@/lib/booking-fulfillment";
 
 export const runtime = "nodejs";
@@ -18,6 +19,9 @@ export async function POST(request: Request) {
   try {
     if ((event.type === "checkout.session.completed" || event.type === "checkout.session.async_payment_succeeded") && event.data.object.metadata?.offeringId) {
       await fulfillBooking(event.data.object);
+    }
+    if ((event.type === "checkout.session.completed" || event.type === "checkout.session.async_payment_succeeded") && event.data.object.metadata?.kind === "merch") {
+      await recordMerchPayment(event.data.object);
     }
     return NextResponse.json({ received: true });
   } catch (error) {
