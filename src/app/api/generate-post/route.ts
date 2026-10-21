@@ -46,7 +46,9 @@ export async function POST(request: NextRequest) {
     return new Response("Unauthorized", { status: 401 });
   }
 
-  const { mode, topic, rawText } = await request.json();
+  const body = await request.json();
+  const mode = body.mode || body.type;
+  const { topic, rawText } = body;
 
   if (!mode || (mode === "topic" && !topic) || (mode === "text" && !rawText)) {
     return new Response("Invalid request: mode and topic/rawText required", { status: 400 });

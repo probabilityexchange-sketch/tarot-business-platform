@@ -1,7 +1,9 @@
 import Script from "next/script";
 
 const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
-const gaMeasurementId = process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID;
+const gaMeasurementId =
+  process.env.NEXT_PUBLIC_GA_MEASUREMENT_ID ||
+  process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID;
 
 export function Analytics() {
   return (

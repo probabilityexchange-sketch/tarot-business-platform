@@ -1,61 +1,247 @@
 rules_version = '2';
 
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Collection: users/{userId}
+// Fields:
+//   - uid: string (required, matches userId, immutable)
+//   - email: string (required, valid email <= 254 chars)
+//   - displayName: string (optional, <= 120 chars)
+//   - role: string (required, 'client' or 'admin', non-escalatable by client)
+//   - createdAt: timestamp (required, immutable)
+//   - updatedAt: timestamp (optional)
+//
+// Collection: appointments/{appointmentId}
+// Fields:
+//   - userId: string (required, matches auth.uid on create, immutable)
+//   - offeringId: string (required, 1..100 chars)
+//   - scheduledAt: timestamp (required)
+//   - status: string (required, 'pending' | 'confirmed' | 'cancelled' | 'completed')
+//   - notes: string (optional, <= 2000 chars)
+//   - createdAt: timestamp (required, immutable)
+//
+// Collection: bookings/{bookingId}
+// Managed exclusively by server-side Firebase Admin SDK routes; client read
+// allowed only for admins.
+//
+// Collection: products/{productId}
+// Fields:
+//   - title: string (required, 1..200 chars)
+//   - description: string (required, 0..10000 chars)
+//   - priceCents: int (required, >= 0 && <= 10000000)
+//   - active: bool (required)
+//
+// Collection: access/{accessId}
+// Fields:
+//   - userId: string (required, 1..128 chars, immutable)
+//   - productId: string (required, 1..128 chars, immutable)
+//   - grantedAt: timestamp (required, immutable)
+//
+// Collection: blog_posts/{postId}
+// Fields:
+//   - title: string (required, 1..300 chars)
+//   - slug: string (required, 1..200 chars)
+//   - content: string (required, 1..200000 chars)
+//   - excerpt: string (required, 0..2000 chars)
+//   - category: string (required, 1..100 chars)
+//   - coverImageUrl: string (required, 0..2000 chars)
+//   - status: string (required, 'draft' | 'published')
+//   - publishedAt: string or null (optional, <= 64 chars)
+//   - createdAt: string (required, 1..64 chars, immutable)
+//   - updatedAt: string (required, 1..64 chars)
+//
+// Collection: subscribers/{subscriberId}
+// Managed by server-side /api/subscribe (Firebase Admin SDK); client reads
+// restricted to admins only to protect PII.
+//
+// Collection: scheduledEmails/{jobId}
+// Legacy collection replaced by Brevo automations. All client access denied.
+// ===============================================================
+
 service cloud.firestore {
   match /databases/{database}/documents {
-    // Helper functions
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
     function isAuthenticated() {
       return request.auth != null;
     }
-    
+
     function isOwner(userId) {
-      return request.auth.uid == userId;
+      return isAuthenticated() && request.auth.uid == userId;
     }
 
-    // You can set your specific UID here to grant yourself full admin access
     function isAdmin() {
-      return isAuthenticated() && (request.auth.token.admin == true || request.auth.token.email == "kali@kalimeister.com");
+      return isAuthenticated() && (
+        request.auth.token.admin == true ||
+        (request.auth.token.email == "kali@kalimeister.com" && request.auth.token.email_verified == true)
+      );
     }
 
-    // User Profiles
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function validStringLength(field, minLen, maxLen) {
+      return request.resource.data[field] is string &&
+        request.resource.data[field].size() >= minLen &&
+        request.resource.data[field].size() <= maxLen;
+    }
+
+    function isValidOptionalString(field, minLen, maxLen) {
+      return !(field in request.resource.data) ||
+        (request.resource.data[field] is string &&
+         request.resource.data[field].size() >= minLen &&
+         request.resource.data[field].size() <= maxLen);
+    }
+
+    function isValidEmail(email) {
+      return email is string &&
+        email.size() >= 3 &&
+        email.size() <= 254 &&
+        email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+    function isValidUser(data, userId) {
+      return hasRequiredFields(["uid", "email", "role", "createdAt"]) &&
+        hasOnlyAllowedFields(["uid", "email", "displayName", "role", "createdAt", "updatedAt"]) &&
+        data.uid is string && data.uid == userId &&
+        isValidEmail(data.email) &&
+        isValidOptionalString("displayName", 1, 120) &&
+        data.role in ["client", "admin"] &&
+        data.createdAt is timestamp &&
+        (!("updatedAt" in data) || data.updatedAt is timestamp);
+    }
+
+    function isValidAppointment(data) {
+      return hasRequiredFields(["userId", "offeringId", "scheduledAt", "status", "createdAt"]) &&
+        hasOnlyAllowedFields(["userId", "offeringId", "scheduledAt", "status", "notes", "createdAt"]) &&
+        validStringLength("userId", 1, 128) &&
+        validStringLength("offeringId", 1, 100) &&
+        data.scheduledAt is timestamp &&
+        data.status in ["pending", "confirmed", "cancelled", "completed"] &&
+        isValidOptionalString("notes", 0, 2000) &&
+        data.createdAt is timestamp;
+    }
+
+    function isValidProduct(data) {
+      return hasRequiredFields(["title", "description", "priceCents", "active"]) &&
+        hasOnlyAllowedFields(["title", "description", "priceCents", "active"]) &&
+        validStringLength("title", 1, 200) &&
+        validStringLength("description", 0, 10000) &&
+        data.priceCents is int && data.priceCents >= 0 && data.priceCents <= 10000000 &&
+        data.active is bool;
+    }
+
+    function isValidAccess(data) {
+      return hasRequiredFields(["userId", "productId", "grantedAt"]) &&
+        hasOnlyAllowedFields(["userId", "productId", "grantedAt"]) &&
+        validStringLength("userId", 1, 128) &&
+        validStringLength("productId", 1, 128) &&
+        data.grantedAt is timestamp;
+    }
+
+    function isValidBlogPost(data) {
+      return hasRequiredFields(["title", "slug", "content", "excerpt", "category", "coverImageUrl", "status", "createdAt", "updatedAt"]) &&
+        hasOnlyAllowedFields(["title", "slug", "content", "excerpt", "category", "coverImageUrl", "status", "publishedAt", "createdAt", "updatedAt"]) &&
+        validStringLength("title", 1, 300) &&
+        validStringLength("slug", 1, 200) &&
+        validStringLength("content", 1, 200000) &&
+        validStringLength("excerpt", 0, 2000) &&
+        validStringLength("category", 1, 100) &&
+        validStringLength("coverImageUrl", 0, 2000) &&
+        data.status in ["draft", "published"] &&
+        (!("publishedAt" in data) || data.publishedAt == null || (data.publishedAt is string && data.publishedAt.size() <= 64)) &&
+        validStringLength("createdAt", 1, 64) &&
+        validStringLength("updatedAt", 1, 64);
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    // User Profiles (PII protected: owner or admin only; role escalation blocked)
     match /users/{userId} {
-      allow read, write: if isOwner(userId) || isAdmin();
+      allow read: if isOwner(userId) || isAdmin();
+      allow create: if isValidUser(request.resource.data, userId) &&
+        ((isOwner(userId) && request.resource.data.role == "client") || isAdmin());
+      allow update: if isValidUser(request.resource.data, userId) &&
+        request.resource.data.uid == resource.data.uid &&
+        request.resource.data.createdAt == resource.data.createdAt &&
+        ((isOwner(userId) && request.resource.data.role == resource.data.role) || isAdmin());
+      allow delete: if isAdmin();
     }
 
     // Appointments (High-Ticket Readings)
     match /appointments/{appointmentId} {
       allow read: if (isAuthenticated() && resource.data.userId == request.auth.uid) || isAdmin();
-      allow create: if isAuthenticated();
-      allow update, delete: if isAdmin();
+      allow create: if isAuthenticated() &&
+        isValidAppointment(request.resource.data) &&
+        ((request.resource.data.userId == request.auth.uid && request.resource.data.status == "pending") || isAdmin());
+      allow update: if isAdmin() &&
+        isValidAppointment(request.resource.data) &&
+        request.resource.data.userId == resource.data.userId &&
+        request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isAdmin();
+    }
+
+    // Bookings (Server-managed via Firebase Admin SDK)
+    match /bookings/{bookingId} {
+      allow read: if isAdmin();
+      allow write: if false;
     }
 
     // Digital Products (Course Info, Metadata)
     match /products/{productId} {
       allow read: if true;
-      allow write: if isAdmin();
+      allow create, update: if isAdmin() && isValidProduct(request.resource.data);
+      allow delete: if isAdmin();
     }
 
-    // Product Access (Sleep Money logic)
+    // Product Access (Granted via backend/Stripe webhook or admin)
     match /access/{accessId} {
       allow read: if (isAuthenticated() && resource.data.userId == request.auth.uid) || isAdmin();
-      allow create: if isAdmin(); // Only created via backend/stripe webhook
-      allow update, delete: if isAdmin();
+      allow create: if isAdmin() && isValidAccess(request.resource.data);
+      allow update: if isAdmin() &&
+        isValidAccess(request.resource.data) &&
+        request.resource.data.userId == resource.data.userId &&
+        request.resource.data.productId == resource.data.productId &&
+        request.resource.data.grantedAt == resource.data.grantedAt;
+      allow delete: if isAdmin();
     }
 
-    // Content Engine (Blog Posts/SEO)
+    // Content Engine (Blog Posts/SEO - only published posts are publicly readable)
     match /blog_posts/{postId} {
       allow read: if resource.data.status == "published" || isAdmin();
-      allow write: if isAdmin();
+      allow create: if isAdmin() && isValidBlogPost(request.resource.data);
+      allow update: if isAdmin() &&
+        isValidBlogPost(request.resource.data) &&
+        request.resource.data.createdAt == resource.data.createdAt;
+      allow delete: if isAdmin();
     }
 
-    // Email subscribers (public write for lead capture, read by admin only)
+    // Email subscribers (Created via server-side /api/subscribe Admin SDK; PII read by admin only)
     match /subscribers/{subscriberId} {
       allow read: if isAdmin();
-      allow create: if false;
-      allow update: if isAdmin();
+      allow write: if false;
     }
 
-    // Scheduled email jobs (functions only - use function auth)
+    // Legacy scheduled email jobs (Deprecated — replaced by Brevo automation; all client access denied)
     match /scheduledEmails/{jobId} {
+      allow read, write: if false;
+    }
+
+    // Default deny for all other paths
+    match /{document=**} {
       allow read, write: if false;
     }
   }

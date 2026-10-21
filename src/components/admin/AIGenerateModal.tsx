@@ -42,8 +42,8 @@ export function AIGenerateModal({ editor, onGenerated }: Props) {
 
     const body =
       activeTab === "topic"
-        ? { type: "topic", topic }
-        : { type: "text", rawText };
+        ? { mode: "topic", topic }
+        : { mode: "text", rawText };
 
     abortRef.current = new AbortController();
 
