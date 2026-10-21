@@ -2,7 +2,7 @@
 
 import { useId, useState } from "react";
 
-export function EmailSignupForm({ source = "homepage", label = "Get the free guide", className = "" }: { source?: string; label?: string; className?: string }) {
+export function EmailSignupForm({ source = "homepage", label = "Get the free guide", className = "", audience = "newsletter" }: { source?: string; label?: string; className?: string; audience?: "newsletter" | "course" }) {
   const id = useId();
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
@@ -15,7 +15,7 @@ export function EmailSignupForm({ source = "homepage", label = "Get the free gui
     setStatus("loading");
     setMessage("");
     try {
-      const response = await fetch("/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, consent, source, website }) });
+      const response = await fetch(audience === "course" ? "/api/course-waitlist" : "/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, consent, source, website }) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Unable to sign up. Please try again.");
       setMessage(data.message);
@@ -32,7 +32,7 @@ export function EmailSignupForm({ source = "homepage", label = "Get the free gui
       <input id={`${id}-email`} type="email" autoComplete="email" required value={email} onChange={(event) => setEmail(event.target.value)} disabled={status === "loading" || status === "success"} placeholder="you@example.com" className="w-full rounded-lg border border-current/25 bg-transparent px-4 py-3 outline-none focus:ring-2 focus:ring-current" />
       <label className="flex items-start gap-3 text-sm leading-relaxed">
         <input type="checkbox" checked={consent} onChange={(event) => setConsent(event.target.checked)} required className="mt-1 h-4 w-4 shrink-0" />
-        <span>I’d like Kali’s free guide and occasional emails about her writing, readings, events and shop news. I can unsubscribe anytime.</span>
+        <span>{audience === "course" ? "I’d like updates about Kali’s writing and reflection resources. I can unsubscribe anytime." : "I’d like Kali’s free guide and occasional emails about her writing, readings, events and shop news. I can unsubscribe anytime."}</span>
       </label>
       <label className="hidden" aria-hidden="true">Website<input tabIndex={-1} autoComplete="off" value={website} onChange={(event) => setWebsite(event.target.value)} /></label>
       <button type="submit" disabled={!consent || status === "loading" || status === "success"} className="w-full rounded-lg bg-[#653c56] px-5 py-3 text-white transition-opacity hover:opacity-90 disabled:opacity-60">{status === "loading" ? "Sending…" : status === "success" ? "Check your inbox" : label}</button>

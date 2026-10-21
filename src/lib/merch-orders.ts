@@ -49,13 +49,14 @@ export async function createMerchCheckout(input: unknown) {
   const address = { line1: a.address1, line2: a.address2 || "", city: a.city, state: a.region, postal_code: a.zip, country: a.country };
   const shipping = { name: `${a.first_name} ${a.last_name}`, address, ...(a.phone ? { phone: a.phone } : {}) };
   const customer = await getStripe().customers.create({ email: a.email, name: shipping.name, address, shipping }, { idempotencyKey: `merch-customer-${id}` });
-  const base = "https://kalimeister.com";
+  const localBase = process.env.NEXT_PUBLIC_BASE_URL || "";
+  const base = process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_") && /^http:\/\/(localhost|127\.0\.0\.1):[0-9]+$/.test(localBase) ? localBase : "https://kalimeister.com";
   const session = await getStripe().checkout.sessions.create({
     mode: "payment", payment_method_types: ["card"], customer: customer.id,
     automatic_tax: { enabled: true }, customer_update: { address: "never", name: "never", shipping: "never" },
     line_items: quote.lines.map((line) => ({ quantity: line.quantity, price_data: { currency: "usd", unit_amount: line.priceCents, tax_behavior: "exclusive", product_data: { name: line.name, description: line.variant, tax_code: merchProducts.find((product) => product.productId === line.productId)?.kind === "shirt" ? "txcd_30011000" : "txcd_99999999" } } })),
     shipping_options: [{ shipping_rate_data: { display_name: "Standard shipping", type: "fixed_amount", fixed_amount: { amount: quote.shippingCents, currency: "usd" }, tax_behavior: "exclusive" } }],
-    payment_intent_data: { shipping, receipt_email: a.email },
+    payment_intent_data: { receipt_email: a.email },
     custom_text: { submit: { message: "Ships to the address provided on Kali’s shop. Orders are reviewed before production. Made-to-order items may ship separately." } },
     metadata: { kind: "merch", quoteId: id },
     success_url: `${base}/shop/success?session_id={CHECKOUT_SESSION_ID}`, cancel_url: `${base}/shop/checkout`,

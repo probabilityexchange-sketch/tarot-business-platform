@@ -38,35 +38,16 @@ export async function requestSignup(request: Request, source?: string) {
     const parsed = signupSchema.safeParse(await request.json().catch(() => null));
     if (!parsed.success) return Response.json({ error: "Enter a valid email and agree to receive Kali’s emails." }, { status: 400 });
     const data = parsed.data;
-    if (data.website) return Response.json({ message: "Check your inbox to confirm your email." });
+    if (data.website) return Response.json({ message: "You’re in. Check your inbox." });
     if (!process.env.BREVO_API_KEY) throw new Error("Email service unavailable");
     const signupSource = source || "website";
     const listId = signupList(signupSource);
-    const templateId = Number(process.env.BREVO_DOI_TEMPLATE_ID);
-    if (!Number.isSafeInteger(templateId) || templateId <= 0) throw new Error("Email confirmation is not configured");
     if (!(await allowPublicRequest("email"))) return Response.json({ error: "Signup is busy. Please try again later." }, { status: 429 });
-    const ref = getAdminDb().collection("email_signup_requests").doc(hash(`${listId}:${data.email}`));
-    const accepted = await getAdminDb().runTransaction(async (transaction) => {
-      const existing = (await transaction.get(ref)).data();
-      if (existing?.requestedAt instanceof Timestamp && existing.requestedAt.toMillis() > Date.now() - 60000) return false;
-      transaction.set(ref, {
-        listId, source: source || data.source,
-        consentVersion: "2026-10-20", requestedAt: Timestamp.now(),
-        status: "confirmation_requested", emailOwner: "brevo",
-        deleteAfter: Timestamp.fromMillis(Date.now() + 30 * 24 * 60 * 60 * 1000),
-      });
-      return true;
-    });
-    if (!accepted) return Response.json({ error: "Please wait a minute before requesting another email." }, { status: 429 });
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "https://kalimeister.com";
-    await brevoRequest("contacts/doubleOptinConfirmation", {
-      email: data.email, includeListIds: [listId], templateId,
-      redirectionUrl: `${baseUrl}/email/confirmed`,
-    });
-    return Response.json({ message: "Check your inbox to confirm your email." });
+    await brevoRequest("contacts", { email: data.email, listIds: [listId], updateEnabled: true });
+    return Response.json({ message: "You’re in. Check your inbox." });
   } catch (error) {
     console.error("Email signup failed", error);
-    return Response.json({ error: "We couldn't send your confirmation email. Please try again in a minute." }, { status: 503 });
+    return Response.json({ error: "We couldn't complete your signup. Please try again in a minute." }, { status: 503 });
   }
 }
 

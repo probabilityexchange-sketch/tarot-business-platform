@@ -20,9 +20,9 @@ export function LettersContent({ illustrated = false }: { illustrated?: boolean 
         </div>
         <aside className="self-start rounded-2xl border border-[#744b65]/20 bg-[#efe5d6] p-7 sm:p-9">
           <h2 className="mb-4 font-serif text-3xl">A little more room for reflection.</h2>
-          <p className="mb-7 text-sm leading-relaxed text-[#655b61]">Your guide arrives by email after you confirm your address. The welcome letter follows, then a weekly discernment series, with occasional news about Kali’s work.</p>
+          <p className="mb-7 text-sm leading-relaxed text-[#655b61]">Sign up for the free guide, a welcome letter and the discernment series, with occasional news about Kali’s work.</p>
           <EmailSignupForm source="letters-page" label="Send me the free guide" />
-          <p className="mt-5 text-xs leading-relaxed text-[#655b61]">Look for a confirmation email from Kali Meister. You can unsubscribe using the link in any email.</p>
+          <p className="mt-5 text-xs leading-relaxed text-[#655b61]">You can unsubscribe using the link in any email.</p>
         </aside>
         {illustrated && <div className="lg:hidden"><LettersIllustration /></div>}
       </section>

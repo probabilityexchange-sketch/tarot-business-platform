@@ -71,6 +71,8 @@ const entry = path.join(__dirname, "../lib/merch-orders.ts");
   assert.equal(createInputs[0].input.line_items[0].price_data.tax_behavior, "exclusive");
   assert.equal(createInputs[0].input.automatic_tax.enabled, true);
   assert.equal(createInputs[0].input.customer_update.shipping, "never");
+  assert.equal(createInputs[0].input.payment_intent_data.shipping, undefined);
+  assert.equal([...customers.values()][0].shipping.address.line1, input.address.address1);
   assert.equal(createInputs[0].input.shipping_address_collection, undefined);
   assert.ok(!JSON.stringify(createInputs[0].input.metadata).includes("test@example.com"));
   const quoteRecord = records.get(`merch_quotes/${q.id}`);
