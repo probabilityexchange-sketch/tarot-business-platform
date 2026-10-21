@@ -3,7 +3,7 @@ import { getFirestore } from "firebase-admin/firestore";
 import { getAuth } from "firebase-admin/auth";
 
 let adminApp: App | undefined;
-let adminDb: ReturnType<typeof getFirestore> | undefined;
+const shared = globalThis as typeof globalThis & { kaliAdminDb?: ReturnType<typeof getFirestore> };
 let adminAuth: ReturnType<typeof getAuth> | undefined;
 
 function getAdminApp(): App {
@@ -23,11 +23,11 @@ function getAdminApp(): App {
 }
 
 function getAdminDb() {
-  if (!adminDb) {
-    adminDb = getFirestore(getAdminApp());
-    adminDb.settings({ ignoreUndefinedProperties: true });
+  if (!shared.kaliAdminDb) {
+    shared.kaliAdminDb = getFirestore(getAdminApp());
+    shared.kaliAdminDb.settings({ ignoreUndefinedProperties: true });
   }
-  return adminDb;
+  return shared.kaliAdminDb;
 }
 
 function getAdminAuth() {

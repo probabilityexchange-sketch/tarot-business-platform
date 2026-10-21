@@ -12,6 +12,7 @@ module.exports = function testFirebaseCredentials() {
     [{ FIREBASE_SERVICE_ACCOUNT_KEY: JSON.stringify({ project_id: "local-test" }) }, "certificate"],
   ]) {
     let selected;
+    let settingsCalls = 0;
     const module = { exports: {} };
     const app = {
       getApps: () => [],
@@ -21,12 +22,18 @@ module.exports = function testFirebaseCredentials() {
     };
     const requireMock = name => {
       if (name === "firebase-admin/app") return app;
-      if (name === "firebase-admin/firestore") return { getFirestore: () => ({ settings() {} }) };
+      if (name === "firebase-admin/firestore") return { getFirestore: () => ({ settings() { settingsCalls++; assert.equal(settingsCalls, 1); } }) };
       if (name === "firebase-admin/auth") return { getAuth: () => ({}) };
       throw new Error("Unexpected dependency: " + name);
     };
-    vm.runInNewContext(code, { module, exports: module.exports, require: requireMock, process: { env } });
-    module.exports.getAdminDb();
+    const context = vm.createContext({ module, exports: module.exports, require: requireMock, process: { env } });
+    vm.runInContext("(function(){" + code + "})()", context);
+    const firstDb = module.exports.getAdminDb();
+    const secondModule = { exports: {} };
+    context.module = secondModule; context.exports = secondModule.exports;
+    vm.runInContext("(function(){" + code + "})()", context);
+    assert.equal(secondModule.exports.getAdminDb(), firstDb);
+    assert.equal(settingsCalls, 1);
     assert.equal(selected, expected);
   }
   console.log("PASS: managed runtime ignores malformed legacy credentials; local credential options remain supported");

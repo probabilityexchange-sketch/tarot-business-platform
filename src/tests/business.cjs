@@ -141,22 +141,17 @@ async function main() {
   const signup = await bundle("src/lib/email-signup.ts", "signup");
   process.env.BREVO_API_KEY = "test-only";
   process.env.BREVO_LIST_ID = "5";
-  process.env.BREVO_DOI_TEMPLATE_ID = "20";
   const emails = [];
   let providerFails = false;
   global.fetch = async (url, options) => { emails.push({ url, body: JSON.parse(options.body) }); return new Response("{}", { status: providerFails ? 503 : 201 }); };
   assert.equal((await signup.requestSignup(request({ email: "test@example.com", consent: false }))).status, 400);
   assert.equal((await signup.requestSignup(request({ email: "bad", consent: true }))).status, 400);
   assert.equal(emails.length, 0);
-  delete process.env.BREVO_DOI_TEMPLATE_ID;
-  assert.equal((await signup.requestSignup(request({ email: "test@example.com", consent: true }))).status, 503);
-  assert.equal(emails.length, 0);
-  process.env.BREVO_DOI_TEMPLATE_ID = "20";
   assert.equal((await signup.requestSignup(request({ email: " TEST@example.com ", consent: true, source: "course-waitlist" }))).status, 200);
-  assert.equal(emails.at(-1).url, "https://api.brevo.com/v3/contacts/doubleOptinConfirmation");
-  assert.deepEqual(emails.at(-1).body, { email: "test@example.com", includeListIds: [5], templateId: 20, redirectionUrl: "https://kalimeister.com/email/confirmed" });
+  assert.equal(emails.at(-1).url, "https://api.brevo.com/v3/contacts");
+  assert.deepEqual(emails.at(-1).body, { email: "test@example.com", listIds: [5], updateEnabled: true });
   assert.equal(records.has("subscribers/" + hash("test@example.com")), false);
-  assert.equal((await signup.requestSignup(request({ email: "test@example.com", consent: true }))).status, 429);
+  assert.equal((await signup.requestSignup(request({ email: "test@example.com", consent: true }))).status, 200);
   const sent = emails.length;
   assert.equal((await signup.requestSignup(request({ email: "course@example.com", consent: true }), "course-waitlist")).status, 503);
   assert.equal(emails.length, sent);
@@ -164,7 +159,7 @@ async function main() {
   assert.equal((await signup.requestSignup(request({ email: "course@example.com", consent: true }), "course-waitlist")).status, 503);
   process.env.BREVO_COURSE_LIST_ID = "7";
   assert.equal((await signup.requestSignup(request({ email: "course@example.com", consent: true }), "course-waitlist")).status, 200);
-  assert.deepEqual(emails.at(-1).body.includeListIds, [7]);
+  assert.deepEqual(emails.at(-1).body.listIds, [7]);
   const confirmToken = "c".repeat(64);
   records.set("subscribers/legacy", { email: "legacy@example.com", source: "free-guide", status: "pending", confirmationHash: hash(confirmToken), confirmationExpiresAt: Timestamp.fromMillis(Date.now() + 60000) });
   await signup.confirmSignup(confirmToken);
@@ -183,8 +178,8 @@ async function main() {
   await assert.rejects(() => signup.confirmSignup(confirmToken));
   providerFails = true;
   assert.equal((await signup.requestSignup(request({ email: "failed@example.com", consent: true }))).status, 503);
-  assert.ok(emails.every(email => !email.url.includes("smtp/email")));
-  console.log("PASS: Brevo-owned DOI, consent, normalized deduplication, missing configuration, isolated course list, provider errors, legacy confirmation/unsubscribe and zero website email sends");
+  assert.ok(emails.every(email => !email.url.includes("smtp/email") && !email.url.includes("doubleOptin")));
+  console.log("PASS: direct Brevo list signup, explicit consent, normalized updates, isolated course list, provider errors, legacy confirmation/unsubscribe and zero website email sends");
   console.log("All business-flow tests passed. Stripe, Cal.com, Firestore and email delivery were mocked; no charges or real emails.");
 }
 const originalError = console.error;
