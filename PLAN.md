@@ -1,126 +1,65 @@
-# PLAN.md — Kalimeister.com Shared Roadmap
+# PLAN.md — Kalimeister.com Shared Roadmap & Agent Coordination
 
-> Living roadmap for Oz (Warp) and Kilo Code agent collaboration.
-> Update statuses as work progresses. Both agents read this on session start.
+> Shared roadmap for **Claude** (Marketing), **Codex** (Infrastructure & Products), and **Gemini / `agy`** (Google Stack & SEO).
+> Canonical brand, mission, and engineering rules live in [`AGENTS.md`](./AGENTS.md) and [`marketing-team/context/context-card.md`](./marketing-team/context/context-card.md).
 
-## Current Status
+## Mission Statement
 
-- **Build:** 650 pages compile cleanly (Next.js 15.5.14, Firebase App Hosting `kali` backend)
-- **Deploy:** Merge to `master` → push to origin → Firebase auto-deploys
-- **Production:** `https://kalimeister.com` live, pSEO pages serving 200
-- **Last SEO audit:** 2026-06-30 — robots.txt, sitemap, schema, and metadata all optimized
+> **Give reflective people in transition calm, honest room to think through a question, a decision, or the story they are living—pairing tarot, conversation, and reflective writing for personal discernment rather than prediction or therapy.**
 
-## Active Workstreams
+---
 
-### 1. pSEO Content & Discovery
-| Task | Owner | Status |
-|------|-------|--------|
-| Monitor Google Search Console indexing for 620 city/service pages | Oz (cron via Hermes) | pending |
-| Generate unique FAQ content for underperforming pSEO pages | Kilo Code | pending |
-| Add schema markup for new service types | Kilo Code | pending |
+## Current Production Status (as of 2026-10-21)
 
-### 2. Booking & Payments
-| Task | Owner | Status |
-|------|-------|--------|
-| Verify Stripe checkout flow end-to-end | Kilo Code | pending |
-| Add Cal.com booking embed to service pages | Kilo Code | pending |
-| Test confirmation email delivery (Brevo) | Oz (VPS) | pending |
+- **Live URL:** `https://kalimeister.com` (Firebase App Hosting backend `kali` in project `kalimeister`)
+- **Deployment Flow:** Push to `origin/master` → GitHub / Firebase App Hosting auto-deploys
+- **Readings Live:**
+  - *The Narrative Deep-Dive* (60 min, $250)
+  - *Shadow Work Intensive* (90 min, $450)
+  - Cal.com reservation holds + Stripe Checkout + webhook/confirmation fulfillment verified
+- **Email & Lead Capture Live:**
+  - Website signups (`/api/subscribe`, `/api/free-guide`) add contacts directly to Brevo List `5`; course waitlist (`/api/course-waitlist`) adds to Brevo List `8`
+  - Brevo automation *"Kalimeister welcome series"* (discernment guide template 21 → 3-day wait → Letters 01–05 weekly) activated 2026-10-21
+- **Merchandise / Shop (`/shop`):**
+  - Printify catalog, shipping quotes, and gated Stripe checkout built; held behind `MERCH_CHECKOUT_ENABLED=false` and `MERCH_TAX_REVIEWED=false` until launch approval
+- **Google Stack & SEO:**
+  - Consolidated canonical city tarot pages (45 retained, legacy/unoffered service routes 301-redirected or retired)
+  - GA4 (`G-83C04RTNB2`) + `gtag` event forwarding configured
+  - Firestore Security Rules hardened and deployed (`kalimeister`)
 
-### 3. Blog & Content Engine
-| Task | Owner | Status |
-|------|-------|--------|
-| Build video-to-blog-post pipeline (transcription → SEO polish → publish) | Kilo Code | pending |
-| Add Firestore tracking for blog → booking conversion | Kilo Code | pending |
-| Set up automated social cross-posting | Oz (Hermes cron) | pending |
-
-### 4. Performance & Core Web Vitals
-| Task | Owner | Status |
-|------|-------|--------|
-| Audit page load times on key pSEO routes | Oz (Lighthouse via Hermes) | pending |
-| Optimize image loading (Next.js Image, blur placeholders) | Kilo Code | pending |
-| Review and reduce layout shift on dynamic pages | Kilo Code | pending |
-
-### 5. DevOps & Monitoring
-| Task | Owner | Status |
-|------|-------|--------|
-| Monitor Firebase App Hosting build health | Oz (VPS) | done |
-| Set up uptime monitoring for kalimeister.com | Oz (Hermes cron) | pending |
-| Configure Firebase Hosting redirects for legacy URLs | Oz | pending |
-| Push latest SEO fixes to origin → trigger deploy | Oz | ready |
+---
 
 ## Agent Responsibilities
 
-| Domain | Oz (Warp) | Kilo Code |
-|--------|-----------|-----------|
-| Code editing (Next.js, TSX, CSS) | ✓ | ✓ (primary) |
-| Git operations (commit, push, merge) | ✓ | ✓ |
-| Firebase deployment & config | ✓ (primary) | |
-| VPS / Hermes agent management | ✓ (primary) | |
-| SEO audits & Lighthouse runs | ✓ (cron) | |
-| Local dev server & builds | | ✓ (primary) |
-| Playwright / Vitest testing | | ✓ (primary) |
-| Content generation (pSEO, blog) | | ✓ (primary) |
-
-## Local ↔ EC2 Linkage
-
-| Component | Local (Laptop) | Remote (EC2) |
-|-----------|---------------|--------------|
-| **SSH** | `ssh aws` → `ec2-18-188-157-210.us-east-2.compute.amazonaws.com` | Hermes VPS |
-| **Obsidian Vault** | `~/Documents/ObsidianVault/` | Synced copy (rsync via Oz) |
-| **Task Inbox** | `~/Documents/ObsidianVault/0-Inbox/Hermes/kilo-code-tasks/` | Oz writes to inbox via Hermes |
-| **Projects** | `~/projects/tarot-business-platform/` | `~/projects/tarot-business-platform/` (origin) |
-| **Admin Dashboard** | `http://localhost:3000/admin` (next dev) | `https://kalimeister.com/admin` (production) |
-| **Kilo Startup** | `~/.kilo/command/startup.md` (auto-reads vault) | N/A (Oz manages via Hermes) |
-
-## Handoff Protocol
-
-1. Oz writes task specs in `~/Documents/ObsidianVault/0-Inbox/Hermes/kilo-code-tasks/` with `assigned: kilo-code` and `status: pending` frontmatter (see `_TASK_TEMPLATE.md`)
-2. Kilo Code reads the vault on session start and checks for assigned tasks
-3. Kilo Code commits work to a feature branch, updates task status in this PLAN.md
-4. Oz reviews the branch, merges to master, pushes to origin
-5. Both agents update this PLAN.md with completed tasks and new priorities
-
-### Task File Format (for Oz)
-```
----
-assigned: kilo-code
-source: hermes-gateway
-project: tarot-business-platform
-status: pending
-created: 2026-07-01T10:00:00Z
-priority: medium
----
-# Task Title
-## Context
-...
-## Acceptance Criteria
-- [ ] Item 1
-## Branch
-feature/branch-name
-```
-
-### Repos Requiring EC2 → GitHub Push
-The following repos are documented but do not yet exist on GitHub (need `git push --set-upstream` from EC2):
-- `randi-industries-promo` → `github-randi-agency:Randi-Agent/randi-industries-promo`
-- `slt-machine-lead-gen` → `github-probabilityexchange:probabilityexchange-sketch/slt-machine-lead-gen`
-- `randi-agency` → `github-randi-agency:Randi-Agent/randi-agency` (repo init'd locally, no commits)
-- `randi-industries` → `github-randi-agency:Randi-Agent/randi-industries` (repo init'd locally, no commits)
-
-## Key Reference Files
-
-| File | Purpose |
-|------|---------|
-| `AGENTS.md` | Coding conventions, stack, build commands |
-| `PLAN.md` | This file — shared roadmap |
-| `SEO_CONTENT_STRATEGY.md` | Content engine design |
-| `firebase.json` | Firebase Hosting, Firestore, App Hosting config |
-| `apphosting.yaml` | Environment variables, secrets, run config |
-| `~/.kilo/command/startup.md` | Kilo Code startup routine |
-| `~/.kilo/plans/hermes-dashboard.md` | Hermes monitoring dashboard plan |
-| `~/Documents/ObsidianVault/0-Inbox/Hermes/kilo-code-tasks/` | Task inbox from Oz |
-| `~/Documents/ObsidianVault/Hermes Agent/Hermes Config/project-configs.md` | Full project registry |
-| `~/Documents/ObsidianVault/Hermes Agent/Randi-Agency-and-Randi-Industries-Setup-Plan.md` | Agency operating model |
+| Area | Claude (Marketing) | Codex (Infra & Products) | Gemini / `agy` (Google & SEO) |
+|---|---|---|---|
+| **Brand OS & Copy QA** (`marketing-team/`) | **Primary** | Reads `AGENTS.md` | Reads `AGENTS.md` |
+| **Brevo Campaigns, Templates & Automations** | **Primary** | API contact sync (`src/lib/email-signup.ts`) | Secret/env config (`apphosting.yaml`) |
+| **Social Scripts (TikTok, Shorts, Reels)** | **Primary** | | |
+| **Next.js App, Stripe, Cal.com, Printify** | | **Primary** | |
+| **Business Test Suite** (`src/tests/business.cjs`) | | **Primary** | Runs before every push |
+| **Firebase (App Hosting, Firestore, Auth)** | | | **Primary** |
+| **GA4 / GTM Analytics & Funnel Tracking** | | | **Primary** |
+| **Google Search Console, Sitemap, Schema, CWV** | | | **Primary** |
+| **Gemini AI Blog Generator** (`/api/generate-post`) | | | **Primary** |
 
 ---
 
-*Last updated: 2026-07-01 by Oz*
+## Active Priorities & Next Steps
+
+### 1. Marketing & Content (Claude)
+- [x] Ship Welcome + 3-part discernment guide (Brevo template 21) and activate *"Kalimeister welcome series"* automation
+- [ ] Review pending items in `marketing-team/approvals/queue.md` with Kali/Billy (`Q-20261017-7` Letter 06, `Q-20261017-8` Retreat interest, `Q-20261021-2` & `Q-20261021-3` Major Arcana scripts)
+- [ ] Collect Kali's confirmed credentials, origin story, and 2–3 writing samples to resolve remaining `[unverified]` / `[gap]` tags in `marketing-team/context/brand/`
+
+### 2. Infrastructure & Products (Codex)
+- [x] Direct Brevo contact signup (List 5 / List 8) with zero website-sent transactional sequences
+- [x] Printify catalog + gated merchandise checkout (`#16`, `#17`, `#19`)
+- [ ] Confirm Cal.com availability slots with Kali so `/readings` shows live bookable times
+- [ ] Enable merch checkout (`MERCH_CHECKOUT_ENABLED=true`, `MERCH_TAX_REVIEWED=true`) once tax/product review is complete
+
+### 3. Google Ecosystem, Analytics & SEO (Gemini / `agy`)
+- [x] Configure GA4 measurement ID fallback and `gtag` funnel event dispatch
+- [x] Harden and deploy `firestore.rules` to `kalimeister`
+- [x] Align Gemini AI blog generator (`src/app/api/generate-post/route.ts`) with Kali's brand voice and compliance rules
+- [ ] Monitor Google Search Console indexing and Core Web Vitals (LCP/CLS) across canonical city reading pages and journal posts

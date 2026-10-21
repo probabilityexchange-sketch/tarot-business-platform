@@ -1,22 +1,24 @@
-# Tarot Business Platform (Administrator's Guide)
+# Kalimeister.com (`tarot-business-platform`)
 
-## Core Technologies
-- **Frontend:** Next.js 15+ (App Router, TypeScript, Tailwind CSS)
-- **Backend:** Firebase (Auth, Firestore, Hosting, Analytics)
-- **Payments:** Stripe (Pre-payment before scheduling)
-- **Scheduling:** Integration with Google Calendar via Calendly/Acuity (Stitch compatible)
+> **Mission:** Give reflective people in transition calm, honest room to think through a question, a decision, or the story they are living—pairing tarot, conversation, and reflective writing for personal discernment rather than prediction or therapy.
 
-## Project Structure
-- `src/app/`: Modern Next.js App Router for high-performance SEO.
-- `src/lib/`: Reusable logic for Firebase, Stripe, and global utilities.
-- `outlines/stitch/`: Storage for the webpage outlines you're creating.
-- `SEO_CONTENT_STRATEGY.md`: The roadmap for the content engine.
+## Stack & Architecture
+- **Frontend:** Next.js 15 (App Router, TypeScript, Tailwind CSS v4)
+- **Google Cloud / Firebase:** Firebase App Hosting (`kali` backend), Firestore, Firebase Auth, GA4 (`G-83C04RTNB2`), Gemini AI (`@google/generative-ai`)
+- **Payments & Merch:** Stripe Checkout & Webhooks, Printify API
+- **Scheduling:** Cal.com API (slot holds and confirmed booking fulfillment)
+- **Email Lifecycle:** Brevo Contacts API (List `5` for subscribers, List `8` for course waitlist; all emails sent via Brevo automations)
 
-## Immediate Administrator Checklist
-1. [ ] **Firebase Setup:** Create a new project at [console.firebase.google.com](https://console.firebase.google.com/).
-2. [ ] **Environment Variables:** Update `.env.local` with your unique Firebase/Stripe keys.
-3. [ ] **Stripe Account:** Initialize your [Stripe dashboard](https://dashboard.stripe.com/) to receive payments directly.
-4. [ ] **Analytics & Search Console:** Link the domain once deployed to track "Tarot" keyword dominance.
+## Multi-Agent Workflow
+All agents share a single source of truth in [`AGENTS.md`](./AGENTS.md):
+- **Claude (`CLAUDE.md` / `marketing-team/`):** Marketing strategy, Brevo email sequences, social scripts, and brand compliance QA.
+- **Codex (`AGENTS.md`):** Core Next.js application logic, Stripe/Cal.com/Printify integrations, and automated business tests (`npm run test:business`).
+- **Gemini / Antigravity (`agy` / `AGENTS.md`):** Firebase deployment & security rules, GA4/GTM analytics, Google Search/SEO/Core Web Vitals, and Gemini AI endpoints.
 
-## Current Goal: Repositioning
-The platform is currently themed around **"Psychological Tarot"** and **"Narrative Therapy"** to justify the high-ticket $150-$250 price point and filter out low-value inquiries.
+## Key Commands
+```bash
+npm run dev            # Start local Next.js dev server
+npm run typecheck      # Run TypeScript compiler check
+npm run test:business  # Run end-to-end business logic test suite
+npm run build          # Production build check
+```
