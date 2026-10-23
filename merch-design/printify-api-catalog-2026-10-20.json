@@ -1,0 +1,955 @@
+{
+  "configured": true,
+  "checkoutEnabled": false,
+  "approval": "manual",
+  "products": [
+    {
+      "slug": "taurus-shirt",
+      "name": "Taurus zodiac shirt",
+      "productId": "6ad179eb85955f92a50529a4",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79142,
+          "title": "3XL / Ivory",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        }
+      ]
+    },
+    {
+      "slug": "aries-shirt",
+      "name": "Aries zodiac shirt",
+      "productId": "6ad187092a7b57e9090d14b4",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79162,
+          "title": "3XL / Terracotta",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 79074,
+          "title": "XL / Terracotta",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79072,
+          "title": "M / Terracotta",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79073,
+          "title": "L / Terracotta",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79071,
+          "title": "S / Terracotta",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79075,
+          "title": "2XL / Terracotta",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101469,
+          "title": "4XL / Terracotta",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "gemini-shirt",
+      "name": "Gemini zodiac shirt",
+      "productId": "6ad18969537e1bc495097972",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79113,
+          "title": "3XL / Berry",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 78883,
+          "title": "L / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78884,
+          "title": "XL / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78881,
+          "title": "S / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78882,
+          "title": "M / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78885,
+          "title": "2XL / Berry",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101422,
+          "title": "4XL / Berry",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "cancer-shirt",
+      "name": "Cancer zodiac shirt",
+      "productId": "6ad189b22a7b57e9090d16c8",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79116,
+          "title": "3XL / Blue Jean",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 78892,
+          "title": "M / Blue Jean",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78894,
+          "title": "XL / Blue Jean",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78891,
+          "title": "S / Blue Jean",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78893,
+          "title": "L / Blue Jean",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78895,
+          "title": "2XL / Blue Jean",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101425,
+          "title": "4XL / Blue Jean",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "leo-shirt",
+      "name": "Leo zodiac shirt",
+      "productId": "6ad18a27437482413208f93f",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79155,
+          "title": "3XL / Pepper",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 79048,
+          "title": "L / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79049,
+          "title": "XL / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79046,
+          "title": "S / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79047,
+          "title": "M / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79050,
+          "title": "2XL / Pepper",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101463,
+          "title": "4XL / Pepper",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "virgo-shirt",
+      "name": "Virgo zodiac shirt",
+      "productId": "6ad18a75102829824802e66c",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79142,
+          "title": "3XL / Ivory",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 78994,
+          "title": "XL / Ivory",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78993,
+          "title": "L / Ivory",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78991,
+          "title": "S / Ivory",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78992,
+          "title": "M / Ivory",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78995,
+          "title": "2XL / Ivory",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101450,
+          "title": "4XL / Ivory",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "libra-shirt",
+      "name": "Libra zodiac shirt",
+      "productId": "6ad18b03eb958f0a3a00b072",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79113,
+          "title": "3XL / Berry",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 78883,
+          "title": "L / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78884,
+          "title": "XL / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78881,
+          "title": "S / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78882,
+          "title": "M / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78885,
+          "title": "2XL / Berry",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101422,
+          "title": "4XL / Berry",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "scorpio-shirt",
+      "name": "Scorpio zodiac shirt",
+      "productId": "6ad18b7716a1d5c8d601510c",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79155,
+          "title": "3XL / Pepper",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 79048,
+          "title": "L / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79049,
+          "title": "XL / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79046,
+          "title": "S / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79047,
+          "title": "M / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79050,
+          "title": "2XL / Pepper",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101463,
+          "title": "4XL / Pepper",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "sagittarius-shirt",
+      "name": "Sagittarius zodiac shirt",
+      "productId": "6ad18bcf47a196f8200d2add",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79149,
+          "title": "3XL / Moss",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 79024,
+          "title": "XL / Moss",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79021,
+          "title": "S / Moss",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79022,
+          "title": "M / Moss",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79023,
+          "title": "L / Moss",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79025,
+          "title": "2XL / Moss",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101457,
+          "title": "4XL / Moss",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "capricorn-shirt",
+      "name": "Capricorn zodiac shirt",
+      "productId": "6ad18c63e9129153fd0b7969",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79155,
+          "title": "3XL / Pepper",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 79048,
+          "title": "L / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79049,
+          "title": "XL / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79046,
+          "title": "S / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79047,
+          "title": "M / Pepper",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 79050,
+          "title": "2XL / Pepper",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101463,
+          "title": "4XL / Pepper",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "aquarius-shirt",
+      "name": "Aquarius zodiac shirt",
+      "productId": "6ad18ced437482413208fba2",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79116,
+          "title": "3XL / Blue Jean",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 78892,
+          "title": "M / Blue Jean",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78894,
+          "title": "XL / Blue Jean",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78891,
+          "title": "S / Blue Jean",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78893,
+          "title": "L / Blue Jean",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78895,
+          "title": "2XL / Blue Jean",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101425,
+          "title": "4XL / Blue Jean",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "pisces-shirt",
+      "name": "Pisces zodiac shirt",
+      "productId": "6ad18da4437482413208fc04",
+      "kind": "shirt",
+      "priceCents": 3400,
+      "connected": true,
+      "variants": [
+        {
+          "id": 79113,
+          "title": "3XL / Berry",
+          "available": true,
+          "productionCostCents": 1603,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1797
+        },
+        {
+          "id": 78883,
+          "title": "L / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78884,
+          "title": "XL / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78881,
+          "title": "S / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78882,
+          "title": "M / Berry",
+          "available": true,
+          "productionCostCents": 1265,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2135
+        },
+        {
+          "id": 78885,
+          "title": "2XL / Berry",
+          "available": true,
+          "productionCostCents": 1389,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 2011
+        },
+        {
+          "id": 101422,
+          "title": "4XL / Berry",
+          "available": true,
+          "productionCostCents": 1834,
+          "priceCents": 3400,
+          "contributionBeforeShippingAndFeesCents": 1566
+        }
+      ]
+    },
+    {
+      "slug": "love-candle",
+      "name": "Love candle",
+      "productId": "6ad2936df124a2c13f09d7f6",
+      "kind": "candle",
+      "priceCents": 2800,
+      "connected": true,
+      "variants": [
+        {
+          "id": 120602,
+          "title": "9oz / Amber Jar + Black Lid / Vanilla Bean",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120606,
+          "title": "9oz / Amber Jar + Black Lid / Eucalyptus Lavender Herb",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120610,
+          "title": "9oz / Amber Jar + Black Lid / Unscented",
+          "available": true,
+          "productionCostCents": 1148,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1652
+        }
+      ]
+    },
+    {
+      "slug": "prosperity-candle",
+      "name": "Prosperity candle",
+      "productId": "6ad293148e63605db603d6c8",
+      "kind": "candle",
+      "priceCents": 2800,
+      "connected": true,
+      "variants": [
+        {
+          "id": 120602,
+          "title": "9oz / Amber Jar + Black Lid / Vanilla Bean",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120606,
+          "title": "9oz / Amber Jar + Black Lid / Eucalyptus Lavender Herb",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120610,
+          "title": "9oz / Amber Jar + Black Lid / Unscented",
+          "available": true,
+          "productionCostCents": 1148,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1652
+        }
+      ]
+    },
+    {
+      "slug": "protection-candle",
+      "name": "Protection candle",
+      "productId": "6ad29211f3b2ab4a880cf6ce",
+      "kind": "candle",
+      "priceCents": 2800,
+      "connected": true,
+      "variants": [
+        {
+          "id": 120602,
+          "title": "9oz / Amber Jar + Black Lid / Vanilla Bean",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120606,
+          "title": "9oz / Amber Jar + Black Lid / Eucalyptus Lavender Herb",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120610,
+          "title": "9oz / Amber Jar + Black Lid / Unscented",
+          "available": true,
+          "productionCostCents": 1148,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1652
+        }
+      ]
+    },
+    {
+      "slug": "clarity-candle",
+      "name": "Clarity candle",
+      "productId": "6ad291963f42a07d4c090f9a",
+      "kind": "candle",
+      "priceCents": 2800,
+      "connected": true,
+      "variants": [
+        {
+          "id": 120602,
+          "title": "9oz / Amber Jar + Black Lid / Vanilla Bean",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120606,
+          "title": "9oz / Amber Jar + Black Lid / Eucalyptus Lavender Herb",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120610,
+          "title": "9oz / Amber Jar + Black Lid / Unscented",
+          "available": true,
+          "productionCostCents": 1148,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1652
+        }
+      ]
+    },
+    {
+      "slug": "peace-candle",
+      "name": "Peace candle",
+      "productId": "6ad290f9be99720e8e0bd1b7",
+      "kind": "candle",
+      "priceCents": 2800,
+      "connected": true,
+      "variants": [
+        {
+          "id": 120602,
+          "title": "9oz / Amber Jar + Black Lid / Vanilla Bean",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120606,
+          "title": "9oz / Amber Jar + Black Lid / Eucalyptus Lavender Herb",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120610,
+          "title": "9oz / Amber Jar + Black Lid / Unscented",
+          "available": true,
+          "productionCostCents": 1148,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1652
+        }
+      ]
+    },
+    {
+      "slug": "writing-hour-candle",
+      "name": "The Writing Hour candle",
+      "productId": "6ad293d13f42a07d4c09111b",
+      "kind": "candle",
+      "priceCents": 2800,
+      "connected": true,
+      "variants": [
+        {
+          "id": 120602,
+          "title": "9oz / Amber Jar + Black Lid / Vanilla Bean",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120606,
+          "title": "9oz / Amber Jar + Black Lid / Eucalyptus Lavender Herb",
+          "available": true,
+          "productionCostCents": 1189,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1611
+        },
+        {
+          "id": 120610,
+          "title": "9oz / Amber Jar + Black Lid / Unscented",
+          "available": true,
+          "productionCostCents": 1148,
+          "priceCents": 2800,
+          "contributionBeforeShippingAndFeesCents": 1652
+        }
+      ]
+    }
+  ]
+}

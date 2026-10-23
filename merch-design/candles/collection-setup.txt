@@ -1,0 +1,18 @@
+First candle collection — draft production setup
+
+Peace, Clarity, Protection, Prosperity, Love, The Writing Hour.
+Candle Builders via Printify Choice. 9oz total jar, 7.5oz wax.
+Amber glass, black lid, natural wax color.
+Each product offers Vanilla Bean, Eucalyptus Lavender Herb, Unscented.
+Three variants per product; no personally applied blessing included.
+
+Artwork generated with the built-in image tool using prior candle mockups
+as edit references. Exact prompts and paths in label-manifest.json.
+Converted monochrome linework to plum spline paths on a cream background.
+SVG label canvas 900x600, exactly 3x2 inches at 300px/in; 2% extra margin
+added around the generated artwork. See prepare_labels.py for conversion.
+Six label previews visually reviewed together before Printify upload.
+
+Physical candle sample, scent approval, print quality and retail prices
+still need review before publishing. No order or payment authorized here.
+Do not describe these POD products as personally blessed by Kali.

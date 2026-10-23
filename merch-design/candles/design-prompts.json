@@ -1,0 +1,36 @@
+{
+  "method": "Built-in image generation",
+  "status": "Concept mockups for Kali to review; not Printify templates, actual product photos, or published products. Scents and sizes not selected. No personal blessing included.",
+  "designs": [
+    {
+      "id": "peace",
+      "title": "Peace",
+      "prompt": "Use case: product-mockup. Design a sophisticated Kali Meister intention candle concept matching a cream-and-plum literary botanical collection. One amber glass jar candle with black screw lid resting beside it, unlit ivory wax, on warm cream studio backdrop with soft daylight. Front cream rectangular label with fine plum border, deep muted plum #653c56 lettering and original restrained woodcut illustration of an olive branch with two gracefully balanced stems. Large perfectly legible elegant literary serif title exactly \"Peace\". Small spaced footer exactly \"KALI MEISTER\". Balanced airy editorial layout, distinctive boutique bookshop quality. No extra wording, no fragrance, weight, ingredients, certifications, promises, blessed/handmade claims or magical effects. No extra props, watermark, glitter, glow or ornamental clutter. Photorealistic product concept; label centered straight and readable; full jar visible.",
+      "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-f5762e6c-f19a-4e8e-b1f1-623ed85a3568.png"
+    },
+    {
+      "id": "clarity",
+      "title": "Clarity",
+      "prompt": "Use case: product-mockup. Design a sophisticated Kali Meister intention candle concept matching a cream-and-plum literary botanical collection. One amber glass jar candle with black screw lid resting beside it, unlit ivory wax, on warm cream studio backdrop with soft daylight. Front cream rectangular label with fine plum border, deep muted plum #653c56 lettering and original restrained woodcut illustration of a small rising sun above a still pool, clean restrained engraved rays. Large perfectly legible elegant literary serif title exactly \"Clarity\". Small spaced footer exactly \"KALI MEISTER\". Balanced airy editorial layout, distinctive boutique bookshop quality. No extra wording, no fragrance, weight, ingredients, certifications, promises, blessed/handmade claims or magical effects. No extra props, watermark, glitter, glow or ornamental clutter. Photorealistic product concept; label centered straight and readable; full jar visible.",
+      "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-a5c9acd0-0c2a-4286-948b-e5ae0eb8cf80.png"
+    },
+    {
+      "id": "protection",
+      "title": "Protection",
+      "prompt": "Use case: product-mockup. Design a sophisticated Kali Meister intention candle concept matching a cream-and-plum literary botanical collection. One amber glass jar candle with black screw lid resting beside it, unlit ivory wax, on warm cream studio backdrop with soft daylight. Front cream rectangular label with fine plum border, deep muted plum #653c56 lettering and original restrained woodcut illustration of a sturdy oak branch forming a gentle enclosing wreath. Large perfectly legible elegant literary serif title exactly \"Protection\". Small spaced footer exactly \"KALI MEISTER\". Balanced airy editorial layout, distinctive boutique bookshop quality. No extra wording, no fragrance, weight, ingredients, certifications, promises, blessed/handmade claims or magical effects. No extra props, watermark, glitter, glow or ornamental clutter. Photorealistic product concept; label centered straight and readable; full jar visible.",
+      "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-3f3022ee-1bc9-48a8-85a7-8e10825911c0.png"
+    },
+    {
+      "id": "prosperity",
+      "title": "Prosperity",
+      "prompt": "Use case: product-mockup. Design a sophisticated Kali Meister intention candle concept matching a cream-and-plum literary botanical collection. One amber glass jar candle with black screw lid resting beside it, unlit ivory wax, on warm cream studio backdrop with soft daylight. Front cream rectangular label with fine plum border, deep muted plum #653c56 lettering and original restrained woodcut illustration of a flourishing pomegranate branch with one open fruit. Large perfectly legible elegant literary serif title exactly \"Prosperity\". Small spaced footer exactly \"KALI MEISTER\". Balanced airy editorial layout, distinctive boutique bookshop quality. No extra wording, no fragrance, weight, ingredients, certifications, promises, blessed/handmade claims or magical effects. No extra props, watermark, glitter, glow or ornamental clutter. Photorealistic product concept; label centered straight and readable; full jar visible.",
+      "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-6463fcb5-b604-40b3-a3f5-0ad3c1962706.png"
+    },
+    {
+      "id": "love",
+      "title": "Love",
+      "prompt": "Use case: product-mockup. Design a sophisticated Kali Meister intention candle concept matching a cream-and-plum literary botanical collection. One amber glass jar candle with black screw lid resting beside it, unlit ivory wax, on warm cream studio backdrop with soft daylight. Front cream rectangular label with fine plum border, deep muted plum #653c56 lettering and original restrained woodcut illustration of two intertwined flowering stems with a subtle heart-shaped arrangement. Large perfectly legible elegant literary serif title exactly \"Love\". Small spaced footer exactly \"KALI MEISTER\". Balanced airy editorial layout, distinctive boutique bookshop quality. No extra wording, no fragrance, weight, ingredients, certifications, promises, blessed/handmade claims or magical effects. No extra props, watermark, glitter, glow or ornamental clutter. Photorealistic product concept; label centered straight and readable; full jar visible.",
+      "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-8b1b7a72-ecb1-469a-98cf-c77dead3fcae.png"
+    }
+  ]
+}

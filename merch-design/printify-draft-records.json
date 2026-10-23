@@ -1,0 +1,74 @@
+[
+  {
+    "sign": "Taurus",
+    "id": "6ad179eb85955f92a50529a4",
+    "color": "Ivory",
+    "sizes": 1
+  },
+  {
+    "sign": "Aries",
+    "id": "6ad187092a7b57e9090d14b4",
+    "color": "Terracotta",
+    "sizes": 7
+  },
+  {
+    "sign": "Gemini",
+    "id": "6ad18969537e1bc495097972",
+    "color": "Berry",
+    "sizes": 7
+  },
+  {
+    "sign": "Cancer",
+    "id": "6ad189b22a7b57e9090d16c8",
+    "color": "Blue Jean",
+    "sizes": 7
+  },
+  {
+    "sign": "Leo",
+    "id": "6ad18a27437482413208f93f",
+    "color": "Pepper",
+    "sizes": 7
+  },
+  {
+    "sign": "Virgo",
+    "id": "6ad18a75102829824802e66c",
+    "color": "Ivory",
+    "sizes": 7
+  },
+  {
+    "sign": "Libra",
+    "id": "6ad18b03eb958f0a3a00b072",
+    "color": "Berry",
+    "sizes": 7
+  },
+  {
+    "sign": "Scorpio",
+    "id": "6ad18b7716a1d5c8d601510c",
+    "color": "Pepper",
+    "sizes": 7
+  },
+  {
+    "sign": "Sagittarius",
+    "id": "6ad18bcf47a196f8200d2add",
+    "color": "Moss",
+    "sizes": 7
+  },
+  {
+    "sign": "Capricorn",
+    "id": "6ad18c63e9129153fd0b7969",
+    "color": "Pepper",
+    "sizes": 7
+  },
+  {
+    "sign": "Aquarius",
+    "id": "6ad18ced437482413208fba2",
+    "color": "Blue Jean",
+    "sizes": 7
+  },
+  {
+    "sign": "Pisces",
+    "id": "6ad18da4437482413208fc04",
+    "color": "Berry",
+    "sizes": 7
+  }
+]

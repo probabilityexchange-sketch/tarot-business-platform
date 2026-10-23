@@ -1,0 +1,13 @@
+Taurus print preparation
+Generated edit requesting 4K returned 1227x1282; rejected as resolution fix.
+Converted original isolated artwork to single-plum vector curves with
+VTracer 0.6.15, using alpha>=160 and R<180/G<130 to isolate the ink.
+Trace: binary spline, speckle4, corner60, length3, iterations10, splice45,
+precision3. Fill #653c56; background and light fill are transparent.
+taurus-vector-v2.svg is the selected vector conversion; v1 is rejected.
+taurus-vector-review-v2.png is an offline rendered review on cream.
+Vector output was visually checked locally; no new anatomy or text.
+Printify accepted v2 as High resolution (Vector), Final layout: width10.5in, horizontally centered, top3% of print area.
+Product 6ad179eb85955f92a50529a4, Ivory3XL, Printify Choice Comfort Colors1717.
+Saved named draft: Taurus — My Comfort Zone | Kali Meister.
+Sample checkout needs final shipping/tax review; not purchased.

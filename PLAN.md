@@ -21,7 +21,7 @@
   - Website signups (`/api/subscribe`, `/api/free-guide`) add contacts directly to Brevo List `5`; course waitlist (`/api/course-waitlist`) adds to Brevo List `8`
   - Brevo automation *"Kalimeister welcome series"* (discernment guide template 21 → 3-day wait → Letters 01–05 weekly) activated 2026-10-21
 - **Merchandise / Shop (`/shop`):**
-  - Printify catalog, shipping quotes, and gated Stripe checkout built; held behind `MERCH_CHECKOUT_ENABLED=false` and `MERCH_TAX_REVIEWED=false` until launch approval
+  - Printify catalog, shipping quotes, and Stripe checkout enabled (`MERCH_CHECKOUT_ENABLED=true`, `MERCH_TAX_REVIEWED=true`; paid orders enter manual admin review before Printify production)
 - **Google Stack & SEO:**
   - Consolidated canonical city tarot pages (45 retained, legacy/unoffered service routes 301-redirected or retired)
   - GA4 (`G-83C04RTNB2`) + `gtag` event forwarding configured

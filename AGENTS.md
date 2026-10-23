@@ -50,7 +50,7 @@ Detailed brand context lives in `marketing-team/context/context-card.md` and `ma
 | **Shadow Work Intensive** | 90-minute private online tarot reading | **$450** | `"Book a Reading"` → `/readings` |
 | **Letters from Kali + Free 3-Part Discernment Guide** | Email signup & weekly reflective letters | **Free** | `"Send me the free guide"` → `/letters` |
 | **Course Waitlist** | Upcoming self-paced resources waitlist | **Waitlist** | `/courses` |
-| **Shop / Candles & Merch** | Printify + Stripe merch preview (checkout gated via `MERCH_CHECKOUT_ENABLED`) | **Preview** | `/shop` |
+| **Shop / Candles & Merch** | 12 Zodiac Shirts ($34) & 6 Intention Candles ($28) via Printify + Stripe (`MERCH_CHECKOUT_ENABLED=true`) | **$28–$34** | `/shop` |
 
 ### Critical System Boundaries
 - **Booking Policy:** Advance payment via Stripe required; non-refundable; reschedule with at least 48 hours' notice; slot reservation holds expire after 30–45 minutes.

@@ -120,11 +120,11 @@ env:
     availability:
       - RUNTIME
   - variable: MERCH_CHECKOUT_ENABLED
-    value: "false"
+    value: "true"
     availability:
       - RUNTIME
   - variable: MERCH_TAX_REVIEWED
-    value: "false"
+    value: "true"
     availability:
       - RUNTIME
   - variable: BREVO_COURSE_LIST_ID

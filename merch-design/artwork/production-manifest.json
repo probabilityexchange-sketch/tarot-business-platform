@@ -1,0 +1,81 @@
+[
+  {
+    "id": "aries",
+    "sign": "ARIES",
+    "quote": "I started before I finished reading the instructions.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-c73c3df5-aaad-4e07-b366-0cb4cd94224d.png",
+    "prompt": "Edit target: supplied approved ARIES T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"ARIES\", \"I started before I finished reading the instructions.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup."
+  },
+  {
+    "id": "gemini",
+    "sign": "GEMINI",
+    "quote": "Both versions of me have a point.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-a8f4d7c2-6595-4c77-ba85-d3db269db16d.png",
+    "prompt": "Edit target: supplied approved GEMINI T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"GEMINI\", \"Both versions of me have a point.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup."
+  },
+  {
+    "id": "cancer",
+    "sign": "CANCER",
+    "quote": "I brought snacks and emotional context.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-98b79d1a-32ea-4830-ad6f-7b919eda83d3.png",
+    "prompt": "Edit target: supplied approved CANCER T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"CANCER\", \"I brought snacks and emotional context.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup.",
+    "rejected": false
+  },
+  {
+    "id": "leo",
+    "sign": "LEO",
+    "quote": "Even my footnotes deserve applause.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-7c409768-739c-42d4-a4ae-87bae96aeeae.png",
+    "prompt": "Edit target: supplied approved LEO T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"LEO\", \"Even my footnotes deserve applause.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup."
+  },
+  {
+    "id": "virgo",
+    "sign": "VIRGO",
+    "quote": "Trust the universe. Proofread anyway.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-eb429e8d-79a4-4446-a0fe-3187bda13934.png",
+    "prompt": "Edit target: supplied approved VIRGO T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"VIRGO\", \"Trust the universe. Proofread anyway.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup."
+  },
+  {
+    "id": "libra",
+    "sign": "LIBRA",
+    "quote": "I see both sides. That\u2019s the problem.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-bbdc3488-a3c8-46f5-bd1a-450c9c360d36.png",
+    "prompt": "Edit target: supplied approved LIBRA T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"LIBRA\", \"I see both sides. That\u2019s the problem.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup."
+  },
+  {
+    "id": "scorpio",
+    "sign": "SCORPIO",
+    "quote": "You\u2019ve read the cover. Not the manuscript.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-bd632948-c864-4bd9-aabc-bea4237ae267.png",
+    "prompt": "Edit target: supplied approved SCORPIO T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"SCORPIO\", \"You\u2019ve read the cover. Not the manuscript.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup."
+  },
+  {
+    "id": "sagittarius",
+    "sign": "SAGITTARIUS",
+    "quote": "I went looking for meaning. I missed my flight.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-a36dc3b7-3c91-4a6c-a56c-92c78942201e.png",
+    "prompt": "Edit target: supplied approved SAGITTARIUS T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"SAGITTARIUS\", \"I went looking for meaning. I missed my flight.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup.",
+    "rejected": false
+  },
+  {
+    "id": "capricorn",
+    "sign": "CAPRICORN",
+    "quote": "My five-year plan has a sequel.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-316fe30a-5e02-4961-bae0-6834988f9e26.png",
+    "prompt": "Edit target: supplied approved CAPRICORN T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"CAPRICORN\", \"My five-year plan has a sequel.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup."
+  },
+  {
+    "id": "aquarius",
+    "sign": "AQUARIUS",
+    "quote": "The plot was predictable. I changed the genre.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-dea53374-c268-4383-9f71-d0c4392374eb.png",
+    "prompt": "Edit target: supplied approved AQUARIUS T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"AQUARIUS\", \"The plot was predictable. I changed the genre.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup."
+  },
+  {
+    "id": "pisces",
+    "sign": "PISCES",
+    "quote": "I was listening. To the ocean in my head.",
+    "source": "/home/billy-bradshaw/.codex/generated_images/01a126ab-ea7e-7962-bf03-af690b8e299c/exec-e3c2807e-8d63-4eca-849f-cab7d1c2f3c5.png",
+    "prompt": "Edit target: supplied approved PISCES T-shirt mockup. Extract/recreate ONLY the complete chest print as isolated flat artwork on genuinely transparent background. Preserve approved typography, layout, illustration and exact wording \"PISCES\", \"I was listening. To the ocean in my head.\", small footer \"KALI MEISTER\". Remove ALL shirt/fabric/background/shadows/folds and mockup perspective. IMPORTANT use dark solid plum #653c56 ink for every printed stroke, even if reference ink is ivory; negative spaces fully transparent. The alternate ivory color will be made from vector later. Keep engraving details crisp with sufficient stroke thickness, accurate anatomy, simple stars. Preserve literary serif typography and all spelling. No fabric texture, no glow, no off-white fill, no black backdrop, no extra elements. Complete design centered with transparent margins, high resolution. Output actual transparent PNG print artwork, not a product mockup."
+  }
+]

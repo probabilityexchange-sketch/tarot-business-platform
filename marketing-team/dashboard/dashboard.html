@@ -1,0 +1,500 @@
+<title>Team Ledger</title>
+<style>
+:root{
+  --ground:#F3F5F4; --surface:#FFFFFF; --sunk:#EBEFED; --ink:#16201C; --muted:#5A6560; --faint:#8A948F; --line:#DAE0DD;
+  --accent:#2B55C9; --accent-ink:#FFFFFF; --accent-soft:#E6ECFB;
+  --good:#2F7A4E; --good-soft:#E3F1E8; --warn:#9A5F0C; --warn-soft:#FBF0DC; --crit:#B3261E; --crit-soft:#FBE6E4;
+  --c1:#2B55C9; --c2:#1F8A83; --c3:#C27C1A; --c4:#2F7A4E;
+  --radius:8px; --sans:ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif; --mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  color-scheme:dark; --ground:#101413; --surface:#171C1A; --sunk:#1E2522; --ink:#E4EAE7; --muted:#9BA6A1; --faint:#6F7a75; --line:#2A322F;
+  --accent:#86A4FF; --accent-ink:#0D1530; --accent-soft:#1D2744;
+  --good:#6CC596; --good-soft:#15291F; --warn:#E3AA52; --warn-soft:#2B2213; --crit:#F08A80; --crit-soft:#321816;
+  --c1:#86A4FF; --c2:#4FC2B9; --c3:#E3AA52; --c4:#6CC596; } }
+:root[data-theme="dark"]{
+  color-scheme:dark; --ground:#101413; --surface:#171C1A; --sunk:#1E2522; --ink:#E4EAE7; --muted:#9BA6A1; --faint:#6F7a75; --line:#2A322F;
+  --accent:#86A4FF; --accent-ink:#0D1530; --accent-soft:#1D2744;
+  --good:#6CC596; --good-soft:#15291F; --warn:#E3AA52; --warn-soft:#2B2213; --crit:#F08A80; --crit-soft:#321816;
+  --c1:#86A4FF; --c2:#4FC2B9; --c3:#E3AA52; --c4:#6CC596; }
+*{box-sizing:border-box}
+body{background:var(--ground);color:var(--ink);font:14px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1180px;margin:0 auto;padding-inline:16px;padding-block:0 48px}
+.mono{font-family:var(--mono);font-size:12px}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:4px}
+@media (prefers-reduced-motion: reduce){*{transition:none!important;animation:none!important}}
+
+/* top bar */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--ground);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;gap:12px;padding-block:12px;flex-wrap:wrap}
+.brand{display:flex;flex-direction:column;min-width:0}
+.brand b{font-weight:600;font-size:15px;letter-spacing:-.005em}
+.brand span{color:var(--muted);font-size:12px}
+.fresh{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--good);flex:none}
+.dot.stale{background:var(--warn)}
+
+/* summary strip */
+.strip{display:grid;grid-template-columns:repeat(6,1fr);background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);margin-top:16px;overflow:hidden}
+.stat{padding:12px 14px;border-left:1px solid var(--line);display:flex;flex-direction:column;gap:2px;min-width:0;text-align:left;background:none;border-top:0;border-right:0;border-bottom:0;cursor:pointer}
+.stat:first-child{border-left:0}
+.stat:hover{background:var(--sunk)}
+.stat .n{font-size:24px;font-weight:600;font-variant-numeric:tabular-nums;line-height:1.1}
+.stat .l{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.stat.accent .n{color:var(--accent)} .stat.crit .n{color:var(--crit)} .stat.good .n{color:var(--good)} .stat.warn .n{color:var(--warn)}
+.stat.zero .n{color:var(--faint)}
+@media (max-width:720px){.strip{grid-template-columns:repeat(3,1fr)} .stat:nth-child(4){border-left:0} .stat:nth-child(n+4){border-top:1px solid var(--line)}}
+
+.band{display:grid;grid-template-columns:1fr auto;gap:16px;align-items:end;margin-top:14px}
+.chart{min-width:0}
+.chart h3,.sec h3{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 6px}
+.legend{display:flex;gap:12px;flex-wrap:wrap;font-size:12px;color:var(--muted)}
+.legend i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:5px;vertical-align:0}
+svg text{fill:var(--faint);font:10px var(--mono)}
+
+/* tabs */
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--line);margin-top:18px;overflow-x:auto}
+.tab{background:none;border:0;padding:9px 12px;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;white-space:nowrap;font-weight:500}
+.tab[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent)}
+.tab .c{font:11px var(--mono);color:var(--faint);margin-left:4px}
+
+/* layout */
+.main{display:grid;grid-template-columns:minmax(300px,380px) 1fr;gap:16px;margin-top:14px;align-items:start}
+.main.single{grid-template-columns:1fr}
+@media (max-width:1039px){.main{grid-template-columns:1fr} .main.has-sel .list-col{display:none} .main:not(.has-sel) .detail-col{display:none}}
+@media (min-width:1040px){.back{display:none!important}}
+
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
+.chip{border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:3px 10px;font-size:12px;cursor:pointer;color:var(--muted)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--ground);border-color:var(--ink)}
+
+.list{display:flex;flex-direction:column;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.row{display:grid;grid-template-columns:4px 1fr auto;gap:0 12px;text-align:left;background:none;border:0;border-top:1px solid var(--line);padding:0;cursor:pointer}
+.row:first-child{border-top:0}
+.row:hover{background:var(--sunk)} .row[aria-current="true"]{background:var(--accent-soft)}
+.row .stripe{background:var(--line)}
+.row .body{padding:10px 0;min-width:0}
+.row .t{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row .m{color:var(--muted);font-size:12px}
+.row .side{padding:10px 12px 10px 0;display:flex;flex-direction:column;align-items:flex-end;gap:4px}
+.stripe.s-awaiting{background:var(--accent)} .stripe.s-blocked{background:var(--crit)} .stripe.s-ready{background:var(--warn)} .stripe.s-done{background:var(--good)} .stripe.s-flight{background:var(--c2)}
+.empty{padding:28px 16px;color:var(--muted);text-align:center}
+
+/* stamps */
+.stamp{display:inline-flex;align-items:center;gap:4px;border:1px solid currentColor;border-radius:4px;padding:0 6px;font:500 11px/18px var(--mono);letter-spacing:.02em;text-transform:uppercase;white-space:nowrap}
+.st-pass,.st-shipped,.st-approved-done{color:var(--good)} .st-revise,.st-approved{color:var(--warn)} .st-block,.st-rejected{color:var(--crit)} .st-reviewed,.st-pending{color:var(--accent)} .st-draft{color:var(--muted)}
+.tag{display:inline-block;background:var(--sunk);color:var(--muted);border-radius:4px;padding:0 6px;font-size:12px;line-height:20px;white-space:nowrap}
+.tier{display:inline-block;min-width:24px;text-align:center;border-radius:3px;font:500 10px/16px var(--mono);margin-right:6px}
+.T0{background:var(--accent);color:var(--accent-ink)} .T1{background:var(--accent-soft);color:var(--accent)} .T2{background:var(--sunk);color:var(--ink)} .T3{background:var(--warn-soft);color:var(--warn)}
+
+/* detail */
+.detail{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);min-width:0}
+.dhead{padding:16px 18px 12px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:8px}
+.dhead h2{margin:0;font-size:18px;font-weight:600;text-wrap:balance;letter-spacing:-.01em}
+.dmeta{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.fp{color:var(--muted)} .fp b{color:var(--ink);font-weight:500}
+.back{align-self:flex-start;background:none;border:0;color:var(--accent);cursor:pointer;padding:0;font-weight:500}
+.act{padding:12px 18px;border-bottom:1px solid var(--line);display:flex;flex-direction:column;gap:10px;background:var(--sunk)}
+.act .btns{display:flex;gap:8px;flex-wrap:wrap}
+.btn{border:1px solid var(--line);background:var(--surface);border-radius:6px;padding:6px 12px;cursor:pointer;font-weight:500}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn.danger{color:var(--crit)}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.note{font-size:13px;color:var(--muted)}
+.note b{color:var(--ink);font-weight:500}
+textarea{width:100%;min-height:72px;border:1px solid var(--line);border-radius:6px;background:var(--surface);color:var(--ink);padding:8px;font:inherit;resize:vertical}
+.banner{border-radius:6px;padding:8px 12px;font-size:13px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.banner.ok{background:var(--good-soft);color:var(--good)} .banner.warn{background:var(--warn-soft);color:var(--warn)} .banner.crit{background:var(--crit-soft);color:var(--crit)} .banner.info{background:var(--accent-soft);color:var(--accent)}
+.banner .mono{color:inherit}
+.linkbtn{background:none;border:0;color:inherit;text-decoration:underline;cursor:pointer;padding:0;font-size:13px}
+
+.dtabs{display:flex;gap:2px;padding:0 12px;border-bottom:1px solid var(--line)}
+.pane{padding:16px 18px}
+
+/* content preview */
+.prose{max-width:68ch;overflow-wrap:anywhere}
+.prose h1{font-size:20px;margin:0 0 10px;text-wrap:balance} .prose h2{font-size:16px;margin:18px 0 6px} .prose h3{font-size:14px;margin:14px 0 4px}
+.prose p{margin:0 0 10px} .prose ul,.prose ol{margin:0 0 10px;padding-left:20px}
+.prose table{border-collapse:collapse;margin:6px 0 12px;font-size:13px;display:block;overflow-x:auto}
+.prose th,.prose td{border:1px solid var(--line);padding:4px 8px;text-align:left}
+.prose code{font:12px var(--mono);background:var(--sunk);padding:1px 4px;border-radius:3px}
+.prose blockquote{margin:0 0 10px;padding-left:12px;border-left:3px solid var(--line);color:var(--muted)}
+.prose a{color:var(--accent)}
+.shipto{margin-bottom:14px;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+
+/* provenance */
+.prov{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--line);border-radius:6px;margin-bottom:16px}
+.prov div{padding:8px 10px;border-left:1px solid var(--line)} .prov div:first-child{border-left:0}
+.prov .n{font-size:18px;font-weight:600;font-variant-numeric:tabular-nums}
+.prov .l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+@media (max-width:520px){.prov{grid-template-columns:repeat(2,1fr)} .prov div:nth-child(3){border-left:0} .prov div:nth-child(n+3){border-top:1px solid var(--line)}}
+.files{list-style:none;padding:0;margin:0 0 16px;display:flex;flex-direction:column;gap:3px}
+.files li{display:flex;align-items:center;min-width:0} .files .mono{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--muted)}
+.sec{margin-bottom:16px}
+
+/* timeline */
+.tl{list-style:none;margin:0;padding:0;position:relative}
+.tl::before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:var(--line)}
+.ev{position:relative;padding:0 0 14px 28px}
+.ev .pin{position:absolute;left:1px;top:4px;width:14px;height:14px;border-radius:50%;background:var(--surface);border:2px solid var(--faint)}
+.ev.k-request .pin,.ev.k-decision .pin{border-color:var(--ink);background:var(--ink)}
+.ev.k-dispatch .pin,.ev.k-work_order .pin,.ev.k-queued .pin{border-color:var(--accent)}
+.ev.k-draft .pin,.ev.k-revision .pin{border-color:var(--c2);background:var(--c2)}
+.ev.v-PASS .pin,.ev.k-ship .pin{border-color:var(--good);background:var(--good)}
+.ev.v-REVISE .pin{border-color:var(--warn);background:var(--warn)}
+.ev.v-BLOCK .pin,.ev.k-escalated .pin{border-color:var(--crit);background:var(--crit)}
+.ev .h{display:flex;gap:8px;align-items:baseline;flex-wrap:wrap}
+.ev .h b{font-weight:600}
+.ev .when{color:var(--faint)}
+.ev .who{font-size:12px;color:var(--muted)}
+.ev .d{margin-top:2px;color:var(--ink)}
+.ev details{margin-top:4px;font-size:12px} .ev summary{cursor:pointer;color:var(--muted)}
+.pips{display:flex;gap:10px;flex-wrap:wrap;margin-top:4px;font-size:12px;color:var(--muted)}
+.pips span{display:inline-flex;align-items:center;gap:4px}
+.pip{display:inline-flex;gap:2px} .pip i{width:6px;height:10px;border-radius:1px;background:var(--line)} .pip i.on{background:var(--good)} .pip.low i.on{background:var(--crit)} .pip.mid i.on{background:var(--warn)}
+
+/* activity + context lists */
+.table{width:100%;border-collapse:collapse;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+.twrap{overflow-x:auto;border-radius:var(--radius)}
+.table th{font-size:11px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:500;text-align:left;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--sunk)}
+.table td{padding:8px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+.table tr:last-child td{border-bottom:0}
+.age{display:flex;align-items:center;gap:8px}
+.agebar{width:90px;height:6px;background:var(--sunk);border-radius:3px;position:relative;overflow:hidden;flex:none}
+.agebar i{position:absolute;left:0;top:0;bottom:0;background:var(--good);border-radius:3px}
+.agebar i.stale{background:var(--warn)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px} @media (max-width:860px){.two{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px}
+.prop{padding:8px 0;border-top:1px solid var(--line)} .prop:first-of-type{border-top:0}
+.offline{margin-top:24px}
+</style>
+
+<header class="top"><div class="wrap">
+  <div class="brand"><b id="brand">Team Ledger</b><span id="sub">Marketing team activity, content, and paper trail</span></div>
+  <div class="fresh" id="fresh"><span class="dot"></span><span>Connecting</span></div>
+</div></header>
+
+<main class="wrap" id="app">
+  <div class="strip" id="strip" aria-label="Status summary"></div>
+  <div class="band">
+    <div class="chart" id="chart"></div>
+  </div>
+  <nav class="tabs" role="tablist" id="tabs"></nav>
+  <section id="view"></section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js" integrity="sha384-/TQbtLCAerC3jgaim+N78RZSDYV7ryeoBCVqTuzRrFec2akfBkHS7ACQ3PQhvMVi" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js" integrity="sha384-+VfUPEb0PdtChMwmBcBmykRMDd+v6D/oFmB3rZM/puCMDYcIvF968OimRh4KQY9a" crossorigin="anonymous"></script>
+<script>
+(() => {
+const S = { summary:null, items:[], decisions:{}, loaded:false, offline:false, tab:"queue", filter:"needs", sel:null, dtab:"content",
+            db:null, user:null, canEdit:false, uid:null, confirm:null, note:"", busy:false, flash:null };
+const $ = s => document.querySelector(s);
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const STAGE = { request:"Request", work_order:"Work Order", dispatch:"Dispatched", brief:"Brief compiled", draft:"Draft written", edit:"Editing pass", revision:"Revised", qa:"QA review",
+  queued:"Queued for approval", receipt:"Run receipt", escalated:"Escalated", decision:"Human decision", ship:"Shipped", context_proposal:"Context proposal", context_merge:"Context merged" };
+const ROLE = { "content-producer":"Content", "social-distributor":"Social", "email-lifecycle":"Email", "research-analyst":"Research",
+  "strategist":"Strategist", "context-manager":"Context Mgr", "brand-qa-reviewer":"QA Reviewer", "orchestrator":"Orchestrator", "review-queue":"Review queue", "human":"Human", "scheduler":"Scheduler" };
+const role = r => ROLE[r] || r || "";
+
+function when(iso, withDate = true){
+  if(!iso) return "";
+  const d = new Date(iso); if (isNaN(d)) return esc(iso);
+  const t = d.toLocaleTimeString([], {hour:"numeric", minute:"2-digit"});
+  return withDate ? d.toLocaleDateString([], {month:"short", day:"numeric"}) + " " + t : t;
+}
+function ago(iso){
+  const d = new Date(iso); if (isNaN(d)) return "";
+  const m = Math.round((Date.now() - d) / 60000);
+  if (m < 1) return "just now"; if (m < 60) return m + " min ago";
+  const h = Math.round(m / 60); if (h < 48) return h + " h ago";
+  return Math.round(h / 24) + " days ago";
+}
+
+// ---------- item classification ----------
+function lane(i){
+  const dec = S.decisions[i.queue_id];
+  if (i.status === "shipped" || i.status === "rejected") return "done";
+  if (i.status === "approved") return "ready";
+  if (i.qa === "block") return "blocked";
+  if (i.status === "reviewed" && !(dec && !dec.applied)) return "awaiting";
+  if (i.status === "reviewed") return "syncing";
+  return "flight";
+}
+const LANE = { awaiting:["Awaiting you","s-awaiting"], blocked:["Blocked","s-blocked"], flight:["In progress","s-flight"], ready:["Ready to ship","s-ready"], done:["Done","s-done"], syncing:["Decision syncing","s-awaiting"] };
+const FILTERS = [["needs","Needs you", i => ["awaiting","blocked"].includes(lane(i))], ["flight","In progress", i => ["flight","syncing"].includes(lane(i))],
+  ["ready","Ready to ship", i => lane(i) === "ready"], ["done","Done", i => lane(i) === "done"], ["all","All", () => true]];
+
+function stampFor(i){
+  const s = i.status, cls = s === "approved" ? "st-approved" : "st-" + s;
+  return `<span class="stamp ${cls}">${esc(s)}</span>`;
+}
+function qaStamp(q){ return q ? `<span class="stamp st-${esc(q)}">QA ${esc(q)}</span>` : ""; }
+
+// ---------- render ----------
+function render(){
+  renderTop(); renderStrip(); renderChart(); renderTabs();
+  const v = $("#view");
+  if (S.offline) { v.innerHTML = `<div class="card offline"><b>Live data isn't available in this view.</b><p class="note">Open this dashboard from claude.ai (or the Claude app's browser) with access to the artifact. The marketing team writes its activity here after every run.</p></div>`; return; }
+  if (!S.loaded) { v.innerHTML = `<div class="empty">Loading team activity</div>`; return; }
+  if (!S.summary && !S.items.length) { v.innerHTML = `<div class="card offline"><b>No activity yet.</b><p class="note">Run any marketing-team request, or say <span class="mono">refresh the team dashboard</span>, and this page fills in.</p></div>`; return; }
+  if (S.tab === "queue") renderQueue(v); else if (S.tab === "activity") renderActivity(v); else renderContext(v);
+  resolveNames();
+}
+
+function renderTop(){
+  const s = S.summary;
+  if (s) { $("#brand").textContent = s.brand || "Team Ledger"; $("#sub").textContent = "Marketing team ledger" + (s.workspace ? " · " + s.workspace : ""); }
+  const f = $("#fresh");
+  if (S.offline) { f.innerHTML = `<span class="dot stale"></span><span>Offline</span>`; return; }
+  if (!s) { f.innerHTML = `<span class="dot"></span><span>${S.loaded ? "Waiting for first sync" : "Connecting"}</span>`; return; }
+  const staleH = (Date.now() - new Date(s.refreshed_at)) / 36e5;
+  f.innerHTML = `<span class="dot ${staleH > 24 ? "stale" : ""}"></span><span>Synced ${esc(ago(s.refreshed_at))}</span>`;
+}
+
+function renderStrip(){
+  const c = (S.summary && S.summary.counts) || {};
+  const cells = [["awaiting","Awaiting you","accent","needs"],["blocked","Blocked","crit","needs"],["in_progress","In progress","","flight"],
+    ["approved","Ready to ship","warn","ready"],["shipped_7d","Shipped, 7 days","good","done"],["rejected","Rejected","","done"]];
+  $("#strip").innerHTML = cells.map(([k,l,cls,f]) => {
+    const n = c[k] ?? "–";
+    return `<button class="stat ${cls} ${n === 0 ? "zero" : ""}" data-filter="${f}"><span class="n">${esc(n)}</span><span class="l">${l}</span></button>`;
+  }).join("");
+}
+
+function renderChart(){
+  const a = (S.summary && S.summary.activity) || [];
+  const el = $("#chart");
+  if (!a.length) { el.innerHTML = ""; return; }
+  const keys = [["drafts","Drafts","--c2"],["qa","QA reviews","--c1"],["decisions","Decisions","--c3"],["shipped","Shipped","--c4"]];
+  const W = 700, H = 74, pad = 18, bw = (W - 8) / a.length;
+  const max = Math.max(1, ...a.map(d => keys.reduce((s,[k]) => s + (d[k] || 0), 0)));
+  let bars = "";
+  a.forEach((d, idx) => {
+    let y = H - pad; const x = 4 + idx * bw + bw * .18, w = bw * .64;
+    keys.forEach(([k,,col]) => { const v = d[k] || 0; if (!v) return; const h = (v / max) * (H - pad - 6); y -= h;
+      bars += `<rect x="${x.toFixed(1)}" y="${y.toFixed(1)}" width="${w.toFixed(1)}" height="${Math.max(h - 1, 1).toFixed(1)}" rx="1.5" fill="var(${col})"><title>${esc(d.day)} ${k}: ${v}</title></rect>`; });
+    if (idx % 2 === 1 || idx === a.length - 1) bars += `<text x="${(x + w / 2).toFixed(1)}" y="${H - 4}" text-anchor="middle">${esc(new Date(d.day + "T12:00").toLocaleDateString([], {month:"numeric", day:"numeric"}))}</text>`;
+  });
+  el.innerHTML = `<h3>Team activity, last 14 days</h3>
+    <div style="overflow-x:auto"><svg viewBox="0 0 ${W} ${H}" width="100%" height="${H}" preserveAspectRatio="none" role="img" aria-label="Events per day">
+      <line x1="0" x2="${W}" y1="${H - pad}" y2="${H - pad}" stroke="var(--line)"/>${bars}</svg></div>
+    <div class="legend">${keys.map(([,l,c]) => `<span><i style="background:var(${c})"></i>${l}</span>`).join("")}</div>`;
+}
+
+function renderTabs(){
+  const n = S.items.filter(FILTERS[0][2]).length;
+  const tabs = [["queue","Queue",n],["activity","Activity",(S.summary?.recent_runs || []).length],["context","Context health",(S.summary?.proposals || []).length]];
+  $("#tabs").innerHTML = tabs.map(([k,l,c]) => `<button class="tab" role="tab" aria-selected="${S.tab === k}" data-tab="${k}">${l}<span class="c">${c || ""}</span></button>`).join("");
+}
+
+function renderQueue(v){
+  const f = FILTERS.find(x => x[0] === S.filter) || FILTERS[0];
+  const list = S.items.filter(f[2]).sort((a,b) => (b.updated_at || "").localeCompare(a.updated_at || ""));
+  const sel = S.items.find(i => i.queue_id === S.sel);
+  v.innerHTML = `<div class="main ${sel ? "has-sel" : ""}">
+    <div class="list-col">
+      <div class="filters">${FILTERS.map(([k,l,fn]) => `<button class="chip" aria-pressed="${S.filter === k}" data-f="${k}">${l} <span class="mono">${S.items.filter(fn).length}</span></button>`).join("")}</div>
+      <div class="list">${list.length ? list.map(rowHtml).join("") : `<div class="empty">Nothing here right now.</div>`}</div>
+    </div>
+    <div class="detail-col">${sel ? detailHtml(sel) : `<div class="detail"><div class="empty">Select an item to preview its content and paper trail.</div></div>`}</div>
+  </div>`;
+  if (sel && S.dtab === "content") paintContent(sel);
+}
+
+function rowHtml(i){
+  const ln = lane(i), [ll, cls] = LANE[ln];
+  return `<button class="row" data-sel="${esc(i.queue_id)}" aria-current="${S.sel === i.queue_id}">
+    <span class="stripe ${cls}"></span>
+    <span class="body"><div class="t">${esc(i.deliverable)}</div>
+      <div class="m">${esc(i.channel || "")} · ${esc(role(i.role))} · ${esc(ago(i.updated_at))}</div></span>
+    <span class="side"><span class="tag">${ll}</span>${qaStamp(i.qa)}</span></button>`;
+}
+
+function detailHtml(i){
+  return `<div class="detail">
+    <div class="dhead">
+      <button class="back" data-back>← Queue</button>
+      <h2>${esc(i.deliverable)}</h2>
+      <div class="dmeta">${stampFor(i)} ${qaStamp(i.qa)} <span class="tag">${esc(i.channel || "")}</span>
+        <span class="tag">${esc(role(i.role))}${i.model ? " · " + esc(i.model) : ""}</span><span class="tag">${esc(i.campaign || "")}</span></div>
+      <div class="fp mono">${esc(i.queue_id)} · fingerprint <b>${esc(i.draft_hash || "none")}</b></div>
+    </div>
+    ${actionHtml(i)}
+    <div class="dtabs" role="tablist">
+      <button class="tab" role="tab" aria-selected="${S.dtab === "content"}" data-dtab="content">Content</button>
+      <button class="tab" role="tab" aria-selected="${S.dtab === "trail"}" data-dtab="trail">Paper trail<span class="c">${(i.trail || []).length}</span></button>
+    </div>
+    <div class="pane">${S.dtab === "content" ? contentShell(i) : trailHtml(i)}</div>
+  </div>`;
+}
+
+function copyBtn(text){ return `<button class="linkbtn" data-copy="${esc(text)}">copy</button>`; }
+
+function actionHtml(i){
+  const ln = lane(i), dec = S.decisions[i.queue_id];
+  if (S.flash && S.flash.id === i.queue_id) {
+    return `<div class="act"><div class="banner ok">${esc(S.flash.msg)} Claude applies it at the start of the next team run, or say <span class="mono">apply dashboard decisions</span> ${copyBtn("apply dashboard decisions")}</div></div>`;
+  }
+  if (dec && !dec.applied) {
+    return `<div class="act"><div class="banner info">Decided on the dashboard: <b>${esc(dec.decision)}</b> by <span data-uid="${esc(dec.decided_by || "")}">someone</span>, ${esc(ago(dec.decided_at))}. Waiting for Claude to apply it. Say <span class="mono">apply dashboard decisions</span> ${copyBtn("apply dashboard decisions")}</div></div>`;
+  }
+  if (dec && dec.applied && dec.result && dec.result !== "applied") {
+    return `<div class="act"><div class="banner warn">A dashboard decision could not be applied: ${esc(dec.result)}. Review the current version and decide again.</div>${ln === "awaiting" ? buttons(i) : ""}</div>`;
+  }
+  if (ln === "blocked") return `<div class="act"><div class="banner crit">QA blocked this draft on a claims or sourcing rule. It needs your call in chat before it can be revised. Say <span class="mono">show blocked items</span> ${copyBtn("show blocked items")}</div></div>`;
+  if (ln === "ready") return `<div class="act"><div class="banner warn">Approved and ready to ship. Shipping always happens in chat with a final confirmation. Say <span class="mono">ship approved items</span> ${copyBtn("ship approved items")}</div></div>`;
+  if (ln === "done") return `<div class="act"><div class="note">${i.status === "shipped" ? "Shipped " + esc(i.shipped_at || "") : "Rejected"}. No action needed.</div></div>`;
+  if (ln === "awaiting") return `<div class="act">${buttons(i)}</div>`;
+  return `<div class="act"><div class="note">In progress with the team. Decisions open once QA passes.</div></div>`;
+}
+
+function buttons(i){
+  if (!S.canEdit) return `<div class="note">You can view this item. Approving needs edit access to this dashboard.</div>`;
+  const c = S.confirm && S.confirm.id === i.queue_id ? S.confirm.kind : null;
+  if (!c) return `<div class="note">Ship target: <b>${esc(i.ship_target || "none")}</b></div>
+    <div class="btns"><button class="btn primary" data-ask="approve">Approve</button><button class="btn" data-ask="changes">Request changes</button><button class="btn danger" data-ask="reject">Reject</button></div>`;
+  const label = {approve:"Approve", changes:"Send back for changes", reject:"Reject"}[c];
+  const lead = { approve:`Approve this exact version (fingerprint <span class="mono">${esc(i.draft_hash)}</span>)? It will not ship until you confirm shipping in chat.`,
+    changes:"What should change? The producing specialist gets your note and QA runs again.", reject:"Reject this draft? It leaves the queue and is kept for the record." }[c];
+  return `<div class="note">${lead}</div>
+    ${c !== "approve" ? `<textarea id="decision-note" placeholder="${c === "changes" ? "Required: what to change" : "Optional: why"}">${esc(S.note)}</textarea>` : ""}
+    <div class="btns"><button class="btn ${c === "reject" ? "danger" : "primary"}" data-confirm="${c}" ${S.busy ? "disabled" : ""}>${label}</button><button class="btn" data-cancel>Cancel</button></div>`;
+}
+
+function contentShell(i){
+  return `<article class="prose" id="prose"></article>${i.body_truncated ? `<p class="note">Preview truncated. Full draft: <span class="mono">${esc(i.draft_path)}</span></p>` : ""}`;
+}
+function paintContent(i){
+  const el = document.getElementById("prose"); if (!el) return;
+  const md = (i.body_md || "").trim();
+  if (!md) { el.innerHTML = `<p class="note">No preview available. Draft file: <span class="mono">${esc(i.draft_path || "")}</span></p>`; return; }
+  if (window.marked && window.DOMPurify) {
+    el.innerHTML = DOMPurify.sanitize(marked.parse(md, {gfm:true, breaks:false}));
+    el.querySelectorAll("a[href]").forEach(a => { a.target = "_blank"; a.rel = "noopener noreferrer"; });
+  } else { el.textContent = md; el.style.whiteSpace = "pre-wrap"; }
+}
+
+function tierOf(f, e){ return (e && e.tiers && e.tiers[f]) || (/context-card/.test(f) ? "T0" : /^context\//.test(f) ? "T1" : /^campaigns\//.test(f) ? "T2" : "T3"); }
+function pips(n){ const cls = n <= 2 ? "low" : n === 3 ? "mid" : ""; return `<span class="pip ${cls}">${[1,2,3,4,5].map(k => `<i class="${k <= n ? "on" : ""}"></i>`).join("")}</span>`; }
+
+function trailHtml(i){
+  const t = i.trail || [];
+  const ctx = i.context_used || [], src = (i.sources || []).filter(s => s && s !== "none");
+  const tools = [...new Set(t.flatMap(e => e.tools || []))];
+  const decisions = t.filter(e => e.event === "decision").length;
+  const prov = `<div class="prov">
+    <div><div class="n">${ctx.length}</div><div class="l">Context files</div></div>
+    <div><div class="n">${src.length}</div><div class="l">Sources</div></div>
+    <div><div class="n">${i.qa_rounds || 0}</div><div class="l">QA rounds</div></div>
+    <div><div class="n">${decisions}</div><div class="l">Human decisions</div></div></div>`;
+  const files = ctx.length ? `<div class="sec"><h3>Context this draft was built from</h3><ul class="files">${ctx.map(f => `<li><span class="tier ${tierOf(f)}">${tierOf(f)}</span><span class="mono" title="${esc(f)}">${esc(f)}</span></li>`).join("")}</ul></div>` : "";
+  const srcs = src.length ? `<div class="sec"><h3>Sources cited</h3><ul class="files">${src.map(s => `<li><span class="mono" title="${esc(s)}">${/^https?:/.test(s) ? `<a href="${esc(s.split(" ")[0])}" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">${esc(s)}</a>` : esc(s)}</span></li>`).join("")}</ul></div>` : "";
+  const toolSec = tools.length ? `<div class="sec"><h3>Tools used</h3><div class="dmeta">${tools.map(x => `<span class="tag">${esc(x)}</span>`).join("")}</div></div>` : "";
+  const evs = t.map(e => {
+    const v = e.verdict ? " v-" + e.verdict : "";
+    const who = e.actor === "human" && e.decided_by ? `<span data-uid="${esc(e.decided_by)}">Someone</span> (dashboard)` : esc(role(e.actor)) + (e.model ? " · " + esc(e.model) : "") + (e.source === "chat" ? " (chat)" : "");
+    const sc = e.scores ? `<div class="pips">${Object.entries(e.scores).map(([k,n]) => `<span>${esc(k)} ${pips(Number(n))}</span>`).join("")}</div>` : "";
+    const fl = (e.files || []).length ? `<details><summary>Context packet: ${e.files.length} files</summary><ul class="files" style="margin-top:4px">${e.files.map(f => `<li><span class="tier ${tierOf(f, e)}">${tierOf(f, e)}</span><span class="mono">${esc(f)}</span></li>`).join("")}</ul></details>` : "";
+    const tl = (e.tools || []).length && e.event !== "dispatch" ? `<div class="pips">${e.tools.map(x => `<span class="tag">${esc(x)}</span>`).join("")}</div>` : (e.tools || []).length ? `<div class="pips">Tools allowed: ${e.tools.map(x => `<span class="tag">${esc(x)}</span>`).join("")}</div>` : "";
+    const title = STAGE[e.event] || e.event;
+    return `<li class="ev k-${esc(e.event)}${v}"><span class="pin"></span>
+      <div class="h"><b>${esc(title)}${e.verdict ? " · " + esc(e.verdict) : e.decision ? " · " + esc(e.decision) : ""}</b><span class="when mono">${when(e.ts)}</span></div>
+      <div class="who">${who}</div>${e.detail ? `<div class="d">${esc(e.detail)}</div>` : ""}${sc}${tl}${fl}</li>`;
+  }).join("");
+  return prov + files + srcs + toolSec + `<div class="sec"><h3>Chain of custody</h3>${t.length ? `<ol class="tl">${evs}</ol>` : `<p class="note">No ledger events recorded for this item.</p>`}</div>`;
+}
+
+function renderActivity(v){
+  const runs = S.summary?.recent_runs || [];
+  v.innerHTML = `<div style="margin-top:14px" class="twrap"><table class="table"><thead><tr><th>When</th><th>Run</th><th>Request</th><th>Roles</th><th>Events</th></tr></thead><tbody>
+    ${runs.length ? runs.map(r => `<tr><td class="mono">${when(r.ended)}</td><td><span class="tag">${r.kind === "scheduled" ? "Scheduled" : "On request"}</span></td>
+      <td>${esc(r.request || r.work_order || r.run_id)}<div class="mono" style="color:var(--faint)">${esc(r.work_order || "")}</div></td>
+      <td>${(r.roles || []).map(x => `<span class="tag">${esc(role(x))}</span>`).join(" ")}</td><td class="mono">${esc(r.events)}</td></tr>`).join("")
+      : `<tr><td colspan="5" class="empty">No runs recorded yet.</td></tr>`}</tbody></table></div>`;
+}
+
+function evidenceCell(f){
+  const e = f.evidence || {}, sure = (e.src || 0) + (e.owner || 0), soft = (e.assumption || 0) + (e.inference || 0) + (e.unverified || 0);
+  const st = f.status && f.status !== "draft" ? `<span class="stamp ${f.status === "reviewed" ? "st-approved" : "st-revise"}">${esc(f.status)}</span> ` : "";
+  return st + `<span class="mono" title="sourced or owner-confirmed / assumption, inference or unverified">${sure} sure · ${soft} soft</span>`;
+}
+function renderContext(v){
+  const h = S.summary?.context_health || [], p = S.summary?.proposals || [];
+  v.innerHTML = `<div class="two" style="margin-top:14px">
+    <div><div class="twrap"><table class="table"><thead><tr><th>Brand file</th><th>Last updated</th><th>Evidence</th><th>Gaps</th></tr></thead><tbody>
+      ${h.map(f => f.missing ? `<tr><td>${esc(f.file)}</td><td colspan="3"><span class="stamp st-block">missing</span></td></tr>` :
+        `<tr><td>${esc(f.file)}</td><td><div class="age"><span class="agebar"><i class="${f.stale ? "stale" : ""}" style="width:${Math.min(100, ((f.age_days || 0) / 120) * 100)}%"></i></span><span class="mono">${f.age_days ?? "?"} d</span>${f.stale ? `<span class="stamp st-revise">stale</span>` : ""}</div></td>
+        <td>${evidenceCell(f)}</td>
+        <td>${f.gaps ? `<span class="stamp st-revise">${f.gaps}</span>` : `<span class="mono" style="color:var(--faint)">0</span>`}</td></tr>`).join("")}
+    </tbody></table></div><p class="note">Files older than 90 days are flagged to every specialist that reads them. Evidence counts the tags in each file: sourced, owner-confirmed, and the assumptions, inferences and unverified claims a writer must not state as fact.</p></div>
+    <div class="card"><h3 style="font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:500;margin:0 0 6px">Pending context proposals</h3>
+      ${p.length ? p.map(x => `<div class="prop"><div class="mono">${esc(x.target || x.file)}</div><div>${esc(x.summary)}</div><div class="note">Source: ${esc(x.source || "")}</div></div>`).join("") +
+      `<p class="note">Context changes are approved in chat so the before and after can be read in full. Say <span class="mono">review context proposals</span> ${copyBtn("review context proposals")}</p>`
+      : `<p class="note">No proposals waiting.</p>`}</div></div>`;
+}
+
+async function resolveNames(){
+  if (!S.user) return;
+  const els = [...document.querySelectorAll("[data-uid]")].filter(e => e.dataset.uid);
+  if (!els.length) return;
+  try { const ps = await S.user.profiles([...new Set(els.map(e => e.dataset.uid))]);
+    els.forEach(e => { const p = ps[e.dataset.uid]; e.textContent = (p && p.isMe) ? "you" : (p && p.name) || "Someone"; }); } catch {}
+}
+
+// ---------- events ----------
+document.addEventListener("click", async ev => {
+  const t = ev.target.closest("button"); if (!t) return;
+  if (t.dataset.tab) { S.tab = t.dataset.tab; render(); }
+  else if (t.dataset.filter) { S.tab = "queue"; S.filter = t.dataset.filter; S.sel = null; render(); }
+  else if (t.dataset.f) { S.filter = t.dataset.f; render(); }
+  else if (t.dataset.sel) { S.sel = t.dataset.sel; S.confirm = null; S.note = ""; S.flash = null; S.dtab = "content"; render(); if (innerWidth < 1040) scrollTo({top:0}); }
+  else if ("back" in t.dataset) { S.sel = null; render(); }
+  else if (t.dataset.dtab) { S.dtab = t.dataset.dtab; render(); }
+  else if (t.dataset.ask) { S.confirm = {id:S.sel, kind:t.dataset.ask}; S.note = ""; render(); document.getElementById("decision-note")?.focus(); }
+  else if ("cancel" in t.dataset) { S.confirm = null; render(); }
+  else if (t.dataset.confirm) { await decide(t.dataset.confirm); }
+  else if (t.dataset.copy) {
+    const txt = t.dataset.copy;
+    try { await navigator.clipboard.writeText(txt); t.textContent = "copied"; }
+    catch { const r = document.createRange(); const sp = t.previousElementSibling; if (sp) { r.selectNodeContents(sp); const s = getSelection(); s.removeAllRanges(); s.addRange(r); } t.textContent = "selected"; }
+    setTimeout(() => { t.textContent = "copy"; }, 1600);
+  }
+});
+document.addEventListener("input", ev => { if (ev.target.id === "decision-note") S.note = ev.target.value; });
+
+async function decide(kind){
+  const i = S.items.find(x => x.queue_id === S.sel); if (!i || !S.db || S.busy) return;
+  const note = (S.note || "").trim();
+  if (kind === "changes" && !note) { const n = document.getElementById("decision-note"); if (n) { n.focus(); n.placeholder = "Add a note so the specialist knows what to change"; } return; }
+  S.busy = true; render();
+  try {
+    await S.db.doc("decisions/" + i.queue_id).set({ queue_id:i.queue_id, deliverable:i.deliverable, decision:kind, note, draft_hash:i.draft_hash || null,
+      decided_by:S.uid, decided_at:new Date().toISOString(), applied:false });
+    S.flash = { id:i.queue_id, msg: {approve:"Approved.", changes:"Sent back for changes.", reject:"Rejected."}[kind] };
+    S.confirm = null; S.note = "";
+  } catch (e) {
+    S.flash = null; S.confirm = null;
+    alertBanner(e && e.code === "invalid_argument" ? "You don't have permission to record decisions on this dashboard." : "The decision couldn't be saved. Try again in a moment.");
+  } finally { S.busy = false; render(); }
+}
+function alertBanner(msg){ const a = document.querySelector(".act"); if (a) a.insertAdjacentHTML("afterbegin", `<div class="banner crit">${esc(msg)}</div>`); }
+
+// ---------- boot ----------
+render();
+(async () => {
+  const db = await (window.claude?.use ? window.claude.use("db") : Promise.resolve(null));
+  if (!db) { S.offline = true; render(); return; }
+  S.db = db;
+  const user = await window.claude.use("user");
+  if (user) { S.user = user; try { S.canEdit = await user.canEdit(); } catch {} try { S.uid = await user.id(); } catch {} }
+  let got = 0; const mark = () => { if (++got >= 2) { S.loaded = true; } render(); };
+  db.doc("meta/summary").onSnapshot(s => { S.summary = s.exists ? s.data() : null; mark(); }, () => { S.offline = true; render(); });
+  db.collection("items").limit(500).onSnapshot(q => { S.items = q.docs.map(d => d.data()); mark(); }, () => {});
+  db.collection("decisions").limit(500).onSnapshot(q => { const m = {}; q.docs.forEach(d => { m[d.id] = d.data(); }); S.decisions = m;
+    if (S.flash && m[S.flash.id] && m[S.flash.id].applied) S.flash = null; render(); }, () => {});
+})();
+})();
+</script>
