@@ -8,9 +8,9 @@ import { candleCollection, zodiacCollection } from "@/lib/merch";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
-  title: "Shop preview | Kali Meister",
-  description: "A first look at Kali Meister’s literary zodiac shirts and intention candle collection.",
-  robots: { index: false, follow: true },
+  title: "Shop | Kali Meister",
+  description: "Kali Meister’s literary zodiac shirts and intention candle collection.",
+  robots: { index: true, follow: true },
 };
 
 export default function ShopPage() {
@@ -18,12 +18,18 @@ export default function ShopPage() {
   return (
     <div className="bg-[#f5f0e8] text-[#302731]">
       <section className="mx-auto max-w-7xl px-6 py-16 lg:px-12 lg:py-24">
-        <p className="mb-5 text-xs uppercase tracking-[.2em] text-[#744b65]">The Kali Meister collection · A first look</p>
+        <p className="mb-5 text-xs uppercase tracking-[.2em] text-[#744b65]">{enabled ? "The Kali Meister collection" : "The Kali Meister collection · A first look"}</p>
         <h1 className="max-w-3xl font-serif text-5xl leading-tight sm:text-7xl">A little wit.<br /><span className="italic text-[#744b65]">Written in the stars.</span></h1>
         <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#655b61]">Twelve signs. Twelve knowing smiles. Literary humor and celestial illustrations, made to wear your own way.</p>
         <div className="mt-8 max-w-2xl rounded-xl border border-[#653c56]/20 bg-[#fcf9f4] p-5 text-sm leading-relaxed text-[#655b61]">{enabled ? "Shirts $34 · Candles $28 · Shipping and applicable tax are shown before payment. Orders are made to order and reviewed before production. Images show design concepts." : "Collection preview — not yet available to order. Shirts will be $34 and candles $28, plus shipping. We’re finishing launch setup and checking our first samples. Images show design concepts."}</div>
-        {enabled && <Link href="/shop/checkout" className="mt-7 mr-5 inline-flex rounded-full bg-[#653c56] px-6 py-3 text-sm text-white">Shop the collection →</Link>}
-        <a href="#shop-updates" className="mt-7 inline-flex rounded-full bg-[#653c56] px-6 py-3 text-sm text-white">Hear when the shop opens ↓</a>
+        {enabled ? (
+          <div className="mt-7 flex flex-wrap gap-4">
+            <Link href="/shop/checkout" className="inline-flex rounded-full bg-[#653c56] px-6 py-3 text-sm text-white">Shop the collection →</Link>
+            <a href="#shop-updates" className="inline-flex rounded-full border border-[#653c56] px-6 py-3 text-sm text-[#653c56]">Get collection updates ↓</a>
+          </div>
+        ) : (
+          <a href="#shop-updates" className="mt-7 inline-flex rounded-full bg-[#653c56] px-6 py-3 text-sm text-white">Hear when the shop opens ↓</a>
+        )}
         <nav aria-label="Shop collections" className="mt-8 flex gap-6 text-sm text-[#653c56]"><a href="#shirts" className="border-b border-[#744b65] pb-1">Zodiac shirts ↓</a><a href="#candles" className="border-b border-[#744b65] pb-1">Candles ↓</a></nav>
       </section>
       <section id="shirts" aria-label="Zodiac shirt collection" className="mx-auto grid max-w-7xl gap-x-7 gap-y-12 px-6 pb-20 sm:grid-cols-2 lg:grid-cols-3 lg:px-12">
@@ -32,7 +38,7 @@ export default function ShopPage() {
             <div className="overflow-hidden rounded-t-[80px] bg-[#fcf9f4]">
               <Image src={`/images/merch/zodiac-${sign.toLowerCase()}.webp`} alt={`${sign} shirt design concept: ${saying}`} width={800} height={850} priority={index === 0} className="aspect-[4/5] w-full object-cover" />
             </div>
-            <div className="mt-5 flex items-center justify-between gap-3"><h2 className="font-serif text-3xl">{sign}</h2><span className="text-[10px] uppercase tracking-[.15em] text-[#744b65]">{enabled ? "$34" : "Coming soon"}</span></div>
+            <div className="mt-5 flex items-center justify-between gap-3"><h2 className="font-serif text-3xl">{sign}</h2>{enabled ? <Link href="/shop/checkout" className="text-[10px] uppercase tracking-[.15em] text-[#744b65] underline underline-offset-4">$34 · Order →</Link> : <span className="text-[10px] uppercase tracking-[.15em] text-[#744b65]">Coming soon</span>}</div>
             <p className="mt-2 max-w-sm text-sm leading-relaxed text-[#655b61]">{saying}</p>
           </article>
         ))}
@@ -41,16 +47,19 @@ export default function ShopPage() {
         <div className="mx-auto max-w-7xl lg:px-6">
           <p className="mb-5 text-xs uppercase tracking-[.2em] text-[#744b65]">The intention candle collection{enabled ? "" : " · Coming soon"}</p>
           <h2 id="candles-title" className="font-serif text-4xl sm:text-5xl">A little light.<br /><span className="italic text-[#744b65]">A moment for yourself.</span></h2>
-          <p className="mt-6 max-w-2xl leading-relaxed text-[#655b61]">Six candle designs for writing, ritual and reflection. Our first collection is being prepared in amber jars with cream-and-plum botanical labels.</p>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#655b61]">These images are design concepts, not final product photographs. Scents are being reviewed. Candles are $28 plus shipping. This first collection will be produced and shipped by our print-on-demand partner; a personal blessing by Kali is not included.</p>
+          <p className="mt-6 max-w-2xl leading-relaxed text-[#655b61]">Six candle designs for writing, ritual and reflection. Prepared in amber jars with cream-and-plum botanical labels.</p>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#655b61]">These images are design concepts, not final product photographs. Candles are $28 plus shipping. This collection is produced and shipped by our print-on-demand partner; a personal blessing by Kali is not included.</p>
           <div className="mt-10 grid gap-x-7 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {candleCollection.map((candle) => <article key={candle.slug}>
               <div className="overflow-hidden rounded-t-[70px] bg-[#fcf9f4]"><Image src={`/images/merch/${candle.slug}-candle.webp`} alt={`${candle.name} candle design concept in an amber jar with a cream botanical label`} width={800} height={900} className="aspect-[4/5] w-full object-cover" /></div>
-              <div className="mt-5 flex items-center justify-between gap-3"><h3 className="font-serif text-3xl">{candle.name}</h3><span className="shrink-0 text-[10px] uppercase tracking-[.15em] text-[#744b65]">{enabled ? "$28" : "Coming soon"}</span></div>
+              <div className="mt-5 flex items-center justify-between gap-3"><h3 className="font-serif text-3xl">{candle.name}</h3>{enabled ? <Link href="/shop/checkout" className="shrink-0 text-[10px] uppercase tracking-[.15em] text-[#744b65] underline underline-offset-4">$28 · Order →</Link> : <span className="shrink-0 text-[10px] uppercase tracking-[.15em] text-[#744b65]">Coming soon</span>}</div>
               <p className="mt-2 text-sm leading-relaxed text-[#655b61]">{candle.description}</p>
             </article>)}
           </div>
-          <a href="#shop-updates" className="mt-10 inline-block border-b border-[#744b65] pb-1 text-sm">Get collection updates ↓</a>
+          <div className="mt-10 flex flex-wrap gap-6 text-sm">
+            {enabled && <Link href="/shop/checkout" className="border-b border-[#744b65] pb-1 font-medium text-[#653c56]">Order from the collection →</Link>}
+            <a href="#shop-updates" className="border-b border-[#744b65] pb-1">Get collection updates ↓</a>
+          </div>
         </div>
       </section>
       <section id="shop-updates" className="border-t border-[#302731]/15 bg-[#e8dedf] px-6 py-16">

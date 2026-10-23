@@ -14,6 +14,10 @@ export function printifyConfigured() {
   return Boolean(process.env.PRINTIFY_API_TOKEN && /^\d+$/.test(process.env.PRINTIFY_SHOP_ID || ""));
 }
 
+function checkoutOpen() {
+  return process.env.MERCH_CHECKOUT_ENABLED === "true" && process.env.MERCH_TAX_REVIEWED === "true";
+}
+
 async function printifyRequest(path: string, body?: Record<string, unknown>) {
   if (!printifyConfigured()) throw new Error("Printify connection is not configured.");
   const response = await fetch(`https://api.printify.com/v1/shops/${process.env.PRINTIFY_SHOP_ID}/${path}`, {
@@ -50,7 +54,7 @@ export async function getMerchConnection() {
     }));
     results.forEach((result, offset) => products.push(result.status === "fulfilled" ? result.value : { ...batch[offset], connected: false, variants: [] }));
   }
-  return { configured: true, checkoutEnabled: false, approval: "manual", products };
+  return { configured: true, checkoutEnabled: checkoutOpen(), approval: "manual", products };
 }
 
 export const merchQuoteSchema = z.object({
@@ -82,7 +86,7 @@ export async function quoteMerchandise(input: unknown) {
   }
   const lineItems = data.items.map((item) => ({ product_id: item.productId, variant_id: item.variantId, quantity: item.quantity }));
   const shipping = z.object({ standard: z.number().int().nonnegative() }).parse(await printifyRequest("orders/shipping.json", { line_items: lineItems, address_to: data.address }));
-  return { lines, currency: "usd", subtotalCents, shippingCents: shipping.standard, totalBeforeTaxCents: subtotalCents + shipping.standard, checkoutEnabled: false, approval: "manual" };
+  return { lines, currency: "usd", subtotalCents, shippingCents: shipping.standard, totalBeforeTaxCents: subtotalCents + shipping.standard, checkoutEnabled: checkoutOpen(), approval: "manual" };
 }
 
 const printifyOrderSchema = z.object({ id: z.string().min(1), status: z.string(), metadata: z.object({ shop_order_id: z.union([z.string(), z.number()]).optional() }).optional() });

@@ -8,6 +8,7 @@ import { adminFetch } from "@/lib/admin-client";
 
 type Connection = {
   configured: boolean;
+  checkoutEnabled?: boolean;
   products: { slug: string; name: string; priceCents: number; connected: boolean; variants: { id: number; title: string; available: boolean; productionCostCents: number; contributionBeforeShippingAndFeesCents: number }[] }[];
 };
 
@@ -39,7 +40,7 @@ export default function MerchAdminPage() {
     <Link href="/admin" className="underline">← Admin</Link>
     <h1 className="font-serif text-4xl">Merchandise connection</h1>
     <p>Approved prices: $34 shirts and $28 candles, plus shipping. Production requires manual approval.</p>
-    <div className="rounded-xl border border-current/20 p-5"><h2 className="font-serif text-2xl">Setup in progress</h2><p className="mt-3">Customer checkout is closed. Paid orders enter your review queue first. A separate, explicit action transfers reviewed orders to Printify. No website action sends orders to production. Public payments stay disabled until launch and tax setup are reviewed.</p></div>
+    <div className="rounded-xl border border-current/20 p-5"><h2 className="font-serif text-2xl">{connection && !connection.checkoutEnabled ? "Setup in progress" : "Shop checkout is open"}</h2><p className="mt-3">{connection && !connection.checkoutEnabled ? "Customer checkout is closed. Paid orders enter your review queue first. A separate, explicit action transfers reviewed orders to Printify. No website action sends orders to production." : "Customer checkout and live Printify shipping quotes are open at /shop/checkout. Paid orders enter your review queue below first. A separate, explicit action transfers reviewed orders to Printify on hold—no website action sends orders straight to production."}</p></div>
     <button type="button" disabled={busy} onClick={() => void check()} className="rounded-full bg-[#653c56] px-6 py-3 text-white disabled:opacity-50">{busy ? "Checking products…" : "Check Printify connection"}</button>
     {error && <p role="alert">{error}</p>}
     {connection && <p role="status">{connection.configured ? `${connection.products.filter((product) => product.connected).length} of ${connection.products.length} products connected.` : "The private Printify API token and shop ID still need to be configured on the server."}</p>}
