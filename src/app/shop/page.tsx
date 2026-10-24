@@ -50,7 +50,7 @@ export default function ShopPage() {
         <div className="mx-auto max-w-7xl lg:px-6">
           <p className="mb-5 text-xs uppercase tracking-[.2em] text-[#744b65]">The intention candle collection{enabled ? "" : " · Coming soon"}</p>
           <h2 id="candles-title" className="font-serif text-4xl sm:text-5xl">A little light.<br /><span className="italic text-[#744b65]">A moment for yourself.</span></h2>
-          <p className="mt-6 max-w-2xl leading-relaxed text-[#655b61]">Six literary candle designs for writing, ritual and reflection—each with its own storybook tarot illustration, wry one-liner, and rich colored label on an amber jar.</p>
+          <p className="mt-6 max-w-2xl leading-relaxed text-[#655b61]">Six archival library checkout card labels for writing, ritual and reflection—typewriter catalog grid, wry margin notes, and tilted library stamps on an amber apothecary jar.</p>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#655b61]">These images are design concepts, not final product photographs. Candles are $28 plus shipping. This collection is produced and shipped by our print-on-demand partner; a personal blessing by Kali is not included.</p>
           <div className="mt-10 grid gap-x-7 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
             {candleCollection.map((candle) => {

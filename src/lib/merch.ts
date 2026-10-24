@@ -14,10 +14,10 @@ export const zodiacCollection = [
 ] as const;
 
 export const candleCollection = [
-  { name: "Peace", slug: "peace", saying: "I have closed all my mental tabs.", description: "Midnight indigo label · A sleeping cat on stacked books, a warm teacup, and a quiet crescent moon." },
-  { name: "Clarity", slug: "clarity", saying: "The fog lifted. I still have questions.", description: "Warm terracotta label · A radiant sun parting the clouds above a lantern and an open notebook." },
-  { name: "Protection", slug: "protection", saying: "Do not disturb the narrator.", description: "Forest moss label · A wise library owl with a quill pen guarding the keyhole to your quiet hour." },
-  { name: "Prosperity", slug: "prosperity", saying: "Funding my future bookshop era.", description: "Berry burgundy label · A storybook shop window overflowing with stacked volumes and starlight." },
-  { name: "Love", slug: "love", saying: "Romancing my own peace of mind.", description: "Plum rose label · A velvet reading chair, an open novel, wildflowers, and unhurried company." },
-  { name: "The Writing Hour", slug: "writing-hour", saying: "Do not interrupt a sentence in progress.", description: "Charcoal pepper label · A fountain pen and inkwell trailing constellations across an open page." },
+  { name: "Peace", slug: "peace", saying: "I have closed all my mental tabs.", description: "Call No. BF 1729 .P4 · Olive branch, quiet pause, and room to breathe. Stamped: QUIET PLEASE." },
+  { name: "Clarity", slug: "clarity", saying: "The fog lifted. I still have questions.", description: "Call No. PN 145 .C5 · Still water, morning light, and a clean page. Stamped: SEE MARGIN NOTES." },
+  { name: "Protection", slug: "protection", saying: "Do not disturb the narrator.", description: "Call No. Z 1003 .P7 · Oak wreath, closed door, and clear boundaries. Stamped: DO NOT DISTURB." },
+  { name: "Prosperity", slug: "prosperity", saying: "Funding my future bookshop era.", description: "Call No. Z 471 .P8 · Pomegranate, full shelves, and good ink. Stamped: BOOKSHOP FUND." },
+  { name: "Love", slug: "love", saying: "Romancing my own peace of mind.", description: "Call No. HQ 801 .L6 · Flowering stems, warm tea, and self-kindness. Stamped: RENEWED." },
+  { name: "The Writing Hour", slug: "writing-hour", saying: "Do not interrupt a sentence in progress.", description: "Call No. PN 171 .W7 · Blank page, open notebook, and late light. Stamped: DRAFT IN PROGRESS." },
 ] as const;
