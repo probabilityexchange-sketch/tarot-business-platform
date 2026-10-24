@@ -57,9 +57,10 @@ export default function ShopPage() {
               const candleHref = `/shop/checkout?item=${candle.slug}-candle`;
               return (
                 <article key={candle.slug}>
-                  <Link href={candleHref} className="block overflow-hidden rounded-t-[70px] bg-[#fcf9f4]"><Image src={`/images/merch/${candle.slug}-candle.webp`} alt={`${candle.name} candle design concept in an amber jar with a cream botanical label`} width={800} height={900} className="aspect-[4/5] w-full object-cover transition duration-300 hover:scale-[1.02]" /></Link>
+                  <Link href={candleHref} className="block overflow-hidden rounded-t-[70px] bg-[#fcf9f4]"><Image src={`/images/merch/${candle.slug}-candle.webp`} alt={`${candle.name} candle design concept: ${candle.saying}`} width={800} height={900} className="aspect-[4/5] w-full object-cover transition duration-300 hover:scale-[1.02]" /></Link>
                   <div className="mt-5 flex items-center justify-between gap-3"><h3 className="font-serif text-3xl">{candle.name}</h3>{enabled ? <Link href={candleHref} className="shrink-0 text-[10px] uppercase tracking-[.15em] text-[#744b65] underline underline-offset-4">$28 · Choose scent →</Link> : <span className="shrink-0 text-[10px] uppercase tracking-[.15em] text-[#744b65]">Coming soon</span>}</div>
-                  <p className="mt-2 text-sm leading-relaxed text-[#655b61]">{candle.description}</p>
+                  <p className="mt-2 font-serif text-base italic text-[#302731]">“{candle.saying}”</p>
+                  <p className="mt-1 text-sm leading-relaxed text-[#655b61]">{candle.description}</p>
                 </article>
               );
             })}

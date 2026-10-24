@@ -52,7 +52,8 @@ function getProductMeta(slug: string) {
   return {
     category: "candle" as const,
     shortName: match?.name || slug,
-    subtitle: match?.description || "Intention candle in an amber jar with a botanical label.",
+    subtitle: match?.saying || "Intention candle in an amber jar with a botanical label.",
+    note: match?.description,
     image: `/images/merch/${candleSlug}-candle.webp`,
   };
 }
@@ -406,9 +407,12 @@ export function MerchCheckout() {
                         </span>
                       </div>
                       <h2 className="mt-2 font-serif text-3xl sm:text-4xl">{activeMeta.shortName}</h2>
-                      <p className="mt-2 text-sm italic leading-relaxed text-[#655b61]">
-                        {activeMeta.category === "shirt" ? `“${activeMeta.subtitle}”` : activeMeta.subtitle}
+                      <p className="mt-2 text-sm italic leading-relaxed text-[#302731]">
+                        “{activeMeta.subtitle}”
                       </p>
+                      {"note" in activeMeta && activeMeta.note && (
+                        <p className="mt-1 text-xs leading-relaxed text-[#655b61]">{activeMeta.note}</p>
+                      )}
 
                       {/* Pill Selector for Size or Scent */}
                       <div className="mt-6">

@@ -14,10 +14,10 @@ export const zodiacCollection = [
 ] as const;
 
 export const candleCollection = [
-  { name: "Peace", slug: "peace", description: "A quiet pause. Olive branches and a little room to breathe." },
-  { name: "Clarity", slug: "clarity", description: "Sunrise over still water. Space to write and consider what comes next." },
-  { name: "Protection", slug: "protection", description: "An enclosing oak wreath. A prompt to reflect on boundaries and the space you keep." },
-  { name: "Prosperity", slug: "prosperity", description: "A flourishing pomegranate branch. An invitation to notice what you want to cultivate." },
-  { name: "Love", slug: "love", description: "Intertwined flowering stems. A moment for care, connection and self-kindness." },
-  { name: "The Writing Hour", slug: "writing-hour", description: "A little light beside the page. Time to write, reflect and begin again." },
+  { name: "Peace", slug: "peace", saying: "I have closed all my mental tabs.", description: "A quiet pause. Olive branches and a little room to breathe." },
+  { name: "Clarity", slug: "clarity", saying: "The fog lifted. I still have questions.", description: "Sunrise over still water. Space to write and consider what comes next." },
+  { name: "Protection", slug: "protection", saying: "Do not disturb the narrator.", description: "An enclosing oak wreath. A prompt to reflect on boundaries and the space you keep." },
+  { name: "Prosperity", slug: "prosperity", saying: "Funding my future bookshop era.", description: "A flourishing pomegranate branch. An invitation to notice what you want to cultivate." },
+  { name: "Love", slug: "love", saying: "Romancing my own peace of mind.", description: "Intertwined flowering stems. A moment for care, connection and self-kindness." },
+  { name: "The Writing Hour", slug: "writing-hour", saying: "Do not interrupt a sentence in progress.", description: "A little light beside the page. Time to write, reflect and begin again." },
 ] as const;
