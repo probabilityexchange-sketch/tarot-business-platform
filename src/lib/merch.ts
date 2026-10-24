@@ -14,10 +14,10 @@ export const zodiacCollection = [
 ] as const;
 
 export const candleCollection = [
-  { name: "Peace", slug: "peace", saying: "I have closed all my mental tabs.", description: "A quiet pause. Olive branches and a little room to breathe." },
-  { name: "Clarity", slug: "clarity", saying: "The fog lifted. I still have questions.", description: "Sunrise over still water. Space to write and consider what comes next." },
-  { name: "Protection", slug: "protection", saying: "Do not disturb the narrator.", description: "An enclosing oak wreath. A prompt to reflect on boundaries and the space you keep." },
-  { name: "Prosperity", slug: "prosperity", saying: "Funding my future bookshop era.", description: "A flourishing pomegranate branch. An invitation to notice what you want to cultivate." },
-  { name: "Love", slug: "love", saying: "Romancing my own peace of mind.", description: "Intertwined flowering stems. A moment for care, connection and self-kindness." },
-  { name: "The Writing Hour", slug: "writing-hour", saying: "Do not interrupt a sentence in progress.", description: "A little light beside the page. Time to write, reflect and begin again." },
+  { name: "Peace", slug: "peace", saying: "I have closed all my mental tabs.", description: "Midnight indigo label · A sleeping cat on stacked books, a warm teacup, and a quiet crescent moon." },
+  { name: "Clarity", slug: "clarity", saying: "The fog lifted. I still have questions.", description: "Warm terracotta label · A radiant sun parting the clouds above a lantern and an open notebook." },
+  { name: "Protection", slug: "protection", saying: "Do not disturb the narrator.", description: "Forest moss label · A wise library owl with a quill pen guarding the keyhole to your quiet hour." },
+  { name: "Prosperity", slug: "prosperity", saying: "Funding my future bookshop era.", description: "Berry burgundy label · A storybook shop window overflowing with stacked volumes and starlight." },
+  { name: "Love", slug: "love", saying: "Romancing my own peace of mind.", description: "Plum rose label · A velvet reading chair, an open novel, wildflowers, and unhurried company." },
+  { name: "The Writing Hour", slug: "writing-hour", saying: "Do not interrupt a sentence in progress.", description: "Charcoal pepper label · A fountain pen and inkwell trailing constellations across an open page." },
 ] as const;
