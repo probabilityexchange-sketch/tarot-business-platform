@@ -47,7 +47,7 @@ export async function POST(request: Request) {
             currency: "usd",
             product_data: {
               name: offering.title,
-              description: `${offering.duration} Psychological Tarot Consultation`,
+              description: `${offering.duration} Private Online Tarot Reading`,
             },
             unit_amount: amount,
           },
