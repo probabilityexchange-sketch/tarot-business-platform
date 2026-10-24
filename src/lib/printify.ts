@@ -38,6 +38,11 @@ export async function getPrintifyProduct(productId: string) {
   return product;
 }
 
+function isVariantEnabled(item: MerchProduct, variant: { id: number; is_enabled: boolean }) {
+  if (variant.is_enabled) return true;
+  return "allowedVariantIds" in item && item.allowedVariantIds.some((allowedId) => allowedId === variant.id);
+}
+
 export async function getMerchConnection() {
   if (!printifyConfigured()) return { configured: false, checkoutEnabled: false, approval: "manual", products: [] };
   const products: CatalogEntry[] = [];
@@ -45,7 +50,7 @@ export async function getMerchConnection() {
     const batch = merchProducts.slice(index, index + 4);
     const results = await Promise.allSettled(batch.map(async (item) => {
       const product = await getPrintifyProduct(item.productId);
-      const variants = product.variants.filter((variant) => variant.is_enabled).map((variant) => ({
+      const variants = product.variants.filter((variant) => isVariantEnabled(item, variant)).map((variant) => ({
         id: variant.id, title: variant.title, available: variant.is_available,
         productionCostCents: variant.cost, priceCents: item.priceCents,
         contributionBeforeShippingAndFeesCents: item.priceCents - variant.cost,
@@ -78,7 +83,7 @@ export async function quoteMerchandise(input: unknown) {
     const definition = merchProducts.find((product) => product.productId === item.productId);
     if (!definition) throw new Error("Unknown merchandise product.");
     const product = await getPrintifyProduct(item.productId);
-    const variant = product.variants.find((variant) => variant.id === item.variantId && variant.is_enabled && variant.is_available);
+    const variant = product.variants.find((variant) => variant.id === item.variantId && isVariantEnabled(definition, variant) && variant.is_available);
     if (!variant) throw new Error("This size or scent is not currently available.");
     if (variant.cost >= definition.priceCents) throw new Error("This variant needs a price review before sale.");
     subtotalCents += definition.priceCents * item.quantity;

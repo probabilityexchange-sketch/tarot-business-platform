@@ -10,7 +10,7 @@ const publicProducts = unstable_cache(async function () {
     id: product.productId, slug: product.slug, name: product.name, priceCents: product.priceCents,
     variants: product.variants.filter((variant) => variant.available).map((variant) => ({ id: variant.id, title: variant.title })),
   }));
-}, ["merch-public-catalog-v1"], { revalidate: 60 });
+}, ["merch-public-catalog-v2"], { revalidate: 60 });
 
 export async function GET() {
   return NextResponse.json({ enabled: merchSalesEnabled(), products: await publicProducts() }, { headers: { "Cache-Control": "public, s-maxage=60, stale-while-revalidate=120" } });

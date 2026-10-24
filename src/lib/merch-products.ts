@@ -4,7 +4,8 @@ export const merchProducts = [
     "name": "Taurus zodiac shirt",
     "productId": "6ad179eb85955f92a50529a4",
     "kind": "shirt",
-    "priceCents": 3400
+    "priceCents": 3400,
+    "allowedVariantIds": [78991, 78992, 78993, 78994, 78995, 79142, 101450]
   },
   {
     "slug": "aries-shirt",
