@@ -73,14 +73,14 @@ Every sign has a way of approaching a blank page, a five-year plan, or a card th
 
 A candle doesn't answer a question for you. What it does is mark a beginning. Strike a match, open a notebook, and give yourself twenty minutes where nothing has to be solved all at once.
 
-Each of the six candles is poured for a specific kind of quiet:
+Each of the six candles features a vintage library checkout card label on an amber apothecary jar, complete with a catalog call number, a wry borrower's margin note, and a tilted rubber stamp:
 
-- Peace: A quiet pause. Olive branches and a little room to breathe.
-- Clarity: Sunrise over still water. Space to write and consider what comes next.
-- Protection: An enclosing oak wreath. A prompt to reflect on boundaries and the space you keep.
-- Prosperity: A flourishing pomegranate branch. An invitation to notice what you want to cultivate.
-- Love: Intertwined flowering stems. A moment for care, connection and self-kindness.
-- The Writing Hour: A little light beside the page. Time to write, reflect and begin again.
+- Peace (Call No. BF 1729 .P4): "I have closed all my mental tabs." (Olive branch, quiet pause, and room to breathe · Stamped: QUIET PLEASE)
+- Clarity (Call No. PN 145 .C5): "The fog lifted. I still have questions." (Still water, morning light, and a clean page · Stamped: SEE MARGIN NOTES)
+- Protection (Call No. Z 1003 .P7): "Do not disturb the narrator." (Oak wreath, closed door, and clear boundaries · Stamped: DO NOT DISTURB)
+- Prosperity (Call No. Z 471 .P8): "Funding my future bookshop era." (Pomegranate, full shelves, and good ink · Stamped: BOOKSHOP FUND)
+- Love (Call No. HQ 801 .L6): "Romancing my own peace of mind." (Flowering stems, warm tea, and self-kindness · Stamped: RENEWED)
+- The Writing Hour (Call No. PN 171 .W7): "Do not interrupt a sentence in progress." (Blank page, open notebook, and late light · Stamped: DRAFT IN PROGRESS)
 
 ---
 
@@ -202,12 +202,12 @@ Unsubscribe: {{ unsubscribe }}
           <tr>
             <td style="font-size:15px; color:#2b2623; padding-bottom:24px;">
               <ul style="padding-left:20px; margin:0;">
-                <li style="margin-bottom:6px;"><strong>Peace:</strong> A quiet pause. Olive branches and a little room to breathe.</li>
-                <li style="margin-bottom:6px;"><strong>Clarity:</strong> Sunrise over still water. Space to write and consider what comes next.</li>
-                <li style="margin-bottom:6px;"><strong>Protection:</strong> An enclosing oak wreath. A prompt to reflect on boundaries and the space you keep.</li>
-                <li style="margin-bottom:6px;"><strong>Prosperity:</strong> A flourishing pomegranate branch. An invitation to notice what you want to cultivate.</li>
-                <li style="margin-bottom:6px;"><strong>Love:</strong> Intertwined flowering stems. A moment for care, connection and self-kindness.</li>
-                <li style="margin-bottom:6px;"><strong>The Writing Hour:</strong> A little light beside the page. Time to write, reflect and begin again.</li>
+                <li style="margin-bottom:6px;"><strong>Peace (Call No. BF 1729 .P4):</strong> &ldquo;I have closed all my mental tabs.&rdquo;</li>
+                <li style="margin-bottom:6px;"><strong>Clarity (Call No. PN 145 .C5):</strong> &ldquo;The fog lifted. I still have questions.&rdquo;</li>
+                <li style="margin-bottom:6px;"><strong>Protection (Call No. Z 1003 .P7):</strong> &ldquo;Do not disturb the narrator.&rdquo;</li>
+                <li style="margin-bottom:6px;"><strong>Prosperity (Call No. Z 471 .P8):</strong> &ldquo;Funding my future bookshop era.&rdquo;</li>
+                <li style="margin-bottom:6px;"><strong>Love (Call No. HQ 801 .L6):</strong> &ldquo;Romancing my own peace of mind.&rdquo;</li>
+                <li style="margin-bottom:6px;"><strong>The Writing Hour (Call No. PN 171 .W7):</strong> &ldquo;Do not interrupt a sentence in progress.&rdquo;</li>
               </ul>
             </td>
           </tr>

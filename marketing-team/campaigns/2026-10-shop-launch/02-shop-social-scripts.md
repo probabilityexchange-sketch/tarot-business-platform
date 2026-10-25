@@ -75,7 +75,9 @@ qa: pass
 - **SPOKEN SCRIPT (94 words):**
   When you sit down with a decision or a blank notebook at the end of a long day, the hardest part is usually the first two minutes. Your mind is still carrying the grocery list and three unanswered emails.
   Lighting a candle is a plain, physical way to tell your attention: we are here now, and only for twenty minutes.
-  We poured two candles specifically for the desk. The Writing Hour is a little light beside the page: time to write, reflect and begin again. And Clarity is sunrise over still water: space to write and consider what comes next.
+  We designed our Intention Candles like vintage library checkout cards on an amber apothecary jar, complete with a catalog call number and a borrower's margin note.
+  The Writing Hour says: "Do not interrupt a sentence in progress." Stamp: DRAFT IN PROGRESS.
+  And Clarity says: "The fog lifted. I still have questions." Stamp: SEE MARGIN NOTES.
 - **CLOSING QUESTION (Spoken + On-Screen):** "What helps you slow down enough to hear yourself think?"
 - **SHOT NOTES:** Close-up of Kali striking a match and lighting "The Writing Hour" candle beside an open pen and notebook, then cutting back to Kali speaking calmly to camera.
 - **CAPTION (TikTok / Reels / Shorts):**
@@ -90,11 +92,11 @@ qa: pass
 - **HOOK (0 to 2s):** "Why we named a candle after boundaries and an oak wreath."
 - **ON-SCREEN TEXT (Hook):** A candle for boundaries and quiet space
 - **SPOKEN SCRIPT (96 words):**
-  Most intention candles come with big promises attached. I wanted ours to be simpler than that, more like a bookmark for the kind of hour you're trying to keep.
-  Peace is a quiet pause: olive branches and a little room to breathe.
-  Protection has an enclosing oak wreath on the label, as a prompt to reflect on boundaries and the space you keep.
-  Prosperity is an invitation to notice what you want to cultivate.
-  And Love is a moment for care, connection and self-kindness.
+  Most intention candles come with big promises attached. I wanted ours to look like vintage library checkout cards, with a dry one-liner for the kind of hour you're trying to keep.
+  Peace says: "I have closed all my mental tabs."
+  Protection says: "Do not disturb the narrator."
+  Prosperity says: "Funding my future bookshop era."
+  And Love says: "Romancing my own peace of mind."
   All six intention candles are twenty-eight dollars, and they're in the shop whenever you'd like one.
 - **CLOSING QUESTION (Spoken + On-Screen):** "Which of those four do you need most at the end of this week: Peace, Protection, Prosperity, or Love?"
 - **SHOT NOTES:** Slow pan across the candle labels (olive branch, oak wreath, pomegranate branch, intertwined stems), then Kali speaking warmly to camera.
