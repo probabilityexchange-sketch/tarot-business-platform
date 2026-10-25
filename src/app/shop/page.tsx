@@ -2,8 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { merchSalesEnabled } from "@/lib/merch-orders";
+import { CandleGallery } from "@/components/CandleGallery";
 import { EmailSignupForm } from "@/components/EmailSignupForm";
-import { candleCollection, zodiacCollection } from "@/lib/merch";
+import { zodiacCollection } from "@/lib/merch";
 
 export const dynamic = "force-dynamic";
 
@@ -51,20 +52,8 @@ export default function ShopPage() {
           <p className="mb-5 text-xs uppercase tracking-[.2em] text-[#744b65]">The intention candle collection{enabled ? "" : " · Coming soon"}</p>
           <h2 id="candles-title" className="font-serif text-4xl sm:text-5xl">A little light.<br /><span className="italic text-[#744b65]">A moment for yourself.</span></h2>
           <p className="mt-6 max-w-2xl leading-relaxed text-[#655b61]">Six archival library checkout card labels for writing, ritual and reflection—typewriter catalog grid, wry margin notes, and tilted library stamps on an amber apothecary jar.</p>
-          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#655b61]">These images are design concepts, not final product photographs. Candles are $28 plus shipping. This collection is produced and shipped by our print-on-demand partner; a personal blessing by Kali is not included.</p>
-          <div className="mt-10 grid gap-x-7 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
-            {candleCollection.map((candle) => {
-              const candleHref = `/shop/checkout?item=${candle.slug}-candle`;
-              return (
-                <article key={candle.slug}>
-                  <Link href={candleHref} className="block overflow-hidden rounded-t-[70px] bg-[#fcf9f4]"><Image src={`/images/merch/${candle.slug}-candle.webp`} alt={`${candle.name} candle design concept: ${candle.saying}`} width={800} height={900} className="aspect-[4/5] w-full object-cover transition duration-300 hover:scale-[1.02]" /></Link>
-                  <div className="mt-5 flex items-center justify-between gap-3"><h3 className="font-serif text-3xl">{candle.name}</h3>{enabled ? <Link href={candleHref} className="shrink-0 text-[10px] uppercase tracking-[.15em] text-[#744b65] underline underline-offset-4">$28 · Choose scent →</Link> : <span className="shrink-0 text-[10px] uppercase tracking-[.15em] text-[#744b65]">Coming soon</span>}</div>
-                  <p className="mt-2 font-serif text-base italic text-[#302731]">“{candle.saying}”</p>
-                  <p className="mt-1 text-sm leading-relaxed text-[#655b61]">{candle.description}</p>
-                </article>
-              );
-            })}
-          </div>
+          <p className="mt-4 max-w-2xl text-sm leading-relaxed text-[#655b61]">Click any candle to view a larger image and inspect the archival label close-up. Candles are $28 plus shipping. This collection is produced and shipped by our print-on-demand partner; a personal blessing by Kali is not included.</p>
+          <CandleGallery enabled={enabled} />
           <div className="mt-10 flex flex-wrap gap-6 text-sm">
             {enabled && <Link href="/shop/checkout?category=candle" className="border-b border-[#744b65] pb-1 font-medium text-[#653c56]">Order from the candle collection →</Link>}
             <a href="#shop-updates" className="border-b border-[#744b65] pb-1">Get collection updates ↓</a>

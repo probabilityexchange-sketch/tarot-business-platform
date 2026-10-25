@@ -3,7 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Check, Minus, Plus, ShoppingBag, Sparkles, Trash2 } from "lucide-react";
+import { Check, Maximize2, Minus, Plus, ShoppingBag, Sparkles, Trash2 } from "lucide-react";
+import { MerchLightboxDialog } from "@/components/CandleGallery";
 import { candleCollection, zodiacCollection } from "@/lib/merch";
 
 type Variant = { id: number; title: string };
@@ -55,6 +56,7 @@ function getProductMeta(slug: string) {
     subtitle: match?.saying || "Intention candle in an amber jar with a botanical label.",
     note: match?.description,
     image: `/images/merch/${candleSlug}-candle.webp`,
+    labelImage: `/images/merch/${candleSlug}-candle-label.webp`,
   };
 }
 
@@ -101,6 +103,7 @@ export function MerchCheckout() {
   const [quote, setQuote] = useState<Quote | null>(null);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState("");
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   useEffect(() => {
     let active = true;
@@ -183,6 +186,10 @@ export function MerchCheckout() {
   }, [activeProduct, activeVariants, variantId]);
 
   function selectProduct(item: Product) {
+    if (selectedId === item.id) {
+      setLightboxOpen(true);
+      return;
+    }
     setSelectedId(item.id);
     setQuantity(1);
     setJustAdded(false);
@@ -386,15 +393,24 @@ export function MerchCheckout() {
                 className="overflow-hidden rounded-3xl border border-[#302731]/15 bg-[#fcf9f4] p-6 shadow-sm sm:p-8"
               >
                 <div className="grid gap-7 sm:grid-cols-[220px_1fr] lg:grid-cols-[240px_1fr]">
-                  <div className="overflow-hidden rounded-2xl bg-[#f5f0e8]">
+                  <button
+                    type="button"
+                    onClick={() => setLightboxOpen(true)}
+                    aria-label={`View larger image of ${activeProduct.name}`}
+                    className="group relative block cursor-zoom-in overflow-hidden rounded-2xl bg-[#f5f0e8] text-left focus:outline-none focus:ring-2 focus:ring-[#653c56]"
+                  >
                     <Image
                       src={activeMeta.image}
                       alt={activeProduct.name}
                       width={520}
                       height={600}
-                      className="aspect-[4/5] w-full object-cover"
+                      className="aspect-[4/5] w-full object-cover transition duration-300 group-hover:scale-[1.02]"
                     />
-                  </div>
+                    <span className="absolute bottom-2.5 right-2.5 inline-flex items-center gap-1 rounded-full border border-[#302731]/15 bg-[#fcf9f4]/90 px-2.5 py-1 text-[10px] font-medium uppercase tracking-[.12em] text-[#302731] shadow-xs transition group-hover:bg-[#653c56] group-hover:text-white">
+                      <Maximize2 size={11} />
+                      <span>Click to enlarge</span>
+                    </span>
+                  </button>
                   <div className="flex flex-col justify-between">
                     <div>
                       <div className="flex flex-wrap items-center justify-between gap-2">
@@ -915,6 +931,18 @@ export function MerchCheckout() {
           </aside>
         </div>
       </main>
+
+      {activeProduct && activeMeta && (
+        <MerchLightboxDialog
+          open={lightboxOpen}
+          onClose={() => setLightboxOpen(false)}
+          title={activeMeta.shortName}
+          saying={activeMeta.subtitle}
+          description={"note" in activeMeta ? activeMeta.note : undefined}
+          jarImage={activeMeta.image}
+          labelImage={"labelImage" in activeMeta ? activeMeta.labelImage : undefined}
+        />
+      )}
     </div>
   );
 }
