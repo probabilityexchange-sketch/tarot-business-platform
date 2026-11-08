@@ -52,6 +52,11 @@ Detailed brand context lives in `marketing-team/context/context-card.md` and `ma
 | **Course Waitlist** | Upcoming self-paced resources waitlist | **Waitlist** | `/courses` |
 | **Shop / Candles & Merch** | 12 Zodiac Shirts ($34) & 6 Intention Candles ($28) via Printify + Stripe (`MERCH_CHECKOUT_ENABLED=true`) | **$28–$34** | `/shop` |
 
+### Business and customer-journey priority
+- Private readings are the primary destination for brand and marketing journeys across the site, email, social, content, and shop promotion. These paths should lead toward a reading or booking one.
+- The course is a separate offer and destination. Keep its funnel distinct; do not make a reading a prerequisite or force course communications into the reading funnel.
+- Preserve the transactional steps needed to complete an existing offer. When a path points directly to booking, make sure availability and the booking details are current.
+
 ### Critical System Boundaries
 - **Booking Policy:** Advance payment via Stripe required; non-refundable; reschedule with at least 48 hours' notice; slot reservation holds expire after 30–45 minutes.
 - **Email Architecture (Brevo Owns All Subscriber Email):**

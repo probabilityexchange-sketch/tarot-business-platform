@@ -27,6 +27,17 @@
   - GA4 (`G-83C04RTNB2`) + `gtag` event forwarding configured
   - Firestore Security Rules hardened and deployed (`kalimeister`)
 
+### 2026-11-03 — Revenue build (pending owner launch checklist)
+
+- Funnel rebuilt honestly: banned claims removed and approved degree wording applied across the funnel
+- Analytics + first-touch UTM coverage across signup, booking, merch, workbook and gift flows (Brevo attributes + Stripe metadata)
+- Workbook product live in code ($39, *Learning to Listen: A Discernment Workbook*) — pending PDF build + owner price approval
+- Gift readings ($250/$450) with single-use Stripe codes — pending Brevo `gift_purchased` automation + owner approval
+- Abandoned-booking recovery (`booking_leads` + `booking_abandoned` event) — pending Brevo reminder automation
+- Reading disclaimer on every reading CTA, including all 45 city pages
+- Cross-sells (Letters signup, readings links) on booking, shop, workbook and gift success pages
+- **Launch checklist and handoff:** see [`docs/maintenance-handoff.md`](./docs/maintenance-handoff.md) §5 — nothing above works end-to-end until the owner completes it
+
 ---
 
 ## Agent Responsibilities
