@@ -5,6 +5,7 @@ import { CITIES } from "@/lib/pseo-data";
 import { retainedTarotCities, getCityReadingPath } from "@/lib/city-pages";
 import { getCityContent } from "@/lib/service-page-content";
 import { readingsOfferings } from "@/lib/offerings";
+import { isWorkbookSaleEnabled } from "@/lib/workbook";
 
 export const dynamicParams = false;
 export function generateStaticParams() {
@@ -38,7 +39,9 @@ export default async function CityReadingPage({ params }: Props) {
     <header className="mb-12 max-w-3xl"><p className="mb-5 text-xs uppercase tracking-[.2em] text-primary">Private readings · Online</p><h1 className="mb-7 font-serif text-4xl leading-tight sm:text-6xl">Online tarot readings for {location.city}, {location.state}</h1><p className="text-xl leading-relaxed text-on-surface/70">Join from {location.city} for a private conversation with Kali. Bring a question, a decision or a story you’re ready to explore.</p></header>
     <section className="mb-12 max-w-3xl"><h2 className="mb-5 font-serif text-3xl">A reading with room for you.</h2><p className="mb-5 leading-relaxed">{content.paragraph}</p><p className="leading-relaxed">Choose an available time in the booking calendar before checkout. Your appointment confirmation shows your selected time. Online sessions let you take part from a private, comfortable place without travelling.</p></section>
     <section className="mb-14 grid gap-6 md:grid-cols-2" aria-label="Available readings">{readingsOfferings.map((offering) => <article key={offering.id} className="rounded-2xl border border-on-surface/15 bg-surface-container-low p-8"><p className="mb-4 text-sm text-primary">{offering.duration} · {offering.price}</p><h2 className="mb-4 font-serif text-3xl">{offering.title}</h2><p className="mb-6 leading-relaxed">{offering.description}</p><Link href="/readings" className="underline underline-offset-4">View available times →</Link></article>)}</section>
+    <p className="mb-14 max-w-3xl text-xs leading-relaxed text-on-surface/50">{"Tarot readings are offered for reflection and personal insight. They don't predict outcomes and aren't a substitute for medical, mental health, legal or financial advice."}</p>
     <section className="mb-14 max-w-3xl"><h2 className="mb-6 font-serif text-3xl">Before you book</h2>{content.faq.map((faq) => <div key={faq.question} className="mb-6 border-b border-on-surface/15 pb-6"><h3 className="mb-3 text-lg font-medium">{faq.question}</h3><p className="leading-relaxed text-on-surface/70">{faq.answer}</p></div>)}</section>
+    {isWorkbookSaleEnabled() ? <section className="mb-14 rounded-2xl bg-surface-container-low p-8"><h2 className="mb-4 font-serif text-3xl">Take the question to the page.</h2><p className="mb-6 max-w-2xl leading-relaxed">Learning to Listen is Kali’s workbook for discernment — teaching pages, guided writing exercises and a decision lab for working through a question at your own pace. $39, instant download after checkout.</p><Link href="/workbook" className="underline underline-offset-4">See the workbook →</Link></section> : null}
     <section className="rounded-2xl bg-surface-container-low p-8"><h2 className="mb-4 font-serif text-3xl">Start with a letter.</h2><p className="mb-6 max-w-2xl leading-relaxed">Letters from Kali brings writing and reflection prompts on discernment, fear and intuition to your inbox.</p><Link href="/#letters" className="underline underline-offset-4">Join Letters from Kali →</Link></section>
   </div>;
 }
