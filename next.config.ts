@@ -20,6 +20,9 @@ const redirects = async () => {
 const nextConfig: NextConfig = {
   reactStrictMode: true,
   trailingSlash: false,
+  outputFileTracingIncludes: {
+    "/api/workbook/download": ["./private-assets/**/*"],
+  },
   images: {
     formats: ['image/avif', 'image/webp'],
     remotePatterns: [
