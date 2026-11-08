@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { LettersIllustration } from "@/components/LettersIllustration";
 import { EmailSignupForm } from "@/components/EmailSignupForm";
+import { isWorkbookSaleEnabled } from "@/lib/workbook";
 
 export function LettersContent({ illustrated = false }: { illustrated?: boolean }) {
   return (
@@ -23,10 +24,11 @@ export function LettersContent({ illustrated = false }: { illustrated?: boolean 
           <p className="mb-7 text-sm leading-relaxed text-[#655b61]">Sign up for the free guide, a welcome letter and the discernment series, with occasional news about Kali’s work.</p>
           <EmailSignupForm source="letters-page" label="Send me the free guide" />
           <p className="mt-5 text-xs leading-relaxed text-[#655b61]">You can unsubscribe using the link in any email.</p>
+          {isWorkbookSaleEnabled() ? <p className="mt-5 text-xs leading-relaxed text-[#655b61]">Prefer to own the practice? Learning to Listen, Kali’s workbook for discernment — $39. <Link href="/workbook" className="underline underline-offset-4">See the workbook →</Link></p> : null}
         </aside>
         {illustrated && <div className="lg:hidden"><LettersIllustration /></div>}
       </section>
-      <section className="border-t border-[#302731]/15 px-6 py-12"><div className="mx-auto max-w-3xl"><h2 className="font-serif text-3xl">Writing and spiritual reflection, together.</h2><p className="mt-5 leading-relaxed text-[#655b61]">Kali Meister is a writer and spiritual practitioner with a master’s degree in creative writing from Goddard College and an undergraduate degree in psychology from the University of Tennessee. Her letters bring writing prompts and thoughtful questions to the practice of discernment.</p><Link href="/about" className="mt-5 inline-block text-sm underline underline-offset-4">Meet Kali →</Link></div></section>
+      <section className="border-t border-[#302731]/15 px-6 py-12"><div className="mx-auto max-w-3xl"><h2 className="font-serif text-3xl">Writing and spiritual reflection, together.</h2><p className="mt-5 leading-relaxed text-[#655b61]">Kali Meister is a writer and spiritual practitioner with a master’s degree in creative writing from Goddard College and a bachelor’s degree in psychology from the University of Tennessee. Her letters bring writing prompts and thoughtful questions to the practice of discernment.</p><Link href="/about" className="mt-5 inline-block text-sm underline underline-offset-4">Meet Kali →</Link></div></section>
     </div>
   );
 }
