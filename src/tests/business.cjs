@@ -3,6 +3,9 @@ require("node:child_process").execFileSync(process.execPath, [require("node:path
 require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "printify.cjs")], { stdio: "inherit" });
 require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "city-pages.cjs")], { stdio: "inherit" });
 require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "publishing.cjs")], { stdio: "inherit" });
+require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "workbook.cjs")], { stdio: "inherit" });
+require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "gift.cjs")], { stdio: "inherit" });
+require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "recovery.cjs")], { stdio: "inherit" });
 const assert = require("node:assert/strict");
 const path = require("node:path");
 const fs = require("node:fs");
@@ -106,9 +109,16 @@ async function main() {
   hold("shadow", "shadow-reading", 90);
   assert.equal((await checkout.POST(request({ ...payload, offeringId: "shadow-reading", slotDuration: 90, reservationUid: "shadow" }))).status, 200);
   assert.equal(checkoutInput.line_items[0].price_data.unit_amount, 45000);
+  assert.ok(!("utmSource" in checkoutInput.metadata));
   records.get("booking_slots/hold-1").expiresAt = Timestamp.fromMillis(Date.now() - 1);
   assert.equal((await checkout.POST(request(payload))).status, 409);
-  console.log("PASS: prices, durations, reservation ownership, expiry binding, intake privacy and checkout retries");
+  hold("utm-hold");
+  assert.equal((await checkout.POST(request({ ...payload, reservationUid: "utm-hold", utm: { utm_source: "instagram", utm_medium: "social", utm_campaign: "wk1" } }))).status, 200);
+  assert.equal(checkoutInput.metadata.utmSource, "instagram");
+  assert.equal(checkoutInput.metadata.utmMedium, "social");
+  assert.equal(checkoutInput.metadata.utmCampaign, "wk1");
+  assert.ok(!("utmContent" in checkoutInput.metadata));
+  console.log("PASS: prices, durations, reservation ownership, expiry binding, intake privacy, checkout retries and Stripe UTM metadata");
 
   const fulfillment = await bundle("src/lib/booking-fulfillment.ts", "fulfillment");
   const session = { id: "cs_test_paid", payment_status: "paid", amount_total: 25000, currency: "usd", payment_intent: "pi_test", metadata: { ...payload, slotDuration: "60", offeringName: "The Narrative Deep-Dive", priceCents: "25000" } };
@@ -143,7 +153,8 @@ async function main() {
   process.env.BREVO_LIST_ID = "5";
   const emails = [];
   let providerFails = false;
-  global.fetch = async (url, options) => { emails.push({ url, body: JSON.parse(options.body) }); return new Response("{}", { status: providerFails ? 503 : 201 }); };
+  let attributeFails = false;
+  global.fetch = async (url, options) => { const body = JSON.parse(options.body); emails.push({ url, body }); return new Response("{}", { status: providerFails ? 503 : attributeFails && body.attributes ? 400 : 201 }); };
   assert.equal((await signup.requestSignup(request({ email: "test@example.com", consent: false }))).status, 400);
   assert.equal((await signup.requestSignup(request({ email: "bad", consent: true }))).status, 400);
   assert.equal(emails.length, 0);
@@ -179,7 +190,19 @@ async function main() {
   providerFails = true;
   assert.equal((await signup.requestSignup(request({ email: "failed@example.com", consent: true }))).status, 503);
   assert.ok(emails.every(email => !email.url.includes("smtp/email") && !email.url.includes("doubleOptin")));
-  console.log("PASS: direct Brevo list signup, explicit consent, normalized updates, isolated course list, provider errors, legacy confirmation/unsubscribe and zero website email sends");
+  providerFails = false;
+  assert.equal((await signup.requestSignup(request({ email: "utm@example.com", consent: true, source: "x", utm: { utm_source: "instagram", utm_campaign: "wk1" } }))).status, 200);
+  assert.deepEqual(emails.at(-1).body.attributes, { UTM_SOURCE: "instagram", UTM_CAMPAIGN: "wk1" });
+  assert.equal(emails.at(-1).body.email, "utm@example.com");
+  attributeFails = true;
+  const contactsBefore = emails.filter(email => email.url.endsWith("/contacts")).length;
+  assert.equal((await signup.requestSignup(request({ email: "retry@example.com", consent: true, source: "x", utm: { utm_source: "instagram" } }))).status, 200);
+  const contactsCalls = emails.filter(email => email.url.endsWith("/contacts"));
+  assert.equal(contactsCalls.length, contactsBefore + 2);
+  assert.ok(contactsCalls.at(-2).body.attributes);
+  assert.ok(!("attributes" in contactsCalls.at(-1).body));
+  attributeFails = false;
+  console.log("PASS: direct Brevo list signup, explicit consent, normalized updates, isolated course list, provider errors, legacy confirmation/unsubscribe, zero website email sends and UTM attribute capture with attribute-free retry");
   console.log("All business-flow tests passed. Stripe, Cal.com, Firestore and email delivery were mocked; no charges or real emails.");
 }
 const originalError = console.error;

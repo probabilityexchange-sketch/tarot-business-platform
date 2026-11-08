@@ -55,6 +55,7 @@ export async function POST(request: Request) {
         },
       ],
       mode: "payment",
+      allow_promotion_codes: true,
       customer_email: payload.customerEmail,
       expires_at: valid.checkoutExpiresAt,
       success_url: `${baseUrl}/booking/success?session_id={CHECKOUT_SESSION_ID}`,
@@ -69,10 +70,36 @@ export async function POST(request: Request) {
         customerName: payload.customerName,
         customerEmail: payload.customerEmail,
         customerTimezone: payload.customerTimezone,
+        ...(payload.utm?.utm_source ? { utmSource: payload.utm.utm_source } : {}),
+        ...(payload.utm?.utm_medium ? { utmMedium: payload.utm.utm_medium } : {}),
+        ...(payload.utm?.utm_campaign ? { utmCampaign: payload.utm.utm_campaign } : {}),
+        ...(payload.utm?.utm_content ? { utmContent: payload.utm.utm_content } : {}),
       },
     }, { idempotencyKey: `booking-${payload.reservationUid}` });
 
     await holdRef.update({ checkoutUrl: session.url, stripeSessionId: session.id });
+    // Abandoned-checkout recovery lead: written only on new session creation, never on
+    // the early-return retry path above. Merged so a Stripe idempotent retry of the same
+    // session id refreshes instead of failing.
+    try {
+      await getAdminDb().collection("booking_leads").doc(session.id).set({
+        email: payload.customerEmail,
+        name: payload.customerName,
+        offeringId: offering.id,
+        offeringName: offering.title,
+        slotStart: payload.slotStart,
+        ...(payload.utm?.utm_source ? { utmSource: payload.utm.utm_source } : {}),
+        ...(payload.utm?.utm_medium ? { utmMedium: payload.utm.utm_medium } : {}),
+        ...(payload.utm?.utm_campaign ? { utmCampaign: payload.utm.utm_campaign } : {}),
+        ...(payload.utm?.utm_content ? { utmContent: payload.utm.utm_content } : {}),
+        status: "checkout_started",
+        createdAt: Timestamp.now(),
+        deleteAfter: Timestamp.fromMillis(Date.now() + 30 * 24 * 60 * 60000),
+      }, { merge: true });
+    } catch (error) {
+      // Best-effort: a failed recovery-lead write must never block a created checkout.
+      console.error("Booking lead write failed", session.id, error);
+    }
     return NextResponse.json({ url: session.url });
   } catch (error) {
     console.error("Stripe Checkout Error:", error);
