@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { EmailSignupForm } from "@/components/EmailSignupForm";
 import { pushEvent } from "@/lib/analytics";
 
 type BookingResponse = {
@@ -168,6 +169,19 @@ function SuccessContent() {
             </div>
           </div>
         </Card>
+
+        <section className="mt-16 max-w-2xl mx-auto text-center">
+          <h2 className="text-3xl md:text-4xl font-display italic text-on-surface mb-6">
+            While you wait for your session
+          </h2>
+          <p className="text-on-surface/60 font-body leading-relaxed mb-8">
+            The free three-part guide to discernment is a good companion before a session — writing through
+            fear, ego and intuition, one part at a time.
+          </p>
+          <div className="text-left">
+            <EmailSignupForm source="booking-success" />
+          </div>
+        </section>
       </div>
     </div>
   );

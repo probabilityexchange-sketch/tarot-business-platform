@@ -11,6 +11,6 @@ export async function GET(request: Request) {
     const session = await getStripe().checkout.sessions.retrieve(id);
     if (session.metadata?.kind !== "merch") return NextResponse.json({ error: "Order not found." }, { status: 404 });
     const result = await recordMerchPayment(session);
-    return NextResponse.json({ paid: session.payment_status === "paid", status: result.status }, { headers: { "Cache-Control": "no-store" } });
+    return NextResponse.json({ paid: session.payment_status === "paid", status: result.status, totalCents: session.amount_total }, { headers: { "Cache-Control": "no-store" } });
   } catch { return NextResponse.json({ error: "Payment confirmation is still being checked. Please try again." }, { status: 503 }); }
 }
