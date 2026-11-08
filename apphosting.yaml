@@ -103,6 +103,16 @@ env:
     secret: ADMIN_EMAIL
     availability:
       - RUNTIME
+  - variable: OWNER_ALERT_EMAILS
+    value: "kali@kalimeister.com,billybradshaw@gmail.com"
+    availability:
+      - RUNTIME
+  # Workbook sales stay off until Kali approves the final PDF (see docs/maintenance-handoff.md 5a).
+  - variable: WORKBOOK_SALES_ENABLED
+    value: "false"
+    availability:
+      - BUILD
+      - RUNTIME
   - variable: STRIPE_WEBHOOK_SECRET
     secret: STRIPE_WEBHOOK_SECRET
     availability:
