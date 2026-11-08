@@ -9,6 +9,12 @@ export const signupSchema = z.object({
   consent: z.literal(true),
   source: z.string().max(120).optional().default("homepage"),
   website: z.string().max(200).optional().default(""),
+  utm: z.object({
+    utm_source: z.string().max(120).optional(),
+    utm_medium: z.string().max(120).optional(),
+    utm_campaign: z.string().max(120).optional(),
+    utm_content: z.string().max(120).optional(),
+  }).optional(),
 });
 
 function hash(value: string) {
@@ -43,7 +49,24 @@ export async function requestSignup(request: Request, source?: string) {
     const signupSource = source || "website";
     const listId = signupList(signupSource);
     if (!(await allowPublicRequest("email"))) return Response.json({ error: "Signup is busy. Please try again later." }, { status: 429 });
-    await brevoRequest("contacts", { email: data.email, listIds: [listId], updateEnabled: true });
+    const contactBody: Record<string, unknown> = { email: data.email, listIds: [listId], updateEnabled: true };
+    if (data.utm) {
+      const attributes: Record<string, string> = {};
+      if (data.utm.utm_source) attributes.UTM_SOURCE = data.utm.utm_source;
+      if (data.utm.utm_medium) attributes.UTM_MEDIUM = data.utm.utm_medium;
+      if (data.utm.utm_campaign) attributes.UTM_CAMPAIGN = data.utm.utm_campaign;
+      if (data.utm.utm_content) attributes.UTM_CONTENT = data.utm.utm_content;
+      if (Object.keys(attributes).length > 0) contactBody.attributes = attributes;
+    }
+    try {
+      await brevoRequest("contacts", contactBody);
+    } catch (error) {
+      if (!contactBody.attributes) throw error;
+      console.error("Brevo rejected contact attributes; retrying without them", error);
+      const fallbackBody = { ...contactBody };
+      delete fallbackBody.attributes;
+      await brevoRequest("contacts", fallbackBody);
+    }
     return Response.json({ message: "You’re in. Check your inbox." });
   } catch (error) {
     console.error("Email signup failed", error);

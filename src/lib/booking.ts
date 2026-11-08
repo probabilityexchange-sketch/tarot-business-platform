@@ -52,6 +52,12 @@ export const bookingCheckoutSchema = z.object({
     }
   }),
   notes: z.string().max(4000).optional().default(""),
+  utm: z.object({
+    utm_source: z.string().max(120).optional(),
+    utm_medium: z.string().max(120).optional(),
+    utm_campaign: z.string().max(120).optional(),
+    utm_content: z.string().max(120).optional(),
+  }).optional(),
 });
 
 export function parseCurrencyToCents(value: string): number {

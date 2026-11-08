@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { getStoredUtm, useUtmCapture } from "@/hooks/useUtm";
 import { pushEvent } from "@/lib/analytics";
 import type { Offering } from "@/lib/offerings";
 
@@ -51,6 +52,8 @@ export default function BookingOfferings({ offerings }: Props) {
   const [notes, setNotes] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [bookingError, setBookingError] = useState<string | null>(null);
+
+  useUtmCapture();
 
   useEffect(() => {
     setCustomerTimezone(Intl.DateTimeFormat().resolvedOptions().timeZone);
@@ -155,6 +158,7 @@ export default function BookingOfferings({ offerings }: Props) {
           customerEmail,
           customerTimezone,
           notes,
+          utm: getStoredUtm(),
         }),
       });
 

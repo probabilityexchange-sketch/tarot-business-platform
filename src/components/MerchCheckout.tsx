@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Check, Maximize2, Minus, Plus, ShoppingBag, Sparkles, Trash2 } from "lucide-react";
 import { MerchLightboxDialog } from "@/components/CandleGallery";
+import { pushEvent } from "@/lib/analytics";
 import { candleCollection, zodiacCollection } from "@/lib/merch";
 
 type Variant = { id: number; title: string };
@@ -286,6 +287,11 @@ export function MerchCheckout() {
       if (!response.ok) throw new Error(data.error || "Unable to start checkout.");
       const url = new URL(data.url);
       if (url.origin !== "https://checkout.stripe.com") throw new Error("Unable to open secure checkout.");
+      pushEvent("begin_checkout", {
+        value: (quote.subtotalCents + quote.shippingCents) / 100,
+        currency: "usd",
+        items: quote.lines.reduce((total, line) => total + line.quantity, 0),
+      });
       window.location.assign(url.href);
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Unable to start checkout.");

@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ChevronLeft, ChevronRight, Maximize2, X } from "lucide-react";
+import { pushEvent } from "@/lib/analytics";
 import { candleCollection } from "@/lib/merch";
 
 type CandleItem = (typeof candleCollection)[number];
@@ -17,6 +18,7 @@ export function MerchLightboxDialog({
   jarImage,
   labelImage,
   orderHref,
+  onOrderClick,
   onPrev,
   onNext,
 }: {
@@ -28,6 +30,7 @@ export function MerchLightboxDialog({
   jarImage: string;
   labelImage?: string;
   orderHref?: string;
+  onOrderClick?: () => void;
   onPrev?: () => void;
   onNext?: () => void;
 }) {
@@ -206,6 +209,7 @@ export function MerchLightboxDialog({
           {orderHref && (
             <Link
               href={orderHref}
+              onClick={onOrderClick}
               className="inline-flex items-center rounded-full bg-[#653c56] px-6 py-3 text-xs font-medium uppercase tracking-[.14em] text-white transition hover:bg-[#4f3145]"
             >
               $28 · Choose scent &amp; order →
@@ -242,7 +246,7 @@ export function CandleGallery({ enabled }: { enabled: boolean }) {
                   height={900}
                   className="aspect-[4/5] w-full object-cover transition duration-300 group-hover:scale-[1.02]"
                 />
-                <span className=" absolute bottom-3.5 right-3.5 inline-flex items-center gap-1.5 rounded-full border border-[#302731]/15 bg-[#fcf9f4]/90 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[.14em] text-[#302731] shadow-xs transition group-hover:bg-[#653c56] group-hover:text-white">
+                <span className="absolute bottom-3.5 right-3.5 inline-flex items-center gap-1.5 rounded-full border border-[#302731]/15 bg-[#fcf9f4]/90 px-3 py-1.5 text-[10px] font-medium uppercase tracking-[.14em] text-[#302731] shadow-xs transition group-hover:bg-[#653c56] group-hover:text-white">
                   <Maximize2 size={12} />
                   <span>Click to enlarge</span>
                 </span>
@@ -253,6 +257,7 @@ export function CandleGallery({ enabled }: { enabled: boolean }) {
                 {enabled ? (
                   <Link
                     href={candleHref}
+                    onClick={() => pushEvent("select_item", { item_id: `${candle.slug}-candle`, item_name: candle.name, price: 28 })}
                     className="shrink-0 text-[10px] uppercase tracking-[.15em] text-[#744b65] underline underline-offset-4"
                   >
                     $28 · Choose scent →
@@ -280,6 +285,7 @@ export function CandleGallery({ enabled }: { enabled: boolean }) {
           jarImage={`/images/merch/${activeCandle.slug}-candle.webp`}
           labelImage={`/images/merch/${activeCandle.slug}-candle-label.webp`}
           orderHref={enabled ? `/shop/checkout?item=${activeCandle.slug}-candle` : undefined}
+          onOrderClick={enabled ? () => pushEvent("select_item", { item_id: `${activeCandle.slug}-candle`, item_name: activeCandle.name, price: 28 }) : undefined}
           onPrev={() =>
             setActiveIndex((current) =>
               current === null

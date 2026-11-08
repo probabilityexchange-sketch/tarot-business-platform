@@ -1,8 +1,11 @@
 "use client";
 
 import { useId, useState } from "react";
+import { getStoredUtm, useUtmCapture } from "@/hooks/useUtm";
+import { pushEvent } from "@/lib/analytics";
 
 export function EmailSignupForm({ source = "homepage", label = "Get the free guide", className = "", audience = "newsletter" }: { source?: string; label?: string; className?: string; audience?: "newsletter" | "course" }) {
+  useUtmCapture();
   const id = useId();
   const [email, setEmail] = useState("");
   const [consent, setConsent] = useState(false);
@@ -15,11 +18,12 @@ export function EmailSignupForm({ source = "homepage", label = "Get the free gui
     setStatus("loading");
     setMessage("");
     try {
-      const response = await fetch(audience === "course" ? "/api/course-waitlist" : "/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, consent, source, website }) });
+      const response = await fetch(audience === "course" ? "/api/course-waitlist" : "/api/subscribe", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ email, consent, source, website, utm: getStoredUtm() }) });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Unable to sign up. Please try again.");
       setMessage(data.message);
       setStatus("success");
+      pushEvent("generate_lead", { source });
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Unable to connect. Please try again.");
       setStatus("error");
