@@ -78,7 +78,7 @@ function expectedCode(sessionId) {
   assert.ok((await response.json()).url);
   const created = checkoutCalls[0];
   assert.equal(created.input.mode, "payment");
-  assert.deepEqual(created.input.payment_method_types, ["card"]);
+  assert.equal(created.input.payment_method_types, undefined, "Stripe selects eligible payment methods from Dashboard settings");
   assert.equal(created.input.line_items[0].quantity, 1);
   assert.equal(created.input.line_items[0].price_data.unit_amount, 25000);
   assert.equal(created.input.line_items[0].price_data.currency, "usd");

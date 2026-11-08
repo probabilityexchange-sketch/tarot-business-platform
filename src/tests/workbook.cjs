@@ -61,7 +61,7 @@ async function bundle(file, name) {
   assert.ok(firstUrl);
   const created = checkoutCalls[0];
   assert.equal(created.input.mode, "payment");
-  assert.deepEqual(created.input.payment_method_types, ["card"]);
+  assert.equal(created.input.payment_method_types, undefined, "Stripe selects eligible payment methods from Dashboard settings");
   assert.equal(created.input.line_items[0].quantity, 1);
   assert.equal(created.input.line_items[0].price_data.unit_amount, 3900);
   assert.equal(created.input.line_items[0].price_data.currency, "usd");

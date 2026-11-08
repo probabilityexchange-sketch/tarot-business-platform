@@ -29,7 +29,6 @@ export async function POST(request: Request) {
     const base = process.env.NEXT_PUBLIC_BASE_URL || new URL(request.url).origin;
 
     const session = await getStripe().checkout.sessions.create({
-      payment_method_types: ["card"],
       line_items: [
         {
           price_data: {

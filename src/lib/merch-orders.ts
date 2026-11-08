@@ -52,7 +52,7 @@ export async function createMerchCheckout(input: unknown) {
   const localBase = process.env.NEXT_PUBLIC_BASE_URL || "";
   const base = process.env.STRIPE_SECRET_KEY?.startsWith("sk_test_") && /^http:\/\/(localhost|127\.0\.0\.1):[0-9]+$/.test(localBase) ? localBase : "https://kalimeister.com";
   const session = await getStripe().checkout.sessions.create({
-    mode: "payment", payment_method_types: ["card"], customer: customer.id,
+    mode: "payment", customer: customer.id,
     automatic_tax: { enabled: true }, customer_update: { address: "never", name: "never", shipping: "never" },
     line_items: quote.lines.map((line) => ({ quantity: line.quantity, price_data: { currency: "usd", unit_amount: line.priceCents, tax_behavior: "exclusive", product_data: { name: line.name, description: line.variant, tax_code: merchProducts.find((product) => product.productId === line.productId)?.kind === "shirt" ? "txcd_30011000" : "txcd_99999999" } } })),
     shipping_options: [{ shipping_rate_data: { display_name: "Standard shipping", type: "fixed_amount", fixed_amount: { amount: quote.shippingCents, currency: "usd" }, tax_behavior: "exclusive" } }],
