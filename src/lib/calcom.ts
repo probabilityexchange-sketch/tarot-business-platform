@@ -87,7 +87,7 @@ const calComReservationResponseSchema = z.object({
   data: z
     .object({
       uid: z.string().optional(),
-      id: z.string().optional(),
+      id: z.union([z.string(), z.number()]).transform(String).optional(),
       reservationUid: z.string().optional(),
     })
     .passthrough()
@@ -113,7 +113,7 @@ const calComBookingResponseSchema = z.object({
   data: z
     .object({
       uid: z.string().optional(),
-      id: z.string().optional(),
+      id: z.union([z.string(), z.number()]).transform(String).optional(),
       bookingUid: z.string().optional(),
     })
     .passthrough()
@@ -126,7 +126,7 @@ const calComBookingActionResponseSchema = z.object({
     .object({
       uid: z.string().optional(),
       bookingUid: z.string().optional(),
-      id: z.string().optional(),
+      id: z.union([z.string(), z.number()]).transform(String).optional(),
       rescheduledToUid: z.string().optional(),
       rescheduledFromUid: z.string().optional(),
     })
@@ -497,7 +497,18 @@ export async function createCalComBooking(
   };
 
   if (typeof params.lengthInMinutes === "number") {
-    payload.lengthInMinutes = params.lengthInMinutes;
+    const eventTypes = await getCalComEventTypes();
+    const eventType = eventTypes.find((eventType) =>
+      "eventTypeId" in descriptor
+        ? eventType.id === descriptor.eventTypeId
+        : eventType.slug === descriptor.eventTypeSlug
+    );
+    if (!eventType) throw new Error("Cal.com event type is unavailable");
+    if (eventType.lengthType === "variable") {
+      payload.lengthInMinutes = params.lengthInMinutes;
+    } else if (eventType.lengthInMinutes !== params.lengthInMinutes) {
+      throw new Error("Cal.com event duration does not match the reading");
+    }
   }
 
   // Ensure eventTypeId is always an integer number
@@ -568,7 +579,6 @@ export async function cancelCalComBooking(
       method: "POST",
       body: JSON.stringify({
         cancellationReason,
-        cancelSubsequentBookings: true,
       }),
     },
     calComBookingsApiVersion

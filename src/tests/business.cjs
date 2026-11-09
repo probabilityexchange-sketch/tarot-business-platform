@@ -1,3 +1,4 @@
+require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "calcom.cjs")], { stdio: "inherit" });
 require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "discernment-series.cjs")], { stdio: "inherit" });
 require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "merch-orders.cjs")], { stdio: "inherit" });
 require("node:child_process").execFileSync(process.execPath, [require("node:path").join(__dirname, "printify.cjs")], { stdio: "inherit" });

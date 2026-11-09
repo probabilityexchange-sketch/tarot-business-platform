@@ -1,0 +1,31 @@
+const assert = require("node:assert/strict");
+const fs = require("node:fs");
+const path = require("node:path");
+const out = fs.mkdtempSync(path.join(__dirname, "../../node_modules/.calcom-tests-"));
+const originalFetch = global.fetch;
+let lengthType = "fixed";
+const writes = [];
+global.fetch = async (url, options) => {
+  if (String(url).includes("/v2/event-types")) return Response.json({ status: "success", data: [{ id: 123, title: "Test reading", slug: "test-reading", lengthInMinutes: 60, lengthType }] });
+  assert.ok(["https://api.cal.com/v2/bookings", "https://api.cal.com/v2/bookings/test-booking/cancel"].includes(String(url)));
+  writes.push(JSON.parse(options.body));
+  return Response.json({ status: "success", data: { uid: "test-booking", id: 28474293 } });
+};
+(async () => {
+  process.env.CALCOM_API_KEY = "test-placeholder";
+  const outfile = path.join(out, "calcom.cjs");
+  await require("esbuild").build({ entryPoints: [path.join(__dirname, "../lib/calcom.ts")], outfile, bundle: true, platform: "node", format: "cjs", packages: "external" });
+  const { createCalComBooking, cancelCalComBooking } = require(outfile);
+  const input = { eventTypeId: 123, lengthInMinutes: 60, start: "2026-12-01T15:00:00Z", attendee: { name: "Test", email: "test@example.com", timeZone: "America/New_York" } };
+  await createCalComBooking(input);
+  assert.equal(writes[0].eventTypeId, 123);
+  assert.equal("lengthInMinutes" in writes[0], false, "Cal.com rejects explicit duration on fixed-length events");
+  await assert.rejects(() => createCalComBooking({ ...input, lengthInMinutes: 90 }), /duration does not match/);
+  assert.equal(writes.length, 1, "Mismatched duration must not create an appointment");
+  lengthType = "variable";
+  await createCalComBooking(input);
+  assert.equal(writes[1].lengthInMinutes, 60);
+  await cancelCalComBooking("test-booking", "Test complete");
+  assert.equal("cancelSubsequentBookings" in writes[2], false, "Single appointments must not request recurring cancellation");
+  console.log("PASS: Cal.com fixed-length requests omit duration, mismatches cannot book, variable-length requests retain duration. No real bookings.");
+})().catch(error => { console.error(error); process.exitCode = 1; }).finally(() => { global.fetch = originalFetch; fs.rmSync(out, { recursive: true, force: true }); });
