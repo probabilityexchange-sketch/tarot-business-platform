@@ -1,34 +1,20 @@
-"""Rebuild the paid PDF from Kali's approved, proofread Word manuscript.
+"""Package Kali’s author-supplied final PDF without re-exporting it.
 
-Run locally with LibreOffice installed. Firebase ships the prebuilt private PDF;
-this script is never part of checkout or the production build.
+The approved-source.docx is an earlier manuscript, retained for reference only.
+The current author-approved master is approved-source.pdf.
 """
 from pathlib import Path
 import shutil
-import subprocess
-import tempfile
 
 ROOT = Path(__file__).resolve().parent.parent
-SOURCE = ROOT / "workbook-draft" / "approved-source.docx"
+SOURCE = ROOT / "workbook-draft" / "approved-source.pdf"
 OUTPUT = ROOT / "private-assets" / "discernment-workbook.pdf"
 
 def main():
-    office = shutil.which("libreoffice")
-    if not office:
-        raise SystemExit("LibreOffice is required to rebuild the approved workbook PDF.")
-    if not SOURCE.is_file():
-        raise SystemExit("Approved workbook manuscript is missing.")
-    with tempfile.TemporaryDirectory(prefix="kali-workbook-") as folder:
-        temp = Path(folder)
-        subprocess.run([
-            office, "-env:UserInstallation=" + (temp / "profile").as_uri(),
-            "--headless", "--convert-to", "pdf", "--outdir", str(temp), str(SOURCE),
-        ], check=True, timeout=120)
-        pdf = temp / "approved-source.pdf"
-        if not pdf.is_file() or not pdf.read_bytes().startswith(b"%PDF-"):
-            raise SystemExit("Workbook PDF conversion failed; existing asset was not replaced.")
-        OUTPUT.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copyfile(pdf, OUTPUT)
+    if not SOURCE.is_file() or not SOURCE.read_bytes().startswith(b"%PDF-"):
+        raise SystemExit("Approved final PDF is missing or invalid; paid asset was not changed.")
+    OUTPUT.parent.mkdir(parents=True, exist_ok=True)
+    shutil.copyfile(SOURCE, OUTPUT)
     print(OUTPUT)
 
 if __name__ == "__main__":
