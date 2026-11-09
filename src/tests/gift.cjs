@@ -36,6 +36,7 @@ global.__giftStripe = {
   } },
   coupons: {
     async create(input, options) {
+      assert.ok(input.name.length <= 40, "Stripe coupon names must not exceed 40 characters");
       couponCreateCalls += 1;
       return { id: "coupon_1" };
     },

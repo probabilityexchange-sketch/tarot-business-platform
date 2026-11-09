@@ -42,7 +42,7 @@ export async function fulfillGiftPurchase(session: Stripe.Checkout.Session): Pro
       currency: "usd",
       duration: "once",
       max_redemptions: 1,
-      name: `Gift ${tier.title} — ${session.id}`,
+      name: `Gift ${humanCode}`,
     },
     { idempotencyKey: `gift-coupon-${session.id}` }
   );
