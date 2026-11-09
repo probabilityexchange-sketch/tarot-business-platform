@@ -65,7 +65,7 @@ async function bundle(file, name) {
   assert.equal(created.input.line_items[0].quantity, 1);
   assert.equal(created.input.line_items[0].price_data.unit_amount, 3900);
   assert.equal(created.input.line_items[0].price_data.currency, "usd");
-  assert.equal(created.input.line_items[0].price_data.product_data.name, "Learning to Listen: A Discernment Workbook");
+  assert.equal(created.input.line_items[0].price_data.product_data.name, "The Art of Discernment");
   assert.equal(created.input.metadata.kind, "workbook");
   assert.ok(created.input.success_url.includes("/workbook/success"));
   assert.ok(created.input.success_url.includes("session_id={CHECKOUT_SESSION_ID}"));
@@ -107,6 +107,10 @@ async function bundle(file, name) {
   assert.equal(records.get("workbook_buyers/cs_test_workbookhook").email, "hook@example.com");
   console.log("PASS: workbook webhook records paid sessions from authentic signatures");
 
+  const originalCwd = process.cwd();
+  const downloadTestDir = path.join(out, "download-fixture");
+  fs.mkdirSync(downloadTestDir);
+  process.chdir(downloadTestDir);
   const download = await bundle("src/app/api/workbook/download/route.ts", "download");
   assert.equal((await download.GET(new Request("https://kalimeister.com/api/workbook/download?session_id=nope"))).status, 403);
   sessionsById.set("cs_test_unpaid", { id: "cs_test_unpaid", payment_status: "unpaid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 3900 });
@@ -129,6 +133,7 @@ async function bundle(file, name) {
     assert.ok((await served.text()).startsWith("%PDF-1.4"));
   } finally {
     fs.rmSync(pdfPath, { force: true });
+    process.chdir(originalCwd);
   }
   console.log("PASS: workbook download verifies payment, handles a missing PDF gracefully and streams the file");
   console.log("All workbook tests passed. Stripe, Firestore and Cal.com were mocked; no charges.");

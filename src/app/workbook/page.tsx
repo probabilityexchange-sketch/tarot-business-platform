@@ -4,11 +4,11 @@ import { WorkbookBuyButton } from "@/app/workbook/WorkbookBuyButton";
 import { isWorkbookSaleEnabled, workbookProduct } from "@/lib/workbook";
 
 export const metadata: Metadata = {
-  title: "Learning to Listen: A Discernment Workbook | Kali Meister",
-  description: "A downloadable workbook for writing through a question or a decision. Teaching pages and guided exercises on fear, ego, desire and intuition, at your own pace.",
+  title: "The Art of Discernment | Kali Meister",
+  description: "A downloadable workbook for writing through a question or a decision. Teaching pages and guided exercises on intuition, fear, relationships and inner authority, at your own pace.",
   alternates: { canonical: "/workbook" },
-  openGraph: { title: "Learning to Listen: A Discernment Workbook | Kali Meister", description: "Teaching pages and guided writing exercises for working through a question or a decision.", url: "/workbook", type: "website" },
-  twitter: { card: "summary_large_image", title: "Learning to Listen: A Discernment Workbook | Kali Meister", description: "A downloadable workbook for writing through a question or a decision." },
+  openGraph: { title: "The Art of Discernment | Kali Meister", description: "Teaching pages and guided writing exercises for working through a question or a decision.", url: "/workbook", type: "website" },
+  twitter: { card: "summary_large_image", title: "The Art of Discernment | Kali Meister", description: "A downloadable workbook for writing through a question or a decision." },
 };
 
 export default function WorkbookPage() {
@@ -16,8 +16,8 @@ export default function WorkbookPage() {
   return <div className="mx-auto max-w-4xl px-6 py-20 lg:px-12">
     <header className="mb-14 max-w-3xl">
       <p className="mb-5 text-xs uppercase tracking-[.2em] text-primary">A workbook for discernment</p>
-      <h1 className="mb-7 font-serif text-5xl leading-tight sm:text-6xl">Learning to Listen.</h1>
-      <p className="text-xl leading-relaxed text-on-surface/70">A strong feeling can be a place to begin. This workbook gives a question somewhere to land: teaching pages and guided writing exercises on fear, ego, desire and intuition, with room on the page for “I don’t know yet.”</p>
+      <h1 className="mb-7 font-serif text-5xl leading-tight sm:text-6xl">The Art of Discernment.</h1>
+      <p className="text-xl leading-relaxed text-on-surface/70">A strong feeling can be a place to begin. This workbook gives a question somewhere to land: teaching pages and guided writing exercises on intuition, fear, relationships and inner authority, with room on the page for “I don’t know yet.”</p>
     </header>
     <section className="mb-12 rounded-2xl bg-surface-container-low p-8">
       <h2 className="mb-4 font-serif text-3xl">What’s inside</h2>

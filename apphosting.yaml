@@ -107,9 +107,9 @@ env:
     value: "kali@kalimeister.com,billybradshaw@gmail.com"
     availability:
       - RUNTIME
-  # Workbook sales stay off until Kali approves the final PDF (see docs/maintenance-handoff.md 5a).
+  # Workbook launch approved by owner on 2026-11-09; revised author manuscript packaged privately.
   - variable: WORKBOOK_SALES_ENABLED
-    value: "false"
+    value: "true"
     availability:
       - BUILD
       - RUNTIME

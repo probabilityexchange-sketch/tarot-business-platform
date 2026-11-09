@@ -38,7 +38,7 @@ export async function GET(request: Request) {
   return new Response(pdf as BodyInit, {
     headers: {
       "Content-Type": "application/pdf",
-      "Content-Disposition": "attachment; filename=\"learning-to-listen-workbook.pdf\"",
+      "Content-Disposition": "attachment; filename=\"the-art-of-discernment.pdf\"",
       "Cache-Control": "no-store",
     },
   });

@@ -9,16 +9,16 @@ export type WorkbookProduct = {
 
 export const workbookProduct: WorkbookProduct = {
   id: "discernment-workbook",
-  title: "Learning to Listen: A Discernment Workbook",
+  title: "The Art of Discernment",
   price: "$39",
   priceCents: 3900,
   description:
     "A downloadable workbook of teaching pages and guided writing exercises for working through a question or a decision at your own pace.",
   features: [
     "Teaching pages and guided writing exercises",
-    "The four lenses: fear, ego, desire and intuition",
-    "A decision lab and a 30-day practice plan",
-    "Fillable in compatible PDF readers, and printable",
+    "Eight sections on intuition, fear, projection, relationships and inner authority",
+    "Reflection questions and exercises to revisit at your own pace",
+    "A 28-page PDF to read or print; use a notebook for your responses",
   ],
 };
 
