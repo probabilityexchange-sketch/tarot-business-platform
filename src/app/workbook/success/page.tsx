@@ -67,7 +67,7 @@ function WorkbookSuccessContent() {
           Download the workbook (PDF)
         </a>
         <p className="mt-4 text-xs leading-relaxed text-on-surface/50">
-          Fillable in compatible PDF readers, and printable. Save a personal copy before you begin.
+          A printable PDF. Use a notebook for your responses, and save a personal copy before you begin.
         </p>
       </div>
 
