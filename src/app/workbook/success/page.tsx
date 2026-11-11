@@ -22,7 +22,7 @@ function WorkbookSuccessContent() {
     setStatus("ready");
     if (!purchaseTracked.current) {
       purchaseTracked.current = true;
-      pushEvent("purchase", { transaction_id: sessionId, value: 39, currency: "usd" });
+      pushEvent("purchase", { transaction_id: sessionId, value: workbookProduct.priceCents / 100, currency: "usd" });
     }
   }, [sessionId]);
 

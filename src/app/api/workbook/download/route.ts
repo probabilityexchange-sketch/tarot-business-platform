@@ -3,7 +3,7 @@ import { join } from "node:path";
 import { NextResponse } from "next/server";
 import type Stripe from "stripe";
 import { getStripe } from "@/lib/stripe";
-import { workbookProduct } from "@/lib/workbook";
+import { isValidWorkbookPurchaseAmount } from "@/lib/workbook";
 
 export const runtime = "nodejs";
 
@@ -22,7 +22,7 @@ export async function GET(request: Request) {
   }
   if (session.payment_status !== "paid" ||
       session.metadata?.kind !== "workbook" ||
-      session.amount_total !== workbookProduct.priceCents ||
+      !isValidWorkbookPurchaseAmount(session.amount_total) ||
       session.currency !== "usd") {
     return NextResponse.json({ error: invalidMessage }, { status: 403 });
   }

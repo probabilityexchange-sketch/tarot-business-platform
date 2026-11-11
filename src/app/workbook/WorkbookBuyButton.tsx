@@ -23,7 +23,7 @@ export function WorkbookBuyButton() {
       if (!response.ok || !data.url) {
         throw new Error(data.error || "Unable to start checkout. Please try again.");
       }
-      pushEvent("begin_checkout", { value: 39, currency: "usd", items: 1 });
+      pushEvent("begin_checkout", { value: workbookProduct.priceCents / 100, currency: "usd", items: 1 });
       window.location.href = data.url;
     } catch (error) {
       setMessage(error instanceof Error ? error.message : "Unable to connect. Please try again.");

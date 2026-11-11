@@ -24,7 +24,7 @@ export function LettersContent({ illustrated = false }: { illustrated?: boolean 
           <p className="mb-7 text-sm leading-relaxed text-[#655b61]">Sign up for the free guide, a welcome letter and the discernment series, with occasional news about Kali’s work.</p>
           <EmailSignupForm source="letters-page" label="Send me the free guide" />
           <p className="mt-5 text-xs leading-relaxed text-[#655b61]">You can unsubscribe using the link in any email.</p>
-          {isWorkbookSaleEnabled() ? <p className="mt-5 text-xs leading-relaxed text-[#655b61]">Prefer to own the practice? The Art of Discernment, Kali’s workbook for discernment — $39. <Link href="/workbook" className="underline underline-offset-4">See the workbook →</Link></p> : null}
+          {isWorkbookSaleEnabled() ? <p className="mt-5 text-xs leading-relaxed text-[#655b61]">Prefer to own the practice? The Art of Discernment, Kali’s workbook for discernment — $49. <Link href="/workbook" className="underline underline-offset-4">See the workbook →</Link></p> : null}
         </aside>
         {illustrated && <div className="lg:hidden"><LettersIllustration /></div>}
       </section>

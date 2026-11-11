@@ -44,7 +44,7 @@ export default function GiftPage() {
     </section>
 
     <div className="mt-16 max-w-3xl space-y-4 border-t border-current/15 pt-8">
-      {isWorkbookSaleEnabled() ? <p><Link href="/workbook" className="underline underline-offset-4">A smaller gift — The Art of Discernment, Kali’s $39 workbook →</Link></p> : null}
+      {isWorkbookSaleEnabled() ? <p><Link href="/workbook" className="underline underline-offset-4">A smaller gift — The Art of Discernment, Kali’s $49 workbook →</Link></p> : null}
       <p><Link href="/readings" className="underline underline-offset-4">Booking for yourself instead? Book a reading →</Link></p>
       <p className="text-xs leading-relaxed text-on-surface/50">{"Tarot readings are offered for reflection and personal insight. They don't predict outcomes and aren't a substitute for medical, mental health, legal or financial advice."}</p>
     </div>

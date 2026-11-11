@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { WorkbookBuyButton } from "@/app/workbook/WorkbookBuyButton";
 import { isWorkbookSaleEnabled, workbookProduct } from "@/lib/workbook";
 
@@ -14,10 +15,13 @@ export const metadata: Metadata = {
 export default function WorkbookPage() {
   const onSale = isWorkbookSaleEnabled();
   return <div className="mx-auto max-w-4xl px-6 py-20 lg:px-12">
-    <header className="mb-14 max-w-3xl">
+    <header className="mb-14 grid items-start gap-10 sm:grid-cols-[1fr_220px]">
+      <div>
       <p className="mb-5 text-xs uppercase tracking-[.2em] text-primary">A workbook for discernment</p>
       <h1 className="mb-7 font-serif text-5xl leading-tight sm:text-6xl">The Art of Discernment.</h1>
       <p className="text-xl leading-relaxed text-on-surface/70">A strong feeling can be a place to begin. This workbook gives a question somewhere to land: teaching pages and guided writing exercises on intuition, fear, relationships and inner authority, with room on the page for “I don’t know yet.”</p>
+      </div>
+      <Image src="/images/discernment-workbook-cover.png" alt="The Art of Discernment by Kali Meister, plum and ivory workbook cover" width={612} height={792} priority className="mx-auto w-full max-w-[250px] shadow-xl" />
     </header>
     <section className="mb-12 rounded-2xl bg-surface-container-low p-8">
       <h2 className="mb-4 font-serif text-3xl">What’s inside</h2>

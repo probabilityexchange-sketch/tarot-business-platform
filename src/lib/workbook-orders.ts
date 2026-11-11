@@ -1,14 +1,14 @@
 import type Stripe from "stripe";
 import { Timestamp } from "firebase-admin/firestore";
 import { getAdminDb } from "@/lib/firebase-admin";
-import { workbookProduct } from "@/lib/workbook";
+import { isValidWorkbookPurchaseAmount } from "@/lib/workbook";
 
 const collections = { buyers: "workbook_buyers" } as const;
 
 export async function recordWorkbookPurchase(session: Stripe.Checkout.Session) {
   if (session.payment_status !== "paid") return { status: "unpaid" };
   if (session.metadata?.kind !== "workbook" ||
-      session.amount_total !== workbookProduct.priceCents ||
+      !isValidWorkbookPurchaseAmount(session.amount_total) ||
       session.currency !== "usd") throw new Error("Invalid workbook payment.");
   const ref = getAdminDb().collection(collections.buyers).doc(session.id);
   return getAdminDb().runTransaction(async (transaction) => {

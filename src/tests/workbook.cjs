@@ -63,7 +63,7 @@ async function bundle(file, name) {
   assert.equal(created.input.mode, "payment");
   assert.equal(created.input.payment_method_types, undefined, "Stripe selects eligible payment methods from Dashboard settings");
   assert.equal(created.input.line_items[0].quantity, 1);
-  assert.equal(created.input.line_items[0].price_data.unit_amount, 3900);
+  assert.equal(created.input.line_items[0].price_data.unit_amount, 4900);
   assert.equal(created.input.line_items[0].price_data.currency, "usd");
   assert.equal(created.input.line_items[0].price_data.product_data.name, "The Art of Discernment");
   assert.equal(created.input.metadata.kind, "workbook");
@@ -82,24 +82,26 @@ async function bundle(file, name) {
   assert.equal(bad.status, 400);
   const wrongShape = await checkout.POST(new Request("https://kalimeister.com/api/workbook/checkout", { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ purchaseId: "x".repeat(65) }) }));
   assert.equal(wrongShape.status, 400);
-  console.log("PASS: workbook checkout creates a verified $39 session with idempotency and rejects malformed bodies");
+  console.log("PASS: workbook checkout creates a verified $49 session with idempotency and rejects malformed bodies");
 
   const orders = await bundle("src/lib/workbook-orders.ts", "orders");
-  const paidSession = { id: "cs_test_workbookpaid", payment_status: "paid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 3900, payment_intent: "pi_workbook", customer_details: { email: "buyer@example.com" }, customer_email: null };
+  const paidSession = { id: "cs_test_workbookpaid", payment_status: "paid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 4900, payment_intent: "pi_workbook", customer_details: { email: "buyer@example.com" }, customer_email: null };
   assert.equal((await orders.recordWorkbookPurchase({ ...paidSession, payment_status: "unpaid" })).status, "unpaid");
   await assert.rejects(() => orders.recordWorkbookPurchase({ ...paidSession, amount_total: 25000 }), /Invalid workbook payment/);
   await assert.rejects(() => orders.recordWorkbookPurchase({ ...paidSession, metadata: { kind: "merch" } }), /Invalid workbook payment/);
   assert.equal((await orders.recordWorkbookPurchase(paidSession)).status, "recorded");
   assert.equal(records.get("workbook_buyers/cs_test_workbookpaid").email, "buyer@example.com");
-  assert.equal(records.get("workbook_buyers/cs_test_workbookpaid").amountCents, 3900);
+  assert.equal(records.get("workbook_buyers/cs_test_workbookpaid").amountCents, 4900);
   assert.equal(records.get("workbook_buyers/cs_test_workbookpaid").paymentIntentId, "pi_workbook");
   assert.equal((await orders.recordWorkbookPurchase(paidSession)).status, "recorded");
   assert.equal([...records.keys()].filter(key => key.startsWith("workbook_buyers/")).length, 1);
-  console.log("PASS: workbook purchase recording validates payment and stays idempotent");
+  await orders.recordWorkbookPurchase({ ...paidSession, id: "cs_test_legacy39", amount_total: 3900 });
+  assert.equal(records.get("workbook_buyers/cs_test_legacy39").amountCents, 3900);
+  console.log("PASS: workbook purchase recording validates current and legacy prices and stays idempotent");
 
   const webhook = await bundle("src/app/api/stripe/webhook/route.ts", "webhook");
   process.env.STRIPE_WEBHOOK_SECRET = "whsec_workbook_test";
-  const hookSession = { id: "cs_test_workbookhook", payment_status: "paid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 3900, payment_intent: "pi_hook", customer_details: { email: "hook@example.com" }, customer_email: null };
+  const hookSession = { id: "cs_test_workbookhook", payment_status: "paid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 4900, payment_intent: "pi_hook", customer_details: { email: "hook@example.com" }, customer_email: null };
   const event = JSON.stringify({ id: "evt_workbook", type: "checkout.session.completed", data: { object: hookSession } });
   const signature = stripe.webhooks.generateTestHeaderString({ payload: event, secret: process.env.STRIPE_WEBHOOK_SECRET });
   assert.equal((await webhook.POST(new Request("https://kalimeister.com/api/stripe/webhook", { method: "POST", headers: { "stripe-signature": signature }, body: event }))).status, 200);
@@ -113,11 +115,11 @@ async function bundle(file, name) {
   process.chdir(downloadTestDir);
   const download = await bundle("src/app/api/workbook/download/route.ts", "download");
   assert.equal((await download.GET(new Request("https://kalimeister.com/api/workbook/download?session_id=nope"))).status, 403);
-  sessionsById.set("cs_test_unpaid", { id: "cs_test_unpaid", payment_status: "unpaid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 3900 });
+  sessionsById.set("cs_test_unpaid", { id: "cs_test_unpaid", payment_status: "unpaid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 4900 });
   const unpaid = await download.GET(new Request("https://kalimeister.com/api/workbook/download?session_id=cs_test_unpaid"));
   assert.equal(unpaid.status, 403);
   assert.equal((await unpaid.json()).error, "This download link is not valid for a paid workbook purchase.");
-  sessionsById.set("cs_test_paiddownload", { id: "cs_test_paiddownload", payment_status: "paid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 3900 });
+  sessionsById.set("cs_test_paiddownload", { id: "cs_test_paiddownload", payment_status: "paid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 4900 });
   const missing = await download.GET(new Request("https://kalimeister.com/api/workbook/download?session_id=cs_test_paiddownload"));
   assert.equal(missing.status, 503);
   assert.ok((await missing.json()).error.includes("being finalized"));
@@ -131,6 +133,10 @@ async function bundle(file, name) {
     assert.equal(served.headers.get("Content-Type"), "application/pdf");
     assert.ok((served.headers.get("Content-Disposition") || "").includes("attachment"));
     assert.ok((await served.text()).startsWith("%PDF-1.4"));
+    sessionsById.set("cs_test_legacydownload", { id: "cs_test_legacydownload", payment_status: "paid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 3900 });
+    assert.equal((await download.GET(new Request("https://kalimeister.com/api/workbook/download?session_id=cs_test_legacydownload"))).status, 200);
+    sessionsById.set("cs_test_underpaid", { id: "cs_test_underpaid", payment_status: "paid", metadata: { kind: "workbook" }, currency: "usd", amount_total: 100 });
+    assert.equal((await download.GET(new Request("https://kalimeister.com/api/workbook/download?session_id=cs_test_underpaid"))).status, 403);
   } finally {
     fs.rmSync(pdfPath, { force: true });
     process.chdir(originalCwd);
